@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="certReason">
+	
+	<!-- List -->
+	<select id="list" resultType="CertReason">
+		select * from CERT_REASON
+	</select>
+	
+	<select id="item" resultType="CertReason">
+		select * from CERT_REASON
+		where CERT_REASON_ID = #{certReasonId}
+	</select>
+
+	<!-- 생성 -->
+	<insert id="add">
+		insert into CERT_REASON
+		values(null,#{certReasonName},#{certReasonImage},#{certReasonInfo});
+	</insert>
+	
+	<!-- 수정 -->
+	<update id="update">
+		update CERT_REASON
+		set
+		CERT_REASON_NAME = #{certReasonName},
+		CERT_REASON_IMAGE = #{certReasonImage},
+		CERT_REASON_INFO = #{certReasonInfo}
+		where 
+		CERT_REASON_ID = #{certReasonId}
+	</update>
+	
+	<!-- 삭제 -->
+	<delete id="delete">
+		delete from CERT_REASON
+		where CERT_REASON_ID = #{certReasonId}
+	</delete>
+	
+</mapper>

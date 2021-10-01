@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>screen size</title>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="http://code.jquery.com/jquery.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script>
+    $(document).ready(function () {
+    // 유저 디바이스 가로 사이즈
+    var width = screen.width
+
+    // 유저 디바이스 세로 사이즈
+    var height = screen.height
+
+    // 유저 디바이스 가로/세로 사이즈를 배열로 저장
+    var allData = { "width": width, "height":height };
+
+    // 유저 디바이스 데이터를 잘 가져오는지 콘솔에서 확인
+    console.log('width', 'height', width, height);
+    console.log(allData);
+
+    // ajax으로 Controller에 데이터 전송 예정
+    $.ajax({
+    type : "POST",
+    url : "post.do", 
+    data : allData,
+    error : function(error) {
+    	console.log("error");
+    },
+    success : function(data) {
+	console.log("success");
+    }
+    });
+    });
+    </script>
+</head>
+<body>
+    <h1>데이터 전송 테스트</h1>
+</body>
+</html>

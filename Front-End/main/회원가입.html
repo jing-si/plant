@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+    <script src="js\test.js"></script>
+
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            box-sizing: border-box;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        a{
+            text-decoration: none;
+            color: black;
+        }
+        
+        #align{
+            width: 328px;
+            height: calc(100vh - 44px - 40.5px - 31.5px);
+            margin: 0 auto;
+            position: relative;
+        }
+        #header{
+            width: 100%;
+            height: 45px;
+            border-bottom: 5px solid #f5f5f5;
+        }
+        #header p{
+            width: 100px;
+            text-align: center;
+            font-size: 15px;
+            color: #2c2c2c;
+            font-weight: bold;
+            margin: 0px auto;
+            padding: 10px;
+        }
+        #header svg{
+            position: absolute;
+            top: 9px;
+            left: 9px;
+        }
+
+        /* info들 공통사항 */
+        .info{
+            width: 100%;
+            margin-bottom: 18px;
+        }
+        .info p{
+            font-size: 10px;
+            color: gray;
+        }
+        .info .title{
+            margin-bottom: 8px;
+            width: 100px;
+        }
+        .info div{
+            width: 328px;
+            height: 40px;
+            position: relative;
+            background-color: #f5f5f5;
+            border-radius: 4px;
+        }
+        .info input{
+            border: 0px;
+            width: 328px;
+            height: 40px;
+            position: relative;
+            background-color: #f5f5f5;
+            border-radius: 4px;
+            font-size: 10px;
+            color: gray;
+            padding: 12px;
+        }
+        .info div p{
+            width: 80%;
+            height: 20px;
+            position: absolute;
+            left: 5%;
+            top: 25%;
+        }
+
+        /* info들 개별사항 */
+        #email{margin-top: 31.5px;}
+        #email #certification{
+            color: #66bb6a;
+            margin-top: 6px;
+        }
+        #birth #explain{
+            margin-top: 6px;
+        }
+        #gender div{
+            display: inline-block;
+            width: 164px; /*나중에 지우기 164로*/
+            height: 40px;
+            position: relative;
+        }
+        #gender div p{
+            position: absolute;
+            left: 45%;
+            top: 33%;
+            width: 50px;
+        }
+        /* #gender #female{border: 1px solid #66bb6a; background-color: #fff;}
+        #gender #female p{
+            color: #66bb6a;
+        } */
+
+        #gender ul{
+            display: inline-block;
+            width: 100%;
+            background-color: #f5f5f5;
+            height: 40px;
+            border-radius: 4px;
+        }
+        #gender ul li{
+            display: inline-block;
+            /* width */
+            height: 40px;
+        }
+        .list li.is_on .btn{
+            color: #66bb6a;
+            background-color: #fff;
+            border: 1px solid #66bb6a;
+        }
+
+        #agreement{
+            width: 328px;
+        }
+        #agreement #agreeBox{height: 71px;}
+        #agreement div div{
+            position: relative;
+        }
+        #agreement div div p{
+            display: inline-block;
+            width: 200px;
+            position: absolute;
+        }#agreement .fullText{
+            left: 80%;
+            width: 50px;
+            height: 14px;
+            top: 30%;
+        }
+        #agreement .terms{
+            text-decoration: underline;
+            height: 14px;
+        }
+        #agreement #terms_1{top: 17px; bottom: 11px;}
+        #agreement #terms_2{bottom: 17px;}
+        #agreement #fullText_1{top: 17px;}
+        #agreement #fullText_2{bottom: 17px;}
+
+        /* 완료버튼 */
+        #submit{
+            width: 100%;
+            height: 44px;
+            background-color: #66bb6a;
+            position: relative;
+        }
+        #submit p{
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%);
+            top: 27%;
+            font-size: 13px;
+            color: #fff;
+            font-weight: bold;
+            /* margin: auto 0; */
+            /* margin-top: 6.3px; */
+        }
+    </style>
+</head>
+<body>
+    <div id="header"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        <p>회원가입</p></div>
+<div id="align">
+    <div id="email" class="info">
+        <p class="title">이메일</p>
+        <div><p>example@gmail.com</p></div>
+        <p id="certification">계정이 인증되었습니다.</p>
+    </div>
+    <div id="nickName" class="info">
+        <p class="title">닉네임</p>
+        <input placeholder="example@gmail.com" type="text">
+            <!-- <p>example@gmail.com</p> -->
+        </input>
+    </div>
+    <div id="birth" class="info">
+        <p class="title">생년월일</p>
+        <input placeholder="생년월일(8자리)" type="date" maxlength="8">
+            <!-- <p id="explain">생년월일(8자리)</p> -->
+        </input>
+    </div>
+    <!-- <div id="gender" class="info">
+        <p class="title">성별</p>
+        <div id="female"><p>여성</p>
+        </div><div id="male"><p>남성</p></div>
+    </div> -->
+    <div id="gender" class="info" class="tab_menu">
+        <p class="title">성별</p>
+        <ul class="list">
+            <li class="is_on">
+                <div id="female" class="btn"><p>여성</p></div>
+            </li><li><div id="male" class="btn"><p>남성</p></div></li>
+        </ul>
+    </div>
+    <div id="agreement" class="info">
+        <p class="title">약관동의</p>
+        <div id="agreeBox">
+            <div><p class="terms" id="terms_1">이용약관 동의(필수)<a><p class="fullText" id="fullText_1">전문보기</p></a></div>
+            <div><p class="terms" id="terms_2">개인정보 수집 및 이용 동의(필수)<a><p class="fullText" id="fullText_2">전문보기</p></a></div>
+        </div>
+    </div>
+</div>
+    <a href="로그인2.html"><div id="submit">
+        <p>동의하고 완료</p>
+    </div></a>
+</body>
+</html>

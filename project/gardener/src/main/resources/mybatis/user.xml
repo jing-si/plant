@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="user">
+
+	<select id="list" resultType="User">
+		SELECT * FROM USER
+	</select>
+
+
+	<select id="item" resultType="User">
+		select *, 
+		(select PLANT_IMAGE 
+		from PLANT_LEVEL P 
+		WHERE P.PLANT_LEVEL_ID = (select STATE_ID from USER U1 where U1.USER_ID = #{uesrId}) AND P.PLANT_ID = U.PLANT_ID) 
+		PLANT 
+		from USER U
+		where U.USER_ID = #{userId} <!-- 알리아스 주의 -->
+	</select>
+
+	<insert id="add">
+		INSERT INTO USER
+		VALUES (#{userId},#{userNick},
+		#{userPass},#{userBirth},#{userGender},0,1,null)
+	</insert>
+	
+	<select id="imgSrc" resultType="String">
+		SELECT PLANT_IMAGE
+		FROM PLANT_LEVEL
+		WHERE PLANT_ID=#{plantId} and PLANT_LEVEL_ID=5
+	</select>
+	
+	
+	<update id="update">
+		UPDATE USER
+		SET USER_NICK=#{userNick},
+			USER_PASS=#{userPass},
+			USER_BIRTH=#{userBirth},
+			USER_GENDER=#{userGender},
+			STATE_ID=#{stateId},
+			FOREST_ID=#{forestId},
+			PLANT_ID=#{plantId}
+		WHERE USER_ID=#{userId}
+	</update>
+
+	<delete id="delete">
+		DELETE FROM USER
+		WHERE USER_ID=#{userId}
+	</delete>
+
+
+</mapper>

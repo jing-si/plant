@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cert">
+	
+	<!-- List -->
+	<select id="list" resultType="Cert">
+		select * from CERT
+	</select>
+	
+	<select id="item" resultType="Cert">
+		select * from CERT
+		where CERT_ID = #{certId}
+	</select>
+
+	<!-- 생성 -->
+	<insert id="add">
+		insert into CERT
+		values(null,#{certName},#{certImage},#{certInfo});
+	</insert>
+	
+	<!-- 수정 -->
+	<update id="update">
+		update CERT
+		set
+		CERT_NAME = #{certName},
+		CERT_IMAGE = #{certImage},
+		CERT_INFO = #{certInfo}
+		where 
+		CERT_ID = #{certId}
+	</update>
+	
+	<!-- 삭제 -->
+	<delete id="delete">
+		delete from CERT
+		where CERT_ID = #{certId}
+	</delete>
+	
+</mapper>

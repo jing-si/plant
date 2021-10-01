@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="forest">
+  <select id="list" resultType="Forest">
+	SELECT * FROM FOREST
+  </select>
+  
+  <select id="item" resultType="Forest">
+  	SELECT * FROM FOREST
+  </select>
+  
+  <insert id="add">
+  	INSERT INTO FOREST
+  	VALUES (#{forestId}, #{forestName}, #{forestImage}, #{forestInfo})
+  </insert>
+  
+  <update id="update">
+  	UPDATE FOREST
+  	SET FOREST_ID=#{forestId}, FOREST_NAME=#{forestName}, FOREST_IMAGE=#{forestImage}, FOREST_INFO=#{forestInfo}
+  	WHERE FOREST_ID=#{forestId}
+  </update>
+  
+  <delete id="delete">
+  	DELETE FROM FOREST
+  	WHERE FOREST_ID=#{forestId}
+  </delete>
+</mapper>

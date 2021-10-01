@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="bookmark">
+
+	<select id="list" resultType="Bookmark">
+		SELECT * FROM BOOKMARK
+	</select>
+
+
+	<select id="item" resultType="Bookmark">
+		SELECT * FROM BOOKMARK
+		WHERE BOOK_ID =#{bookmarkId}
+	</select>
+
+	<insert id="add">
+	<!-- 	INSERT INTO USER
+		VALUES (#{bookmarkId},#{userId},
+		#{bookmarkDatetime},null) -->
+		
+		INSERT INTO BOOKMARK (#{bookmarkId}, #{userId}, #{bookmarkDatetime}, #{productId})
+		VALUES ((SELECT IFNULL(MAX(#{bookmarkId}) + 1, 1) FROM BOOKMARK B),
+		 		#{userId}, 
+				#{bookmarkDatetime}, 
+				#{productId})
+
+	</insert>
+
+	<update id="update">
+		UPDATE USER
+		SET BOOKMARK_ID=#{bookmarkId}, 
+			USER_ID=#{userId},
+			BOOKMARK_DATETIME=#{bookmarkDatetime},
+			PRODUCT_ID=#{productId}
+		WHERE BOOKMARK_ID=#{bookmarkId}
+	</update>
+
+	<delete id="delete">
+		DELETE FROM BOOKMARK
+		WHERE BOOKMARK_ID=#{bookmarkId}
+	</delete>
+	
+	<!-- 즐겨찾기 제품아이디, 제품이미지, 제품명 리스트 이름순 정렬 -->
+	<select id="productListName" resultType="Bookmark">
+	SELECT PRODUCT.PRODUCT_ID, PRODUCT.PRODUCT_IMAGE, PRODUCT.PRODUCT_NAME 
+	FROM PRODUCT LEFT JOIN BOOKMARK 
+	ON PRODUCT.PRODUCT_ID = BOOKMARK.PRODUCT_ID
+	JOIN  USER ON BOOKMARK.USER_ID = USER.USER_ID
+	ORDER BY PRODUCT.PRODUCT_NAME
+	</select>
+	
+	
+	<!-- 즐겨찾기 제품아이디, 제품이미지, 제품명 리스트 즐겨찾기 날짜순 정렬 -->
+	<select id="ProductListDate" resultType="Bookmark">
+	SELECT PRODUCT.PRODUCT_ID, PRODUCT.PRODUCT_IMAGE, PRODUCT.PRODUCT_NAME
+	LEFT JOIN BOOKMARK 
+	ON PRODUCT.PRODUCT_ID = BOOKMARK.PRODUCT_ID
+	JOIN  USER ON BOOKMARK.USER_ID = USER.USER_ID
+	ORDER BY BOOKMARK.BOOKMARK_DATE DESC
+	</select>
+
+	
+
+</mapper>

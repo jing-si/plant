@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="location">
+	<select id="list" resultType="Location">
+		SELECT * FROM LOCATION
+	</select>
+	
+	<!-- 특정 유저의 배치 정보 가져오기 -->
+	<select id="item" resultType="Location">
+		SELECT * FROM LOCATION
+		WHERE USER_ID = #{userId}
+	</select>
+	
+	<select id="list_userId" resultType="Location">
+		select L.*, PL.PLANT_IMAGE from LOCATION L
+		join PLANT_LEVEL PL ON PL.PLANT_ID = L.PLANT_ID
+		WHERE USER_ID = #{userId} and PL.PLANT_LEVEL_ID = 5	
+	</select>
+	
+	
+	<insert id="add">
+		INSERT INTO LOCATION
+		VALUES (#{userId},#{locationId},#{plantId},#{locationSize},#{locationX},#{locationY},#{locationOrder})
+	</insert>
+		
+	<!-- 	private String userId;
+			private int locationId;
+			private int plantId;
+			private int locationSize;
+			private int locationX;
+			private int locationY;
+			private int locationOrder;
+	 -->
+	
+	<update id="update">
+		UPDATE LOCATION
+		SET USER_ID=#{userId},
+			LOCATION_ID=#{locationId},
+			PLANT_ID=#{plantId},
+			LOCATION_SIZE=#{locationSize},
+			LOCATION_X=#{locationX},
+			LOCATION_Y=#{locationY},
+			LOCATION_Order=#{locationOrder}
+		WHERE USER_ID=#{userId}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM LOCATION
+		WHERE USER_ID=#{userId}
+	</delete>
+</mapper>

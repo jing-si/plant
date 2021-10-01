@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+	
+<mapper namespace="plantLevel">
+  <select id="list" resultType="PlantLevel">
+	SELECT * FROM PLANT_LEVEL
+  </select>
+  
+  <select id="item" resultType="PlantLevel">
+  	SELECT * FROM PLANT_LEVEL
+  </select>
+  
+  <insert id="add">
+  	INSERT INTO PLANT_LEVEL
+  	VALUES (#{plantLevelId}, #{plantId}, #{plantImage})
+  </insert>
+  
+  <update id="update">
+  	UPDATE PLANT_LEVEL
+  	SET PLANT_LEVEL_ID=#{plantLevelId}, 
+  		PLANT_ID=#{plantId}, 
+  		PLANT_IMAGE=#{plantImage}
+  	WHERE PLANT_LEVEL_ID=#{plantLevelId}
+  </update>
+  
+  <delete id="delete">
+  	DELETE FROM PLANT_LEVEL
+  	WHERE PLANT_LEVEL_ID=#{plantLevelId}
+  </delete>
+</mapper>

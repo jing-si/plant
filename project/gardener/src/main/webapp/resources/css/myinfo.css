@@ -1,0 +1,168 @@
+*{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    box-sizing: border-box;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+
+#header{
+    width: 100%;
+    height: 45px;
+    border-bottom: 5px solid #f5f5f5;
+}
+#header p{
+    width: 150px;
+    text-align: center;
+    font-size: 15px;
+    color: #2c2c2c;
+    font-weight: bold;
+    margin: 0px auto;
+    padding: 10px;
+}
+#header #back{
+    position: absolute;
+    top: 9px;
+    left: 9px;
+}
+
+#body{
+    width: 100%;
+    height: calc(100vh - 56px - 45px);
+}
+.info{
+    width: 100%;
+    height: 49.1px;
+    position: relative;
+    border: 1px solid #f5f5f5;
+}
+.info p{
+    position: absolute;
+    top: 15px;
+    left: 35px;
+    font-size: 14px;
+}
+.info svg{
+    position: absolute;
+    top: 15px;
+    right: 12.1px;
+    opacity: 0.5;
+}
+
+/* 怨듯넻硫붾돱諛� */
+.sticky{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 56px;
+    background-color: #66bb6a;
+}
+.sticky div{
+    display: inline-block;
+    color: white;
+    text-align: center;
+    width: 20%;
+    height: 100%;
+    margin: 0;
+    position: relative;
+    font-size: 11px;
+}
+.sticky svg{
+    /* position: absolute; */
+    /* top: 6.3px; */
+    /* left: 25px; */
+    margin: auto 0;
+    margin-top: 6.3px;
+}
+.sticky p{
+    margin: auto 0;
+    /* margin-top: 28.3px; */
+    margin-top: 0px;
+}
+
+
+
+
+
+
+
+
+.title{
+    width : 80%;
+    margin: 0 auto;
+    text-align: center;
+    font-family: NotoSansKR;
+    font-size: 14px;
+    color: #666;
+    padding: 17px;
+}
+.check{
+    font-family: NotoSansKR;
+    font-size: 14px;
+    text-align: center;
+    color: #1377e7;
+    width: 50%;
+    display: inline-block;
+    padding-top: 10px;
+}
+.cancel{
+    font-family: NotoSansKR;
+    font-size: 14px;
+    text-align: center;
+    width: 50%;
+    display: inline-block;
+    padding-top: 10px;
+    cursor:pointer;
+}
+
+
+
+#popup01{
+    display: none;
+}
+#popup02{
+    display: none;
+}
+#popup01{
+width: 90%;
+height: 106px;
+position: absolute;
+top: 80%;
+left: 50%;
+transform: translate(-50%, -50%);
+background-color: #fff;
+z-index: 2;
+    }
+    #popup02{
+width: 90%;
+height: 106px;
+position: absolute;
+top: 80%;
+left: 50%;
+transform: translate(-50%, -50%);
+background-color: #fff;
+z-index: 2;
+    }
+.backon{
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: #00000054;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+.close{
+  position:absolute;
+  top:-25px;
+  right: 0;
+  cursor:pointer;
+}
+.openPopup{
+  cursor:pointer;
+}

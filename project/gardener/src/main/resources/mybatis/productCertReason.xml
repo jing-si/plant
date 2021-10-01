@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="productCertReason">
+
+	<!-- List -->
+	<select id="list" resultType="ProductCertReason">
+		select * from PRODUCT_CERT_REASON
+	</select>
+
+	<select id="item" resultType="ProductCertReason">
+		select * from PRODUCT_CERT_REASON
+		where PRODUCT_CERT_REASON_ID = #{productCertReasonId}
+	</select>
+
+	<!-- 생성 -->
+	<insert id="add">
+		insert into PRODUCT_CERT_REASON
+		values(#{productCertReasonId},#{productId},#{certReasonId})
+	</insert>
+
+	<!-- 수정 -->
+	<update id="update">
+		update PRODUCT_CERT_REASON
+		set
+		CERT_REASON_ID =
+		#{certReasonId}
+		where
+		PRODUCT_CERT_REASON_ID = #{productCertReasonId}
+		and
+		PRODUCT_ID = #{productId}
+	</update>
+
+	<!-- 삭제 -->
+	<delete id="delete">
+		delete from PRODUCT_CERT_REASON
+		where
+		PRODUCT_CERT_REASON_ID = #{productCertReasonId}
+		and
+		PRODUCT_ID =
+		#{productId}
+	</delete>
+
+	<insert id="bulkAdd">
+		INSERT INTO PRODUCT_CERT_REASON
+		(PRODUCT_ID,CERT_REASON_ID)
+
+		SELECT #{productId},#{certReasonId}
+
+		FROM dual
+
+		WHERE NOT EXISTS (
+
+		SELECT * FROM PRODUCT_CERT_REASON
+
+		WHERE PRODUCT_ID = #{productId} AND CERT_REASON_ID = #{certReasonId}
+
+	</insert>
+</mapper>

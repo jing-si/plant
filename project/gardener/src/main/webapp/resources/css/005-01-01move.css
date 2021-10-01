@@ -1,0 +1,108 @@
+/* css/common.js */
+ 
+/* 초기화 */
+* {
+    padding: 0;
+    margin: 0;
+}
+
+/* 도화지 크기 설정 */
+html, body {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background-image: url('../images/main_bg.png');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+}
+
+.header {
+    width: 100%;
+    height: 42px;
+    background-color: rgb(255, 255, 255, 0.5);
+    box-shadow: 0.3px 0px 5px 1px rgba(200, 200, 200, 0.1);
+    z-index: 99;
+}
+
+.header_text {
+    width: 100px;
+    height: auto;
+    margin: 0px auto;
+    padding: 9px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: 'Noto Sans KR', 'Nanum Gothic', sans-serif;
+    color: #000;
+    /* border: 1px solid red; */
+}
+ 
+/* 공이 자유자재로 움직일 수 있도록 position을 'absolute'로 설정 */
+.ball { 
+    position: absolute;
+    background-image: url('../images/tree01.png');
+    background-repeat: no-repeat;
+}
+/* 공을 선택했을 때, 그림자가 생기도록 설정 */
+.ball:hover { box-shadow: 0 0 10px 0 darkgray; cursor: pointer; }
+ 
+
+/* 나무 크기 설정 */
+#tree { width: 100px; height: 130px;}
+
+
+
+
+.close_btn img {
+    position: absolute;
+    left: 12px;
+    top: 11px;
+    /* border: 1px solid red; */
+}
+
+.save_btn img {
+    position: absolute;
+    right: 12px;
+    top: 8px;
+    /* border: 1px solid red; */
+}
+
+.footer { 
+    position: fixed;
+    bottom: 0;
+    width:100%;
+    height: 60px;
+    background-color: rgb(255, 255, 255, 0.3);
+    box-shadow: 0px -1px 5px 0.5px rgba(0, 0, 0, 0.03);
+    border-left: 13px solid rgba(0, 0, 0, 0);
+    border-right: 13px solid rgba(0, 0, 0, 0);
+    box-sizing: border-box;
+}
+
+.footer .footer_btn {
+    display: inline-block;
+    width: 20%;
+    height: 60px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.footer_btn .btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.footer_btn .btn_delete {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -70%);
+}

@@ -1,0 +1,139 @@
+*{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    box-sizing: border-box;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+#align{
+    width: 328px;
+    height: calc(100vh - 56px - 35px);
+    /* 100 - 하단메뉴바 - 타이틀 상단 마진*/
+    margin: 0 auto;
+}
+
+
+.title{
+    width: 100%;
+    height: 51px;
+    margin-top: 35px;
+    margin-bottom: 44px;
+    /* border: 1px solid red; */
+}
+.title p{
+    font-family: NotoSansKR;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: 0.53px;
+}
+
+
+/* .home-screen{
+    width: 328px;
+    height: 320.54px;
+    background-color: blue;
+    margin: 0 auto;
+} */
+.home-screen .screen-bg{
+    width: 100%;
+    height: 292.44px;
+    /* border: 1px solid red; */
+    position: relative;
+}
+.home-screen .screen-bg img{
+    width: 100%;
+}
+.home-screen #seed{
+    width: 127px;
+    height: 127px;
+    /* background-color: #b1eab2; */
+    /* box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16); */
+    /* border-radius: 50%; */
+    /* position: relative; */
+    /* margin: 0 auto; */
+    /* padding-top: 20px; */
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translate(-50%);
+}
+.home-screen .process{
+    position: absolute;
+    top: 255px;
+    left: 50%;
+    transform: translate(-50%);
+    width: 232.9px;
+    height: 28.1px;
+    
+}
+
+.home-button{
+    width: 193px;
+    height: 82px;
+    margin: 0 auto;
+    margin-top: 16.6px;
+}
+.home-button .go-certify{
+    width: 100%;
+    height: 38px;
+    padding: 9px;
+    text-align: center;
+    background-color: #94d3ac;
+    border-radius: 20px;
+    font-family: NotoSansKR;
+    font-size: 15px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    color: #fff;
+}
+.home-button .go-forest{
+    width: 100%;
+    height: 38px;
+    padding: 9px;
+    margin-top: 6px;
+    text-align: center;
+    background-color: #085955;
+    border-radius: 20px;
+    font-family: NotoSansKR;
+    font-size: 15px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    color: #fff;
+}
+
+
+/* 공통메뉴바 */
+.sticky{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 56px;
+    background-color: #66bb6a;
+}
+.sticky div{
+    display: inline-block;
+    color: white;
+    text-align: center;
+    width: 20%;
+    height: 100%;
+    margin: 0;
+    position: relative;
+    font-size: 11px;
+}
+.sticky svg{
+    margin: auto 0;
+    margin-top: 6.3px;
+}
+.sticky p{
+    margin: auto 0;
+    margin-top: 0px;
+}

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="notice">
+
+	<select id="list" resultType="Notice">
+		SELECT * FROM NOTICE
+	</select>
+
+
+	<select id="item" resultType="Notice">
+		SELECT * FROM NOTICE
+		WHERE NOTICE_ID=#{noticeId}
+	</select>
+
+	<insert id="add">
+		INSERT INTO NOTICE
+		VALUES (#{noticeId},#{noticeTitle},
+		#{noticeContent}, #{noticeDate})
+	</insert>
+	
+	<update id="update">
+		UPDATE NOTICE
+		SET NOTICE_ID=#{noticeId},
+			NOTICE_TITLE=#{noticeTitle},
+			NOTICE_CONTENT=#{noticeContent},
+			NOTICE_DATE=#{noticeDate}
+		WHERE NOTICE_ID=#{noticeId}
+	</update>
+
+	<delete id="delete">
+		DELETE FROM NOTICE
+		WHERE NOTICE_ID=#{noticeId}
+	</delete>
+
+
+</mapper>

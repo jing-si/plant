@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="history">
+	<select id="list" resultType="History">
+		SELECT * FROM HISTORY
+	</select>
+	
+	<select id="item" resultType="History">
+		SELECT * FROM HISTORY
+		WHERE HISTORY_ID = #{historyId}
+	</select>
+	
+	<insert id="add">
+		INSERT INTO HISTORY
+		VALUES (#{historyId},#{userId},#{productId},#{historyDateTime},#{historyComment})
+	</insert>
+	
+	<update id="update">
+		UPDATE HISTORY
+		SET HISTORY_ID=#{historyId}, 
+			USER_ID=#{userId},
+			PRODUCT_ID=#{productId},
+			HISTORY_DATETIME=#{historyDateTime},
+			HISTORY_COMMENT=#{historyComment}
+		WHERE HISTORY_ID=#{historyId}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM HISTORY
+		WHERE HISTORY_ID=#{historyId}
+	</delete>
+</mapper>

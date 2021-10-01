@@ -1,0 +1,155 @@
+*{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    box-sizing: border-box;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+#align{
+    width: 328px;
+    height: calc(100vh - 56px - 40.5px - 31.5px);
+    /* �쟾泥� - 怨듯넻硫붾돱諛� - �뿤�뜑 - �깙留덉쭊 */
+    margin: 0 auto;
+    position: relative;
+}
+#header{
+    width: 100%;
+    height: 45px;
+    border-bottom: 5px solid #f5f5f5;
+}
+#header p{
+    width: 150px;
+    text-align: center;
+    font-size: 15px;
+    color: #2c2c2c;
+    font-weight: bold;
+    margin: 0px auto;
+    padding: 10px;
+}
+#header #back{
+    position: absolute;
+    top: 9px;
+    left: 9px;
+}
+#header #check{
+    position: absolute;
+    top: 15px;
+    right: 14px;
+}
+
+/* info�뱾 怨듯넻�궗�빆 */
+.info{
+    width: 100%;
+    margin-bottom: 18px;
+}
+.info p{
+    font-size: 10px;
+    color: gray;
+}
+.info .title{
+    margin-bottom: 8px;
+    width: 100px;
+}
+.info input{
+    width: 328px;
+    height: 40px;
+    position: relative;
+    background-color: rgb(243, 243, 243);
+    border-radius: 4px;
+    border : 0px;
+    padding : 10px
+}
+.info div p{
+    width: 80%;
+    height: 20px;
+    position: absolute;
+    left: 5%;
+    top: 25%;
+}
+
+/* info�뱾 媛쒕퀎�궗�빆 */
+#email{margin-top: 31.5px;}
+#email #certification{
+    color: #66bb6a;
+    margin-top: 6px;
+}
+#gender div{
+    display: inline-block;
+    width: 164px; /*�굹以묒뿉 吏��슦湲� 164濡�*/
+    height: 40px;
+    position: relative;
+}
+#gender div p{
+    position: absolute;
+    left: 45%;
+    top: 33%;
+    width: 50px;
+}
+#gender #female{border: 1px solid #66bb6a;}
+#gender #female p{
+    color: #66bb6a;
+}
+
+/* 怨듯넻硫붾돱諛� */
+.sticky{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 56px;
+    background-color: #66bb6a;
+}
+.sticky div{
+    display: inline-block;
+    color: white;
+    text-align: center;
+    width: 20%;
+    height: 100%;
+    margin: 0;
+    position: relative;
+    font-size: 11px;
+}
+.sticky svg{
+    /* position: absolute; */
+    /* top: 6.3px; */
+    /* left: 25px; */
+    margin: auto 0;
+    margin-top: 6.3px;
+}
+.sticky p{
+    margin: auto 0;
+    /* margin-top: 28.3px; */
+    margin-top: 0px;
+}
+
+.info .select{
+            background-color: #fff;
+        }
+
+.select {
+    padding-right: 0px;
+    padding-left: 0px; 
+}
+.select input[type=radio]{
+    display: none;
+}
+.select input[type=radio]+label{
+    display: inline-block;
+    cursor: pointer;
+    height: 40px;
+    width: 50%;
+    border: 1px solid #333;
+    line-height: 40px;
+    text-align: center;
+    /* font-weight:bold; */
+    font-size:13px;
+}
+.select input[type=radio]+label{
+    background-color: #f5f5f5;
+    color: #333;
+    border-radius: 5px;
+    border: 1px solid #f5f5f5;
+}
+.select input[type=radio]:checked+label{
+    background-color: #66bb6a;
+    color: #fff;
+}

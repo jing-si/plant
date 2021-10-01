@@ -1,0 +1,151 @@
+*{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    box-sizing: border-box;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+input{
+    height: 20px;
+    border-radius: 5px;
+    background-color: #f5f5f5;
+    border: 0px;
+    position: absolute;
+    width: 70%;
+    top: 10px;
+    left: 50px;
+    font-family: NotoSansKR;
+    font-size: 12px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    color: #8e8e93;
+}
+
+#header{
+    width: 100%;
+    height: 59.5px;
+    border-bottom: 5px solid #f5f5f5;
+    position: relative;
+}
+#header .input{
+    position: relative;
+    width: calc(100% - 75px);
+    height: 38px;
+    margin: 11px 9px 10.5px 15px;
+    border-radius: 5px;
+    background-color: #f5f5f5;
+}
+#header .input p{
+    position: absolute;
+    width: 200px;
+    top: 10px;
+    left: 50px;
+    font-family: NotoSansKR;
+    font-size: 12px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    color: #8e8e93;
+}
+#header .input img{
+    position: absolute;
+    top: 10px;
+    left: 14px;
+    width: 18px;
+    height: 18px;
+}
+#header .qr{
+    position: absolute;
+    top: 0px;
+    right: 14px;
+    width: 36px;
+    height: 40px;
+}
+#header .qr svg{
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    opacity:0.5;
+    margin-left: 8px;
+    /* top: 0; */
+    /* left: 89%; */
+}
+#header .qr img{
+    width: 36px;
+    height: 10px;
+    margin-top: 30px;
+}
+/* 정렬 */
+#align{
+    width: 330px;
+    height: calc(100vh - 59.5px - 56px);
+    /* 100 - 헤더 - 공통메뉴 */
+    margin: 0 auto;
+    position: relative;
+}
+
+/* 바디 */
+#body{
+    background-color: #f5f5f5;
+}
+#body svg{
+    opacity: 15%;
+    width: 67px;
+    height: 67px;
+    position: absolute;
+    top: 69px;
+    left: 50%;
+    transform: translate(-50%);
+}
+#body p{
+    position: absolute;
+    top: 150px;
+    left: 50%;
+    transform: translate(-50%);
+    font-family: NotoSansKR;
+    font-size: 12px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.67;
+    text-align: center;
+    opacity: 50%;
+}
+
+
+
+/* 공통메뉴바 */
+.sticky{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 56px;
+    background-color: #66bb6a;
+}
+.sticky div{
+    display: inline-block;
+    color: white;
+    text-align: center;
+    width: 20%;
+    height: 100%;
+    margin: 0;
+    position: relative;
+    font-size: 11px;
+}
+.sticky svg{
+    /* position: absolute; */
+    /* top: 6.3px; */
+    /* left: 25px; */
+    margin: auto 0;
+    margin-top: 6.3px;
+}
+.sticky p{
+    margin: auto 0;
+    /* margin-top: 28.3px; */
+    margin-top: 0px;
+}

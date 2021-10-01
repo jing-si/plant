@@ -1,0 +1,114 @@
+            *{
+                padding: 0;
+                margin: 0;
+                list-style: none;
+                box-sizing: border-box;
+                font-family: 'Noto Sans KR', sans-serif;
+            }
+            a{
+                text-decoration: none;
+                color: black;
+            }
+            
+            #align{
+                width: 328px;
+                height: calc(100vh - 44px - 40.5px - 31.5px);
+                margin: 0 auto;
+                position: relative;
+            }
+            #header{
+                width: 100%;
+                height: 45px;
+                border-bottom: 5px solid #f5f5f5;
+            }
+            #header p{
+                width: 150px;
+                text-align: center;
+                font-size: 15px;
+                color: #2c2c2c;
+                font-weight: bold;
+                margin: 0px auto;
+                padding: 10px;
+            }
+            #header svg{
+                position: absolute;
+                top: 9px;
+                left: 9px;
+            }
+    
+            /* info들 공통사항 */
+            .info{
+                width: 100%;
+                margin-bottom: 18px;
+            }
+            .info p{
+                font-size: 10px;
+                color: gray;
+            }
+            .info .title{
+                margin-bottom: 8px;
+                width: 100%;
+            }
+            .info div{
+                width: 328px;
+                height: 40px;
+                position: relative;
+                background-color: #f5f5f5;
+                border-radius: 4px;
+            }
+            .info input{
+                border: 0px;
+                width: 328px;
+                height: 40px;
+                position: relative;
+                background-color: #f5f5f5;
+                border-radius: 4px;
+                font-size: 10px;
+                color: gray;
+                padding: 12px;
+            }
+            .info div p{
+                width: 80%;
+                height: 20px;
+                position: absolute;
+                left: 5%;
+                top: 25%;
+            }
+    
+            /* info들 개별사항 */
+            #email{margin-top: 31.5px;}
+            #email #send{
+                color: #66bb6a;
+                margin-top: 6px;
+                width: 27px;
+                height: 16px;
+                font-family: NotoSansKR;
+                font-size: 12px;
+                position: absolute;
+                left: 285px;
+                top: 30px;
+            }
+
+    
+
+    
+
+    
+            /* 완료버튼 */
+            #submit{
+                width: 100%;
+                height: 44px;
+                background-color: #66bb6a;
+                position: relative;
+            }
+            #submit p{
+                position: absolute;
+                left: 50%;
+                transform: translate(-50%);
+                top: 27%;
+                font-size: 13px;
+                color: #fff;
+                font-weight: bold;
+                /* margin: auto 0; */
+                /* margin-top: 6.3px; */
+            }

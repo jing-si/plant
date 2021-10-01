@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">   
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        
+        *{
+
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            box-sizing: border-box;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        a{
+            text-decoration: none;
+            color: black;
+        }
+        
+        body{
+            font-family: 'Noto Sans KR','Nanum Gothic';
+            background-color: #fff;
+        }
+        #align{
+            width: 266px;
+            /* height: 100vh; */
+            margin: 0 auto;
+            position: relative;
+        }
+        #logo{
+           /* border: 1px solid red; 나중에 지우기*/
+            width: 70px;
+            height: 115.1px;
+            margin: 148px auto 30.9px auto;
+        }
+        input{
+            width: 266px;
+            height: 45px;
+            margin-bottom: 20px;
+            position: relative;
+            background-color: #f5f5f5;
+            border-radius: 4px;
+            border: 0px;
+            padding: 12px;
+            padding-right: 20px;
+        }
+        /* input p{
+            width: 80%;
+            height: 20px;
+            position: absolute;
+            left: 10%;
+            top: 30%;
+            font-size: 15px;
+        } */
+        input img{
+            position: absolute;
+            left: 85%;
+            top: 25%;
+            opacity: 0.5;
+        }
+        #login{
+            width: 266px;
+            height: 45px;
+            text-align: center;
+            background-color: #66bb6a;
+            background-color: 4px;
+            position: relative;
+        }
+        #login p{
+            text-decoration: none;
+            color: #fff;
+            font-size: 15px;
+            position: absolute;
+            left: 41%;
+            top: 25%;
+
+        }
+        #pwRe{
+            width: 129px;
+            height: 15px;
+            text-align: left;
+            font-size: 11px;
+            display: inline-block;
+            margin-top: 8px;
+        }
+        #pwRe a{text-decoration: none; color: black;}
+        #membership{
+            width: 50px;
+            height: 15px;
+            text-align: right;
+            font-size: 11px;
+            display: inline-block;
+            position: absolute;
+            right: 0;
+            margin-top: 8px;
+        }
+        #membership a{text-decoration: none; color: black;}
+    </style>
+</head>
+<body>
+    <div id="align">
+    <div id="logo">
+        <img src="images\로그인 로고.png">
+      </div>
+    <input id="email" placeholder="아이디" type="text"></input>
+    <input id="passWord" placeholder="비밀번호" type="password"></input>
+    <a href="홈.html"><div id="login"><p>로그인</p></div></a>
+    <div id="pwRe"><a href="">비밀번호 재설정</a></div>
+    <div id="membership"><a href="회원가입.html">회원가입</a></div>
+</body>
+</html>

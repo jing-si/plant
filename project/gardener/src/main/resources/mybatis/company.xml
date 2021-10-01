@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="company">
+	
+	<!-- List -->
+	<select id="list" resultType="Company">
+		select * from COMPANY limit #{offset}, #{perPage}
+		
+	</select>
+	
+	<select id="listall" resultType="Company">
+		select * from COMPANY
+		
+	</select>
+	
+	<select id="item" resultType="Company">
+		select * from COMPANY
+		where COMPANY_ID = #{companyId}
+	</select>
+
+	<!-- 생성 -->
+	<insert id="add">
+		insert into COMPANY
+		values(#{companyId},#{companyName},#{companyTel},#{companyAddress},#{companyHomepage});
+	</insert>
+	
+	<!-- 수정 -->
+	<update id="update">
+		update COMPANY
+		set		
+		COMPANY_NAME = #{companyName}
+		COMPANY_TEL = #{companyTel}
+		COMPANY_ADDRESS = #{companyAddress}
+		COMPANY_HOMEPAGE = #{companyHomepage}
+		where 
+		COMPANY_ID = #{companyId}
+	</update>
+	
+	<!-- 삭제 -->
+	<delete id="delete">
+		delete from COMPANY
+		where COMPANY_ID = #{companyId}
+	</delete>
+	
+	<update id="auto_update">	
+		Insert into COMPANY
+		values
+		<foreach collection="list" item="item" separator="," >
+		(#{item.companyId},#{item.companyName},#{item.companyTel},#{item.companyAddress},#{item.companyHomepage})
+		</foreach>
+		on duplicate key update 
+		COMPANY_NAME = VALUES(COMPANY_NAME),
+		COMPANY_TEL =VALUES(COMPANY_TEL),
+		COMPANY_ADDRESS = VALUES(COMPANY_ADDRESS),
+		COMPANY_HOMEPAGE=values(COMPANY_HOMEPAGE)
+	</update>
+	
+	<select id="total" resultType="float">
+		select count(*) from COMPANY
+	</select>
+	
+	<select id="include_product" resultMap="icProdMap">
+		select * from COMPANY C
+		join PRODUCT P on C.COMPANY_ID = P.COMPANY_ID
+		WHERE C.COMPANY_ID = #{companyId}		
+	</select>
+	
+	<resultMap type="Company" id="icProdMap" autoMapping="true">
+		<id property="companyId" column="company_id"/>
+		<collection property="list" ofType="Product" column="PRODUCT_ID" javaType="ArrayList" autoMapping="true">
+		<id property="productId" column="PRODUCT_ID"/>
+		</collection>
+	</resultMap>
+	
+	<select id="productId" resultMap="icProdMap">
+		select * from COMPANY C
+		JOIN PRODUCT P ON P.COMPANY_ID = C.COMPANY_ID
+		WHERE C.COMPANY_ID = 
+		(SELECT P2.COMPANY_ID FROM PRODUCT P2 WHERE P2.PRODUCT_ID = #{productId} LIMIT 1);
+	</select>
+</mapper>

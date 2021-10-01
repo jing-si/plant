@@ -1,0 +1,130 @@
+        *{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    box-sizing: border-box;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+
+#header{
+    width: 100%;
+    height: 45px;
+    border-bottom: 5px solid #f5f5f5;
+    position: relative;
+}
+#header p{
+    width: 200px;
+    text-align: center;
+    font-family: NotoSansKR;
+    font-size: 15px;
+    font-weight: bold;
+    color: #2c2c2c;
+    margin: 0px auto;
+    padding: 10px;
+}
+
+
+        * { margin: 0; padding: 0; box-sizing: border-box; } 
+        a { text-decoration: none; } 
+        body { font-size: 14px; color: #333; } 
+        li { list-style: none; } 
+        #wrap { background-color: #fafafa; width: 330px; height: calc(100vh - 83.5px - 56px); margin: 0 auto;} 
+        .tabArea { background-color: #fff; width: 100%; height: 100%; margin: 0 auto;} 
+        .tabArea .tab { display: flex; height: 38px;} 
+        /* .tabArea .tab span {text-align: center; width: 40%;} */
+        .tabArea .tab li{width: 50%; text-align: center; height: 100%; padding: 10px;}
+        .tabArea .tab li a { font-size: 15px; color: #333; font-weight: 500; } 
+        /*  탭버튼 눌렀을시 글자 색상변경  */
+        .tabArea .tab li.on a { font-weight: bold; color: #66bb6a; } 
+        /* 탭박스 영역 기본 옵션은 디스플레이 숨김  */
+        .tabArea .tabBox { margin-top: 35px; display: none; } 
+        /* 탭버튼이 눌러졌을시 관련된 탭박스 활성화  */
+        .tabArea .tabBox.on { display: block; } 
+        .tabArea .tabBox p { font-size: 14px; color: #555; } 
+        .tabArea .tabBox h3 { margin-bottom: 20px; }
+        .tabArea .tab li.on .underLine{
+    display: block;
+    margin: 13px 0 0 0;
+    width: 100%;
+    height: 5px;
+    background: black;
+}
+
+
+
+        /* 공통메뉴바 */
+.sticky{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 56px;
+    background-color: #66bb6a;
+}
+.sticky div{
+    display: inline-block;
+    color: white;
+    text-align: center;
+    width: 20%;
+    height: 100%;
+    margin: 0;
+    position: relative;
+    font-size: 11px;
+}
+.sticky svg{
+    /* position: absolute; */
+    /* top: 6.3px; */
+    /* left: 25px; */
+    margin: auto 0;
+    margin-top: 6.3px;
+}
+.sticky p{
+    margin: auto 0;
+    /* margin-top: 28.3px; */
+    margin-top: 0px;
+}
+
+
+/* 정렬 */
+#align{
+    width: 100%;
+    /* 100 - 헤더 - 공통메뉴- 탭마진 */
+    margin: 0 auto;
+    position: relative;
+}
+
+
+
+/* 리스트 한상자 */
+.brand{
+    position: relative;
+    width: 100%;
+    height: 76.2px;
+    border-bottom: 1px solid #f5f5f5;
+}
+.brand .brand-img{
+    border-bottom: 1px solid #f5f5f5;
+    display: inline-block;
+    width: 47px;
+    height: 47px;
+    background-color: #afafaf;
+    border-radius: 50%;
+    margin-top: 15px;
+}
+.brand .brand-name{
+    position: absolute;
+    display: inline-block;
+    top: 28px;
+    left: 62px;
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: 500;
+}
+.brand img{
+    position: absolute;
+    right: 15px;
+    top: 24.2px;
+}
