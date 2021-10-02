@@ -72,6 +72,6 @@ public class LoginController {
 	//스플래시(시작대기화면)
 		@RequestMapping("/splash")
 		public String splash() {
-			return path + "splash";
+			return "main/splash";
 		}
 }

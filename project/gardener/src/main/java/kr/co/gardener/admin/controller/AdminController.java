@@ -10,6 +10,6 @@ public class AdminController {
 	
 	@RequestMapping({"/",""})
 	public String index() {
-		return path + "admin";
+		return path + "admin2";
 	}
 }

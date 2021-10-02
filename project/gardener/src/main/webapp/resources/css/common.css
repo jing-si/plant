@@ -1,0 +1,234 @@
+@charset "UTF-8";
+
+
+root{
+	font-size: 8px;
+}
+
+.header {  /* header 부분 (샐러브 아이콘, 도메인) */
+	width: 100%;
+	height: 100px;
+	background-color: #b3e1c2;
+}
+
+.logo{
+	width: 200px;
+	height: 80px;
+}
+
+.line_none {
+	text-decoration: none;
+	color: #333333;
+	font-size: 20px;
+}
+
+.line_none:hover {
+	color: green;
+}
+
+.border-bot {
+	border-bottom: 1px solid #005b21;
+}
+
+.center {
+	margin: 0 auto;
+	text-align: center;
+}
+
+.mainIndex {  /* 메인페이지 인덱스 */
+	background-color: #edf8f2;
+}
+
+.mainIndex:hover {
+	color: #005b21;
+}
+
+.subIndex { /* 상세페이지 인덱스  */
+	text-decoration: none;
+	color: #333333;
+}
+
+.subIndex:hover {
+	color: #005b21;
+}
+
+.mainBorder {
+	border: 1px solid #005b21;
+}
+
+#mainContent { /* 메인테이블 표시 */
+	height: 700px;
+	border-radius: 5px;
+	overflow: auto;
+	resize: horizontal;
+}
+
+#subContent { /* 서브테이블 표시 */
+	min-height: 500px;
+	border: 1px solid #ccc;
+	border-radius: 25px;
+	overflow: auto;
+	overflow-x: hidden;
+	resize: vertical;
+}
+
+#rightBox {  /* 관리 메뉴 (등록 수정 삭제) */
+	
+}
+
+#leftBox {
+	
+}
+
+/* .index { 
+	float: left;
+} */
+.cell {
+	resize: horizontal;
+	overflow: auto;
+	width: 100%;
+	height: 100%;
+}
+
+
+input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button
+	{
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+.nonBorderTextBox {
+	border: none;
+	background-color: rgba(255, 255, 255, 0);
+}
+
+.hide {
+	display: none;
+}
+
+.black {
+	background-color: black;
+}
+
+.bot-bar {
+	width: 60%;
+	height: 2px;
+	border-radius: 3px;
+	margin: 0 auto;
+}
+
+.option {
+	cursor: pointer;
+}
+
+thead {
+	background-color: #ccc;
+}
+
+#talkBox {
+	height: 150px;
+}
+
+footer {
+	margin-top: 200px;
+	background-color: #b3e1c2;
+	text-align: center;
+}
+
+footer h5 {
+	padding: 50px;
+}
+
+.plus {
+	display: inline-block;
+	background-image: url("/resources/image/need/plus.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 1.8em;
+	width: 1.8em;
+	margin: 0 auto;
+	cursor: pointer;
+	vertical-align: middle;
+}
+
+.plus:hover {
+	transform: rotate(25deg);
+}
+
+.minus {
+	display: inline-block;
+	background-image: url("/resources/image/need/minus.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 1.8em;
+	width: 1.8em;
+	margin: 0 auto;
+	cursor: pointer;
+	vertical-align: middle;
+}
+
+.minus:hover {
+	transform: rotate(25deg);
+}
+
+#subContent h5 {
+	font-size: 1.6em;
+}
+
+.mid {
+	display: inline;
+	vertical-align: middle;
+}
+
+.button {
+	width: 120px;
+	display: inline-block;
+	padding: 15px 30px;
+	box-sizing: content-box;
+}
+
+.button button {
+	width: 100%;
+}
+
+.selectedRow, .viewLabel {
+	background-color: #eee;
+}
+
+.showbox {
+	cursor: text;
+	height: 100%;
+	width: 100%;
+}
+.showbox-restraint{	
+	
+	cursor: text;
+	overflow: hidden;
+	max-width: 200px;
+	min-width:80px;
+	vertical-align: middle;
+}
+
+.showbox-restraint:hover, .date:focus {
+	background-color: #fff;
+}
+
+.areaBox {
+	border: 1px solid #ccc;
+	min-height: 150px;
+	width: 96%;
+	margin: 0 auto;
+}
+
+.border-ccc {
+	border-color: #ccc;
+}
+
+.inputDate:focus{
+	background-color: white;
+}
+.small{
+	font-size: 14px;
+}
+.areatext{
+	height: 36px;}
