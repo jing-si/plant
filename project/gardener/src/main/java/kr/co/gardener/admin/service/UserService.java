@@ -2,6 +2,7 @@ package kr.co.gardener.admin.service;
 
 import java.util.List;
 
+import kr.co.gardener.admin.model.Notice;
 import kr.co.gardener.admin.model.User;
 
 public interface UserService {
@@ -17,5 +18,7 @@ public interface UserService {
 	void delete(String userId);
 
 	String imgSrc(User user);
+
+	List<Notice> notice();
 
 }

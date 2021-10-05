@@ -34,6 +34,7 @@
                             </div>
                         </c:if>
                         
+                        <c:if test="${favoriteList.size()>0}">
                         <c:forEach var="list" items="${favoriteList}">
                             <a href="/product/${list.productId}">
                             <div class="brand">
@@ -42,6 +43,7 @@
                                 <img src="/resources/images/favorite-heart.png">
                             </div></a>
                         </c:forEach>
+                        </c:if>
                     </div>
             </div>
             <div class="tabBox">

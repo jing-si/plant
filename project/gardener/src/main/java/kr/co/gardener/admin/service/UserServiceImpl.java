@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.gardener.admin.dao.UserDao;
+import kr.co.gardener.admin.model.Notice;
 import kr.co.gardener.admin.model.User;
 
 @Service
@@ -42,6 +43,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public String imgSrc(User user) {
 		return dao.imgSrc(user);
+	}
+
+	@Override
+	public List<Notice> notice() {
+		return dao.notice();
 	}
 
 }

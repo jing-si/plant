@@ -99,6 +99,8 @@
     let arr = new Array();    
     
     $().ready(()=>{
+    	
+    	console.log("${user}");
         	
 
     	//버튼 클릭 이벤트
@@ -174,18 +176,19 @@
 
 
     	//상태값이 0일때 행동
-		if(${sessionScope.user.stateId} === 0){
+		if(${user.stateId} === 0){
 			
 			$('#plantButton').removeClass("hide");
+			
 			            
 			        
 		}
         
         //상태 0보다 큼		
-        if(${sessionScope.user.stateId} > 0){
+        if(${user.stateId} > 0){
         	$(".go-certify").data("select",-1)
         	let img = $("<img class='plantImg'>")
-        		img.attr("src","${sessionScope.user.plant}")
+        		img.attr("src","${user.plant}");
         		
         		$("#plant").append(img);
             	$("#plant").removeClass("hide");
@@ -535,9 +538,9 @@ a{
     	
     	
 		.screen-img{
-		    border: 1px solid red;
+		    /* border: 1px solid red; */
 		    position: relative;
-		    top: 50%;
+		    top: 53%;
 		    left: 50%;
 		    transform: translate(-50%,-50%);
 		    width: 90%;
@@ -581,10 +584,12 @@ a{
         
         #plant img{
             height: 180px;
-            width: 180px;
-            border: 1px solid blue;
+            /* width: 180px; */
+            width : auto;
+            /* border: 1px solid blue; */
             position: absolute;
-            top: 30px;
+            /* top: 30px; */
+            bottom : 0;
             left: 50%;
             transform: translate(-50%);
         }
@@ -642,6 +647,7 @@ a{
                     <div class="process">
                     <img src="/resources/images/home-screen-process.png">
                     <div id="gauge"></div>
+                    <img src="/resources/images/heart.png" id="heart">
                     </div>
                 </div>
         </div>
@@ -649,7 +655,7 @@ a{
         <div class="home-button">
             <a href="certify"></a><div class="go-certify">친환경 소비 인증하기
             </div></a><a href="userforest"><div class="go-forest">숲으로 가기</div></a>
-        	<img src="/resources/images/heart.png" id="heart">
+        	
         </div>
     </div>
 

@@ -13,7 +13,7 @@ public class LoginDaoImpl implements LoginDao {
 	
 	@Override
 	public User item(String userId) {
-		return sql.selectOne("login.item", userId);
+		return sql.selectOne("user.item", userId);
 	}
 
 }

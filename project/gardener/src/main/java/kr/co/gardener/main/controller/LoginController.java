@@ -39,7 +39,9 @@ public class LoginController {
 			String userPass = user.getUserPass();
 			
 			if(userId.equals(item.getUserId()) && userPass.equals(item.getUserPass())) {
+				//로그인한 사람의 정보가 session에 user란 이름으로 저장됨
 				session.setAttribute("user", user);
+				System.out.println(user);
 				return  "redirect:/login/";
 			}
 			

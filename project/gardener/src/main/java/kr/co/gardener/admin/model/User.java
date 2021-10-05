@@ -23,14 +23,15 @@ public class User {
 	 */
 
 
+	
+	public String getUserId() {
+		return userId;
+	}
 	public String getPlant() {
 		return plant;
 	}
 	public void setPlant(String plant) {
 		this.plant = plant;
-	}
-	public String getUserId() {
-		return userId;
 	}
 	public void setUserId(String userId) {
 		this.userId = userId;
@@ -86,7 +87,7 @@ public class User {
 	public String toString() {
 		return "User [userId=" + userId + ", userNick=" + userNick + ", userPass=" + userPass + ", userBirth="
 				+ userBirth + ", userGender=" + userGender + ", stateId=" + stateId + ", forestId=" + forestId
-				+ ", plantId=" + plantId + ", plant=" + plant + "]";
+				+ ", plantId=" + plantId + ", plant="  + plant  + "]";
 	}
 	
 	public void update(User user) {

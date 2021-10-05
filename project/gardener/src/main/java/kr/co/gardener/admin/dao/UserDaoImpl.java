@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.co.gardener.admin.model.Notice;
 import kr.co.gardener.admin.model.User;
 
 @Repository
@@ -42,6 +43,11 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public String imgSrc(User user) {
 		return sql.selectOne("user.imgSrc", user);
+	}
+
+	@Override
+	public List<Notice> notice() {
+		return sql.selectList("notice.list");
 	}
 
 }

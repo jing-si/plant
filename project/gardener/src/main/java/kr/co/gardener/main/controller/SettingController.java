@@ -45,26 +45,31 @@ public class SettingController {
 	@RequestMapping("/notice")
 	public String notice(Model model) {
 		//여기부터 가상데이터
-			List<Notice> list = new ArrayList<Notice>();
-			Notice l1 = new Notice();
-			l1.setNoticeId(1);
-			l1.setNoticeTitle("가꿈 어플 출시 이벤트1");
-			l1.setNoticeContent("뭘 좀 줄겁니다");
-			list.add(l1);
-			
-			Notice l2 = new Notice();
-			l1.setNoticeId(2);
-			l1.setNoticeTitle("가꿈 어플 출시 이벤트2");
-			l1.setNoticeContent("뭘 좀 줄겁니다2");
-			list.add(l2);
-			
-			model.addAttribute("noticeList", list); 
+//			List<Notice> list = new ArrayList<Notice>();
+//			Notice l1 = new Notice();
+//			l1.setNoticeId(1);
+//			l1.setNoticeTitle("가꿈 어플 출시 이벤트1");
+//			l1.setNoticeContent("뭘 좀 줄겁니다");
+//			list.add(l1);
+//			
+//			Notice l2 = new Notice();
+//			l1.setNoticeId(2);
+//			l1.setNoticeTitle("가꿈 어플 출시 이벤트2");
+//			l1.setNoticeContent("뭘 좀 줄겁니다2");
+//			list.add(l2);
+//			
+//			model.addAttribute("noticeList", list); 
 		//여기까지 가상데이터
 		
 
 		// noticeTitle(공지사항제목), noticeDate(공지사항 날짜), noticeContent(공지사항 내용)이 들어있는 리스트
 		// 구현해주세요
-		/* model.addAttribute("noticeList", new ArrayList<String>()); */
+		
+		List<Notice> noticeList = new ArrayList<Notice>();
+		noticeList = service.notice();
+		System.out.println(noticeList);
+		
+		model.addAttribute("noticeList", noticeList);
 		return path + "notice";
 	}
 
@@ -76,9 +81,11 @@ public class SettingController {
 
 	// 내정보수정
 	@GetMapping("/myinfo/update")
-	public String update(Model model) {
+	public String update(Model model, HttpSession session) {
 		
-		
+		User user = (User) session.getAttribute("user");
+		System.out.println("user 정보 : "+user);
+		model.addAttribute("user",user);
 		//session에서 꺼내쓰세요
 
 		/*
@@ -105,21 +112,26 @@ public class SettingController {
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "redirect:../login/";
+		/* return "redirect:../login/"; */
+		return "redirect:../../";
 	}
 
 	// 회원탈퇴
 	@GetMapping("/out")
-	public String out() {
-
-		return "redirect:../login/";
+	public String out(HttpSession session) {
+		User user = (User) session.getAttribute("user");
+		String id = user.getUserId();
+		service.delete(id);
+		
+		return "redirect:../../";
 	}
 
-	@RequestMapping(value = "/out", method = RequestMethod.POST)
-	public String out(String userId) {
-		service.delete(userId);	
-		return "redirect:/";
-	}
+//	@RequestMapping(value = "/out", method = RequestMethod.POST)
+//	public String out(String userId) {
+//		System.out.println(userId);
+//		service.delete(userId);	
+//		return "redirect:/";
+//	}
 	
 	/*
 	 * public String out(HttpSession session) {

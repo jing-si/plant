@@ -13,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="/resources/css/myinfoupdate.css">
+    <script src="/resources/jq/jquery.js"></script>
     <script src="/resources/js/test.js"></script>
 </head>
 <body>
@@ -21,7 +22,7 @@
 	$().ready(()=>{
 		
 		//라디오 버튼 디폴트값
-		if(${sessionScope.user.userGender} === "여"){
+		if("${user.userGender}" == "여"){
 			$("#select").attr("checked","checked");
 		}
 		else{
@@ -45,18 +46,18 @@
 
     <div id="email" class="info">
         <p class="title">이메일</p>
-        <input value="${SessionScope.user.useriId}" readonly>
+        <input value="${user.userId}" readonly>
         <p id="certification">계정이 인증되었습니다.</p>
     </div>
     
     <div id="nickName" class="info">
         <p class="title">닉네임</p>
-        <input value="${SessionScope.user.userNick}" type="text" name="userNick">
+        <input value="${user.userNick}" type="text" name="userNick">
     </div>
     
     <div id="birth" class="info">
         <p class="title">생년월일</p>
-        <input value="${SessionScope.user.userBirth}" type="text" name="userBirth" maxlength="8">
+        <input value="${user.userBirth}" type="date" name="userBirth">
     </div>
     
         <div class="select info">

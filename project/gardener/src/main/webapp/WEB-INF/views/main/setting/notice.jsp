@@ -14,6 +14,17 @@
     <link rel="stylesheet" href="/resources/css/notice.css">
 </head>
 <body>
+<script src="/resources/js/jquery.min.js"></script>
+<script>
+$().ready(()=>{
+	$(".button").click(function(){
+		$(this).parents(".list").children(".content").toggleClass("hide");
+
+	});
+});
+</script>
+
+
     <div id="header">
         <a href="/login/setting/"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12l4.58-4.59z"/></svg></a>
         <p>공지사항</p>
@@ -30,9 +41,12 @@
         <c:if test="${noticeList.size()>0}">
         <c:forEach var="list" items="${noticeList}">
         	<div class="list">
+        	<div class="listInfo">
                 <div class="list-title">${list.noticeTitle}</div>
                 <div class="list-date">${list.noticeDate}</div>
-                <a href=""><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M24 24H0V0h24v24z" fill="none" opacity=".87"/><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6-1.41-1.41z"/></svg></a>
+                <svg class="button" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M24 24H0V0h24v24z" fill="none" opacity=".87"/><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6-1.41-1.41z"/></svg>
+            </div>	
+            	<div class="content hide">${list.noticeContent}</div>
             </div>
         </c:forEach>
         </c:if>
