@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 
 import kr.co.gardener.admin.dao.object.CertDao;
 import kr.co.gardener.admin.model.object.Cert;
+import kr.co.gardener.admin.model.object.list.CertList;
 import kr.co.gardener.admin.service.object.CertService;
+import kr.co.gardener.util.Pager;
 
 @Service
 public class CertServiceImpl implements CertService{
@@ -51,6 +53,30 @@ public class CertServiceImpl implements CertService{
 		}
 		
 		return map;
+	}
+
+	@Override
+	public CertList list(Pager pager) {
+		CertList list = new CertList();
+		pager.setTotal(dao.total(pager));
+		list.setPager(pager);
+		list.setList(dao.list(pager));
+		return list;
+	}
+
+	@Override
+	public void insert(CertList list) {
+		dao.insert(list.getList());
+	}
+
+	@Override
+	public void delete(CertList list) {
+		dao.delete(list.getList());
+	}
+
+	@Override
+	public void update(CertList list) {
+		dao.update(list.getList());
 	}
 	
 }

@@ -2,7 +2,9 @@ package kr.co.gardener.admin.model.object;
 
 import java.util.List;
 
-public class Company {
+import kr.co.gardener.util.GridSystem;
+
+public class Company extends GridSystem{
 	private String vendVcod;
 	private String vendVcnm;
 	private String vendTel;

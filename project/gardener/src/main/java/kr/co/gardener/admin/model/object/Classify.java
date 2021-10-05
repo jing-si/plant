@@ -1,6 +1,8 @@
 package kr.co.gardener.admin.model.object;
 
-public class Classify {
+import kr.co.gardener.util.GridSystem;
+
+public class Classify extends GridSystem{
 	private int primaryId;
 	private int foreginId;
 	private String name;

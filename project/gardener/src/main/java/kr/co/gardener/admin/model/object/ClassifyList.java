@@ -3,7 +3,9 @@ package kr.co.gardener.admin.model.object;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClassifyList {
+import kr.co.gardener.util.GridSystem;
+
+public class ClassifyList extends GridSystem{
 private List<Classify> topClass;
 private List<Classify> midClass;
 private List<Classify> botClass;

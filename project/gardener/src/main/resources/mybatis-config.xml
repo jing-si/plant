@@ -9,22 +9,9 @@
 	</settings>
 
 	<typeAliases>
-		<typeAlias type="kr.co.gardener.admin.model.User" alias="User"/>		
-		<typeAlias type="kr.co.gardener.admin.model.History" alias="History"/>
-		<typeAlias type="kr.co.gardener.admin.model.SearchList" alias="SearchList"/>
-		<typeAlias type="kr.co.gardener.admin.model.Bookmark" alias="Bookmark"/>
-		<typeAlias type="kr.co.gardener.admin.model.Inven" alias="Inven"/>
-		<typeAlias type="kr.co.gardener.admin.model.Location" alias="Location"/>
-		<typeAlias type="kr.co.gardener.admin.model.Forest" alias="Forest"/>	
-		<typeAlias type="kr.co.gardener.admin.model.Plant" alias="Plant"/>	
-		<typeAlias type="kr.co.gardener.admin.model.PlantLevel" alias="PlantLevel"/>	
-		<typeAlias type="kr.co.gardener.admin.model.object.Classify" alias="Classify"/>
-		<typeAlias type="kr.co.gardener.admin.model.object.CertReason" alias="CertReason"/>
-		<typeAlias type="kr.co.gardener.admin.model.object.Company" alias="Company"/>
-		<typeAlias type="kr.co.gardener.admin.model.object.Cert" alias="Cert"/>
-		<typeAlias type="kr.co.gardener.admin.model.object.Product" alias="Product"/>
-		<typeAlias type="kr.co.gardener.admin.model.object.productCategoryList" alias="productCategoryList"/>
-		<typeAlias type="kr.co.gardener.admin.model.Notice" alias="Notice"/>	
+	
+		<package name="kr.co.gardener.admin.model"/>
+		<package name="kr.co.gardener.util"/>	
 	</typeAliases>
 
 	<mappers>

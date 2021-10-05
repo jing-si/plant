@@ -2,7 +2,9 @@ package kr.co.gardener.admin.model.object;
 
 import java.util.List;
 
-public class productCategoryList {
+import kr.co.gardener.util.GridSystem;
+
+public class productCategoryList extends GridSystem {
 	private String productCategoryName;
 	private String productCategoryId;
 	private List<Classify> midList;

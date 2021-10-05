@@ -9,7 +9,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-public class Product {
+import kr.co.gardener.util.GridSystem;
+
+public class Product extends GridSystem{
 	
 	
 	public Product() {
