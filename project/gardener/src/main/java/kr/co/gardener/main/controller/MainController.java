@@ -24,8 +24,8 @@ public class MainController {
 	@Autowired
 	UserService service;
 	
-	//硫붿씤�럹�씠吏�
-	@RequestMapping("/") //db蹂�寃쎌씠 �뾾�쓣�븣 �슜�룄
+	//메인페이지
+	@RequestMapping("/") //db변경이 없을때 용도
 	public String index(Model model,HttpSession session) {
 		User user = (User) session.getAttribute("user");
 		model.addAttribute("img", imgSrc(user));
@@ -36,12 +36,12 @@ public class MainController {
 		return path + "home2";
 	}
 	
-	@RequestMapping("/home") //session媛깆떊�슜, db蹂�寃쏀뻽�쓣�뻹 �슜�룄
+	@RequestMapping("/home") //session갱신용, db변경했을떄 용도
 	public String index(HttpSession session) {
 		String userId = ((User) session.getAttribute("user")).getUserId();
-		User user = service.item(userId); //�쑀��留뚮벀
+		User user = service.item(userId);  //유저만듦
 		session.setAttribute("user", user);
-		return path + "home2"; //�삤瑜섎궇�닔�룄�엳�쓬.......�뀕...remove �븘�슂�븷吏��룄?
+		return path + "home2"; //오류날수도있음.......ㅎ...remove 필요할지도?
 	}
 	
 	private String imgSrc(User user) {
@@ -86,12 +86,12 @@ public class MainController {
 		return list;
 	}
 	
-	@RequestMapping("/update") //�솃�뿉�꽌 移대뱶�꽑�깮�빐�꽌 �떖�뿀�쓣�븣
+	@RequestMapping("/update")  //홈에서 카드선택해서 심었을때
 	@ResponseBody
 	public String update(User item, HttpSession session) {
 		User user = (User)session.getAttribute("user");
-		user.update(item); //�쑀��紐⑤뜽�뿉�꽌 寃�利앺빐�꽌 �몢媛쒓컪留� update�릺寃뚰븿
+		user.update(item); //유저모델에서 검증해서 두개값만 update되게함
 		service.update(user);		
-		return "�닔�젙�셿猷�";
+		return "수정완료";
 	}
 }
