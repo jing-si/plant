@@ -51,7 +51,7 @@ public class MainController {
 	
 	@RequestMapping("/camera")
 	public String camera() {
-		return path + "camera05";
+		return path + "camera06";
 	}
 	
 	
