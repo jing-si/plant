@@ -38,4 +38,59 @@
 		where CERT_ID = #{certId}
 	</delete>
 	
+	
+	
+	<!--대량 처리 -->
+	<select id="list_pager" resultType="Cert">
+		SELECT * FROM CERT		
+		LIMIT #{offset}, #{perPage}
+	</select>
+
+	<select id="update_list" resultType="Cert">
+		Insert into CERT
+		values
+		<foreach collection="list" item="item" separator=",">
+			(#{item.certId},#{item.certName},#{item.certImage},#{item.certInfo})
+		</foreach>
+		on duplicate key update
+		CERT_NAME = VALUES(CERT_NAME),
+		CERT_IMAGE = VALUES(CERT_IMAGE),
+		CERT_INFO = VALUES(CERT_INFO)
+		
+	</select>
+
+	<insert id="insert_list">
+		INSERT INTO CERT
+		VALUES
+		<foreach collection="list" item="item" separator=",">
+			(null, #{item.certName},#{item.certImage},#{item.certInfo})
+		</foreach>
+	</insert>
+
+	<delete id="delete_list">		
+		DELETE FROM  CERT		
+		WHERE CERT_ID in (
+		<foreach collection="list" item="item" separator=",">
+				#{item.certId}
+		</foreach>
+		)		
+	</delete>
+
+	<select id="total" resultType="float">
+		select COUNT(*) from CERT
+	</select>
+
+	<select id="comboList" resultType="ComboItem">
+		SELECT "0" AS "table",
+		POSITION_ID AS "id", POSITION_NAME AS "text"
+		from POSITION
+		UNION
+		SELECT
+		"1", depart_Id AS "id", depart_Name AS "text"
+		from DEPARTMENT
+		UNION
+		SELECT "2", header_Id AS "id", header_Name AS "text"
+		from HEADER;
+	</select>
+	
 </mapper>

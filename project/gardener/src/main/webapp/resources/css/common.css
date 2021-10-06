@@ -1,19 +1,29 @@
-@charset "UTF-8";
+/* @charset "UTF-8"; */
 
 
 root{
 	font-size: 8px;
 }
 
-.header {  /* header 부분 (샐러브 아이콘, 도메인) */
+.header {  /* header �κ� (������ ������, ������) */
 	width: 100%;
-	height: 100px;
-	background-color: #b3e1c2;
+	height: 50px;
+	background-color: #ccc;
+	font-family:MaruBuri-Regular;
+		
+}
+.header h5{
+	font-weight: 600;
+}
+.selectedHeader{
+	background-color: #eee;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
 }
 
 .logo{
-	width: 200px;
-	height: 80px;
+	width:100%;
+	max-height: 60px;
 }
 
 .line_none {
@@ -27,7 +37,8 @@ root{
 }
 
 .border-bot {
-	border-bottom: 1px solid #005b21;
+	border-bottom: 1px solid #bbb;
+	
 }
 
 .center {
@@ -35,15 +46,30 @@ root{
 	text-align: center;
 }
 
-.mainIndex {  /* 메인페이지 인덱스 */
-	background-color: #edf8f2;
+#main-side{
+	background-color: #fff;
+	
 }
 
-.mainIndex:hover {
-	color: #005b21;
+.side-th{
+	background-color: #ccc;	
+	font-family: MaruBuri-Regular;
+	
 }
 
-.subIndex { /* 상세페이지 인덱스  */
+
+.button{
+	background-color: rgba(255,255,255,0);
+	
+}
+.button:hover{
+	background-color: rgb(255,255,153);
+	cursor:pointer;
+	
+}
+
+
+.subIndex { /* �������� �ε���  */
 	text-decoration: none;
 	color: #333333;
 }
@@ -56,29 +82,29 @@ root{
 	border: 1px solid #005b21;
 }
 
-#mainContent { /* 메인테이블 표시 */
+#mainContent { /* �������̺� ǥ�� */
 	height: 700px;
-	border-radius: 5px;
+	
 	overflow: auto;
 	resize: horizontal;
+	background-color: #fff;
 }
 
-#subContent { /* 서브테이블 표시 */
+#subContent { /* �������̺� ǥ�� */
+	background-color: #fff;
 	min-height: 500px;
 	border: 1px solid #ccc;
-	border-radius: 25px;
+	
 	overflow: auto;
 	overflow-x: hidden;
 	resize: vertical;
 }
 
-#rightBox {  /* 관리 메뉴 (등록 수정 삭제) */
-	
+.content-side {  /* ���� �޴� (��� ���� ����) */
+ background-color: #fff;
 }
 
-#leftBox {
-	
-}
+
 
 /* .index { 
 	float: left;
@@ -121,18 +147,23 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 	cursor: pointer;
 }
 
-thead {
-	background-color: #ccc;
+thead{
+	background-color: rgb(0,108,46);
+	color:white;
 }
+
+
+
 
 #talkBox {
 	height: 150px;
 }
 
 footer {
-	margin-top: 200px;
-	background-color: #b3e1c2;
+	
+	background-color: #545454;
 	text-align: center;
+	color: white;
 }
 
 footer h5 {
@@ -180,15 +211,11 @@ footer h5 {
 	vertical-align: middle;
 }
 
-.button {
+.button-save {
 	width: 120px;
 	display: inline-block;
 	padding: 15px 30px;
 	box-sizing: content-box;
-}
-
-.button button {
-	width: 100%;
 }
 
 .selectedRow, .viewLabel {
@@ -230,5 +257,41 @@ footer h5 {
 .small{
 	font-size: 14px;
 }
-.areatext{
-	height: 36px;}
+.updateArea{
+	height: 36px;
+}
+.popImg{
+	max-width: 235px;
+	max-height: 235px;
+}
+.container-custom{
+	background-color: #ddd;
+}
+
+.rightSide{
+	background-color: #434343;
+}
+.side-nav-text{
+	font-size: 18px;
+	text-decoration: none;
+	color: #ddd;
+	padding: 0;	
+	margin-left: 10px;
+	overflow: hidden;
+}
+.side-nav-text:hover{
+	
+	color: white;
+	overflow: visible;
+}
+.side-nav:hover {
+	color: white;
+	cursor:pointer;
+	background-color: #545454;
+}
+.side-nav:hover a{
+	color: white;
+}	
+.side-hr{
+	color:#ccc;
+}

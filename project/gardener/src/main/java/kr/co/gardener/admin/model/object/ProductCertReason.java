@@ -1,6 +1,8 @@
 package kr.co.gardener.admin.model.object;
 
-public class ProductCertReason {
+import kr.co.gardener.util.GridSystem;
+
+public class ProductCertReason extends GridSystem{
  private int productcertReasonId;
  private String productId;
  private int certReasonId;

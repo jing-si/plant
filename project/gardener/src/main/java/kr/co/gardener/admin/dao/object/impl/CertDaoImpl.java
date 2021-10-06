@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.gardener.admin.dao.object.CertDao;
 import kr.co.gardener.admin.model.object.Cert;
+import kr.co.gardener.admin.model.object.list.CertList;
+import kr.co.gardener.util.Pager;
 
 @Repository
 public class CertDaoImpl implements CertDao {
@@ -40,4 +42,30 @@ public class CertDaoImpl implements CertDao {
 		sql.insert("cert.add",item);
 	}
 
+	@Override
+	public void insert(List<Cert> list) {
+		sql.insert("cert.insert_list", list);
+	}
+
+	@Override
+	public void delete(List<Cert> list) {
+		sql.delete("cert.delete_list", list);
+	}
+
+	@Override
+	public void update(List<Cert> list) {
+		sql.update("cert.update_list",list);
+	}
+
+	@Override
+	public List<Cert> list(Pager pager) {
+		return sql.selectList("cert.list_pager",pager);
+	}
+
+	@Override
+	public float total(Pager pager) {
+		return sql.selectOne("cert.total", pager);
+	}
+
+	
 }

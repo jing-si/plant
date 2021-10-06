@@ -1,6 +1,8 @@
 package kr.co.gardener.admin.model.object;
 
-public class Cert {
+import kr.co.gardener.util.GridSystem;
+
+public class Cert extends GridSystem{
 	private int certId;
 	private String certName;
 	private String certImage;
@@ -29,6 +31,12 @@ public class Cert {
 	}
 	public void setCertInfo(String certInfo) {
 		this.certInfo = certInfo;
+	}
+	
+	@Override
+	public String toString() {
+		return "Cert [certId=" + certId + ", certName=" + certName + ", certImage=" + certImage + ", certInfo="
+				+ certInfo + "]";
 	}
 	
 	
