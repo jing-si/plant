@@ -69,6 +69,10 @@
 
 - 환경부의 제4차 녹색제품 구매촉진 기본계획(2021~2025)중 하나인 소비자 니즈에 맞는 맞춤형 녹색제품 분석 제공을 위한 데이터로 활용될 수 있음
 
+### 10. 시연영상
+
+[https://www.youtube.com/watch?v=570gcFTArCM&feature=youtu.be](https://www.youtube.com/watch?v=570gcFTArCM&feature=youtu.be)
+
 
 # 📅 Log
 #### 210723 참가신청서 제출
@@ -76,3 +80,4 @@
 #### 210830 FE/BE 개발 완료
 #### 210905 프로젝트 테스트 진행
 #### 210909 프로젝트 제출
+
