@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.gardener.admin.dao.object.CertReasonDao;
 import kr.co.gardener.admin.model.object.CertReason;
+import kr.co.gardener.util.Pager;
 
 @Repository
 public class CertReasonDaoImpl implements CertReasonDao{
@@ -38,6 +39,31 @@ public class CertReasonDaoImpl implements CertReasonDao{
 	@Override
 	public void delete(int certReasonId) {
 		sql.delete("certReason.delete",certReasonId);
+	}
+
+	@Override
+	public float total(Pager pager) {
+		return sql.selectOne("certReason.total", pager);
+	}
+
+	@Override
+	public List<CertReason> list(Pager pager) {
+		return sql.selectList("certReason.list_pager", pager);
+	}
+
+	@Override
+	public void insert(List<CertReason> list) {
+		sql.insert("certReason.insert_list", list);
+	}
+
+	@Override
+	public void delete(List<CertReason> list) {
+		sql.delete("certReason.delete_list", list);
+	}
+
+	@Override
+	public void update(List<CertReason> list) {
+		sql.update("certReason.update_list", list);
 	}
 
 }

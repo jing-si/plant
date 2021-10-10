@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.gardener.admin.dao.object.ProductCertReasonDao;
 import kr.co.gardener.admin.model.object.ProductCertReason;
+import kr.co.gardener.admin.model.object.list.ProductCertReasonList;
+import kr.co.gardener.util.ComboItem;
 import kr.co.gardener.util.Pager;
 
 @Repository
@@ -43,7 +45,37 @@ public class ProductCertReasonDaoImpl implements ProductCertReasonDao{
 
 	@Override
 	public void checkAdd(ProductCertReason r) {
-		sql.insert("productcertReason.bulkAdd", r);
+		sql.insert("productCertReason.bulkAdd", r);
+	}
+
+	@Override
+	public float total(Pager pager) {
+		return sql.selectOne("productCertReason.total", pager);
+	}
+
+	@Override
+	public List<ProductCertReason> list_pager(Pager pager) {
+		return sql.selectList("productCertReason.list_pager", pager);
+	}
+
+	@Override
+	public void insert(ProductCertReasonList list) {
+		sql.insert("productCertReason.insert_list", list);
+	}
+
+	@Override
+	public void delete(ProductCertReasonList list) {
+		sql.insert("productCertReason.delete_list", list);		
+	}
+
+	@Override
+	public void update(ProductCertReasonList list) {
+		sql.insert("productCertReason.update_list", list);		
+	}
+
+	@Override
+	public List<ComboItem> combo() {
+		return sql.selectList("productCertReason.combo");
 	}
 
 }

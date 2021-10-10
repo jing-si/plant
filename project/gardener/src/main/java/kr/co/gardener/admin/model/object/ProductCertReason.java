@@ -3,14 +3,15 @@ package kr.co.gardener.admin.model.object;
 import kr.co.gardener.util.GridSystem;
 
 public class ProductCertReason extends GridSystem{
- private int productcertReasonId;
+ private int productCertReasonId;
  private String productId;
  private int certReasonId;
-public int getProductcertReasonId() {
-	return productcertReasonId;
+ 
+public int getProductCertReasonId() {
+	return productCertReasonId;
 }
-public void setProductcertReasonId(int productcertReasonId) {
-	this.productcertReasonId = productcertReasonId;
+public void setProductCertReasonId(int productCertReasonId) {
+	this.productCertReasonId = productCertReasonId;
 }
 public String getProductId() {
 	return productId;
@@ -24,6 +25,7 @@ public int getCertReasonId() {
 public void setCertReasonId(int certReasonId) {
 	this.certReasonId = certReasonId;
 }
+
  
  
 }

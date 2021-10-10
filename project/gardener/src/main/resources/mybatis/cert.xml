@@ -80,7 +80,7 @@
 		select COUNT(*) from CERT
 	</select>
 
-	<select id="comboList" resultType="ComboItem">
+	<select id="combo" resultType="ComboItem">
 		SELECT "0" AS "table",
 		POSITION_ID AS "id", POSITION_NAME AS "text"
 		from POSITION

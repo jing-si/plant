@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.gardener.admin.dao.object.ProductDao;
 import kr.co.gardener.admin.model.object.Product;
+import kr.co.gardener.admin.model.object.list.ProductList;
+import kr.co.gardener.util.ComboItem;
 import kr.co.gardener.util.Pager;
 
 @Repository
@@ -41,8 +43,8 @@ public class ProductDaoImpl implements ProductDao {
 		return sql.selectList("product.list", pager);
 	}
 	@Override
-	public float total() {		
-		return sql.selectOne("product.total");
+	public float total(Pager pager) {		
+		return sql.selectOne("product.total",pager);
 	}
 
 	@Override
@@ -53,6 +55,27 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public List<Product> list(String search) {
 		return sql.selectList("product.list_search",search);
+	}
+
+	
+	@Override
+	public void insert_list(List<Product> list) {
+		sql.insert("product.insert_list",list);
+	}
+
+	@Override
+	public void delete_list(List<Product> list) {
+		sql.delete("product.delete_list", list);
+	}
+
+	@Override
+	public void update_list(List<Product> list) {
+		sql.update("product.update_list",list);
+	}
+
+	@Override
+	public List<ComboItem> combo() {
+		return sql.selectList("product.combo");
 	}
 
 }

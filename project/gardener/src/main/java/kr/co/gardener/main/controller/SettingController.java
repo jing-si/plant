@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import kr.co.gardener.admin.model.Notice;
-import kr.co.gardener.admin.model.User;
-import kr.co.gardener.admin.service.UserService;
+import kr.co.gardener.admin.model.user.Notice;
+import kr.co.gardener.admin.model.user.User;
+import kr.co.gardener.admin.service.user.UserService;
 import kr.co.gardener.main.service.SettingService;
 
 @Controller

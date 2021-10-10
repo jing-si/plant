@@ -37,7 +37,13 @@
 						<!--테이블 카테고리 선택상자  -->
 						<div class="col-10  hstack mx-3 pt-2 nav">
 							<div class="option col-2 py-2" data-url="cert">
-								<h5 class="center">재고관리</h5>
+								<h5 class="center">인증 관리</h5>
+							</div>
+							<div class="option col-2 py-2" data-url="certReason">
+								<h5 class="center">인증 사유 관리</h5>
+							</div>
+							<div class="option col-2 py-2" data-url="productCertReason">
+								<h5 class="center">제품 인증 사유 관리</h5>
 							</div>
 							
 						</div>

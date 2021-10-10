@@ -38,4 +38,54 @@
 		where CERT_REASON_ID = #{certReasonId}
 	</delete>
 	
+	<!--대량 처리 -->
+	<select id="list_pager" resultType="CertReason">
+		SELECT * FROM CERT_REASON		
+		LIMIT #{offset}, #{perPage}
+	</select>
+
+	<update id="update_list">
+		Insert into CERT_REASON
+		values
+		<foreach collection="list" item="item" separator=",">
+			(#{item.certReasonId},#{item.certReasonName},#{item.certReasonImage},#{item.certReasonInfo})
+		</foreach>
+		on duplicate key update
+		CERT_REASON_NAME = VALUES(CERT_REASON_NAME),
+		CERT_REASON_IMAGE = VALUES(CERT_REASON_IMAGE),
+		CERT_rEASON_INFO = VALUES(CERT_rEASON_INFO)
+		
+	</update>
+
+	<insert id="insert_list">
+		INSERT INTO CERT_REASON
+		VALUES
+		<foreach collection="list" item="item" separator=",">
+			(null, #{item.certReasonName},#{item.certReasonImage},#{item.certReasonInfo})
+		</foreach>
+	</insert>
+
+	<delete id="delete_list">		
+		DELETE FROM  CERT_REASON		
+		WHERE CERT_REASON_ID in (
+		<foreach collection="list" item="item" separator=",">
+				#{item.certReasonId}
+		</foreach>
+		)		
+	</delete>
+
+	<select id="total" resultType="float">
+		select COUNT(*) from CERT_REASON
+	</select>
+
+	<select id="comboList" resultType="ComboItem">
+		SELECT "0" AS "table",
+		PRODUCT_ID AS "id", PRODUCT_NAME AS "text"
+		from PRODUCT
+		UNION
+		SELECT "1"  AS "table",
+		CERT_REASON_ID AS "id", CERT_REASON_NAME AS "text"
+		from CERT_REASON	
+	</select>
+	
 </mapper>

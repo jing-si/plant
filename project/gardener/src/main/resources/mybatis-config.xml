@@ -15,22 +15,6 @@
 	</typeAliases>
 
 	<mappers>
-		<mapper resource="mybatis/user.xml"/>
-		<mapper resource="mybatis/login.xml"/>
-		<mapper resource="mybatis/setting.xml"/>
-		<mapper resource="mybatis/history.xml"/>
-		<mapper resource="mybatis/searchList.xml"/>
-		<mapper resource="mybatis/bookmark.xml"/>
-		<mapper resource="mybatis/inven.xml"/>
-		<mapper resource="mybatis/location.xml"/>
-		<mapper resource="mybatis/forest.xml"/>
-		<mapper resource="mybatis/plant.xml"/>
-		<mapper resource="mybatis/plantLevel.xml"/>
-		<mapper resource="mybatis/classify.xml"/>
-		<mapper resource="mybatis/certReason.xml"/>
-		<mapper resource="mybatis/company.xml"/>
-		<mapper resource="mybatis/cert.xml"/>
-		<mapper resource="mybatis/product.xml"/>	
-		<mapper resource="mybatis/notice.xml"/>		
+		
 	</mappers>
 </configuration>

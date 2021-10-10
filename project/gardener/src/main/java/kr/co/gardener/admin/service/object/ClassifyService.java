@@ -3,8 +3,8 @@ package kr.co.gardener.admin.service.object;
 import java.util.List;
 
 import kr.co.gardener.admin.model.object.Classify;
-import kr.co.gardener.admin.model.object.ClassifyList;
 import kr.co.gardener.admin.model.object.productCategoryList;
+import kr.co.gardener.admin.model.object.list.ClassifyList;
 
 public interface ClassifyService {
 

@@ -1,7 +1,5 @@
 package kr.co.gardener.admin.controller.object;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,22 +13,31 @@ import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.gardener.admin.model.object.Cert;
 import kr.co.gardener.admin.model.object.list.CertList;
+import kr.co.gardener.admin.model.object.list.CertReasonList;
+import kr.co.gardener.admin.model.object.list.ProductCertReasonList;
+import kr.co.gardener.admin.service.object.CertReasonService;
 import kr.co.gardener.admin.service.object.CertService;
+import kr.co.gardener.admin.service.object.ProductCertReasonService;
 import kr.co.gardener.util.FileUpload;
 import kr.co.gardener.util.Pager;
 
 @Controller
-@RequestMapping("/admin/object/cert/")
+@RequestMapping("/admin/cert/")
 public class CertController {
 	final String path = "admin/object/cert/";
 
 	@Autowired
 	CertService service;
+	
+	@Autowired
+	CertReasonService crService;
+	
+	@Autowired
+	ProductCertReasonService pcrService; 
 
 	@RequestMapping({ "/list", "", "/" })
-	public String list(Model model) {
-		List<Cert> list = service.list();
-		model.addAttribute("list", list);
+	public String list() {
+	
 		return path + "main";
 	}
 
@@ -66,7 +73,7 @@ public class CertController {
 		return "redirect:../list";
 	}
 
-	// 인증
+	// 인증-------------------------------------
 	@RequestMapping("/api/cert")
 	@ResponseBody
 	public CertList certList(Pager pager) {
@@ -97,6 +104,64 @@ public class CertController {
 		service.update(list);
 		return "ok";
 	}
+	
+	//인증 사유------------------------------------------
+	@RequestMapping("/api/certReason")
+	@ResponseBody
+	public CertReasonList certReasonList(Pager pager) {
+		CertReasonList item = crService.list(pager);
+		return item;
+	}
 
+	@ResponseBody
+	@PostMapping("/add/certReason")
+	public String certReasonAdd(@RequestBody CertReasonList list) {
+		crService.insert(list);
+		return "ok";
+	}
+
+	@ResponseBody
+	@RequestMapping("/delete/certReason")
+	public String certReasonDelete(@RequestBody CertReasonList list) {
+		crService.delete(list);
+		return "ok";
+	}
+
+	@ResponseBody
+	@PostMapping("/update/certReason")
+	public String certReasonUpdate(@RequestBody CertReasonList list) {
+		crService.update(list);
+		return "ok";
+	}
+	
+	//제품 인증 사유 --------------------------------------------
+	@RequestMapping("/api/productCertReason")
+	@ResponseBody
+	public ProductCertReasonList producCertReasonList(Pager pager) {
+		ProductCertReasonList item = pcrService.list_pager(pager);
+		return item;
+	}
+
+	@ResponseBody
+	@PostMapping("/add/productCertReason")
+	public String productCertReasonAdd(@RequestBody ProductCertReasonList list) {
+		pcrService.insert(list);
+		return "ok";
+	}
+
+	@ResponseBody
+	@RequestMapping("/delete/productCertReason")
+	public String productCertReasonDelete(@RequestBody ProductCertReasonList list) {
+		pcrService.delete(list);
+		return "ok";
+	}
+
+	@ResponseBody
+	@PostMapping("/update/ProductCertReason")
+	public String productCertReasonUpdate(@RequestBody ProductCertReasonList list) {
+		pcrService.update(list);
+		return "ok";
+	}
+	
 	
 }

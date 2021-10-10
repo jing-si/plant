@@ -295,3 +295,12 @@ footer h5 {
 .side-hr{
 	color:#ccc;
 }
+.viewImage{
+	
+	 object-fit: contain;
+	 width: 200px;
+}
+.changeSize{
+	width: auto;
+	display: inline-block;
+}

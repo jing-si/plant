@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="botclass">
+	
+	<!--대량 처리 -->
+	<select id="list_pager" resultType="BotClass">
+		SELECT * FROM BOT_CLASS		
+		LIMIT #{offset}, #{perPage}
+	</select>
+
+	<update id="update_list">
+		Insert into BOT_CLASS
+		values
+		<foreach collection="list" item="item" separator=",">
+			(#{item.botClassId},#{item.midClassId},#{item.botClassName})
+		</foreach>
+		on duplicate key update
+		MID_CLASS_ID = VALUES(MID_CLASS_ID),
+		BOT_CLASS_NAME = VALUES(BOT_CLASS_NAME)
+		
+		
+	</update>
+
+	<insert id="insert_list">
+		INSERT INTO BOT_CLASS
+		VALUES
+		<foreach collection="list" item="item" separator=",">
+			(#{item.botClassId},#{item.midClassId},#{item.botClassName})
+		</foreach>
+	</insert>
+
+	<delete id="delete_list">		
+		DELETE FROM  BOT_CLASS		
+		WHERE BOT_CLASS_ID in (
+		<foreach collection="list" item="item" separator=",">
+				#{item.botClassId}
+		</foreach>
+		)		
+	</delete>
+
+	<select id="total" resultType="float">
+		select COUNT(*) from BOT_CLASS
+	</select>
+
+	<select id="combo" resultType="ComboItem">
+		SELECT "0" AS "table",
+		MID_CLASS_ID AS "id", MID_CLASS_NAME AS "text"
+		from Mid_CLASS
+		
+	</select>
+	
+</mapper>

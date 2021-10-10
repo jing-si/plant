@@ -1,12 +1,11 @@
 package kr.co.gardener.admin.service.object.impl;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.gardener.admin.dao.object.ProductCertReasonDao;
 import kr.co.gardener.admin.model.object.ProductCertReason;
+import kr.co.gardener.admin.model.object.list.ProductCertReasonList;
 import kr.co.gardener.admin.service.object.ProductCertReasonService;
 import kr.co.gardener.util.Pager;
 
@@ -46,6 +45,31 @@ public class ProductCertReasonServiceImpl implements ProductCertReasonService{
 	public void checkAdd(ProductCertReason r) {
 		dao.checkAdd(r);
 		
+	}
+
+	@Override
+	public ProductCertReasonList list_pager(Pager pager) {
+		ProductCertReasonList list = new ProductCertReasonList();
+		pager.setTotal(dao.total(pager));
+		list.setPager(pager);
+		list.setList(dao.list_pager(pager));
+		list.paseComboList(dao.combo());
+		return list;
+	}
+
+	@Override
+	public void insert(ProductCertReasonList list) {
+		dao.insert(list);
+	}
+
+	@Override
+	public void delete(ProductCertReasonList list) {
+		dao.delete(list);
+	}
+
+	@Override
+	public void update(ProductCertReasonList list) {
+		dao.update(list);
 	}
 
 }

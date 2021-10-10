@@ -11,10 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
-import kr.co.gardener.admin.model.PlantLevel;
-import kr.co.gardener.admin.model.User;
-import kr.co.gardener.admin.service.UserService;
+import kr.co.gardener.admin.model.user.PlantLevel;
+import kr.co.gardener.admin.model.user.User;
+import kr.co.gardener.admin.service.user.UserService;
 
 @Controller
 @RequestMapping("/login")

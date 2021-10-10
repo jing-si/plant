@@ -11,27 +11,27 @@
 
 	<div class="col">
 		<hr class="mx-1 my-0 p-0 side-hr">
-		<div class="side-nav py-2" onclick='location.href="/management/stock/"'>
-			<a href="/management/stock/" class="side-nav-text" > <i
-				class="bi bi-check"></i>재고 관리
+		<div class="side-nav py-2" onclick='location.href="/admin/cert/"'>
+			<a href="/admin/cert/" class="side-nav-text" > <i
+				class="bi bi-check"></i>인증 관리
 			</a>
 		</div>
 		<hr class="mx-1 my-0 p-0 side-hr">
-		<div class="side-nav py-2" onclick='location.href="/management/product/"'>
-			<a href="/management/product/" class="side-nav-text "> <i
+		<div class="side-nav py-2" onclick='location.href="/admin/class/"'>
+			<a href="/admin/class/" class="side-nav-text "> <i
+				class="bi bi-check"></i>분류 관리
+			</a>
+		</div>
+		<hr class="mx-1 my-0 p-0 side-hr">
+		<div class="side-nav py-2" onclick='location.href="/admin/object/datamanager/"'>
+			<a href="/admin/object/datamanager/" class="side-nav-text "> <i
+				class="bi bi-check"></i>Data 메니저
+			</a>
+		</div>
+		<hr class="mx-1 my-0 p-0 side-hr">
+		<div class="side-nav py-2" onclick='location.href="/admin/product/"'>
+			<a href="/admin/product/" class="side-nav-text "> <i
 				class="bi bi-check"></i>제품 관리
-			</a>
-		</div>
-		<hr class="mx-1 my-0 p-0 side-hr">
-		<div class="side-nav py-2" onclick='location.href="/management/staff/"'>
-			<a href="/management/staff/" class="side-nav-text "> <i
-				class="bi bi-check"></i>인사 관리
-			</a>
-		</div>
-		<hr class="mx-1 my-0 p-0 side-hr">
-		<div class="side-nav py-2" onclick='location.href="/management/authority/"'>
-			<a href="/management/authority/" class="side-nav-text "> <i
-				class="bi bi-check"></i>권한 관리
 			</a>
 		</div>
 		<hr class="mx-1 my-0 p-0 side-hr">

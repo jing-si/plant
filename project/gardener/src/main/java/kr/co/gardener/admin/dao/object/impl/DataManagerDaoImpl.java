@@ -35,11 +35,14 @@ public class DataManagerDaoImpl implements DataManagerDao {
 	
 	@Override
 	public String list(int start, int end) {
+		//회사 검색
 		URI connUrl=null;
 		try {
 			 connUrl = new URIBuilder(companyUrl)
 					.addParameter("certKeyc",certKeyc)
-					.addParameter("vendStdt", String.valueOf(start)).addParameter("vendEndt", String.valueOf(end)).build();
+					.addParameter("vendStdt", String.valueOf(start))
+					.addParameter("vendEndt", String.valueOf(end))
+					.build();
 		} catch (URISyntaxException e1) {
 			e1.printStackTrace();
 		}
@@ -81,12 +84,13 @@ public class DataManagerDaoImpl implements DataManagerDao {
 	
 	@Override
 	public String productList(long companyId) {
-		
+		//환경표지 회사 기준 검색
 		URI connUrl=null;
 		try {
 			 connUrl = new URIBuilder(productUrl)
 					.addParameter("certKeyc",certKeyc)
 					.addParameter("prodVcod", String.valueOf(companyId))
+					.addParameter("prodStat", "Y")
 					.build();
 		} catch (URISyntaxException e1) {
 			e1.printStackTrace();
@@ -97,6 +101,7 @@ public class DataManagerDaoImpl implements DataManagerDao {
 
 	@Override
 	public String eProductList(long companyId) {
+		//저탄소 회사 기준 검색
 		URI connUrl=null;
 		try {
 			 connUrl = new URIBuilder(productUrl)
@@ -110,13 +115,18 @@ public class DataManagerDaoImpl implements DataManagerDao {
 		return context(connUrl);
 	}
 
+		
 	@Override
 	public String productList(int start, int end) {
+		//환경표지 날짜 기준 검색
 		URI connUrl=null;
 		try {
 			 connUrl = new URIBuilder(productUrl)
 					.addParameter("certKeyc",certKeyc)
-					.addParameter("prodStdt", String.valueOf(start)).addParameter("prodEndt", String.valueOf(end)).build();
+					.addParameter("prodStdt", String.valueOf(start))
+					.addParameter("prodEndt", String.valueOf(end))
+					.addParameter("prodStat", "Y")
+					.build();
 		} catch (URISyntaxException e1) {
 			e1.printStackTrace();
 		}
@@ -127,11 +137,14 @@ public class DataManagerDaoImpl implements DataManagerDao {
 	
 	@Override
 	public String eproductList(int start, int end) {
+		//저탄소 날짜 기준 검색
 		URI connUrl=null;
 		try {
 			 connUrl = new URIBuilder(companyUrl)
 					.addParameter("certKeyc",certKeyc)
-					.addParameter("vendStdt", String.valueOf(start)).addParameter("vendEndt", String.valueOf(end)).build();
+					.addParameter("vendStdt", String.valueOf(start))
+					.addParameter("vendEndt", String.valueOf(end))
+					.build();
 		} catch (URISyntaxException e1) {
 			e1.printStackTrace();
 		}

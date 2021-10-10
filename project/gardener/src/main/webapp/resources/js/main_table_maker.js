@@ -29,18 +29,22 @@ $(function() {
 	$.fn.val = function() {
 		const result = originalVal.apply(this, arguments);
 		if (arguments.length > 0)
-			$(this).change(); // OR with custom event $(this).trigger('value-changed');
+			$(this).change(); 
 		return result;
 	};
 	//메인페이지 선택 하는 버튼
 	$(".option").on("click", function() {
 		$(".selectedHeader").removeClass("selectedHeader");
 		$(this).addClass("selectedHeader");
-		state.url = $(this).data("url");
+		
+		const url = $(this).data("url"); 
+		if(url != "#"){
+		state.url = url 
 		$("#subContent").empty();
 		state.page = 1;
 		insertCount = 0;
 		content(state.url);
+		}
 	})
 
 	//mainContent Row 선택 이벤트
@@ -79,6 +83,10 @@ $(function() {
 				break;
 		}
 
+	})
+	//select change Image size
+	$("#subContent").on("change", ".changeSize", function() {
+		$(".viewImage").css("width", $(this).val());
 	})
 
 	//플러스 클릭
@@ -153,7 +161,8 @@ $(function() {
 	//subContent의 저장 버튼
 	$("#subContent").on("click", ".insert", function() {
 		let insertRow = $(".insertRow");
-		let rowlist = makeList(insertRow);
+		fileUploader(insertRow);
+		let rowlist = makeList(insertRow, "add");
 
 		$.ajax("add/" + state.url, {
 			contentType: "application/json",
@@ -174,7 +183,8 @@ $(function() {
 	//모달 버튼 commonModal 일때 반응
 	$(".modal-footer").on("click", "#commonButton", function() {
 		let selectedRow = $("#modal-table").find("tr");
-		let list = makeList(selectedRow);
+		fileUploader(selectedRow);
+		let list = makeList(selectedRow, "select");
 		console.log(list);
 		$.ajax(action + "/" + state.url, {
 			contentType: "application/json",
@@ -183,6 +193,7 @@ $(function() {
 			success: function(data) {
 				$("#commonModal").modal("hide");
 				content(state.url);
+				$("#subContent").empty();
 
 			}
 		})
@@ -192,10 +203,9 @@ $(function() {
 	$(".modal-footer").on("click", "#changeArea", function() {
 		CKEDITOR.instances.ckeditor.updateElement()
 		const modalArea = $(".modal-body").find(".area");
-		const origin = $("." + modalArea.data("point"));
 
-		origin.find(".area").val(modalArea.val());
-		origin.find(".showbox").html(modalArea.val());
+		$("textarea.textEdit").val(modalArea.val());
+		$("div.textEdit").html(modalArea.val());
 
 		$("#commonModal").modal("hide");
 
@@ -207,6 +217,8 @@ $(function() {
 
 	//모달 창이 닫힐때 이벤트
 	$("#commonModal").on("hide.bs.modal", function() {
+		const origin = $(".textEdit");
+		origin.removeClass("textEdit");
 		if (selectedBox == null || selectedBox.find(".area").hasClass("updateRow"))
 			$(".selectedRow").find(".showbox").addClass("nonBorderTextBox")
 	})
@@ -223,19 +235,21 @@ $(function() {
 	//파일 변경시 이벤트
 	$("#mainContent, #subContent").on("change", ".fileUploader", function() {
 		const div = $(this).parent();
-		console.log(div.get(0));
-		fileUploader(div)
+		tempfileUploader(div)
+
 	});
 
 	//메인에서 area 클릭시 ckeditor 모달창으로 띄우기
 	$("#mainTable, #subContent").on("dblclick", ".areatext", function() {
+		$(this).children().addClass("textEdit")
+		
 		let area = $(this).children("textarea").clone();
-
+		
 		$(this).removeClass("nonBorderTextBox");
 		$(this).removeClass("comboBox")
 
 		$(area).attr("name", "ckeditor");
-		$(area).data("point", $(this).data("point"));
+		
 
 		$(".modal-title").text("Text 편집기");
 
@@ -253,9 +267,12 @@ $(function() {
 	$("#mainTable, #subContent").on("dblclick", ".date", function() {
 		$(this).val("");
 	})
+
+	//subContent에서 수정 
 	$("#subContent").on("click", "#subUpdate", function() {
 		const $items = $("#subContent");
-		const list = makeList($items)
+		fileUploader($items);
+		const list = makeList($items, "select")
 
 		$.ajax("update/" + state.url, {
 			contentType: "application/json",
@@ -274,9 +291,53 @@ $(function() {
 	});
 
 });
-
 //fileUploader
 function fileUploader(inputs) {
+	const file = inputs.find(".fileUploader");
+	const id = inputs.find(".C0");
+	if (file.length > 0) {
+		const fileSrc = inputs.find(".fileSrc");
+		console.log(fileSrc);
+		const form = $('<form method="POST" enctype="multipart/form-data">').append(file.clone());
+		form.append($('<input type="text" name="folder">').attr("value", state.url));
+
+		id.each((index, value) => {
+			form.append($('<input type="text" name="name">').attr("value", $(value).val()));
+		});
+
+		const formData = new FormData(form.get(0));
+
+		$.ajax({
+			method: "post",
+			enctype: 'multipart/form-data',
+			url: "/fileUpload",
+			data: formData,
+			async: false,
+			processData: false,
+			contentType: false,
+			cache: false,
+			timeout: 600000,
+			success: function(data) {
+			
+				fileSrc.each((index, value) => {
+					
+					if (data[index] != undefined) {
+						$(value).val(data[index]);
+						$(".C4").val(data[index]);
+					}
+				})
+
+			},
+			error: function(e) {
+				alert("파일 업로드를 실패하였습니다.");				
+			}
+		});
+	}
+}
+
+
+//tempfileUploader //썸네일 업로드
+function tempfileUploader(inputs) {
 	const file = inputs.find(".fileUploader");
 	if (file.length > 0) {
 		const fileSrc = inputs.find(".fileSrc");
@@ -284,10 +345,11 @@ function fileUploader(inputs) {
 		const form = $('<form method="POST" enctype="multipart/form-data">').append(file.clone());
 		form.append($('<input type="text" name="folder">').attr("value", state.url));
 		const formData = new FormData(form.get(0));
+
 		$.ajax({
 			method: "post",
 			enctype: 'multipart/form-data',
-			url: "/admin/fileUpload",
+			url: "/tempfileUpload",
 			data: formData,
 			processData: false,
 			contentType: false,
@@ -296,16 +358,20 @@ function fileUploader(inputs) {
 			success: function(data) {
 
 				fileSrc.each((index, value) => {
-					$(value).val(data[index]);
-					let parent = $(value).parent()
-					parent.attr("data-bs-content", `<img class='popImg' src='${data[index]}'/>`)
-					nowPop = bootstrap.Popover.getInstance(parent.get(0))
-					nowPop.hide();
-					nowPop = new bootstrap.Popover(parent, { html: true });
-					nowPop.show();
-
+					if (data[index] != "") {
+						let parent = $(value).parent()
+						if (parent.hasClass("viewFile")) {
+							parent.parents(".imgDiv").next().children("img").attr("src", data[index])
+						} else {
+							parent.attr("data-bs-content", `<img class='popImg' src='${data[index]}'/>`)
+							nowPop = bootstrap.Popover.getInstance(parent.get(0))
+							nowPop.hide();
+							nowPop = new bootstrap.Popover(parent, { html: true });
+							nowPop.show();
+						}
+					}
 				})
-
+				
 
 			},
 			error: function(e) {
@@ -336,31 +402,8 @@ function viewMarker(selectedRow) {
 		innerDiv.append($('<label class="form-label">')
 			.append($('<i class="bi bi-nut">'))
 			.append($("<strong>").text(th))
-			);
-			
-		/*		
-		switch (type) {
-			case "none":
-			case "text":
-			case "date":
-			case "combo":
-			case "number":
-				//두칸 짜리
-				innerDiv = $('<div class="col mt-3 mx-2">');
-				innerDiv.append($('<label class="form-label">')
-					.append($('<i class="bi bi-nut">'))
-					.append($("<strong>").text(th))
-				)
-				break;
-			case "area":
-				//한칸 짜리
-				innerDiv = $('<div class="row ps-5 pe-3 row-cols-1">')
-					.append($('<label class="form-label">')
-						.append($('<i class="bi bi-nut">'))
-						.append($("<strong>").text(th)))
-				break;
-		}
-		*/
+		);
+
 		
 		const temp = makeCell(nowCol.val(), a, 0, nowCol.attr("name"), type, "select");
 		innerDiv.append(temp);
@@ -385,6 +428,17 @@ function viewMarker(selectedRow) {
 			case "area":
 
 				temp.find(".showbox").removeClass("center").css("min-height", "200px")
+
+				break;
+			case "file":
+				temp.addClass("viewFile mx-3")
+				innerDiv.append($("<select class='mx-3 changeSize form-select'>")
+					.append($("<option value='200px'>").text("200px"))
+					.append($("<option value='400px'>").text("400px"))
+					.append($("<option value='600px'>").text("600px"))
+					.append($("<option value='50%'>").text("50%"))
+					.append($("<option value='100%'>").text("100%"))
+				)
 				break;
 		}
 
@@ -395,11 +449,15 @@ function viewMarker(selectedRow) {
 			case "combo":
 			case "text":
 			case "number":
-				div2.append($("<div class='col'>").append(innerDiv));
+				div2.append($("<div class='col mt-2'>").append(innerDiv));
 				break;
 
 			case "area":
-				div1.append($("<div class='col'>").append(innerDiv));
+				div1.append($("<div class='col  mt-2'>").append(innerDiv));
+				break;
+			case "file":
+				div1.append($("<div class='col  mt-3 imgDiv'>").append(innerDiv));
+				div1.append($("<div class='col form-control center'>").append($("<img class='viewImage  mt-2 mx-0 p-0'>").attr("src", temp.find(".fileSrc").val()+"?a="+Math.random())));
 				break;
 		}
 
@@ -504,8 +562,14 @@ function common() {
 
 //ajax으로 보낼때 사용할 리스트 만들기.
 //관련 tr을 통째로 가져와서 C+넘버링 되어 있는 것들을 발라냄.
-function makeList(selectedRow) {
-	const rowNum = addType.length;
+function makeList(selectedRow, type) {
+
+	let rowNum
+	if (type === "select")
+		rowNum = thType.length;
+	else if (type === "add")
+		rowNum = addType.length;
+
 	const rowlist = { list: Array() };
 
 	selectedRow.each((index, value) => {
@@ -513,6 +577,7 @@ function makeList(selectedRow) {
 		let row = {};
 		for (let a = 0; a < rowNum; a++) {
 			let children = $value.find(".C" + a)
+
 			if (children != undefined)
 				row[children.attr("name")] = children.val();
 		}
@@ -660,11 +725,11 @@ function makeGrid(data) {
 //maintable 내용 요청하기
 function content(url_) {
 	state.url = url_;
-	$.ajax("api/" + url_, {
+	$.ajax("api/" + url_+"?", {
 		contentType: "application/json",
 		dataType: "json",
 		method: "get",
-		data: state,
+		data: state,		
 		success: function(data) {
 			$("#mainTable").empty();
 			console.log(data);
@@ -723,8 +788,11 @@ function makeCell(val, col, row, name, type, action) {
 			break;
 
 		case "combo":
-
-			temp = comboBox[comboNumber].clone();
+			
+			if(comboNumber < comboBox.length)
+				temp = comboBox[comboNumber].clone();
+			else
+				temp = $("<select>");
 			temp.find(`option[value=${val}]`).prop("selected", true);
 			break;
 
@@ -732,9 +800,13 @@ function makeCell(val, col, row, name, type, action) {
 			temp = $("<input type='text' readonly class='date'>")
 			break;
 		case "file":
+			let src = "/upload/noImage.gif"
+			if (val != null) {
+				src = val;
+			}
 			temp = $(`<div  class="d-inline-block" title=" 이미지" tabindex="${popCount++}" 
-				data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="<img class='popImg' src='/upload/noImage.gif'/>">`)
-				.append($("<input type='file' name='files' class='form-control fileUploader'>").val(val))
+				data-bs-toggle="popover" data-bs-placement="bottom" data-bs-trigger="hover focus" data-bs-content="<img class='popImg' src='${src+"?a="+Math.random()}'/>">`)
+				.append($("<input type='file' name='files' accept='image/*' class='form-control fileUploader'>"))
 				.append($("<input type='text' class='hide fileSrc'>").val(val).addClass(c).attr("name", name))
 
 			break;

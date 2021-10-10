@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import kr.co.gardener.admin.model.SearchList;
 import kr.co.gardener.admin.model.object.Product;
+import kr.co.gardener.admin.model.user.SearchList;
 import kr.co.gardener.admin.service.object.ProductService;
 
 @Controller

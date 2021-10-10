@@ -18,7 +18,7 @@ public class GridSystem {
 				
 				field.setAccessible(true);
 				if (field.getType().toString().indexOf("Date") > 0) {
-					DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+					DateFormat format = new SimpleDateFormat("yyyy.MM.dd");
 					grid.put("C" + a, format.format(field.get(this)));
 				} else {
 					grid.put("C" + a, field.get(this));

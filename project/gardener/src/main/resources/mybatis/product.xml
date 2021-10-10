@@ -12,6 +12,7 @@
 	<!-- List -->
 	<select id="list" resultType="Product">
 		select * from PRODUCT
+		LIMIT #{offset}, #{perPage}
 	</select>
 	
 	<select id="item" resultType="Product">
@@ -64,6 +65,78 @@
 	<select id="list_search" resultType="Product">	
 		select * from PRODUCT
 		where PRODUCT_NAME like #{search}
+	</select>
 	
+	
+	
+	<!--대량 처리 -->
+	
+
+	<update id="update_list" >
+		Insert into PRODUCT
+		values
+		<foreach collection="list" item="item" separator=",">
+			(#{item.productId},
+		#{item.productName},
+		#{item.productSize},
+		#{item.productImage},
+		#{item.certId},
+		#{item.productCertId},
+		#{item.productStartDate},
+		#{item.productEndDate},
+		#{item.companyId},
+		#{item.g2bId},
+		#{item.elId})
+		</foreach>
+		on duplicate key update
+		PRODUCT_ID = VALUES(PRODUCT_ID),
+		PRODUCT_NAME = VALUES(PRODUCT_NAME),
+		PRODUCT_SIZE = VALUES(PRODUCT_SIZE),
+		PRODUCT_IMAGE = VALUES(PRODUCT_IMAGE),
+		CERT_ID = VALUES(CERT_ID),
+		PRODUCT_CERT_ID = VALUES(PRODUCT_CERT_ID),
+		PRODUCT_START_DATE = VALUES(PRODUCT_START_DATE),
+		PRODUCT_END_DATE = VALUES(PRODUCT_END_DATE),
+		COMPANY_ID = VALUES(COMPANY_ID),
+		G2B_ID = VALUES(G2B_ID),
+		EL_ID = VALUES(EL_ID)
+	</update>
+
+	<insert id="insert_list">
+		INSERT INTO PRODUCT
+		VALUES
+		<foreach collection="list" item="item" separator=",">
+			(#{item.productId},
+		#{item.productName},
+		#{item.productSize},
+		#{item.productImage},
+		#{item.certId},
+		#{item.productCertId},
+		#{item.productStartDate},
+		#{item.productEndDate},
+		#{item.companyId},
+		#{item.g2bId},
+		#{item.elId})
+		</foreach>
+	</insert>
+
+	<delete id="delete_list">		
+		DELETE FROM  PRODUCT		
+		WHERE PRODUCT_ID in (
+		<foreach collection="list" item="item" separator=",">
+				#{item.productId}
+		</foreach>
+		)		
+	</delete>
+
+		<select id="combo" resultType="ComboItem">
+		SELECT "0" AS "table",
+		CERT_ID AS "id", CERT_NAME AS "text"
+		from CERT
+		UNION
+		SELECT "1" AS "table",
+		BOT_CLASS_ID AS "id", BOT_CLASS_NAME AS "text"
+		from BOT_CLASS
+		
 	</select>
 </mapper>

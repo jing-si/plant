@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.co.gardener.admin.model.object.Classify;
-import kr.co.gardener.admin.model.object.ClassifyList;
+import kr.co.gardener.admin.model.object.list.ClassifyList;
 import kr.co.gardener.admin.service.object.ClassifyService;
 @Controller
 @RequestMapping("/admin/object/classify/")

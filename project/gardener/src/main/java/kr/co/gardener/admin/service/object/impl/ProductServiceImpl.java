@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 
 import kr.co.gardener.admin.dao.object.ProductDao;
 import kr.co.gardener.admin.model.object.Product;
+import kr.co.gardener.admin.model.object.list.ProductList;
 import kr.co.gardener.admin.service.object.ProductService;
+import kr.co.gardener.util.CertMap;
 import kr.co.gardener.util.Pager;
 
 @Service
@@ -16,6 +18,10 @@ public class ProductServiceImpl implements ProductService {
 	@Autowired
 	ProductDao dao;
 	
+	@Autowired
+	CertMap cm;
+	
+		
 	@Override
 	public void add(Product product) {
 		dao.add(product);
@@ -38,7 +44,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public List<Product> list(Pager pager) {		
-		pager.setTotal(dao.total());
+		pager.setTotal(dao.total(pager));
 		return dao.list(pager);
 	}
 
@@ -51,6 +57,35 @@ public class ProductServiceImpl implements ProductService {
 	public List<Product> list(String search) {
 		search = "%" + search.replaceAll(" ", "%") + "%";
 		return dao.list(search);
+	}
+
+	@Override
+	public ProductList list_pager(Pager pager) {
+		ProductList item = new ProductList();
+		item.setPager(pager);
+		item.setList(dao.list(pager));
+		item.paseComboList(dao.combo());
+		pager.setTotal(dao.total(pager));
+		return item;
+	}
+
+	@Override
+	public void insert_list(ProductList list) {
+		List<Product> items = list.getList();
+		for(Product item : items) {
+			item.setCert(cm.getCert(item.getCertName()));
+		}
+		dao.insert_list(items);
+	}
+
+	@Override
+	public void delete_list(ProductList list) {
+		dao.delete_list(list.getList());
+	}
+
+	@Override
+	public void update_list(ProductList list) {
+		dao.update_list(list.getList());
 	}
 
 }

@@ -2,9 +2,6 @@ package kr.co.gardener.admin.model.user;
 
 import java.util.List;
 
-import kr.co.gardener.admin.model.Inven;
-import kr.co.gardener.admin.model.Location;
-
 public class UserInven {
 	String userId;
 	List<Location> location;

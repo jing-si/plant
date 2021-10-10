@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="productCertReason">
-
+				   
 	<!-- List -->
 	<select id="list" resultType="ProductCertReason">
 		select * from PRODUCT_CERT_REASON
@@ -46,16 +46,60 @@
 	<insert id="bulkAdd">
 		INSERT INTO PRODUCT_CERT_REASON
 		(PRODUCT_ID,CERT_REASON_ID)
-
 		SELECT #{productId},#{certReasonId}
-
 		FROM dual
-
 		WHERE NOT EXISTS (
-
 		SELECT * FROM PRODUCT_CERT_REASON
-
 		WHERE PRODUCT_ID = #{productId} AND CERT_REASON_ID = #{certReasonId}
-
 	</insert>
+	
+	<!--대량 처리 -->
+	<select id="list_pager" resultType="ProductCertReason">
+		SELECT * FROM PRODUCT_CERT_REASON		
+		LIMIT #{offset}, #{perPage}
+	</select>
+
+	<select id="update_list">
+		Insert into PRODUCT_CERT_REASON
+		values
+		<foreach collection="list" item="item" separator=",">
+			(#{item.productCertReasonId},#{item.productId},#{item.certReasonId})
+		</foreach>
+		on duplicate key update
+		PRODUCT_CERT_REASON_ID = VALUES(PRODUCT_CERT_REASON_ID),
+		PRODUCT_ID = VALUES(PRODUCT_ID),
+		CERT_REASON_ID = VALUES(CERT_REASON_ID)
+		
+	</select>
+
+	<insert id="insert_list">
+		INSERT INTO PRODUCT_CERT_REASON
+		VALUES
+		<foreach collection="list" item="item" separator=",">
+			((select IFNULL(max(SUB.PRODUCT_CERT_REASON_ID)+1,1)  from PRODUCT_CERT_REASON AS SUB where SUB.PRODUCT_ID = #{item.productId}),#{item.productId},#{item.certReasonId})
+		</foreach>
+	</insert>
+
+	<delete id="delete_list">		
+		DELETE FROM  PRODUCT_CERT_REASON		
+		WHERE PRODUCT_CERT_REASON_ID in (
+		<foreach collection="list" item="item" separator=",">
+				#{item.productCertReasonId}
+		</foreach>
+		)		
+	</delete>
+
+	<select id="total" resultType="float">
+		select COUNT(*) from PRODUCT_CERT_REASON
+	</select>
+
+	<select id="combo" resultType="ComboItem">
+		SELECT "0" AS "table",
+		PRODUCT_ID AS "id", PRODUCT_NAME AS "text"
+		from PRODUCT
+		UNION
+		SELECT "1"  AS "table",
+		CERT_REASON_ID AS "id", CERT_REASON_NAME AS "text"
+		from CERT_REASON	
+	</select>
 </mapper>

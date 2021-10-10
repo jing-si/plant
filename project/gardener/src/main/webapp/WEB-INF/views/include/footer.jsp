@@ -1,6 +1,6 @@
 <footer class="sticky-bot">
 	<div>
-		<h5>Copyright 2021. salove All right reserved</h5>
+		<h5>Copyright 2021. Garkkum All right reserved</h5>
 	</div>
 </footer>
 

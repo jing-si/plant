@@ -1,17 +1,22 @@
 package kr.co.gardener.main.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
-import kr.co.gardener.admin.model.User;
-import kr.co.gardener.admin.service.UserService;
+import kr.co.gardener.admin.model.user.User;
+import kr.co.gardener.admin.service.user.UserService;
 import kr.co.gardener.main.service.LoginService;
+import kr.co.gardener.util.FileUploader;
 
 @Controller
 @RequestMapping({"/",""})
@@ -75,5 +80,30 @@ public class LoginController {
 		@RequestMapping("/splash")
 		public String splash() {
 			return "main/splash";
+		}
+		
+		@PostMapping("/tempfileUpload")
+		@ResponseBody
+		public List<String> FileUploader(String folder,List<MultipartFile> files) {
+			List<String> list = new ArrayList<String>();
+			
+			files.forEach((file)->{
+				list.add(FileUploader.Uploader(file, "temp",null));
+			});
+			
+			return list; 
+		}
+		
+		@PostMapping("/fileUpload")
+		@ResponseBody
+		public List<String> FileUploader(String folder,String[] name,List<MultipartFile> files) {
+			List<String> list = new ArrayList<String>();
+			
+			for(int a = 0 ; a < files.size() ; a++) {
+				if(files.get(a).getSize() != 0)
+					list.add(FileUploader.Uploader(files.get(a), folder, name[a]));
+			}		
+			
+			return list; 
 		}
 }

@@ -11,13 +11,32 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import kr.co.gardener.util.GridSystem;
 
-public class Product extends GridSystem{
-	
-	
+public class Product extends GridSystem {
+
 	public Product() {
 		super();
 	}
 
+	// DB를 위한
+	private String productId;
+	private String productName;
+	private String productSize;
+	private String productImage;
+	private int certId;
+	private int productCertId;
+
+	@DateTimeFormat(pattern = "yyyy.MM.dd" )
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy.MM.dd",timezone="Asia/Seoul")
+	private Date productStartDate;
+
+	@DateTimeFormat(pattern = "yyyy.MM.dd")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy.MM.dd",timezone="Asia/Seoul")
+	private Date productEndDate;
+	private String companyId;
+	private int g2bId;
+	private int elId;
+
+	//Open API
 	private String prodProd; // 환경표지 제품ID(PK)
 	private String prodPrnm; // 제품명
 	private String prodEcos; // 일반분류코드(미사용)
@@ -74,32 +93,15 @@ public class Product extends GridSystem{
 	private String totalCount; // 조회결과건수
 	private String checkDate; // 조회일자(YYYYMMDD)
 	private String prodImg; // 제품 이미지
-	// DB를 위한
-	private String productId;
-	private String productName;
-	private String productSize;
-	private String productImage;
-	private int certId;
-	private int productCertId;
-	
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
-	private Date productStartDate;
-	
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
-	private Date productEndDate;
-	private String companyId;
-	private int g2bId;
-	private int elId;
 
 	// 추가 필드
 	private List<CertReason> certReasons;
 	private Cert cert;
-	//유틸성
-	 
+	// 유틸성
 
 	// api용 get,seet
+	
+
 	public String getProdProd() {
 		return prodProd;
 	}
@@ -548,21 +550,81 @@ public class Product extends GridSystem{
 		this.prodImg = prodImg;
 	}
 
-	// productId -> 제품번호
-	public String getProductId() {
-		if (!StringUtils.isEmpty(productId)) {
-			return productId;
-		}
-
-		if (!StringUtils.isEmpty(prodProd)) {
-			return prodProd;
-		}
-
-		if (!StringUtils.isEmpty(epdpPrid)) {
-			return epdpPrid;
-		}
-		return null;
+	public List<CertReason> getCertReasons() {
+		return certReasons;
 	}
+
+	public void setCertReasons(List<CertReason> certReasons) {
+		this.certReasons = certReasons;
+	}
+
+	public Cert getCert() {
+		return cert;
+	}
+
+	public void setCert(Cert cert) {
+		this.cert = cert;
+	}
+
+	public void setProductId(String productId) {
+		this.productId = productId;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+
+	public void setProductSize(String productSize) {
+		this.productSize = productSize;
+	}
+
+	public void setProductImage(String productImage) {
+		this.productImage = productImage;
+	}
+
+	public void setCertId(int certId) {
+		this.certId = certId;
+	}
+
+	public void setProductCertId(int productCertId) {
+		this.productCertId = productCertId;
+	}
+
+	public void setProductStartDate(Date productStartDate) {
+		this.productStartDate = productStartDate;
+	}
+
+	public void setProductEndDate(Date productEndDate) {
+		this.productEndDate = productEndDate;
+	}
+
+	public void setCompanyId(String companyId) {
+		this.companyId = companyId;
+	}
+
+	public void setG2bId(int g2bId) {
+		this.g2bId = g2bId;
+	}
+
+	public void setElId(int elId) {
+		this.elId = elId;
+	}
+	
+	// productId -> 제품번호
+		public String getProductId() {
+			if (!StringUtils.isEmpty(productId)) {
+				return productId;
+			}
+
+			if (!StringUtils.isEmpty(prodProd)) {
+				return prodProd;
+			}
+
+			if (!StringUtils.isEmpty(epdpPrid)) {
+				return epdpPrid;
+			}
+			return null;
+		}
 
 	// productName -> 제품이름
 	public String getProductName() {
@@ -597,12 +659,12 @@ public class Product extends GridSystem{
 
 	// productImage -> 제품 이미지
 	public String getProductImage() {
-		String url = "http://data.greenproduct.go.kr/openProductImage.do?prodProd=" + productId +"&prod_img_size=250";
-		
+		String url = "http://data.greenproduct.go.kr/openProductImage.do?prodProd=" + productId + "&prod_img_size=250";
+
 		if (!StringUtils.isEmpty(productImage)) {
 			return productImage;
 		}
-		
+
 		if (!StringUtils.isEmpty(prodImg)) {
 			return prodImg;
 		}
@@ -701,7 +763,7 @@ public class Product extends GridSystem{
 			return Integer.valueOf(prodProd);
 		}
 		return 0;
-		
+
 	}
 
 	// ELId -> EL ID
@@ -716,70 +778,10 @@ public class Product extends GridSystem{
 
 	}
 
-	public void setProductId(String productId) {
-		this.productId = productId;
-	}
-
-	public void setProductName(String productName) {
-		this.productName = productName;
-	}
-
-	public void setProductSize(String productSize) {
-		this.productSize = productSize;
-	}
-
-	public void setProductImage(String productImage) {
-		this.productImage = productImage;
-	}
-
-	public void setCertId(int certId) {
-		this.certId = certId;
-	}
-
-	public void setProductCertId(int productCertId) {
-		this.productCertId = productCertId;
-	}
-
-	public void setProductStartDate(Date productStartDate) {
-		this.productStartDate = productStartDate;
-	}
-
-	public void setProductEndDate(Date productEndDate) {
-		this.productEndDate = productEndDate;
-	}
-
-	public void setCompanyId(String companyId) {
-		this.companyId = companyId;
-	}
-
-	public void setG2bId(int g2bId) {
-		this.g2bId = g2bId;
-	}
-
-	public void setElId(int elId) {
-		this.elId = elId;
-	}
-
-	
-	public List<CertReason> getCertReasons() {
-		return certReasons;
-	}
-
-	public void setCertReasons(List<CertReason> certReasons) {
-		this.certReasons = certReasons;
-	}
-
-	public Cert getCert() {
-		return cert;
-	}
-
-	public void setCert(Cert cert) {
-		this.cert = cert;
-	}
-
 	public int getCertId() {
-		if(certId != 0) { 
-		return certId;}
+		if (certId != 0) {
+			return certId;
+		}
 		if (!StringUtils.isEmpty(prodProd)) {
 			return Integer.valueOf(prodProd);
 		}
@@ -789,7 +791,5 @@ public class Product extends GridSystem{
 		}
 		return 0;
 	}
-  
-	
-	
+
 }

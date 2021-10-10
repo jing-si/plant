@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import kr.co.gardener.admin.model.object.CertReason;
+import kr.co.gardener.admin.model.object.list.CertReasonList;
+import kr.co.gardener.util.Pager;
 
 public interface CertReasonService {
 
@@ -18,5 +20,13 @@ public interface CertReasonService {
 	void delete(int certReasonId);
 
 	Map<String, Integer> listMap();
+
+	CertReasonList list(Pager pager);
+
+	void insert(CertReasonList list);
+
+	void delete(CertReasonList list);
+
+	void update(CertReasonList list);
 
 }

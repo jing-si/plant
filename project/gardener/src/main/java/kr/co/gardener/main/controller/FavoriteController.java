@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import kr.co.gardener.admin.model.Bookmark;
+import kr.co.gardener.admin.model.user.Bookmark;
 
 @Controller
 @RequestMapping("/login/favorite")

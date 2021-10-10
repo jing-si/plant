@@ -8,14 +8,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.gardener.admin.model.object.Product;
+import kr.co.gardener.admin.model.object.list.ProductList;
+import kr.co.gardener.admin.model.object.list.TopClassList;
 import kr.co.gardener.admin.service.object.ProductService;
 import kr.co.gardener.util.Pager;
 
 @Controller
-@RequestMapping("/admin/object/product/")
+@RequestMapping("/admin/product/")
 public class ProductController {
 	final private String path = "admin/object/product/";
 	@Autowired
@@ -23,9 +27,7 @@ public class ProductController {
 	
 	@RequestMapping({"/","list",""})
 	public String list(Pager pager) {
-		List<Product> list = service.list(pager);
-		
-		return path + "list";
+		return path + "main";
 	}
 	
 	@GetMapping("/add")
@@ -57,4 +59,33 @@ public class ProductController {
 		service.delete(productId);
 		return "redirect:../list";
 	}
+	
+	//대량 --------------------------------------------
+			@RequestMapping("/api/product")
+			@ResponseBody
+			public ProductList productList(Pager pager) {
+				ProductList item = service.list_pager(pager);
+				return item;
+			}
+
+			@ResponseBody
+			@PostMapping("/add/product")
+			public String productAdd(@RequestBody ProductList list) {
+				service.insert_list(list);
+				return "ok";
+			}
+
+			@ResponseBody
+			@RequestMapping("/delete/product")
+			public String productDelete(@RequestBody ProductList list) {
+				service.delete_list(list);
+				return "ok";
+			}
+
+			@ResponseBody
+			@PostMapping("/update/product")
+			public String productUpdate(@RequestBody ProductList list) {
+				service.update_list(list);
+				return "ok";
+			}
 }

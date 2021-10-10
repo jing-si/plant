@@ -3,6 +3,7 @@ package kr.co.gardener.admin.service.object;
 import java.util.List;
 
 import kr.co.gardener.admin.model.object.Product;
+import kr.co.gardener.admin.model.object.list.ProductList;
 import kr.co.gardener.util.Pager;
 
 public interface ProductService {
@@ -20,5 +21,13 @@ public interface ProductService {
 	List<Product> MidList(int midClassId);
 
 	List<Product> list(String search);
+
+	ProductList list_pager(Pager pager);
+
+	void insert_list(ProductList list);
+
+	void delete_list(ProductList list);
+
+	void update_list(ProductList list);
 
 }

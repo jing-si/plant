@@ -108,7 +108,6 @@ public class DataManagerServiceImpl implements DataManagerService {
 		//이건 일차원적인 해결 방법 뿐이 없는것일까?		
 		Map<String,Integer> reasonMap = reasonService.listMap();
 		Map<String,Integer> certMap = certService.listMap();
-		System.out.println("사이즈를 사이즈를 사이즈는 왜 왜왜 왜왜"+list.size() );
 		for(Product item : list) {
 			System.out.println(item.getProductName());
 			item.setCertId(certMap.get(item.getCertName()));

@@ -4,7 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import kr.co.gardener.admin.model.User;
+import kr.co.gardener.admin.model.user.User;
 @Repository
 public class SettingDaoImpl implements SettingDao {
 

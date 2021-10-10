@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.gardener.admin.dao.object.ClassifyDao;
 import kr.co.gardener.admin.model.object.Classify;
-import kr.co.gardener.admin.model.object.ClassifyList;
+import kr.co.gardener.admin.model.object.list.ClassifyList;
 import kr.co.gardener.admin.service.object.ClassifyService;
 
 @Service

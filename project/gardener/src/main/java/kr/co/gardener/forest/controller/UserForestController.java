@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import kr.co.gardener.admin.model.Inven;
-import kr.co.gardener.admin.model.Location;
-import kr.co.gardener.admin.model.User;
 import kr.co.gardener.admin.model.object.Product;
-import kr.co.gardener.admin.service.InvenService;
-import kr.co.gardener.admin.service.LocationService;
+import kr.co.gardener.admin.model.user.Inven;
+import kr.co.gardener.admin.model.user.Location;
+import kr.co.gardener.admin.model.user.User;
+import kr.co.gardener.admin.service.user.InvenService;
+import kr.co.gardener.admin.service.user.LocationService;
 
 @Controller
 @RequestMapping("/login/userforest")
