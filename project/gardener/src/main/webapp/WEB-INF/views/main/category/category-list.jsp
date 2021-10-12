@@ -321,8 +321,8 @@ a {
 
 
 
-		</li>
-		<li><a href="#tab2" class="btn"><p class="btn-title">브랜드</p>
+		</li><li>
+		<a href="#tab2" class="btn"><p class="btn-title">브랜드</p>
 				<span id="bar"></a>
 			<div id="tab3" class="cont">
 				<div id="brand-body">
@@ -349,8 +349,9 @@ a {
 						</div></a>
 					<!-- 여기까지 -->
 				</div>
-			</div></li>
-		<li><a href="#tab3" class="btn"><p class="btn-title">인증마크</p>
+			</div>
+			</li><li>
+		<a href="#tab3" class="btn"><p class="btn-title">인증마크</p>
 				<span id="bar"></a>
 			<div id="tab3" class="cont">
 				<div id="mark-body">

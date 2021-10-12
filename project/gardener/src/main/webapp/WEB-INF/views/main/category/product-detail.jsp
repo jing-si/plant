@@ -50,6 +50,7 @@ a{
 }
 body{
     height: 100%;
+    /* width: 100%; */
 }
 
 /* 정렬 */
@@ -77,7 +78,7 @@ body{
    margin: 0 auto;
 }
 #product-title #product-name{
-    width: 100;
+    width: 100%;
     height: 26px;
     font-family: NotoSansKR;
     font-size: 16px;
@@ -91,10 +92,10 @@ body{
 
  #product-chart{
     width: 100%;
-    height: 260.8px;
+    /* height: 260.8px; */
 }
 #product-chart-title{
-    width: 88px;
+    /* width: 88px; */
     height: 19px;
     font-family: Roboto;
     font-size: 14px;
@@ -115,28 +116,28 @@ body{
 .product-chart-name{
     display: inline-block;
     width: 104px;
-    height: 28px;
+    /* height: 28px; */
     background-color: #f5f5f5;
     font-family: NotoSansKR;
     font-size: 10px;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
-    padding: 6px 0 9px 10px;
+    padding: 7px 0 6px 10px;
     color: #979797;
-    padding: 6px auto 9px 10px;
+    /* padding: 6px auto 9px 10px; */
 }
 .product-chart-content{
     display: inline-block;
-    width: 224px;
-    height: 28px;
+    width: 220px;
+    /* height: 28px; */
     font-family: NotoSansKR;
     font-size: 10px;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
     color: #646464;
-    padding: 6px 0 8px 10px;
+    padding: 7px 0 6px 10px;
 }
 
 #same-brand{
@@ -149,7 +150,7 @@ body{
 }
 #same-brand-title{
     display: inline-block;
-    width: 130px;
+    /* width: 130px; */
     height: 19px;
     margin: 25.8px 5px 10px 0;
     font-family: Roboto;
@@ -166,9 +167,11 @@ body{
     font-stretch: normal;
     font-style: normal;
     color: #646464;
-    float: right;
+    /* float: right; */
     margin-top: 28.8px;
     margin-bottom: 13px;
+    margin-left: 140px;
+    display: inline-block;
 }
 .same-brand-img{
     display: inline-block;
@@ -193,7 +196,8 @@ body{
     color: #646464;
     line-height: 1.11;
     word-wrap: break-word;
-    overflow: hidden;
+    /* overflow: hidden; */
+    white-space: normal;
 }
 .same-brand-li:hover .same-brand-name,.same-brand-name:hover{
 	overflow: visible;
@@ -291,23 +295,6 @@ img{
                 <li>
                     <div class="product-chart-name">인증사유
                     </div><div class="product-chart-content"></div>
-                </li>
-                <li>
-                    <div class="product-chart-name">환경표지 인증번호
-                    </div><div class="product-chart-content">${item.productCertId}</div>
-                </li>
-                <li>
-                    <div class="product-chart-name">환경표지 인증기간
-                    </div><div class="product-chart-content">${item.productStartDate}~${item.productEndDate}</div>
-                </li>
-                <li class="blank"></li>
-                <li>
-                    <div class="product-chart-name">기업명
-                    </div><div class="product-chart-content">${company.companyName}</div>
-                </li>
-                <li>
-                    <div class="product-chart-name">전화번호
-                    </div><div class="product-chart-content">${company.companyTel}</div>
                 </li>
             </ul>
             
