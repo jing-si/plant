@@ -51,4 +51,19 @@ public class UserServiceImpl implements UserService {
 		return dao.notice();
 	}
 
+	@Override
+	public boolean duplication(String id) {
+		
+		if(dao.duplication(id)>0) {
+			System.out.println(dao.duplication(id));
+			return false;
+		}else {
+			System.out.println(dao.duplication(id));
+			return true;
+		}
+		
+		/* return dao.duplication(id); */
+	}
+
+
 }

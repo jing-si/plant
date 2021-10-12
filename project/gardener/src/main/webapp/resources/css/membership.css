@@ -36,7 +36,7 @@
             left: 9px;
         }
 
-        /* infoµé °øÅë»çÇ× */
+        /* info ê³µí†µ ì‚¬í•­*/
         .info{
             width: 100%;
             margin-bottom: 18px;
@@ -75,8 +75,9 @@
             top: 25%;
         }
 
-        /* infoµé °³º°»çÇ× */
+        /* info ê°œë³„ ì‚¬í•­ */
         #email{margin-top: 10px;}
+        #email input{width: 80%;}
         #email #certification{
             color: #66bb6a;
             margin-top: 6px;
@@ -144,7 +145,7 @@
         #agreement #fullText_1{top: 17px;}
         #agreement #fullText_2{bottom: 17px;}
 
-        /* ¿Ï·á¹öÆ° */
+        /* ï¿½Ï·ï¿½ï¿½Æ° */
         #submit{
             width: 100%;
             height: 44px;

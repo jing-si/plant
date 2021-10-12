@@ -21,4 +21,7 @@ public interface UserDao {
 
 	List<Notice> notice();
 
+	int duplication(String id);
+
+
 }

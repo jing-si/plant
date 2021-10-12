@@ -49,6 +49,9 @@
 		DELETE FROM USER
 		WHERE USER_ID=#{userId}
 	</delete>
-
+	
+	<select id="duplication" resultType="Integer">
+		SELECT COUNT(*) FROM USER WHERE USER_ID = #{id}
+	</select>
 
 </mapper>

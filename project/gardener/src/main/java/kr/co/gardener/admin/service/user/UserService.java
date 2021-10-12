@@ -21,4 +21,7 @@ public interface UserService {
 
 	List<Notice> notice();
 
+	boolean duplication(String id);
+
+
 }

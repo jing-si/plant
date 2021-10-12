@@ -9,18 +9,96 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
-    <script src="/resources/js/test.js"></script>
+    <!-- <script src="/resources/js/test.js"></script> -->
+    <script src="/resources/jq/jquery.js"></script>
     
     <link rel="stylesheet" href="/resources/css/membership.css">
     
+    <style>
+    	#email input{width: 80%;}
+    	#email div{
+    	width: 15%;
+    	height: 40px;
+    	vertical-align: top;
+    	border: 0px;
+    	background-color: #66bb6a;
+    	border-radius: 4px;
+    	color: white;
+    	margin-left: 3%;
+    	font-size: 10px;
+    	display: inline-block;
+    	text-align: center;
+    	padding-top: 10px;
+    	}
+    </style>
+    
 </head>
 <body>
+
+<script>
+
+
+$().ready(() =>{
+	/* var emailValue = $("#email").children().first().val(); */
+	
+	//아이디 중복확인
+	$('#duplication').click(function(){
+	var emailValue = $("#emailValue").val();
+	console.log("중복확인");
+	console.log(emailValue);
+	$.ajax({
+		url : "/membership/duplication",
+		type : "post",
+		data : {"id" : emailValue},
+		dataType : "text",
+		success : function(data){
+			console.log(data)
+			if(data==="true"){
+				alert("이 아이디는 사용 가능합니다.");
+				console.log("이 아이디는 사용가능합니다");
+			}else{
+				alert("이 아이디는 사용 불가능합니다");
+				console.log("이 아이디는 사용불가능합니다");
+			}
+		},  //success 끝
+		error : function(){
+			alert("아이디 중복 확인 ajax 실행 실패");
+			console.log("실패");
+			console.log(emailValue);
+		}
+	})  //ajax 끝
+})  //중복확인 끝
+	
+	
+	//비밀번호 확인
+	$('#pwcheck').focusin(function(){
+		var password = $('#pw').val();
+		var passwordCheck = $('#pwcheck').val();
+		
+		if(password == passwordCheck){
+			$("#checkMsg").empty();
+			$("#checkMsg").append($("<p>비밀번호 일치</p>"))
+		}
+		else{
+			$("#checkMsg").empty();
+			$("#checkMsg").append($("<p>비밀번호 불일치</p>"))
+		}
+	})  //비밀번호 확인
+	
+	
+})  //ready 끝
+
+</script>
+
+
+
     <a href="/"><div id="header"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg></a>
         <p>회원가입</p></div>
 <div id="align">
 <form method="post">
     <div id="email" class="info">
-        <input placeholder="이메일" type="text" name="userId"><!-- <p></p> --></input>
+        <input placeholder="이메일" type="text" name="userId" id="emailValue"><!-- <p></p> --></input>
+        <div value="duplication" id="duplication">중복확인</div>
         <!-- <p id="certification">계정이 인증되었습니다.</p> -->
     </div>
     <div id="nickName" class="info">
@@ -29,13 +107,14 @@
         </input>
     </div>
     <div id="birth" class="info">
-        <input placeholder="비밀번호(4자리)" type="text" maxlength="4" name="userPass">
+        <input placeholder="비밀번호(4자리)" type="text" maxlength="4" name="userPass" id="pw">
             <!-- <p id="explain">생년월일(8자리)</p> -->
         </input>
     </div>
     <div id="birth" class="info">
-        <input placeholder="비밀번호 확인" type="text" maxlength="4">
+        <input placeholder="비밀번호 확인" type="text" maxlength="4" id="pwcheck">
             <!-- <p id="explain">생년월일(8자리)</p> -->
+            <div id="checkMsg"></div>
         </input>
     </div>
     <div id="birth" class="info">
