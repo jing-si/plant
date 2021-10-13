@@ -13,9 +13,6 @@ public class Company extends GridSystem{
 	
 	private List<Product> list;
 	
-	
-	
-	
 	public List<Product> getList() {
 		return list;
 	}

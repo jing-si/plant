@@ -4,64 +4,31 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.gardener.admin.model.object.Company;
+import kr.co.gardener.admin.model.object.list.CompanyList;
 import kr.co.gardener.admin.service.object.CompanyService;
 import kr.co.gardener.util.Pager;
 
 @Controller
-@RequestMapping("/admin/object/company/")
+@RequestMapping("/admin/company/")
 public class CompanyController {
 	final private String path = "/admin/object/company/";
 	
 	@Autowired
 	CompanyService companyService;
 	
-	@RequestMapping({"/","","list"})
-	public String list(Pager pager,Model model) {
-		List<Company> list = companyService.list(pager);
-		model.addAttribute("list", list);
-		return path + "list";
-	}
-	
-	@GetMapping("/add")
-	public String add() {		
+	@RequestMapping({"/","","main"})
+	public String main() {
 		
-		return path + "add";
-	}
-	
-	@PostMapping("/add")
-	public String add(Company company) {
-		
-		companyService.add(company);
-		return "redirect:list";
-	}
-	
-	@GetMapping("/update/{companyId}")
-	public String update(@PathVariable int companyId,Model model) {
-		Company item = companyService.item(companyId);
-		model.addAttribute("company", item);
-		return path  + "update";
-	}
-	
-	@PostMapping("/update/{companyId}")
-	public String update(Company item) {
-		companyService.update(item);
-		return "redirect:list";
-	}
-	
-	@DeleteMapping("/delete/{companyId}")
-	public String delete(@PathVariable int companyId) {
-		companyService.delete(companyId);
-		return "redirect:list";
+		return path + "main";
 	}
 	
 	@GetMapping("/search/{companyId}")
@@ -76,4 +43,41 @@ public class CompanyController {
 		companyService.autoUpdate(companyIds);
 		return "redirect:list";
 	}
+	
+	@PostMapping("/existCompany")
+	@ResponseBody
+	public boolean existCompany(@RequestBody Company company) {
+		return companyService.existCompany(company); 
+	}
+	
+	//대량 --------------------------------------------
+	@RequestMapping("/api/company")
+	@ResponseBody
+	public CompanyList CompanyList(Pager pager) {
+		CompanyList item = companyService.list_pager(pager);
+		return item;
+	}
+
+	@ResponseBody
+	@PostMapping("/add/company")
+	public String CompanyAdd(@RequestBody CompanyList list) {
+		companyService.insert_list(list);
+		return "ok";
+	}
+
+	@ResponseBody
+	@RequestMapping("/delete/company")
+	public String CompanyDelete(@RequestBody CompanyList list) {
+		companyService.delete_list(list);
+		return "ok";
+	}
+
+	@ResponseBody
+	@PostMapping("/update/company")
+	public String CompanyUpdate(@RequestBody CompanyList list) {
+		companyService.update_list(list);
+		return "ok";
+	}
+	
+	
 }

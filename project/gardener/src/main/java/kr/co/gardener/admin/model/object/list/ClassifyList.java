@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kr.co.gardener.admin.model.object.Classify;
-import kr.co.gardener.util.GridSystem;
 
 public class ClassifyList{
 private List<Classify> topClass;

@@ -1,7 +1,5 @@
 package kr.co.gardener.admin.controller.object;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.gardener.admin.model.object.Product;
 import kr.co.gardener.admin.model.object.list.ProductList;
-import kr.co.gardener.admin.model.object.list.TopClassList;
 import kr.co.gardener.admin.service.object.ProductService;
 import kr.co.gardener.util.Pager;
 

@@ -193,7 +193,7 @@ label {
 			$("#company_api_but").click(() => {
 				const start = $("#company_start_day").val();
 				const end = $("#company_end_day").val();
-				let url = "/admin/object/datamanager/list";
+				let url = "/admin/datamanager/list";
 				url += "/" + start;
 				url += "/" + end;
 
@@ -217,7 +217,7 @@ label {
 			//db검색 버튼
 			$("#company_db_but").click(()=>{
 				$.ajax({
-					url: "/admin/object/datamanager/companylist/db",
+					url: "/admin/datamanager/companylist/db",
 					success:function(data){
 						companyArr = data;
 						makeCompanyList("db");
@@ -232,7 +232,7 @@ label {
 			$("#product_api_but").click(() => {
 				const start = $("#product_start_day").val();
 				const end = $("#product_end_day").val();
-				let url = "/admin/object/datamanager/productlist";
+				let url = "/admin/datamanager/productlist";
 				url += "/" + start;
 				url += "/" + end;
 				
@@ -295,7 +295,7 @@ label {
 				tr.append(th1);
 				
 				$.ajax({
-					url: "/admin/object/datamanager/productlist/" + companyId,
+					url: "/admin/datamanager/productlist/" + companyId,
 					success: function (data) {
 						productArr = data;
 						console.log(data)
@@ -311,25 +311,46 @@ label {
 
 			//제품 대량 등록
 			$("#bulk_product_update").click(()=>{
+				let company = {
+						companyId : $("#companyId").val(),
+						companyName : $("#companyName").val(),
+						companyTel : $("#companyTel").val(),
+						companyAddress : $("#companyAddress").val(),
+						companyHomepage : $("#companyHomepage").val()
+				}
 				
-				$.ajax("/admin/product/add/product",{					
-					data:JSON.stringify({list:productArr}),					
-					contentType: 'application/json',
-					type:"POST",					
+				$.ajax("/admin/company/existCompany",{					
+					data:JSON.stringify(company),					
+					contentType: 'application/json',					
+					method:"POST",					
 					success: function(data){
-						$("#product_api_tbody").empty()
-						let tr = $('<tr class="selectRow">');
-						let th1 = $('<th scope="row" class="full textcenter overflow">')
-								.text("등록이 완료 되었습니다.")
-						tr.append(th1);
-						$("#product_api_tbody").append(tr)
+						uploadProduct();
 					}
 				})
+				
 				
 			})
 
 
 		}); //window on ready 끝
+		//제품 대량 등록
+		function uploadProduct() {
+			$.ajax("/admin/datamanager/add/apiproduct",{					
+				data:JSON.stringify({list:productArr}),					
+				contentType: 'application/json',
+				type:"POST",					
+				success: function(data){
+					$("#product_api_tbody").empty()
+					let tr = $('<tr class="selectRow">');
+					let th1 = $('<th scope="row" class="full textcenter overflow">')
+							.text("등록이 완료 되었습니다.")
+					tr.append(th1);
+					$("#product_api_tbody").append(tr)
+				}
+			})
+		}
+		
+		//회사 등록
 		
 		
 		//회사 행을 뿌려주는 함수

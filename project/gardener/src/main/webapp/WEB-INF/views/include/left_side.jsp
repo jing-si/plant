@@ -23,8 +23,8 @@
 			</a>
 		</div>
 		<hr class="mx-1 my-0 p-0 side-hr">
-		<div class="side-nav py-2" onclick='location.href="/admin/object/datamanager/"'>
-			<a href="/admin/object/datamanager/" class="side-nav-text "> <i
+		<div class="side-nav py-2" onclick='location.href="/admin/datamanager/"'>
+			<a href="/admin/datamanager/" class="side-nav-text "> <i
 				class="bi bi-check"></i>Data 메니저
 			</a>
 		</div>
@@ -35,9 +35,9 @@
 			</a>
 		</div>
 		<hr class="mx-1 my-0 p-0 side-hr">
-		<div class="side-nav py-2" onclick='location.href="/management/diet/"'>
-			<a href="/management/diet/" class="side-nav-text "> <i
-				class="bi bi-check"></i>식단	관리
+		<div class="side-nav py-2" onclick='location.href="/admin/company/"'>
+			<a href="/admin/company/" class="side-nav-text "> <i
+				class="bi bi-check"></i>회사	관리
 			</a>
 		</div>
 		<hr class="mx-1 my-0 p-0 side-hr">

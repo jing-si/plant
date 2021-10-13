@@ -9,14 +9,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.co.gardener.admin.model.object.ApiProduct;
 import kr.co.gardener.admin.model.object.Company;
 import kr.co.gardener.admin.model.object.Product;
+import kr.co.gardener.admin.model.object.list.ApiProductList;
 import kr.co.gardener.admin.model.object.list.ProductList;
 import kr.co.gardener.admin.service.object.CompanyService;
 import kr.co.gardener.admin.service.object.DataManagerService;
 
 @Controller
-@RequestMapping("/admin/object/datamanager/")
+@RequestMapping("/admin/datamanager/")
 public class DataManagerController {
 	final String path = "admin/object/datamanager/";
 
@@ -42,18 +44,17 @@ public class DataManagerController {
 	
 	@RequestMapping("/productlist/{companyId}")
 	@ResponseBody
-	public List<Product> productList(@PathVariable long companyId){
-		System.out.println(companyId);
-			List<Product> list = service.productList(companyId);
-			List<Product> elist = service.eProductList(companyId);
+	public List<ApiProduct> productList(@PathVariable long companyId){
+			List<ApiProduct> list = service.productList(companyId);
+			List<ApiProduct> elist = service.eProductList(companyId);
 			list.addAll(elist);
 		return list;
 	}
 	
 	@RequestMapping({ "/productlist/{start}/{end}" })
 	@ResponseBody
-	public List<Product> productList(@PathVariable int start, @PathVariable int end) {
-		List<Product> list = service.productList(start,end);		
+	public List<ApiProduct> productList(@PathVariable int start, @PathVariable int end) {
+		List<ApiProduct> list = service.productList(start,end);		
 		
 		return list;
 	}
@@ -66,12 +67,10 @@ public class DataManagerController {
 		return list;
 	}
 	
-	@RequestMapping(value="product/bulkupdate")
+	@RequestMapping("add/apiproduct")
 	@ResponseBody
-	public void bulkUpdate(@RequestBody ProductList list) {		
-		System.out.println(list.getList().get(0).getProductId());
-		//service.bulkUpdate(list);
-		
-		//return list;
+	public void UploadApiProduct(@RequestBody ApiProductList list) {		
+		service.UploadApiProduct(list);		
+	
 	}
 }

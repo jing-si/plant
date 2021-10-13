@@ -8,9 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.gardener.admin.dao.object.CertReasonDao;
-import kr.co.gardener.admin.model.object.Cert;
 import kr.co.gardener.admin.model.object.CertReason;
-import kr.co.gardener.admin.model.object.list.CertList;
 import kr.co.gardener.admin.model.object.list.CertReasonList;
 import kr.co.gardener.admin.service.object.CertReasonService;
 import kr.co.gardener.util.Pager;
