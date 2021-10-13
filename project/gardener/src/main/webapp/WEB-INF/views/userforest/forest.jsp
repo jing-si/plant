@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width-device-width, initial-scale=1">
 <title>사용자 숲</title>
 <link rel="stylesheet" href="/resources/css/005-01.css">
 <link
