@@ -17,18 +17,26 @@
     <style>
     	#email input{width: 80%;}
     	#email div{
-    	width: 15%;
-    	height: 40px;
-    	vertical-align: top;
-    	border: 0px;
-    	background-color: #66bb6a;
-    	border-radius: 4px;
-    	color: white;
-    	margin-left: 3%;
-    	font-size: 10px;
-    	display: inline-block;
-    	text-align: center;
-    	padding-top: 10px;
+	    	width: 15%;
+	    	height: 40px;
+	    	vertical-align: top;
+	    	border: 0px;
+	    	background-color: #66bb6a;
+	    	border-radius: 4px;
+	    	color: white;
+	    	margin-left: 3%;
+	    	font-size: 10px;
+	    	display: inline-block;
+	    	text-align: center;
+	    	padding-top: 10px;
+    	}
+    	
+    	#checkMsg{
+    		background-color: transparent;
+			height: 30px;
+    	}
+    	#checkMsg p{
+    		color: #66bb6a;
     	}
     </style>
     
@@ -70,8 +78,10 @@ $().ready(() =>{
 })  //중복확인 끝
 	
 	
+	
+	
 	//비밀번호 확인
-	$('#pwcheck').focusin(function(){
+	$('#pwcheck').change(function(){
 		var password = $('#pw').val();
 		var passwordCheck = $('#pwcheck').val();
 		
@@ -86,7 +96,100 @@ $().ready(() =>{
 	})  //비밀번호 확인
 	
 	
+	
+	
+	
 })  //ready 끝
+
+
+//submit하기전 검사
+function check(){
+	
+	//아이디 공백 확인 
+    if ($("#emailValue").val() == "") {
+        alert("아이디 입력바람");
+        $("#id").focus(); 
+        return false;
+    }
+	
+	
+	//아이디 중복확인
+	if(!($("#emailValue").val() == "")){
+		var emailValue = $("#emailValue").val();
+		console.log("중복확인");
+		console.log(emailValue);
+		$.ajax({
+			url : "/membership/duplication",
+			type : "post",
+			data : {"id" : emailValue},
+			dataType : "text",
+			success : function(data){
+				console.log(data)
+				if(data!=="true"){
+					alert("이 아이디는 사용 불가능합니다");
+					console.log("이 아이디는 사용불가능합니다");
+					return false;
+				}
+			},  //success 끝
+			error : function(){
+				alert("아이디 중복 확인 ajax 실행 실패");
+				console.log("실패");
+				console.log(emailValue);
+			}
+		})  //ajax 끝
+	}
+	
+	
+	//닉네임 공백 검사 
+    if ($("#nickValue").val() == "") {
+        alert("닉네임을 입력해주세요");
+        $("#nickValue").focus();
+        return false;
+    }
+	
+	
+    //비밀번호 공백 확인 
+    if ($("#pw").val() == "") {
+        alert("패스워드 입력바람");
+        $("#pw").focus();
+        return false;
+    }
+    
+    
+    //비밀번호 확인란 공백 확인 
+    if ($("#pwcheck").val() == "") {
+        alert("패스워드 확인란을 입력해주세요");
+        $("#pwcheck").focus();
+        return false;
+    }
+    
+    
+    //비밀번호 서로확인 
+    if ($("#pw").val() != $("#pwcheck").val()) {
+        alert("비밀번호가 상이합니다");
+        $("pw").val("");
+        $("#pwcheck").val("");
+        $("#pw").focus();
+        return false;
+    }
+
+    
+    //생일 공백 확인 
+    if ($("#birthValue").val() == "") {
+        alert("생일을 입력해주세요");
+        $("birthValue").focus();
+        return false;
+    }
+    
+    
+    //성별 공백 확인 
+    if ($("#select").is(':checked') == false && $("#select2").is(':checked') == false) {
+    	alert("성별을 선택하세요");
+        return false;
+    }
+
+    
+}  //submit 검사 끝
 
 </script>
 
@@ -94,33 +197,32 @@ $().ready(() =>{
 
     <a href="/"><div id="header"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg></a>
         <p>회원가입</p></div>
+
+
+
+<form method="post" onsubmit="return check();">
 <div id="align">
-<form method="post">
     <div id="email" class="info">
         <input placeholder="이메일" type="text" name="userId" id="emailValue"><!-- <p></p> --></input>
         <div value="duplication" id="duplication">중복확인</div>
         <!-- <p id="certification">계정이 인증되었습니다.</p> -->
     </div>
     <div id="nickName" class="info">
-        <input placeholder="닉네임" type="text" name="userNick">
+        <input placeholder="닉네임" type="text" name="userNick" id="nickValue">
             <!-- <p>example@gmail.com</p> -->
-        </input>
     </div>
     <div id="birth" class="info">
-        <input placeholder="비밀번호(4자리)" type="text" maxlength="4" name="userPass" id="pw">
+        <input placeholder="비밀번호(4자리)" type="password" maxlength="4" name="userPass" id="pw">
             <!-- <p id="explain">생년월일(8자리)</p> -->
-        </input>
     </div>
     <div id="birth" class="info">
-        <input placeholder="비밀번호 확인" type="text" maxlength="4" id="pwcheck">
+        <input placeholder="비밀번호 확인" type="password" maxlength="4" id="pwcheck">
             <!-- <p id="explain">생년월일(8자리)</p> -->
             <div id="checkMsg"></div>
-        </input>
     </div>
     <div id="birth" class="info">
-        <input placeholder="생년월일(8자리)" type="date" maxlength="8" name="userBirth">
+        <input placeholder="생년월일(8자리)" type="date" maxlength="8" name="userBirth" id="birthValue">
             <!-- <p id="explain">생년월일(8자리)</p> -->
-        </input>
     </div>
     <!-- <div id="gender" class="info">
         <p class="title">성별</p>
