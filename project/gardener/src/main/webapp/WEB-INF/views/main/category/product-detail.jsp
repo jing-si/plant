@@ -260,7 +260,7 @@ img{
 <body>
 <script type="text/javascript">
 	function goBack(){
-		history.back();
+	//	history.back();
 	}
 	
 	$("#header").on("click","#back",goBack());
@@ -321,7 +321,10 @@ img{
                     </div><div class="product-chart-content"></div>
                 </li>
             </ul>
-            
+            <div>
+            이 간단한걸 설명하기 위해 나는 무엇을 했는가? : 
+            ${item.bookmark }
+            </div>
         </div>
 
             <div id="same-brand">

@@ -79,9 +79,15 @@
 	
 	<select id="productId" resultMap="icProdMap">
 		select * from COMPANY C
-		JOIN PRODUCT P ON P.COMPANY_ID = C.COMPANY_ID
+		JOIN (SELECT p.*,
+		IFNULL(b.BOOKMARK_ID,'N') 'bookmark' FROM (select * from PRODUCT
+		where PRODUCT_ID
+		= #{productId}) p
+		left JOIN bookmark b ON p.PRODUCT_ID = b.PRODUCT_ID) P ON P.COMPANY_ID = C.COMPANY_ID
 		WHERE C.COMPANY_ID = 
 		(SELECT P2.COMPANY_ID FROM PRODUCT P2 WHERE P2.PRODUCT_ID = #{productId} LIMIT 1);
+		
+		
 	</select>
 	
 	<!--대량 처리 -->
