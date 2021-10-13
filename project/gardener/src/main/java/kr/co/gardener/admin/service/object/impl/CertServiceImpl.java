@@ -2,7 +2,6 @@ package kr.co.gardener.admin.service.object.impl;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +17,8 @@ public class CertServiceImpl implements CertService{
 
 	@Autowired
 	CertDao dao;
+	
+	HashMap<String, Cert> certInfo;
 	
 	@Override
 	public List<Cert> list() {
@@ -44,17 +45,7 @@ public class CertServiceImpl implements CertService{
 		dao.add(item);
 	}
 
-	@Override
-	public Map<String, Integer> listMap() {
-		List<Cert> list = dao.list();
-		Map<String, Integer> map = new HashMap<String, Integer>();
-		for(Cert item : list) {
-			map.put(item.getCertName(), item.getCertId());
-		}
-		
-		return map;
-	}
-
+	
 	@Override
 	public CertList list(Pager pager) {
 		CertList list = new CertList();
@@ -78,5 +69,28 @@ public class CertServiceImpl implements CertService{
 	public void update(CertList list) {
 		dao.update(list.getList());
 	}
+
+	@Override
+	public Cert getCertInfo(String value) {
+		if(certInfo == null) {
+			
+			loadCertInfo();			
+		}
+		
+		Cert item = certInfo.get(value);
+		
+		return item;
+	}
 	
+	private void loadCertInfo() {
+		System.out.println("certInfo 생성");
+		certInfo = new HashMap<String, Cert>();
+		
+		List<Cert> csList = dao.list();
+		
+		for(Cert item : csList) {
+			certInfo.put(item.getCertName(), item);
+			certInfo.put(String.valueOf(item.getCertId()), item);
+		}
+	}
 }

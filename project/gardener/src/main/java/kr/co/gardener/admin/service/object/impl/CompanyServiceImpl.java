@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.gardener.admin.dao.object.CompanyDao;
 import kr.co.gardener.admin.model.object.Company;
+import kr.co.gardener.admin.model.object.list.CompanyList;
 import kr.co.gardener.admin.service.object.CompanyService;
 import kr.co.gardener.util.JsoupCrawler;
 import kr.co.gardener.util.Pager;
@@ -20,29 +21,11 @@ public class CompanyServiceImpl implements CompanyService {
 	
 	@Override
 	public List<Company> list(Pager pager) {
-		pager.setTotal(dao.total());
+		pager.setTotal(dao.total(pager));
 		return dao.list(pager);
 	}
 
-	@Override
-	public void add(Company company) {
-		dao.add(company);
-	}
-
-	@Override
-	public Company item(int companyId) {
-		return dao.item(companyId);
-	}
-
-	@Override
-	public void update(Company item) {
-		dao.update(item);
-	}
-
-	@Override
-	public void delete(int companyId) {
-		dao.delete(companyId);
-	}
+	
 
 	@Override	
 	public Company search(String companyId) {
@@ -67,7 +50,7 @@ public class CompanyServiceImpl implements CompanyService {
 			list.add(company);
 		});
 		
-		dao.update(list);
+		dao.insert_list(list);
 	}
 
 	@Override
@@ -78,6 +61,42 @@ public class CompanyServiceImpl implements CompanyService {
 	@Override
 	public Company productId(String productId) {
 		return dao.productId(productId);
+	}
+
+	@Override
+	public CompanyList list_pager(Pager pager) {
+		CompanyList item = new CompanyList();
+		item.setPager(pager);
+		item.setList(dao.list(pager));
+		pager.setTotal(dao.total(pager));
+		return item;
+	}
+
+	@Override
+	public void insert_list(CompanyList list) {
+		dao.insert_list(list.getList());
+	}
+
+	@Override
+	public void delete_list(CompanyList list) {
+		dao.delete_list(list.getList());
+	}
+
+	@Override
+	public void update_list(CompanyList list) {
+		dao.update_list(list.getList());
+	}
+
+	@Override
+	public boolean existCompany(Company company) {
+		Company item = dao.item(company.getCompanyId());
+		if(item == null) {
+			dao.insert(company);
+			return true;
+		} else {
+			return true;
+		}
+		
 	}
 	
 	

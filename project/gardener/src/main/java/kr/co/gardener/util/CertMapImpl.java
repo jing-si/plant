@@ -26,16 +26,16 @@ public class CertMapImpl implements CertMap{
 	
 	public CertMapImpl() {
 		
-	
+	/*
 		certMap = new HashMap<>();
 		
 		certReasonMap = new HashMap<>();
 		
-	//	List<Cert> csList = sql.selectList("cert.list");
-		//List<CertReason> crsList = sql.selectList("certReason.list");
+		List<Cert> csList = sql.selectList("cert.list");
+		List<CertReason> crsList = sql.selectList("certReason.list");
 		
 			System.out.println("생성자 생성자 생성자 생성자 나는 생성되었지 I am CertMAP");
-		/*	
+			
 		for(Cert item : csList) {
 			certMap.put(item.getCertName(), item);
 			certMap.put(String.valueOf(item.getCertId()), item);
@@ -58,5 +58,12 @@ public class CertMapImpl implements CertMap{
 	public CertReason getCertReason(String value) {
 		return certReasonMap.get(value);
 	}
+
+	@Override
+	public boolean reload(String value) {
+		
+		return false;
+	}
+	
 	
 }

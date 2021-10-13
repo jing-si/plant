@@ -20,9 +20,11 @@
 		select * from COMPANY
 		where COMPANY_ID = #{companyId}
 	</select>
+	
+	
 
 	<!-- 생성 -->
-	<insert id="add">
+	<insert id="insert">
 		insert into COMPANY
 		values(#{companyId},#{companyName},#{companyTel},#{companyAddress},#{companyHomepage});
 	</insert>
@@ -77,8 +79,58 @@
 	
 	<select id="productId" resultMap="icProdMap">
 		select * from COMPANY C
-		JOIN PRODUCT P ON P.COMPANY_ID = C.COMPANY_ID
+		JOIN (SELECT p.*,
+		IFNULL(b.BOOKMARK_ID,'N') 'bookmark' FROM (select * from PRODUCT
+		where PRODUCT_ID
+		= #{productId}) p
+		left JOIN bookmark b ON p.PRODUCT_ID = b.PRODUCT_ID) P ON P.COMPANY_ID = C.COMPANY_ID
 		WHERE C.COMPANY_ID = 
 		(SELECT P2.COMPANY_ID FROM PRODUCT P2 WHERE P2.PRODUCT_ID = #{productId} LIMIT 1);
+		
+		
 	</select>
+	
+	<!--대량 처리 -->
+	
+
+	<update id="update_list" >
+		Insert into COMPANY
+		values
+		<foreach collection="list" item="item" separator=",">
+			(#{item.companyId},
+		#{item.companyName},
+		#{item.companyTel},
+		#{item.companyAddress},
+		#{item.companyHomepage})	
+		</foreach>
+		on duplicate key update
+		COMPANY_NAME = VALUES(COMPANY_NAME),
+		COMPANY_TEL = VALUES(COMPANY_TEL),
+		COMPANY_ADDRESS = VALUES(COMPANY_ADDRESS),
+		COMPANY_HOMEPAGE = VALUES(COMPANY_HOMEPAGE)
+		
+
+	</update>
+
+	<insert id="insert_list">
+		INSERT INTO COMPANY
+		VALUES
+		<foreach collection="list" item="item" separator=",">
+			(#{item.companyId},
+		#{item.companyName},
+		#{item.companyTel},
+		#{item.companyAddress},
+		#{item.companyHomepage})
+		</foreach>
+	</insert>
+
+	<delete id="delete_list">		
+		DELETE FROM  COMPANY		
+		WHERE COMPANY_ID in (
+		<foreach collection="list" item="item" separator=",">
+				#{item.companyId}
+		</foreach>
+		)		
+	</delete>
+	
 </mapper>

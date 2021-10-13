@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.gardener.admin.dao.object.MidClassDao;
-import kr.co.gardener.admin.model.object.list.BotClassList;
 import kr.co.gardener.admin.model.object.list.MidClassList;
 import kr.co.gardener.admin.service.object.MidClassService;
 import kr.co.gardener.util.Pager;

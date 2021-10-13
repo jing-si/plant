@@ -8,5 +8,7 @@ public interface CertMap {
 	Cert getCert(String value);
 
 	CertReason getCertReason(String value);
+	
+	boolean reload(String value);	
 
 }

@@ -3,6 +3,7 @@ package kr.co.gardener.admin.dao.object.impl;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.List;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -13,15 +14,22 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.co.gardener.admin.dao.object.DataManagerDao;
+import kr.co.gardener.admin.model.object.ApiProduct;
+import kr.co.gardener.admin.service.object.ProductService;
 
 @Repository
 public class DataManagerDaoImpl implements DataManagerDao {
 	private URI companyUrl;
 	private URI productUrl;
 	private String certKeyc;
+	
+	@Autowired
+	SqlSession sql;
 	
 	public DataManagerDaoImpl() {
 		try {
@@ -151,6 +159,12 @@ public class DataManagerDaoImpl implements DataManagerDao {
 
 
 		return context(connUrl);
+	}
+
+	@Override
+	public void UploadApiProduct(List<ApiProduct> list) {
+		sql.insert("product.update_list", list);
+		
 	}
 	
 	

@@ -21,36 +21,6 @@ public class CompanyDaoImpl implements CompanyDao {
 	}
 
 	@Override
-	public void add(Company company) {
-		sql.insert("company.add", company);
-	}
-
-	@Override
-	public Company item(int companyId) {
-		return sql.selectOne("company.item", companyId);
-	}
-
-	@Override
-	public void update(Company item) {
-		sql.update("company.update", item);
-	}
-
-	@Override
-	public void delete(int companyId) {
-		sql.delete("company.delete", companyId);
-	}
-
-	@Override
-	public void update(List<Company> list) {
-		sql.update("company.auto_update", list);
-	}
-
-	@Override
-	public float total() {		
-		return sql.selectOne("company.total");
-	}
-
-	@Override
 	public List<Company> list() {
 		return sql.selectList("company.listall");
 	}
@@ -58,6 +28,36 @@ public class CompanyDaoImpl implements CompanyDao {
 	@Override
 	public Company productId(String productId) {
 		return sql.selectOne("company.productId", productId);
+	}
+
+	@Override
+	public void insert_list(List<Company> list) {
+		sql.insert("company.insert_list", list);
+	}
+
+	@Override
+	public void delete_list(List<Company> list) {
+		sql.delete("company.delete_list", list);
+	}
+
+	@Override
+	public void update_list(List<Company> list) {
+		sql.update("company.update_list",list);
+	}
+
+	@Override
+	public float total(Pager pager) {
+		return sql.selectOne("company.total", pager);
+	}
+
+	@Override
+	public Company item(String companyId) {
+		return sql.selectOne("company.item",companyId);
+	}
+
+	@Override
+	public void insert(Company item) {
+		sql.update("company.insert",item);
 	}
 	
 
