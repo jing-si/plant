@@ -264,11 +264,17 @@ img{
 	}
 	
 	$("#header").on("click","#back",goBack());
+	
+	$("#heart").click(function(){
+		$("#heart").empty();
+		$("#heart").append($)
+	})  //heart 클릭 끝
 </script>
     <div id="header">
     	<!-- 진짜 직전 상태로 보내기 -->
         <div><svg id="back" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12l4.58-4.59z"/></svg></div>
         <p>제품상세</p>
+        
         <div id="heart">
         	<svg id="_Choose_to_use_Icon" data-name="👉 Choose to use 📍Icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
 			  <rect id="Boundary" width="24" height="24" fill="#fff"/>
@@ -280,6 +286,7 @@ img{
 			  </g>
 			</svg>
 		</div>
+		
     </div>
 
     <div id="align">
