@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
 
     <!-- <link rel="stylesheet" href="/resources/css/product-detail.css"> -->
+    <script src="/resources/js/jquery.min.js"></script>
     
     <style>
     	*{
@@ -43,13 +44,19 @@ a{
     margin: 0px auto;
     padding: 10px;
 }
-#header svg{
+#header #back{
     position: absolute;
     top: 9px;
     left: 9px;
 }
+#header #heart{
+	position: absolute;
+	top: 9px;
+	right: 9px;
+}
 body{
     height: 100%;
+    /* width: 100%; */
 }
 
 /* 정렬 */
@@ -77,7 +84,7 @@ body{
    margin: 0 auto;
 }
 #product-title #product-name{
-    width: 100;
+    width: 100%;
     height: 26px;
     font-family: NotoSansKR;
     font-size: 16px;
@@ -91,10 +98,10 @@ body{
 
  #product-chart{
     width: 100%;
-    height: 260.8px;
+    /* height: 260.8px; */
 }
 #product-chart-title{
-    width: 88px;
+    /* width: 88px; */
     height: 19px;
     font-family: Roboto;
     font-size: 14px;
@@ -115,28 +122,28 @@ body{
 .product-chart-name{
     display: inline-block;
     width: 104px;
-    height: 28px;
+    /* height: 28px; */
     background-color: #f5f5f5;
     font-family: NotoSansKR;
     font-size: 10px;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
-    padding: 6px 0 9px 10px;
+    padding: 7px 0 6px 10px;
     color: #979797;
-    padding: 6px auto 9px 10px;
+    /* padding: 6px auto 9px 10px; */
 }
 .product-chart-content{
     display: inline-block;
-    width: 224px;
-    height: 28px;
+    width: 220px;
+    /* height: 28px; */
     font-family: NotoSansKR;
     font-size: 10px;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
     color: #646464;
-    padding: 6px 0 8px 10px;
+    padding: 7px 0 6px 10px;
 }
 
 #same-brand{
@@ -149,7 +156,7 @@ body{
 }
 #same-brand-title{
     display: inline-block;
-    width: 130px;
+    /* width: 130px; */
     height: 19px;
     margin: 25.8px 5px 10px 0;
     font-family: Roboto;
@@ -166,9 +173,11 @@ body{
     font-stretch: normal;
     font-style: normal;
     color: #646464;
-    float: right;
+    /* float: right; */
     margin-top: 28.8px;
     margin-bottom: 13px;
+    margin-left: 140px;
+    display: inline-block;
 }
 .same-brand-img{
     display: inline-block;
@@ -193,7 +202,8 @@ body{
     color: #646464;
     line-height: 1.11;
     word-wrap: break-word;
-    overflow: hidden;
+    /* overflow: hidden; */
+    white-space: normal;
 }
 .same-brand-li:hover .same-brand-name,.same-brand-name:hover{
 	overflow: visible;
@@ -253,12 +263,30 @@ img{
 		history.back();
 	}
 	
-	$("#header").on("click","#back",goBack()));
+	$("#header").on("click","#back",goBack());
+	
+	$("#heart").click(function(){
+		$("#heart").empty();
+		$("#heart").append($)
+	})  //heart 클릭 끝
 </script>
     <div id="header">
     	<!-- 진짜 직전 상태로 보내기 -->
-        <div id="back"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12l4.58-4.59z"/></svg></div>
+        <div><svg id="back" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12l4.58-4.59z"/></svg></div>
         <p>제품상세</p>
+        
+        <div id="heart">
+        	<svg id="_Choose_to_use_Icon" data-name="👉 Choose to use 📍Icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+			  <rect id="Boundary" width="24" height="24" fill="#fff"/>
+			  <g id="_Color" data-name=" ↳Color" transform="translate(2 3)">
+			    <g id="_Color-2" data-name=" ↳Color" fill="#fff" stroke-miterlimit="10">
+			      <path d="M 10.00126552581787 17.33079147338867 L 8.883029937744141 16.33222961425781 L 8.869609832763672 16.32028961181641 C 3.829610109329224 11.83720970153809 0.5 8.875519752502441 0.5 5.395100116729736 C 0.5 2.650180101394653 2.69625997543335 0.5 5.5 0.5 C 7.060520172119141 0.5 8.60161018371582 1.202029943466187 9.622429847717285 2.377919912338257 L 10 2.812849998474121 L 10.37757015228271 2.377919912338257 C 11.39838981628418 1.202029943466187 12.93947982788086 0.5 14.5 0.5 C 17.30373954772949 0.5 19.5 2.650180101394653 19.5 5.395100116729736 C 19.5 8.869400024414062 16.18088912963867 11.828049659729 11.15680027008057 16.30653953552246 L 11.11728954315186 16.34174919128418 L 10.00126552581787 17.33079147338867 Z" stroke="none"/>
+			      <path d="M 10.00253105163574 16.66158294677734 L 10.82409000396729 15.93330001831055 C 15.74744987487793 11.5446195602417 19 8.645290374755859 19 5.395100116729736 C 19 2.930560111999512 17.02335929870605 1 14.5 1 C 13.08228969573975 1 11.68233966827393 1.637639999389648 10.75514984130859 2.705699920654297 L 10 3.575560092926025 L 9.244850158691406 2.705699920654297 C 8.317660331726074 1.637639999389648 6.917709827423096 1 5.5 1 C 2.976639986038208 1 1 2.930560111999512 1 5.395100116729736 C 1 8.651089668273926 4.262899875640869 11.55344009399414 9.201919555664062 15.94670009613037 L 10.00253105163574 16.66158294677734 M 10 18 L 8.550000190734863 16.70517921447754 C 3.400000095367432 12.1242504119873 0 9.102999687194824 0 5.395100116729736 C 0 2.373840093612671 2.420000076293945 0 5.5 0 C 7.239999771118164 0 8.909999847412109 0.7945500016212463 10 2.050139904022217 C 11.09000015258789 0.7945500016212463 12.76000022888184 0 14.5 0 C 17.57999992370605 0 20 2.373840093612671 20 5.395100116729736 C 20 9.102999687194824 16.60000038146973 12.1242504119873 11.44999980926514 16.71499061584473 L 10 18 Z" stroke="none" fill="#979797"/>
+			    </g>
+			  </g>
+			</svg>
+		</div>
+		
     </div>
 
     <div id="align">
@@ -291,23 +319,6 @@ img{
                 <li>
                     <div class="product-chart-name">인증사유
                     </div><div class="product-chart-content"></div>
-                </li>
-                <li>
-                    <div class="product-chart-name">환경표지 인증번호
-                    </div><div class="product-chart-content">${item.productCertId}</div>
-                </li>
-                <li>
-                    <div class="product-chart-name">환경표지 인증기간
-                    </div><div class="product-chart-content">${item.productStartDate}~${item.productEndDate}</div>
-                </li>
-                <li class="blank"></li>
-                <li>
-                    <div class="product-chart-name">기업명
-                    </div><div class="product-chart-content">${company.companyName}</div>
-                </li>
-                <li>
-                    <div class="product-chart-name">전화번호
-                    </div><div class="product-chart-content">${company.companyTel}</div>
                 </li>
             </ul>
             

@@ -3,13 +3,16 @@ package kr.co.gardener.main.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -67,6 +70,13 @@ public class LoginController {
 	public String membership(User user) {
 		service.add(user);
 		return "redirect:..";
+	}
+	
+	//회원가입 아이디 중복확인 처리
+	@PostMapping("/membership/duplication")
+	@ResponseBody
+	public boolean duplication(String id) {
+		return service.duplication(id);
 	}
 	
 	//비밀번호 재설정 메일발송
