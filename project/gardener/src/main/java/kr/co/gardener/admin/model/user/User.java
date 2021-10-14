@@ -4,7 +4,9 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-public class User {
+import kr.co.gardener.util.GridSystem;
+
+public class User extends GridSystem{
 	private String userId;  //이메일주소
 	private String userNick;
 	private String userPass;
@@ -14,6 +16,8 @@ public class User {
 	private int stateId;
 	private int forestId;
 	private int plantId;
+	
+	//추가
 	private String plant; //이미지
 	
 	

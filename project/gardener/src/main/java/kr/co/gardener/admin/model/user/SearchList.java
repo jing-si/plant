@@ -1,6 +1,8 @@
 package kr.co.gardener.admin.model.user;
 
-public class SearchList {
+import kr.co.gardener.util.GridSystem;
+
+public class SearchList extends GridSystem{
 	private String userId;
 	private int searchId;
 	private String searchWord;

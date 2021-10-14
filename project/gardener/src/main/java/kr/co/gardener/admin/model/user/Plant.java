@@ -1,6 +1,8 @@
 package kr.co.gardener.admin.model.user;
 
-public class Plant {
+import kr.co.gardener.util.GridSystem;
+
+public class Plant extends GridSystem{
 	private int plantId;
 	private String plantName;
 	private String plantCategory;

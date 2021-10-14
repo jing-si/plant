@@ -53,5 +53,55 @@
 	<select id="duplication" resultType="Integer">
 		SELECT COUNT(*) FROM USER WHERE USER_ID = #{id}
 	</select>
+	
+	<!--대량 처리 -->
+	<select id="list_pager" resultType="User">
+		SELECT * FROM USER		
+		LIMIT #{offset}, #{perPage}
+	</select>
+
+	<select id="update_list" resultType="User">
+		Insert into USER
+		values
+		<foreach collection="list" item="item" separator=",">
+			(#{item.userId},#{item.userNick},#{item.userPass},#{item.userBirth},#{item.userGender},#{item.stateId},#{item.forestId},#{item.plantId})
+		</foreach>
+		on duplicate key update
+		USER_NICK = VALUES(USER_NICK),
+		USER_PASS = VALUES(USER_PASS),
+		USER_BIRTH = VALUES(USER_BIRTH),
+		USER_GENDER = VALUES(USER_GENDER),
+		STATE_ID = VALUE(STATE_ID),
+		FOREST_ID = VALUE(FOREST_ID),
+		PLANT_ID = VALUE(PLANT_ID)
+		
+	</select>
+
+	<insert id="insert_list">
+		INSERT INTO USER
+		VALUES
+		<foreach collection="list" item="item" separator=",">
+			(#{item.userId},#{item.userNick},#{item.userPass},#{item.userBirth},#{item.userGender},0,null,null)
+		</foreach>
+	</insert>
+
+	<delete id="delete_list">		
+		DELETE FROM USER		
+		WHERE USER_ID in (
+		<foreach collection="list" item="item" separator=",">
+				#{item.userId}
+		</foreach>
+		)		
+	</delete>
+
+	<select id="total" resultType="float">
+		select COUNT(*) from USER
+	</select>
+
+	<select id="combo" resultType="ComboItem">
+		SELECT "0" AS "table",
+		product_id AS "id", product_Name AS "text"				
+		from PRODUCT
+	</select>
 
 </mapper>

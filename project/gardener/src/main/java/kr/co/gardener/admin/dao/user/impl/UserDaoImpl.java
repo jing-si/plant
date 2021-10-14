@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 import kr.co.gardener.admin.dao.user.UserDao;
 import kr.co.gardener.admin.model.user.Notice;
 import kr.co.gardener.admin.model.user.User;
+import kr.co.gardener.util.ComboItem;
+import kr.co.gardener.util.Pager;
 
 @Repository
 public class UserDaoImpl implements UserDao {
@@ -54,6 +56,36 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public int duplication(String id) {
 		return sql.selectOne("user.duplication",id);
+	}
+
+	@Override
+	public List<User> list_pager(Pager pager) {
+		return sql.selectList("user.list_pager",pager);
+	}
+
+	@Override
+	public float total(Pager pager) {
+		return sql.selectOne("user.total", pager);
+	}
+
+	@Override
+	public List<ComboItem> combo() {
+		return sql.selectList("user.combo");
+	}
+
+	@Override
+	public void insert_list(List<User> list) {
+		sql.insert("user.insert_list", list);
+	}
+
+	@Override
+	public void delete_list(List<User> list) {
+		sql.delete("user.delete_list", list);
+	}
+
+	@Override
+	public void update_list(List<User> list) {
+		sql.update("user.update_list", list);
 	}
 
 

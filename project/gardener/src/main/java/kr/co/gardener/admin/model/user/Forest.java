@@ -1,6 +1,8 @@
 package kr.co.gardener.admin.model.user;
 
-public class Forest {
+import kr.co.gardener.util.GridSystem;
+
+public class Forest extends GridSystem {
 	private int forestId;
 	private String forestName;
 	private String forestImage; 

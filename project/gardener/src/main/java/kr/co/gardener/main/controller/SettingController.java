@@ -66,7 +66,8 @@ public class SettingController {
 		// 구현해주세요
 		
 		List<Notice> noticeList = new ArrayList<Notice>();
-		noticeList = service.notice();
+		//서비스 부터 다시 만들어야함.
+		//noticeList = service.notice();
 		System.out.println(noticeList);
 		
 		model.addAttribute("noticeList", noticeList);

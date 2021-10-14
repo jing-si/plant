@@ -1,63 +1,56 @@
 package kr.co.gardener.admin.controller.user;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import kr.co.gardener.admin.model.user.User;
+import kr.co.gardener.admin.model.object.list.ProductList;
+import kr.co.gardener.admin.model.user.list.UserList;
 import kr.co.gardener.admin.service.user.UserService;
+import kr.co.gardener.util.Pager;
 
 @Controller
-@RequestMapping("/admin/users/user")
+@RequestMapping("/admin/user")
 public class UserController {
 	final String path = "admin/users/user/";
 	
 	@Autowired
 	UserService service;
 	
-	@RequestMapping({"/", "list"})
-	public String list(Model model) {
-		List<User> list = service.list();
-		model.addAttribute("list", list);
-		return path+"list";
+	@RequestMapping({"/", "main"})
+	public String main() {
+		return path+"main";
 	}
 	
-	@GetMapping("/add")
-	public String add() {
-		return path+"add";
+	//대량 --------------------------------------------
+	@RequestMapping("/api/user")
+	@ResponseBody
+	public UserList userList(Pager pager) {
+		UserList item = service.list_pager(pager);
+		return item;
 	}
-	
-	@PostMapping("/add")
-//	@RequestMapping("/add")
-	public String add(User item) {
-		service.add(item);
-		return "redirect:list";
+
+	@ResponseBody
+	@PostMapping("/add/user")
+	public String userAdd(@RequestBody UserList list) {
+		service.insert_list(list);
+		return "ok";
 	}
-	
-	@GetMapping("/update/{userId}")
-	public String update(@PathVariable String userId, Model model) {
-		User item = service.item(userId);
-		model.addAttribute("item", item);
-		return path+"update";
+
+	@ResponseBody
+	@RequestMapping("/delete/user")
+	public String userDelete(@RequestBody UserList list) {
+		service.delete_list(list);
+		return "ok";
 	}
-	
-	@PostMapping("/update/{userId}")
-	public String update(@PathVariable String userId, User item) {
-		item.setUserId(userId);
-		service.update(item);
-		return "redirect:../list";
+
+	@ResponseBody
+	@PostMapping("/update/user")
+	public String userUpdate(@RequestBody UserList list) {
+		service.update_list(list);
+		return "ok";
 	}
-	
-	@RequestMapping("/delete/{userId}")
-	public String delete(@PathVariable String userId) {
-		service.delete(userId);
-		return "redirect:../list";
-	}
-	
 }

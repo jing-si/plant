@@ -3,6 +3,8 @@ package kr.co.gardener.admin.service.user;
 import java.util.List;
 
 import kr.co.gardener.admin.model.user.History;
+import kr.co.gardener.admin.model.user.list.BookmarkList;
+import kr.co.gardener.util.Pager;
 
 public interface HistoryService {
 
@@ -15,5 +17,6 @@ public interface HistoryService {
 	void update(History item);
 
 	void delete(int historyId);
+
 
 }

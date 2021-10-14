@@ -8,10 +8,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.gardener.admin.model.user.Bookmark;
+import kr.co.gardener.admin.model.user.list.BookmarkList;
+import kr.co.gardener.admin.model.user.list.UserList;
 import kr.co.gardener.admin.service.user.BookmarkService;
+import kr.co.gardener.util.Pager;
 
 @Controller
 @RequestMapping("/admin/users/bookmark")
@@ -58,4 +63,7 @@ public class BookmarkController {
 		service.delete(bookmarkId);
 		return "redirect:../list";
 	}
+	
+
+	
 }

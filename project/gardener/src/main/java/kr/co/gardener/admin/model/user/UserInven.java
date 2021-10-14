@@ -2,7 +2,9 @@ package kr.co.gardener.admin.model.user;
 
 import java.util.List;
 
-public class UserInven {
+import kr.co.gardener.util.GridSystem;
+
+public class UserInven extends GridSystem{
 	String userId;
 	List<Location> location;
 	List<Inven> inven;

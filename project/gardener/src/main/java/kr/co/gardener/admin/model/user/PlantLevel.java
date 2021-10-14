@@ -1,6 +1,8 @@
 package kr.co.gardener.admin.model.user;
 
-public class PlantLevel {
+import kr.co.gardener.util.GridSystem;
+
+public class PlantLevel extends GridSystem{
 	private int plantLevelId;
 	private int plantId;
 	private String plantImage;

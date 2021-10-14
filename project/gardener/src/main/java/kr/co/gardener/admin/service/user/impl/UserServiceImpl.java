@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 import kr.co.gardener.admin.dao.user.UserDao;
 import kr.co.gardener.admin.model.user.Notice;
 import kr.co.gardener.admin.model.user.User;
+import kr.co.gardener.admin.model.user.list.UserList;
 import kr.co.gardener.admin.service.user.UserService;
+import kr.co.gardener.util.Pager;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -47,11 +49,6 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<Notice> notice() {
-		return dao.notice();
-	}
-
-	@Override
 	public boolean duplication(String id) {
 		
 		if(dao.duplication(id)>0) {
@@ -63,6 +60,31 @@ public class UserServiceImpl implements UserService {
 		}
 		
 		/* return dao.duplication(id); */
+	}
+
+	@Override
+	public UserList list_pager(Pager pager) {
+		UserList list = new UserList();
+		list.setList(dao.list_pager(pager));
+		list.setPager(pager);
+		pager.setTotal(dao.total(pager));
+		list.paseComboList(dao.combo());
+		return list;
+	}
+
+	@Override
+	public void insert_list(UserList list) {
+		dao.insert_list(list.getList());
+	}
+
+	@Override
+	public void delete_list(UserList list) {
+		dao.delete_list(list.getList());
+	}
+
+	@Override
+	public void update_list(UserList list) {
+		dao.update_list(list.getList());
 	}
 
 

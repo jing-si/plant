@@ -29,21 +29,21 @@ $(function() {
 	$.fn.val = function() {
 		const result = originalVal.apply(this, arguments);
 		if (arguments.length > 0)
-			$(this).change(); 
+			$(this).change();
 		return result;
 	};
 	//메인페이지 선택 하는 버튼
 	$(".option").on("click", function() {
 		$(".selectedHeader").removeClass("selectedHeader");
 		$(this).addClass("selectedHeader");
-		
-		const url = $(this).data("url"); 
-		if(url != "#"){
-		state.url = url 
-		$("#subContent").empty();
-		state.page = 1;
-		insertCount = 0;
-		content(state.url);
+
+		const url = $(this).data("url");
+		if (url != "#") {
+			state.url = url
+			$("#subContent").empty();
+			state.page = 1;
+			insertCount = 0;
+			content(state.url);
 		}
 	})
 
@@ -242,14 +242,14 @@ $(function() {
 	//메인에서 area 클릭시 ckeditor 모달창으로 띄우기
 	$("#mainTable, #subContent").on("dblclick", ".areatext", function() {
 		$(this).children().addClass("textEdit")
-		
+
 		let area = $(this).children("textarea").clone();
-		
+
 		$(this).removeClass("nonBorderTextBox");
 		$(this).removeClass("comboBox")
 
 		$(area).attr("name", "ckeditor");
-		
+
 
 		$(".modal-title").text("Text 편집기");
 
@@ -318,9 +318,9 @@ function fileUploader(inputs) {
 			cache: false,
 			timeout: 600000,
 			success: function(data) {
-			
+
 				fileSrc.each((index, value) => {
-					
+
 					if (data[index] != undefined) {
 						$(value).val(data[index]);
 						$(".C4").val(data[index]);
@@ -329,7 +329,7 @@ function fileUploader(inputs) {
 
 			},
 			error: function(e) {
-				alert("파일 업로드를 실패하였습니다.");				
+				alert("파일 업로드를 실패하였습니다.");
 			}
 		});
 	}
@@ -371,7 +371,7 @@ function tempfileUploader(inputs) {
 						}
 					}
 				})
-				
+
 
 			},
 			error: function(e) {
@@ -404,7 +404,7 @@ function viewMarker(selectedRow) {
 			.append($("<strong>").text(th))
 		);
 
-		
+
 		const temp = makeCell(nowCol.val(), a, 0, nowCol.attr("name"), type, "select");
 		innerDiv.append(temp);
 
@@ -456,8 +456,10 @@ function viewMarker(selectedRow) {
 				div1.append($("<div class='col  mt-2'>").append(innerDiv));
 				break;
 			case "file":
+				let src = makeSrc(temp.find(".fileSrc").val());
+				
 				div1.append($("<div class='col  mt-3 imgDiv'>").append(innerDiv));
-				div1.append($("<div class='col form-control center'>").append($("<img class='viewImage  mt-2 mx-0 p-0'>").attr("src", temp.find(".fileSrc").val()+"?a="+Math.random())));
+				div1.append($("<div class='col form-control center'>").append($("<img class='viewImage  mt-2 mx-0 p-0'>").attr("src", src)));
 				break;
 		}
 
@@ -725,11 +727,11 @@ function makeGrid(data) {
 //maintable 내용 요청하기
 function content(url_) {
 	state.url = url_;
-	$.ajax("api/" + url_+"?", {
+	$.ajax("api/" + url_ + "?", {
 		contentType: "application/json",
 		dataType: "json",
 		method: "get",
-		data: state,		
+		data: state,
 		success: function(data) {
 			$("#mainTable").empty();
 			console.log(data);
@@ -740,6 +742,15 @@ function content(url_) {
 			makePerfect("update");
 		}
 	})
+}
+
+//이미지가 갱신 되도록 src를 만들어주기
+function makeSrc(src) {
+	str = src.split("?");
+	const queryString = new URLSearchParams(str[1]);
+	queryString.append("a", Math.random())
+	src = str[0]+ "?"+ queryString.toString();
+	return src
 }
 
 function makePerfect(action) {
@@ -788,8 +799,8 @@ function makeCell(val, col, row, name, type, action) {
 			break;
 
 		case "combo":
-			
-			if(comboNumber < comboBox.length)
+
+			if (comboNumber < comboBox.length)
 				temp = comboBox[comboNumber].clone();
 			else
 				temp = $("<select>");
@@ -801,11 +812,12 @@ function makeCell(val, col, row, name, type, action) {
 			break;
 		case "file":
 			let src = "/upload/noImage.gif"
+
 			if (val != null) {
-				src = val;
+				src = makeSrc(val);
 			}
 			temp = $(`<div  class="d-inline-block" title=" 이미지" tabindex="${popCount++}" 
-				data-bs-toggle="popover" data-bs-placement="bottom" data-bs-trigger="hover focus" data-bs-content="<img class='popImg' src='${src+"?a="+Math.random()}'/>">`)
+				data-bs-toggle="popover" data-bs-placement="bottom" data-bs-trigger="hover focus" data-bs-content="<img class='popImg' src='${src}'/>">`)
 				.append($("<input type='file' name='files' accept='image/*' class='form-control fileUploader'>"))
 				.append($("<input type='text' class='hide fileSrc'>").val(val).addClass(c).attr("name", name))
 

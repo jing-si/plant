@@ -4,12 +4,15 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-public class Bookmark {
+import kr.co.gardener.util.GridSystem;
+
+public class Bookmark extends GridSystem {
 	private int bookmarkId;
-	private String userId;
+	private String userId;	
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date bookmarkDatetime;
 	private int productId;
+	
 	public int getBookmarkId() {
 		return bookmarkId;
 	}

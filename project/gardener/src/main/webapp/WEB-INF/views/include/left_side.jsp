@@ -41,42 +41,37 @@
 			</a>
 		</div>
 		<hr class="mx-1 my-0 p-0 side-hr">
-		<div class="side-nav py-2" onclick='location.href="/management/menu/"'>
-			<a href="/management/menu/" class="side-nav-text "> <i
-				class="bi bi-check"></i>메뉴 관리
+		<div class="side-nav py-2" onclick='location.href="/admin/user/"'>
+			<a href="/admin/user/" class="side-nav-text "> <i
+				class="bi bi-check"></i>유저 관리
 			</a>
 		</div>
 		<hr class="mx-1 my-0 p-0 side-hr">
-		<div class="side-nav py-2" onclick='location.href="/management/customer/"'>
-			<a href="/management/customer/" class="side-nav-text "> <i
-				class="bi bi-check"></i>고객 관리
+		<div class="side-nav py-2" onclick='location.href="/admin/history/"'>
+			<a href="/admin/history/" class="side-nav-text "> <i
+				class="bi bi-check"></i>기록 관리
 			</a>
 		</div>
 		<hr class="mx-1 my-0 p-0 side-hr">
-		<div class="side-nav py-2" onclick='location.href="/management/orders/"'>
-			<a href="/management/orders/" class="side-nav-text "> <i
-				class="bi bi-check"></i>주문 관리
+		<div class="side-nav py-2" onclick='location.href="/admin/item/"'>
+			<a href="/admin/item/" class="side-nav-text "> <i
+				class="bi bi-check"></i>아이템 관리
 			</a>
 		</div>
 		<hr class="mx-1 my-0 p-0 side-hr">
-		<div class="side-nav py-2" onclick='location.href="/management/payment/"'>
-			<a href="/management/payment/" class="side-nav-text "> <i
-				class="bi bi-check"></i>결제 관리
+		<div class="side-nav py-2" onclick='location.href="/admin/plant/"'>
+			<a href="/admin/plant/" class="side-nav-text "> <i
+				class="bi bi-check"></i>식물 관리
 			</a>
 		</div>
 		<hr class="mx-1 my-0 p-0 side-hr">
-		<div class="side-nav py-2" onclick='location.href="/management/delivery/"'>
-			<a href="/management/delivery/" class="side-nav-text "> <i
-				class="bi bi-check"></i>배송 관리
-			</a>
-		</div>
-		<hr class="mx-1 my-0 p-0 side-hr">
-		<div class="side-nav py-2" onclick='location.href="/management/etc/"'>
-			<a href="/management/etc/" class="side-nav-text "> <i
+		<div class="side-nav py-2" onclick='location.href="/admin/other/"'>
+			<a href="/admin/other/" class="side-nav-text "> <i
 				class="bi bi-check"></i>기타 관리
 			</a>
 		</div>
 		<hr class="mx-1 my-0 p-0 side-hr">
+		
 		
 	</div>
 	

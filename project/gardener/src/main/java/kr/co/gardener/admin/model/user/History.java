@@ -4,7 +4,9 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-public class History {
+import kr.co.gardener.util.GridSystem;
+
+public class History extends GridSystem{
 	private int historyId;
 	private String userId;
 	private String productId;

@@ -40,12 +40,12 @@ public  class CommonList<T> {
 	}
 
 	// 일반적인 제목
-	public void addTh(String thName, String colName, String boxType) {
+	protected void addTh(String thName, String colName, String boxType) {
 		th.put("th" + th.size(), thName + "-" + colName + "-" + boxType);
 	}
 
 	// 제목이 combo 박스일 경우
-	public void addTh(String thName, String colName, String boxType, int comboIndex) {
+	protected void addTh(String thName, String colName, String boxType, int comboIndex) {
 		th.put("th" + th.size(), thName + "-" + colName + "-" + boxType + "-" + String.valueOf(comboIndex));
 	}
 
@@ -55,12 +55,12 @@ public  class CommonList<T> {
 	}
 
 	// insert할 때 열에 대한 정보
-	public void addInsert(String thName, String colName, String boxType) {
+	protected void addInsert(String thName, String colName, String boxType) {
 		insert.put("add" + insert.size(), thName + "-" + colName + "-" + boxType);
 	}
 
 	// insert할때 타입이 combobox 여야 할때
-	public void addInsert(String thName, String colName, String boxType, int comboIndex) {
+	protected void addInsert(String thName, String colName, String boxType, int comboIndex) {
 		insert.put("add" + insert.size(), thName + "-" + colName + "-" + boxType + "-" + String.valueOf(comboIndex));
 	}
 	

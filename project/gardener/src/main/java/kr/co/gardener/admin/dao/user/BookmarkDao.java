@@ -3,6 +3,7 @@ package kr.co.gardener.admin.dao.user;
 import java.util.List;
 
 import kr.co.gardener.admin.model.user.Bookmark;
+import kr.co.gardener.util.Pager;
 
 public interface BookmarkDao {
 
@@ -15,5 +16,15 @@ public interface BookmarkDao {
 	void update(Bookmark item);
 
 	void delete(int bookmarkId);
+
+	List<Bookmark> list_pager(Pager pager);
+
+	float total(Pager pager);
+
+	void insert_list(List<Bookmark> list);
+
+	void delete_list(List<Bookmark> list);
+
+	void update_list(List<Bookmark> list);
 
 }

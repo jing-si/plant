@@ -4,7 +4,9 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-public class Notice {
+import kr.co.gardener.util.GridSystem;
+
+public class Notice extends GridSystem{
 	
 	private int noticeId;
 	private String noticeTitle;
