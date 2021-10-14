@@ -16,4 +16,10 @@ public interface BookmarkDao {
 
 	void delete(int bookmarkId);
 
+	List<Bookmark> list_date();
+
+	List<Bookmark> list_name();
+
+	void delete(Bookmark item);
+
 }

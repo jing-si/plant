@@ -12,6 +12,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
 	<script src="/resources/jq/jquery.js"></script>
     <link rel="stylesheet" href="/resources/css/search.css">
+    
+    <link rel="stylesheet" href="/resources/css/product-list.css">
+    <style type="text/css">
+    img{
+    	width: 100%;
+    	height: 100%;
+    }
+    #scroll{
+    	overflow: auto;
+    }
+    </style>
 </head>
 <body>
     <div id="header">
@@ -28,7 +39,7 @@
         </svg><img src="/resources/images/qr-text.png">
        </div>
     </div>
-
+	<div id="scroll">
     <div id="body">
         <div id="align">
         	
@@ -56,14 +67,23 @@
             
         </c:forEach>
         
-        <c:forEach var="list" items="${list}">
+<%--         <c:forEach var="list" items="${list}">
         	
+        	<!-- 검색결과 -->
             <div class="search-list">
                 <p><img alt="" src="${list.productImage }"></p>                
                 <p><h3>${list.productName }</h3></p>
                 
             </div>
             
+        </c:forEach> --%>
+        
+
+                <c:forEach var="list" items="${list}">
+        	<a href="../category/product/${list.productId}"><div class="brand">
+                <div class="brand-img"><img src="${list.productImage}"></div>
+                <p class="brand-name">${list.productName}</p>
+            </div></a>
         </c:forEach>
         
 <!-- 완성시 이부분 지우기 -->
@@ -80,6 +100,7 @@
 <!-- 여기까지 -->
 
         </div>
+    </div>
     </div>
 
     <nav class="sticky">

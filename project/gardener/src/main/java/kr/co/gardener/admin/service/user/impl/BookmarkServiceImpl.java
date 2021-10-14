@@ -39,4 +39,19 @@ public class BookmarkServiceImpl implements BookmarkService {
 		dao.delete(bookmarkId);
 	}
 
+	@Override
+	public List<Bookmark> list_date() {
+		return dao.list_date();
+	}
+
+	@Override
+	public List<Bookmark> list_name() {
+		return dao.list_name();
+	}
+
+	@Override
+	public void delete(Bookmark item) {
+		dao.delete(item);
+	}
+
 }

@@ -47,11 +47,6 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<Notice> notice() {
-		return dao.notice();
-	}
-
-	@Override
 	public boolean duplication(String id) {
 		
 		if(dao.duplication(id)>0) {

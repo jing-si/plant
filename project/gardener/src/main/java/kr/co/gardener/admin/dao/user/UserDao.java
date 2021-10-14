@@ -19,8 +19,6 @@ public interface UserDao {
 
 	String imgSrc(User user);
 
-	List<Notice> notice();
-
 	int duplication(String id);
 
 

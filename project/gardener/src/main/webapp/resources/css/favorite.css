@@ -117,8 +117,10 @@ a{
 .brand .brand-name{
     position: absolute;
     display: inline-block;
-    top: 28px;
+    width: 220px;
+    top: 50%;
     left: 62px;
+    transform: translate(0,-50%);
     font-family: Roboto;
     font-size: 14px;
     font-weight: 500;

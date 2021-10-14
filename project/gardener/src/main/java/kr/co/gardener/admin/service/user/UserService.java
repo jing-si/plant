@@ -19,8 +19,6 @@ public interface UserService {
 
 	String imgSrc(User user);
 
-	List<Notice> notice();
-
 	boolean duplication(String id);
 
 

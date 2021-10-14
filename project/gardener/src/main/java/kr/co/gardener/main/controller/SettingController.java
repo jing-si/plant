@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.co.gardener.admin.model.user.Notice;
 import kr.co.gardener.admin.model.user.User;
+import kr.co.gardener.admin.service.user.NoticeService;
 import kr.co.gardener.admin.service.user.UserService;
 import kr.co.gardener.main.service.SettingService;
 
@@ -25,9 +26,11 @@ public class SettingController {
 	final String path = "main/setting/";
 
 	@Autowired
-	/* SettingService service; */
-	
 	UserService service;
+	
+	@Autowired
+	NoticeService noticeService;
+	
 
 	// 설정
 	@RequestMapping({ "", "/" })
@@ -66,7 +69,7 @@ public class SettingController {
 		// 구현해주세요
 		
 		List<Notice> noticeList = new ArrayList<Notice>();
-		noticeList = service.notice();
+		noticeList = noticeService.list();
 		System.out.println(noticeList);
 		
 		model.addAttribute("noticeList", noticeList);

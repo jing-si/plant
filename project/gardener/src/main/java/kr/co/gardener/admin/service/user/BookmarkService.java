@@ -13,7 +13,13 @@ public interface BookmarkService {
 	Bookmark item(int bookmarkId);
 
 	void update(Bookmark item);
-
+	
 	void delete(int bookmarkId);
+
+	void delete(Bookmark item);
+
+	List<Bookmark> list_date();
+
+	List<Bookmark> list_name();
 
 }
