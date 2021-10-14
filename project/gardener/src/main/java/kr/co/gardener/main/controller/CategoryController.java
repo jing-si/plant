@@ -3,18 +3,24 @@ package kr.co.gardener.main.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.gardener.admin.model.object.Company;
 import kr.co.gardener.admin.model.object.Product;
 import kr.co.gardener.admin.model.object.productCategoryList;
+import kr.co.gardener.admin.model.user.Bookmark;
+import kr.co.gardener.admin.model.user.User;
 import kr.co.gardener.admin.service.object.ClassifyService;
 import kr.co.gardener.admin.service.object.CompanyService;
 import kr.co.gardener.admin.service.object.ProductService;
+import kr.co.gardener.admin.service.user.BookmarkService;
 import kr.co.gardener.util.Pager;
 
 @Controller
@@ -30,6 +36,9 @@ public class CategoryController {
 	
 	@Autowired
 	ProductService productService;
+	
+	@Autowired
+	BookmarkService bookmarkService;
 	
 	//카테고리
 	@RequestMapping({"/",""})
@@ -112,5 +121,31 @@ public class CategoryController {
 		model.addAttribute("markProductList",new ArrayList<String>());
 		
 		return path + "mark-list";
+	}
+	
+	
+	
+	@RequestMapping("/product/insert")
+	@ResponseBody
+	public void insert(int productId,HttpSession session) {
+		String userId = (String) session.getAttribute("userId");
+		
+		Bookmark item = new Bookmark();
+		item.setProductId(productId);
+		item.setUserId(userId);
+		
+		bookmarkService.add(item);
+	}
+	
+	@RequestMapping("/product/delete")
+	@ResponseBody
+	public void delete(int productId, HttpSession session) {
+		String userId = (String) session.getAttribute("userId");
+		
+		Bookmark item = new Bookmark();
+		item.setProductId(productId);
+		item.setUserId(userId);
+		
+		bookmarkService.delete(item);
 	}
 }

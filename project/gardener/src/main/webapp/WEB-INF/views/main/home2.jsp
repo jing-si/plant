@@ -192,6 +192,37 @@
         		
         		$("#plant").append(img);
             	$("#plant").removeClass("hide");
+            	
+                //나무가 1단계일떄
+                if(${user.stateId}===1){
+                	$("#gauge").css('width','0px');
+                	$("#heart").css('display','block');
+                	$("#heart").css('left','9px');
+                }
+              	//나무가 2단계일떄
+              	else if(${user.stateId}===2){
+                	$("#gauge").css('width','50px');
+                	$("#heart").css('display','block');
+                	$("#heart").css('left','59px');
+                }
+              	//나무가 3단계일떄
+              	else if(${user.stateId}===3){
+                	$("#gauge").css('width','100px');
+                	$("#heart").css('display','block');
+                	$("#heart").css('left','109px');
+                }
+              	//나무가 4단계일떄
+              	else if(${user.stateId}===4){
+                	$("#gauge").css('width','150px');
+                	$("#heart").css('display','block');
+                	$("#heart").css('left','159px');
+                }
+              	//나무가 5단계일떄
+              	else if(${user.stateId}===5){
+                	$("#gauge").css('width','200px');
+                	$("#heart").css('display','block');
+                	$("#heart").css('left','209px');
+                }
 		}
 
 
@@ -519,7 +550,7 @@ a{
           #gauge{
             width: 0px;
             height : 11px;
-            background-color: red;
+            background-color: #66bb6a;
             position: absolute;
             top: 8px;
             left: 16px;
@@ -592,6 +623,8 @@ a{
             bottom : 0;
             left: 50%;
             transform: translate(-50%);
+            max-width: 180px;
+            object-fit: contain;
         }
         .screen-bg{
         background-image: url("/resources/images/home-screen-bg.png");

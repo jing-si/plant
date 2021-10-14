@@ -49,11 +49,6 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public List<Notice> notice() {
-		return sql.selectList("notice.list");
-	}
-
-	@Override
 	public int duplication(String id) {
 		return sql.selectOne("user.duplication",id);
 	}

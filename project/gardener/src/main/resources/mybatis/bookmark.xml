@@ -6,7 +6,21 @@
 <mapper namespace="bookmark">
 
 	<select id="list" resultType="Bookmark">
-		SELECT * FROM BOOKMARK
+		<!-- SELECT * FROM BOOKMARK -->
+		SELECT b.*, p.PRODUCT_IMAGE, p.PRODUCT_NAME FROM bookmark b
+		NATURAL JOIN product p
+	</select>
+	
+	<select id="list_date" resultType="Bookmark">
+		SELECT b.*, p.PRODUCT_IMAGE, p.PRODUCT_NAME FROM bookmark b
+		NATURAL JOIN product p
+		order BY b.BOOKMARK_DATETIME desc;
+	</select>
+	
+	<select id="list_name" resultType="Bookmark">
+		SELECT b.*, p.PRODUCT_IMAGE, p.PRODUCT_NAME FROM bookmark b
+		NATURAL JOIN product p
+		order BY p.PRODUCT_NAME;
 	</select>
 
 
@@ -20,10 +34,10 @@
 		VALUES (#{bookmarkId},#{userId},
 		#{bookmarkDatetime},null) -->
 		
-		INSERT INTO BOOKMARK (#{bookmarkId}, #{userId}, #{bookmarkDatetime}, #{productId})
-		VALUES ((SELECT IFNULL(MAX(#{bookmarkId}) + 1, 1) FROM BOOKMARK B),
+		INSERT INTO BOOKMARK
+		VALUES ((SELECT IFNULL(MAX(#{bookmarkId}) + 1, 1) FROM BOOKMARK B where user_id = #{userId}),
 		 		#{userId}, 
-				#{bookmarkDatetime}, 
+				now(), 
 				#{productId})
 
 	</insert>
@@ -40,6 +54,11 @@
 	<delete id="delete">
 		DELETE FROM BOOKMARK
 		WHERE BOOKMARK_ID=#{bookmarkId}
+	</delete>
+	
+	<delete id="delete2">
+		delete from bookmark
+		where product_id = #{productId} and user_Id = #{userId}
 	</delete>
 	
 	<!-- 즐겨찾기 제품아이디, 제품이미지, 제품명 리스트 이름순 정렬 -->

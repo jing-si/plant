@@ -15,7 +15,7 @@ public interface BookmarkService {
 	Bookmark item(int bookmarkId);
 
 	void update(Bookmark item);
-
+	
 	void delete(int bookmarkId);
 
 	BookmarkList list_pager(Pager pager);
@@ -25,5 +25,11 @@ public interface BookmarkService {
 	void delete_list(BookmarkList list);
 
 	void update_list(BookmarkList list);
+	
+	void delete(Bookmark item);
+
+	List<Bookmark> list_date();
+
+	List<Bookmark> list_name();
 
 }

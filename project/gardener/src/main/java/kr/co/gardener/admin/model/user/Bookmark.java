@@ -11,8 +11,25 @@ public class Bookmark extends GridSystem {
 	private String userId;	
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date bookmarkDatetime;
-	private int productId;
 	
+	private int productId;
+	private String productImage;
+	private String productName;
+	
+	
+	
+	public String getProductImage() {
+		return productImage;
+	}
+	public void setProductImage(String productImage) {
+		this.productImage = productImage;
+	}
+	public String getProductName() {
+		return productName;
+	}
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
 	public int getBookmarkId() {
 		return bookmarkId;
 	}

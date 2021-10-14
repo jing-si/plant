@@ -21,8 +21,6 @@ public interface UserDao {
 
 	String imgSrc(User user);
 
-	List<Notice> notice();
-
 	int duplication(String id);
 
 	List<User> list_pager(Pager pager);
