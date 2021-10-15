@@ -36,4 +36,5 @@ public interface UserDao {
 	void update_list(List<User> list);
 
 
+
 }

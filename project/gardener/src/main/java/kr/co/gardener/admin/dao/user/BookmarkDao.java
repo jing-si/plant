@@ -27,12 +27,17 @@ public interface BookmarkDao {
 	void delete_list(List<Bookmark> list);
 
 	void update_list(List<Bookmark> list);
+	
 	List<Bookmark> list_date();
 
 	List<Bookmark> list_name();
 
 	void delete(Bookmark item);
 
+	List<Bookmark> list_name(String userId);
+
+	List<Bookmark> list_date(String userId);
+	
 	List<ComboItem> combo();
 
 }

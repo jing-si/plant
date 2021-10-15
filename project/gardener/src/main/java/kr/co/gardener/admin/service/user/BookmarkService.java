@@ -28,8 +28,8 @@ public interface BookmarkService {
 	
 	void delete(Bookmark item);
 
-	List<Bookmark> list_date();
+	List<Bookmark> list_date(String userId);
 
-	List<Bookmark> list_name();
+	List<Bookmark> list_name(String userId);
 
 }

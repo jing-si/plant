@@ -260,20 +260,24 @@ img{
     
 </head>
 <body>
-<script type="text/javascript">
-	function goBack(){
+<script>
+ $().ready(()=>{ 
+	 console.log("시작");
+ 	function goBack(){
 	//	history.back();
 	}
 	
 	$("#header").on("click","#back",goBack());
 	
 	$("#heart").click(function(){
-		$("#heart").empty();
+		console.log("클릭1");
+ 		//$("#heart").empty();
 		if(${item.bookmark} == 'N'){
+			console.log("N");
 			$.ajax({
-				url : "/login/category/product/insert?productId="+${item.productId}+"&userId="+${user.stateId},
+				url : "/login/category/product/insert?productId="+${item.productId},
 				success : function(){
-					$("#heart").attr("src","/resources/images/green_heart.png");
+					$("#heart img").attr("src","/resources/images/green_heart.png");
 					console.log("즐겨찾기 등록 성공")
 				},
 				error : function(){
@@ -283,21 +287,31 @@ img{
 		}  //if끝
 		
 		else{
+			/* console.log("${item.bookmark}"); */
 			$.ajax({
-				url : "/login/category/product/delete?productId="+${item.productId}+"&userId="+${user.stateId},
+				url : "/login/category/product/delete?productId="+${item.productId},
 				success : function(){
-					$("#heart").attr("src","/resources/images/green_heart.png");
+					$("#heart img").attr("src","/resources/images/white_heart.png");
 					console.log("즐겨찾기 해제 성공")
 				},
 				error : function(){
 					console.log("즐겨찾기 해제 실패")
 				}
 			})  //ajax 끝
-		}
-		
+		} 
 		
 	})  //heart 클릭 끝
+
+ })   //ready 끝
 </script>
+
+
+
+
+
+
+
+
     <div id="header">
     	<!-- 진짜 직전 상태로 보내기 -->
         <div><svg id="back" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12l4.58-4.59z"/></svg></div>
