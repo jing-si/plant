@@ -35,7 +35,7 @@
 		#{bookmarkDatetime},null) -->
 		
 		INSERT INTO BOOKMARK
-		VALUES ((SELECT IFNULL(MAX(#{bookmarkId}) + 1, 1) FROM BOOKMARK B where user_id = #{userId}),
+		VALUES ((SELECT IFNULL(MAX(BOOKMARK_ID) + 1, 1) FROM BOOKMARK B where user_id = #{userId}),
 		 		#{userId}, 
 				now(), 
 				#{productId})
@@ -103,8 +103,13 @@
 	<insert id="insert_list">
 		INSERT INTO BOOKMARK
 		VALUES
-		<foreach collection="list" item="item" separator=",">
-			(#{item.bookmarkId},#{item.userId},#{item.bookmarkDatetime},#{item.productId})
+		<foreach collection="list" item="item" separator="," index="index">
+			(
+			(SELECT IFNULL(MAX(BOOKMARK_ID) + (1+#{index}),  (1+#{index})) FROM BOOKMARK B where user_id = #{item.userId})
+			,#{item.userId}
+			,#{item.bookmarkDatetime}
+			,#{item.productId}
+			)
 		</foreach>
 	</insert>
 
@@ -121,7 +126,17 @@
 		select COUNT(*) from BOOKMARK
 	</select>
 
-	
+	<select id="combo" resultType="ComboItem">
+		SELECT "0" AS "table",
+		PRODUCT_ID AS "id", PRODUCT_NAME AS "text"
+		FROM PRODUCT
+		UNION
+		SELECT "1" AS "table",
+		USER_ID AS "id", USER_ID AS "text"
+		FROM USER
+		
+		
+	</select>
 	
 
 </mapper>

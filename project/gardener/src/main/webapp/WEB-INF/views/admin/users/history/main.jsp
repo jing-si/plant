@@ -39,6 +39,9 @@
 							<div class="option col-2 py-2" data-url="bookmark">
 								<h5 class="center">즐겨찾기 관리</h5>
 							</div>
+							<div class="option col-2 py-2" data-url="history">
+								<h5 class="center">인증기록 관리</h5>
+							</div>
 							
 							
 						</div>

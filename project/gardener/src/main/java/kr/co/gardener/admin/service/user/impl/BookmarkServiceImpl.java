@@ -48,6 +48,7 @@ public class BookmarkServiceImpl implements BookmarkService {
 		list.setList(dao.list_pager(pager));
 		list.setPager(pager);
 		pager.setTotal(dao.total(pager));
+		list.paseComboList(dao.combo());
 		return list;
 	}
 

@@ -3,6 +3,7 @@ package kr.co.gardener.admin.dao.user;
 import java.util.List;
 
 import kr.co.gardener.admin.model.user.Bookmark;
+import kr.co.gardener.util.ComboItem;
 import kr.co.gardener.util.Pager;
 
 public interface BookmarkDao {
@@ -31,5 +32,7 @@ public interface BookmarkDao {
 	List<Bookmark> list_name();
 
 	void delete(Bookmark item);
+
+	List<ComboItem> combo();
 
 }

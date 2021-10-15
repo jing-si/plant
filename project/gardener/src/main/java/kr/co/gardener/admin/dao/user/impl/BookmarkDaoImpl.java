@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.gardener.admin.dao.user.BookmarkDao;
 import kr.co.gardener.admin.model.user.Bookmark;
+import kr.co.gardener.util.ComboItem;
 import kr.co.gardener.util.Pager;
 @Repository
 public class BookmarkDaoImpl implements BookmarkDao {
@@ -42,7 +43,7 @@ public class BookmarkDaoImpl implements BookmarkDao {
 
 	@Override
 	public List<Bookmark> list_pager(Pager pager) {
-		return sql.selectList("bookmark.list_parger", pager);
+		return sql.selectList("bookmark.list_pager", pager);
 	}
 
 	@Override
@@ -77,6 +78,11 @@ public class BookmarkDaoImpl implements BookmarkDao {
 	@Override
 	public void delete(Bookmark item) {
 		sql.delete("bookmark.delete2", item);
+	}
+
+	@Override
+	public List<ComboItem> combo() {
+		return sql.selectList("bookmark.combo");
 	}
 
 }

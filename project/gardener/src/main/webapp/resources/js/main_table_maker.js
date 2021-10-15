@@ -121,6 +121,9 @@ $(function() {
 				case "date":
 					temp.addClass('addDate center form-control');
 					break;
+				case "datetime":
+					temp.addClass('addDatetime center form-control');
+					break;
 				case "file":
 					temp.addClass('addPopDiv');
 					break;
@@ -416,6 +419,9 @@ function viewMarker(selectedRow) {
 			case "date":
 				temp.addClass("viewDate form-control")
 				break;
+			case "datetime":
+				temp.addClass("viewDatetime form-control")
+				break;
 
 			case "combo":
 				temp.addClass("viewCombo")
@@ -446,6 +452,7 @@ function viewMarker(selectedRow) {
 		switch (type) {
 			case "none":
 			case "date":
+			case "datetime":
 			case "combo":
 			case "text":
 			case "number":
@@ -696,7 +703,9 @@ function makeGrid(data) {
 				case "date":
 					temp.addClass('updateRow nonBorderTextBox updateDate center form-control-plaintext');
 					break;
-
+				case "datetime":
+					temp.addClass('updateRow nonBorderTextBox updateDatetime center form-control-plaintext');
+					break;
 				case "area":
 					temp.addClass("updateArea")
 					temp.find(".showbox").addClass("nonBorderTextBox");
@@ -758,9 +767,16 @@ function makePerfect(action) {
 	$("." + action + "Combo").combobox();
 	//달력 완성
 	$("." + action + "Date").datepicker({
-		language: 'ko'
+		language: 'ko',		
 	});
+	//달력 + 시간 설정
+	$("." + action + "Datetime").datepicker({
+		language: 'ko'
+		,timepicker: true	
+		,timeFormat:'hh:ii:00'
+		
 
+	});
 	//이미지 완성
 	var popoverTriggerList = [].slice.call(document.querySelectorAll("." + action + "PopDiv"))
 	popoverList = popoverTriggerList.map(function(popoverTriggerEl) {
@@ -808,8 +824,10 @@ function makeCell(val, col, row, name, type, action) {
 			break;
 
 		case "date":
+		case "datetime":
 			temp = $("<input type='text' readonly class='date'>")
 			break;
+		
 		case "file":
 			let src = "/upload/noImage.gif"
 
@@ -829,9 +847,12 @@ function makeCell(val, col, row, name, type, action) {
 		case "none":
 		case "number":
 		case "text":
-		case "date":
+		case "datetime":
 		case "combo":
 			temp.val(val).addClass(c).attr("name", name)
+			break;
+		case "date":
+			temp.val(val.split(" ")[0]).addClass(c).attr("name", name)
 			break;
 
 		case "area":

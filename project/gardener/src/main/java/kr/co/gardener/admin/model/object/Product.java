@@ -24,12 +24,12 @@ public class Product extends GridSystem {
 	protected int certId;
 	protected int productCertId;
 
-	@DateTimeFormat(pattern = "yyyy.MM.dd" )
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy.MM.dd",timezone="Asia/Seoul")
+	@DateTimeFormat(pattern = "yyyy-MM-dd" )
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd",timezone="Asia/Seoul")
 	protected Date productStartDate;
 
-	@DateTimeFormat(pattern = "yyyy.MM.dd")
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy.MM.dd",timezone="Asia/Seoul")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd",timezone="Asia/Seoul")
 	protected Date productEndDate;
 	protected String companyId;
 	protected int g2bId;

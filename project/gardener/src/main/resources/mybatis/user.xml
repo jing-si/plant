@@ -100,8 +100,23 @@
 
 	<select id="combo" resultType="ComboItem">
 		SELECT "0" AS "table",
-		product_id AS "id", product_Name AS "text"				
-		from PRODUCT
+		'여' AS "id", '여' AS "text"				
+		UNION
+		SELECT "0" AS "table",
+		'남' AS "id", '남' AS "text"
+		UNION
+		SELECT "1" AS "table",
+		STATE_ID AS "id", STATE_NAME AS "text"
+		FROM STATE
+		UNION
+		SELECT "2" AS "table",
+		FOREST_ID AS "id", FOREST_NAME AS "text"
+		FROM FOREST	
+		UNION
+		SELECT "3" AS "table",
+		PLANT_ID AS "id", PLANT_NAME AS "text"
+		FROM PLANT	
+		
 	</select>
 
 </mapper>
