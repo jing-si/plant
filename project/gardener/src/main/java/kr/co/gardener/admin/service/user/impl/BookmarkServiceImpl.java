@@ -65,20 +65,20 @@ public class BookmarkServiceImpl implements BookmarkService {
 	public void update_list(BookmarkList list) {
 		dao.update_list(list.getList());
 	}
-	
-	@Override
-	public List<Bookmark> list_date() {
-		return dao.list_date();
-	}
-
-	@Override
-	public List<Bookmark> list_name() {
-		return dao.list_name();
-	}
 
 	@Override
 	public void delete(Bookmark item) {
 		dao.delete(item);
+	}
+
+	@Override
+	public List<Bookmark> list_date(String userId) {
+		return dao.list_date(userId);
+	}
+
+	@Override
+	public List<Bookmark> list_name(String userId) {
+		return dao.list_name(userId);
 	}
 
 }

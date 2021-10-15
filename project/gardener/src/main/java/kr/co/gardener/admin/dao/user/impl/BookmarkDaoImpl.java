@@ -79,4 +79,14 @@ public class BookmarkDaoImpl implements BookmarkDao {
 		sql.delete("bookmark.delete2", item);
 	}
 
+	@Override
+	public List<Bookmark> list_name(String userId) {
+		return sql.selectList("bookmark.list_name", userId);
+	}
+
+	@Override
+	public List<Bookmark> list_date(String userId) {
+		return sql.selectList("bookmark.list_date", userId);
+	}
+
 }

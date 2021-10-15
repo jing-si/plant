@@ -9,24 +9,27 @@
 		<!-- SELECT * FROM BOOKMARK -->
 		SELECT b.*, p.PRODUCT_IMAGE, p.PRODUCT_NAME FROM bookmark b
 		NATURAL JOIN product p
+		where USER_ID = #{userId}
 	</select>
 	
 	<select id="list_date" resultType="Bookmark">
 		SELECT b.*, p.PRODUCT_IMAGE, p.PRODUCT_NAME FROM bookmark b
 		NATURAL JOIN product p
+		where USER_ID = #{userId}
 		order BY b.BOOKMARK_DATETIME desc;
 	</select>
 	
 	<select id="list_name" resultType="Bookmark">
 		SELECT b.*, p.PRODUCT_IMAGE, p.PRODUCT_NAME FROM bookmark b
 		NATURAL JOIN product p
+		where USER_ID = #{userId}
 		order BY p.PRODUCT_NAME;
 	</select>
 
 
 	<select id="item" resultType="Bookmark">
 		SELECT * FROM BOOKMARK
-		WHERE BOOK_ID =#{bookmarkId}
+		WHERE BOOK_ID =#{bookmarkId} and USER_ID = #{userId}
 	</select>
 
 	<insert id="add">
