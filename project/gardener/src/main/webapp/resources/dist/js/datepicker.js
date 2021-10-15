@@ -65,7 +65,7 @@
             timepicker: false,
             onlyTimepicker: false,
             dateTimeSeparator: ' ',
-            timeFormat: '',
+            timeFormat: 'hh:mm:00',
             minHours: 0,
             maxHours: 24,
             minMinutes: 0,

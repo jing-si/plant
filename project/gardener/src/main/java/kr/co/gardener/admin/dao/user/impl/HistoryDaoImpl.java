@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.gardener.admin.dao.user.HistoryDao;
 import kr.co.gardener.admin.model.user.History;
+import kr.co.gardener.util.ComboItem;
+import kr.co.gardener.util.Pager;
 @Repository
 public class HistoryDaoImpl implements HistoryDao {
 
@@ -37,6 +39,36 @@ public class HistoryDaoImpl implements HistoryDao {
 	@Override
 	public void delete(int historyId) {
 		sql.delete("history.delete", historyId);
+	}
+
+	@Override
+	public List<History> list_pager(Pager pager) {
+		return sql.selectList("history.list_pager", pager);
+	}
+
+	@Override
+	public float total(Pager pager) {
+		return sql.selectOne("history.total");
+	}
+
+	@Override
+	public List<ComboItem> combo() {
+		return sql.selectList("history.combo");
+	}
+
+	@Override
+	public void insert_list(List<History> list) {
+		sql.insert("history.insert_list", list);
+	}
+
+	@Override
+	public void delete_list(List<History> list) {
+		sql.insert("history.delete_list", list);		
+	}
+
+	@Override
+	public void update_list(List<History> list) {
+		sql.insert("history.update_list", list);		
 	}
 
 }

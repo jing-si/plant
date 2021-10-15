@@ -29,4 +29,63 @@
 		DELETE FROM HISTORY
 		WHERE HISTORY_ID=#{historyId}
 	</delete>
+	
+	<!--대량 처리 -->
+	<select id="list_pager" resultType="History">
+		SELECT * FROM HISTORY		
+		LIMIT #{offset}, #{perPage}
+	</select>
+
+	<select id="update_list" resultType="History">
+		Insert into HISTORY
+		values
+		<foreach collection="list" item="item" separator=",">
+			(#{item.historyId},#{item.userId},#{item.productId},#{item.historyDatetime},#{item.historyComment})
+		</foreach>
+		on duplicate key update
+		PRODUCT_ID = VALUES(PRODUCT_ID),		
+		HISTORY_DATETIME = VALUES(HISTORY_DATETIME),
+		HISTORY_COMMENT = VALUES(HISTORY_COMMENT)
+	</select>
+
+	<insert id="insert_list">
+		INSERT INTO HISTORY
+		VALUES
+		<foreach collection="list" item="item" separator="," index="index">
+			(
+			(SELECT IFNULL(MAX(HISTORY_ID) + (1+#{index}),  (1+#{index})) FROM HISTORY B where user_id = #{item.userId})
+			,#{item.userId}
+			,#{item.productId}
+			,#{item.historyDatetime}
+			,#{item.historyComment}
+			)
+		</foreach>
+	</insert>
+
+	<delete id="delete_list">		
+		DELETE FROM  HISTORY		
+		WHERE (HISTORY_ID,USER_ID) in (
+		<foreach collection="list" item="item" separator=",">
+				(#{item.historyId},#{item.userId})
+		</foreach>
+		)		
+	</delete>
+
+	<select id="total" resultType="float">
+		select COUNT(*) from HISTORY
+	</select>
+
+	<select id="combo" resultType="ComboItem">
+		SELECT "0" AS "table",
+		USER_ID AS "id", USER_ID AS "text"
+		FROM USER
+		UNION
+		SELECT "1" AS "table",
+		PRODUCT_ID AS "id", PRODUCT_NAME AS "text"
+		FROM PRODUCT
+		
+		
+		
+		
+	</select>
 </mapper>

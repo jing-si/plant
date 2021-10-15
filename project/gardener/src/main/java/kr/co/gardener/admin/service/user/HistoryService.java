@@ -4,6 +4,7 @@ import java.util.List;
 
 import kr.co.gardener.admin.model.user.History;
 import kr.co.gardener.admin.model.user.list.BookmarkList;
+import kr.co.gardener.admin.model.user.list.HistoryList;
 import kr.co.gardener.util.Pager;
 
 public interface HistoryService {
@@ -17,6 +18,14 @@ public interface HistoryService {
 	void update(History item);
 
 	void delete(int historyId);
+
+	HistoryList list_pager(Pager pager);
+
+	void insert_list(HistoryList list);
+
+	void delete_list(HistoryList list);
+
+	void update_list(HistoryList list);
 
 
 }

@@ -4,16 +4,18 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import kr.co.gardener.util.GridSystem;
 
 public class History extends GridSystem{
 	private int historyId;
 	private String userId;
 	private String productId;
-	@DateTimeFormat(pattern = "yyyyMMdd")
-	private Date historyDateTime;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss",timezone="Asia/Seoul")
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	private Date historyDatetime;
 	private String historyComment;
-	
 	
 	public int getHistoryId() {
 		return historyId;
@@ -33,11 +35,11 @@ public class History extends GridSystem{
 	public void setProductId(String productId) {
 		this.productId = productId;
 	}
-	public Date getHistoryDateTime() {
-		return historyDateTime;
+	public Date getHistoryDatetime() {
+		return historyDatetime;
 	}
-	public void setHistoryDateTime(Date historyDateTime) {
-		this.historyDateTime = historyDateTime;
+	public void setHistoryDatetime(Date historyDatetime) {
+		this.historyDatetime = historyDatetime;
 	}
 	public String getHistoryComment() {
 		return historyComment;
@@ -45,6 +47,7 @@ public class History extends GridSystem{
 	public void setHistoryComment(String historyComment) {
 		this.historyComment = historyComment;
 	}
+	
 	
 	
 	
