@@ -63,6 +63,8 @@ public class BookmarkDaoImpl implements BookmarkDao {
 	@Override
 	public void update_list(List<Bookmark> list) {
 		sql.insert("bookmark.update_list", list);		
+	}
+	@Override
 	public List<Bookmark> list_date() {
 		return sql.selectList("bookmark.list_date");
 	}
