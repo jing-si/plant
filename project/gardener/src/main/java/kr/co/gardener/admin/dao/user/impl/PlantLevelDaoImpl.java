@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.co.gardener.admin.dao.user.PlantLevelDao;
-import kr.co.gardener.admin.model.user.PlantLevel;
+import kr.co.gardener.admin.model.forest.PlantLevel;
+import kr.co.gardener.util.ComboItem;
+import kr.co.gardener.util.Pager;
 @Repository
 public class PlantLevelDaoImpl implements PlantLevelDao {
 
@@ -37,6 +39,38 @@ public class PlantLevelDaoImpl implements PlantLevelDao {
 	@Override
 	public void delete(int plantLevelId) {
 		sql.delete("plantLevel.delete", plantLevelId);
+	}
+
+	@Override
+	public List<PlantLevel> list_pager(Pager pager) {
+		return sql.selectList("plantLevel.list_pager", pager);
+	}
+
+	@Override
+	public float total(Pager pager) {
+		return sql.selectOne("plantLevel.total", pager);
+	}
+
+	@Override
+	public List<ComboItem> combo() {
+		return sql.selectList("plantLevel.combo");
+	}
+
+	@Override
+	public void insert_list(List<PlantLevel> list) {
+		sql.insert("plantLevel.insert_list", list);
+	}
+
+	@Override
+	public void delete_list(List<PlantLevel> list) {
+		sql.insert("plantLevel.delete_list", list);
+		
+	}
+
+	@Override
+	public void update_list(List<PlantLevel> list) {
+		sql.insert("plantLevel.update_list", list);
+		
 	}
 
 }

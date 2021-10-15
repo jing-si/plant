@@ -31,4 +31,60 @@
 		DELETE FROM PLANT
 		WHERE PLANT_ID=#{plantId}
 	</delete>
+	
+	<!--대량 처리 -->
+	<select id="list_pager" resultType="Plant">
+		SELECT * FROM PLANT		
+		LIMIT #{offset}, #{perPage}
+	</select>
+
+	<select id="update_list" resultType="Plant">
+		Insert into PLANT
+		values
+		<foreach collection="list" item="item" separator=",">
+			(#{item.plantId},#{item.plantName},#{item.plantCategory},#{item.plantInfo},#{item.plantShadow})
+		</foreach>
+		on duplicate key update
+		PLANT_NAME = VALUES(PLANT_NAME)	
+		, PLANT_CATEGORY = VALUES(PLANT_CATEGORY)
+		, PLANT_INFO = VALUES(PLANT_INFO)
+		, PLANT_SHADOW = VALUES(PLANT_SHADOW)
+	
+	</select>
+
+	<insert id="insert_list">
+		INSERT INTO PLANT
+		VALUES
+		<foreach collection="list" item="item" separator="," index="index">
+			(null
+			,#{item.plantName}
+			,#{item.plantCategory}
+			,#{item.plantInfo}
+			,#{item.plantShadow}
+			)
+		</foreach>
+	</insert>
+
+	<delete id="delete_list">		
+		DELETE FROM  PLANT		
+		WHERE PLANT_ID in (
+		<foreach collection="list" item="item" separator=",">
+				#{item.plantId}
+		</foreach>
+		)		
+	</delete>
+
+	<select id="total" resultType="float">
+		select COUNT(*) from PLANT
+	</select>
+
+	<select id="combo" resultType="ComboItem">
+		SELECT "0" AS "table",
+		'나무' AS "id", '나무' AS "text"
+		
+		UNION
+		SELECT "0" AS "table",
+		'꽃' AS "id", '꽃' AS "text"
+		
+	</select>
 </mapper>

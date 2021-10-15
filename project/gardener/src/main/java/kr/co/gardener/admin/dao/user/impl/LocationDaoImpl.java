@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.gardener.admin.dao.user.LocationDao;
 import kr.co.gardener.admin.model.user.Location;
+import kr.co.gardener.util.ComboItem;
+import kr.co.gardener.util.Pager;
 @Repository
 public class LocationDaoImpl implements LocationDao {
 	
@@ -42,6 +44,36 @@ public class LocationDaoImpl implements LocationDao {
 	@Override
 	public List<Location> list(String userId) {
 		return sql.selectList("location.list_userId", userId);
+	}
+
+	@Override
+	public List<Location> list_pager(Pager pager) {
+		return sql.selectList("location.list_pager", pager);
+	}
+
+	@Override
+	public float total(Pager pager) {
+		return sql.selectOne("location.total",pager);
+	}
+
+	@Override
+	public List<ComboItem> combo() {
+		return sql.selectList("location.combo");
+	}
+
+	@Override
+	public void insert_list(List<Location> list) {
+		sql.insert("location.insert_list", list);
+	}
+
+	@Override
+	public void delete_list(List<Location> list) {
+		sql.delete("location.delete_list", list);
+	}
+
+	@Override
+	public void update_list(List<Location> list) {
+		sql.update("location.update_list", list);
 	}
 
 }

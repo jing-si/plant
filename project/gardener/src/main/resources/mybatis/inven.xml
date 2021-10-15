@@ -39,4 +39,58 @@
 		SELECT * FROM INVEN
 		where USER_ID = #{userId}
 	</select>
+	
+	<!--대량 처리 -->
+	<select id="list_pager" resultType="Inven">
+		SELECT * FROM INVEN i		
+		JOIN PLANT p on p.PLANT_ID = i.PLANT_ID 
+		LIMIT #{offset}, #{perPage}
+	</select>
+
+	<select id="update_list" resultType="Inven">
+		Insert into INVEN
+		values
+		<foreach collection="list" item="item" separator=",">
+			(#{item.userId},#{item.plantId},#{item.invenAmount})
+		</foreach>
+		on duplicate key update
+		INVEN_AMOUNT = VALUES(INVEN_AMOUNT)
+		
+	
+	</select>
+
+	<insert id="insert_list">
+		INSERT INTO INVEN
+		VALUES
+		<foreach collection="list" item="item" separator="," index="index">
+			(
+			#{item.userId}
+			,#{item.plantId}
+			,#{item.invenAmount}
+			)
+		</foreach>
+	</insert>
+
+	<delete id="delete_list">		
+		DELETE FROM  INVEN		
+		WHERE (USER_ID,PLANT_ID) in (
+		<foreach collection="list" item="item" separator=",">
+				(#{item.userId},#{item.plantId})
+		</foreach>
+		)		
+	</delete>
+
+	<select id="total" resultType="float">
+		select COUNT(*) from INVEN
+	</select>
+
+	<select id="combo" resultType="ComboItem">
+		SELECT "0" AS "table",
+		USER_ID AS "id", USER_ID AS "text"
+		FROM USER
+		UNION
+		SELECT "1" AS "table",
+		PLANT_ID AS "id", PLANT_NAME AS "text"
+		FROM PLANT
+	</select>
 </mapper>

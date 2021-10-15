@@ -113,6 +113,7 @@ $(function() {
 				case "area":
 					temp.addClass("updateArea")
 					temp.find(".showbox").text("내용편집:더블클릭")
+					temp.find(".area").val("<p>&nbsp;</p>")
 					break;
 
 				case "combo":
@@ -636,7 +637,7 @@ function initArray() {
 //메인테이블 그리기
 function makeGrid(data) {
 	const thead = $("<thead>");
-	const tr = $("<tr>");
+	const tr = $("<tr>"); //헤더용
 	const tbody = $("<tbody>");
 	const len = Number(data.thLength)
 	const comLen = Number(data.comLength)
@@ -647,10 +648,10 @@ function makeGrid(data) {
 
 
 	//헤드 작업	
-	tr.append($('<th class="center col-sm-auto" scope="col">')
+	tr.append($('<th class="center col-auto" scope="col">')
 		.append($('<div class="cell">').append('<input type="checkbox" class="form-check-input">'))
 	)
-	tr.append($('<th class="center col-1" scope="col">')
+	tr.append($('<th class="center col-auto" scope="col">')
 		.append($('<div class="cell">').text("No.#")));
 
 	for (let a = 0; a < len; a++) {
@@ -659,11 +660,12 @@ function makeGrid(data) {
 		let str = thData["th" + a].split("-")
 		thType.push(str);
 
-		if (insertLen > 0) {
+		if (insertLen > a) {
 			addType.push(insertData["add" + a].split("-"));
 		}
-
-		th.append($('<div class="cell">').text(str[0]));
+		
+		if(str[2] != "hide")
+			th.append($('<div class="cell">').text(str[0]));
 		tr.append(th);
 	}
 	thead.append(tr)
@@ -796,7 +798,10 @@ function makeCell(val, col, row, name, type, action) {
 		comboNumber = Number(addType[col][3])
 
 	switch (type) {
+		
+		
 		case "none":
+		case "hide":
 			temp = $("<input type='text' readonly class=''>")
 			break;
 
@@ -858,6 +863,9 @@ function makeCell(val, col, row, name, type, action) {
 		case "area":
 			break;
 		case "file":
+			break;
+		case "hide":
+			temp.val(val).addClass(c).attr("name", name).addClass("hide")
 			break;
 
 	}

@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.co.gardener.admin.dao.user.ForestDao;
-import kr.co.gardener.admin.model.user.Forest;
+import kr.co.gardener.admin.model.forest.Forest;
 @Repository
 public class ForestDaoImpl implements ForestDao {
 

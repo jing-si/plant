@@ -59,8 +59,8 @@
 			</a>
 		</div>
 		<hr class="mx-1 my-0 p-0 side-hr">
-		<div class="side-nav py-2" onclick='location.href="/admin/plant/"'>
-			<a href="/admin/plant/" class="side-nav-text "> <i
+		<div class="side-nav py-2" onclick='location.href="/admin/plants/"'>
+			<a href="/admin/plants/" class="side-nav-text "> <i
 				class="bi bi-check"></i>식물 관리
 			</a>
 		</div>

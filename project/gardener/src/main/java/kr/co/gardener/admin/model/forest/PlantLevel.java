@@ -1,12 +1,21 @@
-package kr.co.gardener.admin.model.user;
+package kr.co.gardener.admin.model.forest;
 
 import kr.co.gardener.util.GridSystem;
 
 public class PlantLevel extends GridSystem{
-	private int plantLevelId;
+	private String plantName;
 	private int plantId;
 	private String plantImage;
+	private int plantLevelId;
 	
+	
+	
+	public String getPlantName() {
+		return plantName;
+	}
+	public void setPlantName(String plantName) {
+		this.plantName = plantName;
+	}
 	public int getPlantLevelId() {
 		return plantLevelId;
 	}

@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import kr.co.gardener.admin.model.forest.PlantLevel;
 import kr.co.gardener.admin.model.object.CertReason;
-import kr.co.gardener.admin.model.user.PlantLevel;
-import kr.co.gardener.admin.service.user.PlantLevelService;
+import kr.co.gardener.admin.service.forest.PlantLevelService;
 import kr.co.gardener.util.FileUpload;
 
 @Controller

@@ -83,9 +83,5 @@
 		SELECT "1" AS "table",
 		PRODUCT_ID AS "id", PRODUCT_NAME AS "text"
 		FROM PRODUCT
-		
-		
-		
-		
 	</select>
 </mapper>

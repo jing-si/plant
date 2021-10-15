@@ -1,8 +1,8 @@
-package kr.co.gardener.admin.service.user;
+package kr.co.gardener.admin.service.forest;
 
 import java.util.List;
 
-import kr.co.gardener.admin.model.user.Forest;
+import kr.co.gardener.admin.model.forest.Forest;
 
 public interface ForestService {
 

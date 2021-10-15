@@ -1,4 +1,4 @@
-package kr.co.gardener.admin.model.user;
+package kr.co.gardener.admin.model.forest;
 
 import kr.co.gardener.util.GridSystem;
 

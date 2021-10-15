@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.gardener.admin.dao.user.InvenDao;
 import kr.co.gardener.admin.model.user.Inven;
+import kr.co.gardener.util.ComboItem;
+import kr.co.gardener.util.Pager;
 @Repository
 public class InvenDaoImpl implements InvenDao {
 
@@ -56,6 +58,36 @@ public class InvenDaoImpl implements InvenDao {
 	@Override
 	public List<Inven> list(String userId) {
 		return sql.selectList("inven.list_userId", userId);
+	}
+
+	@Override
+	public List<Inven> list_pager(Pager pager) {
+		return sql.selectList("inven.list_pager",pager);
+	}
+
+	@Override
+	public float total(Pager pager) {
+		return sql.selectOne("inven.total",pager);
+	}
+
+	@Override
+	public List<ComboItem> combo() {
+		return sql.selectList("inven.combo");
+	}
+
+	@Override
+	public void insert_list(List<Inven> list) {
+		sql.insert("inven.insert_list", list);
+	}
+
+	@Override
+	public void delete_list(List<Inven> list) {
+		sql.insert("inven.delete_list", list);		
+	}
+
+	@Override
+	public void update_list(List<Inven> list) {
+		sql.insert("inven.update_list", list);		
 	}
 
 }

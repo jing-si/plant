@@ -48,4 +48,64 @@
 		DELETE FROM LOCATION
 		WHERE USER_ID=#{userId}
 	</delete>
+	
+	<!--대량 처리 -->
+	<select id="list_pager" resultType="Location">
+		SELECT * FROM LOCATION		
+		LIMIT #{offset}, #{perPage}
+	</select>
+
+	<select id="update_list" resultType="Location">
+		Insert into LOCATION
+		values
+		<foreach collection="list" item="item" separator=",">
+			(#{item.locationId},#{item.userId},#{item.locationSize},#{item.locationX},#{item.locationY},#{item.locationOrder},#{item.plantId})
+		</foreach>
+		on duplicate key update
+		LOCATION_SIZE = VALUES(LOCATION_SIZE)	
+		, LOCATION_X = VALUES(LOCATION_X)
+		, LOCATION_Y = VALUES(LOCATION_Y)
+		, LOCATION_ORDER = VALUES(LOCATION_ORDER)
+		, PLANT_ID = VALUES(PLANT_ID)
+	
+	</select>
+
+	<insert id="insert_list">
+		INSERT INTO LOCATION
+		VALUES
+		<foreach collection="list" item="item" separator="," index="index">
+			(
+			(SELECT IFNULL(MAX(B.LOCATION_ID) + (1+#{index}),  (1+#{index})) FROM LOCATION B where user_id = #{item.userId})
+			,#{item.userId}
+			,#{item.locationSize}
+			,#{item.locationX}
+			,#{item.locationY}
+			,#{item.locationOrder}
+			,#{item.plantId}
+			)
+		</foreach>
+	</insert>
+
+	<delete id="delete_list">		
+		DELETE FROM  LOCATION		
+		WHERE (LOCATION_ID,USER_ID) in (
+		<foreach collection="list" item="item" separator=",">
+				(#{item.locationId},#{item.userId})
+		</foreach>
+		)		
+	</delete>
+
+	<select id="total" resultType="float">
+		select COUNT(*) from LOCATION
+	</select>
+
+	<select id="combo" resultType="ComboItem">
+		SELECT "0" AS "table",
+		USER_ID AS "id", USER_ID AS "text"
+		FROM USER
+		UNION
+		SELECT "1" AS "table",
+		PLANT_ID AS "id", PLANT_NAME AS "text"
+		FROM PLANT
+	</select>
 </mapper>

@@ -48,7 +48,6 @@ public class InvenController {
 	
 	@PostMapping("/update/{userId}/{plantId}")
 	public String update(@PathVariable int invenId, @PathVariable int plantId, Inven item) {
-		item.setInvenId(invenId);
 		item.setPlantId(plantId);
 		service.update(item);
 		return "redirect:../list";

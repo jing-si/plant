@@ -1,4 +1,4 @@
-package kr.co.gardener.admin.service.user.impl;
+package kr.co.gardener.admin.service.forest.impl;
 
 import java.util.List;
 
@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.gardener.admin.dao.user.ForestDao;
-import kr.co.gardener.admin.model.user.Forest;
-import kr.co.gardener.admin.service.user.ForestService;
+import kr.co.gardener.admin.model.forest.Forest;
+import kr.co.gardener.admin.service.forest.ForestService;
 
 @Service
 public class ForestServiceImpl implements ForestService {

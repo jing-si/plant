@@ -7,7 +7,10 @@ import org.springframework.stereotype.Service;
 
 import kr.co.gardener.admin.dao.user.InvenDao;
 import kr.co.gardener.admin.model.user.Inven;
+import kr.co.gardener.admin.model.user.list.InvenList;
+import kr.co.gardener.admin.model.user.list.LocationList;
 import kr.co.gardener.admin.service.user.InvenService;
+import kr.co.gardener.util.Pager;
 @Service
 public class InvenServiceImpl implements InvenService {
 
@@ -43,6 +46,31 @@ public class InvenServiceImpl implements InvenService {
 	@Override
 	public List<Inven> list(String userId) {
 		return dao.list(userId);
+	}
+
+	@Override
+	public InvenList list_pager(Pager pager) {
+		InvenList list = new InvenList();
+		list.setList(dao.list_pager(pager));
+		list.setPager(pager);
+		pager.setTotal(dao.total(pager));
+		list.paseComboList(dao.combo());
+		return list;
+	}
+
+	@Override
+	public void insert_list(InvenList list) {
+		dao.insert_list(list.getList());
+	}
+
+	@Override
+	public void delete_list(InvenList list) {
+		dao.delete_list(list.getList());		
+	}
+
+	@Override
+	public void update_list(InvenList list) {
+		dao.update_list(list.getList());		
 	}
 
 

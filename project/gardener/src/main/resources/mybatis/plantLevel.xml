@@ -27,4 +27,55 @@
   	DELETE FROM PLANT_LEVEL
   	WHERE PLANT_LEVEL_ID=#{plantLevelId}
   </delete>
+  
+  <!--대량 처리 -->
+	<select id="list_pager" resultType="PlantLevel">
+		SELECT * FROM PLANT_LEVEL m		
+		JOIN PLANT s on m.PLANT_ID = s.PLANT_ID 
+		LIMIT #{offset}, #{perPage}
+	</select>
+
+	<select id="update_list" resultType="PlantLevel">
+		Insert into PLANT_LEVEL
+		values
+		<foreach collection="list" item="item" separator=",">
+			(#{item.plantId},#{item.plantLevelId},#{item.plantImage})
+		</foreach>
+		on duplicate key update
+		PLANT_IMAGE = VALUES(PLANT_IMAGE)
+		
+	
+	</select>
+
+	<insert id="insert_list">
+		INSERT INTO PLANT_LEVEL
+		VALUES
+		<foreach collection="list" item="item" separator="," index="index">
+			(
+			#{item.plantId}
+			,#{item.plantLevelId}
+			,#{item.plantImage}
+			)
+		</foreach>
+	</insert>
+
+	<delete id="delete_list">		
+		DELETE FROM  PLANT_LEVEL		
+		WHERE (PLANT_ID,PLANT_LEVEL_ID) in (
+		<foreach collection="list" item="item" separator=",">
+				(#{item.plantId},#{item.plantLevelId})
+		</foreach>
+		)		
+	</delete>
+
+	<select id="total" resultType="float">
+		select COUNT(*) from PLANT_LEVEL
+	</select>
+
+	<select id="combo" resultType="ComboItem">
+		SELECT "0" AS "table",
+		PLANT_ID AS "id", PLANT_NAME AS "text"
+		FROM PLANT
+		
+	</select>
 </mapper>

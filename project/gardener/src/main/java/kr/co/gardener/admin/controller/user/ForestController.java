@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
-import kr.co.gardener.admin.model.user.Forest;
-import kr.co.gardener.admin.service.user.ForestService;
+import kr.co.gardener.admin.model.forest.Forest;
+import kr.co.gardener.admin.service.forest.ForestService;
 import kr.co.gardener.util.FileUpload;
 
 @Controller

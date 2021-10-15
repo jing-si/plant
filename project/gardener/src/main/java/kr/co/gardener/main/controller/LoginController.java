@@ -94,7 +94,7 @@ public class LoginController {
 		
 		@PostMapping("/tempfileUpload")
 		@ResponseBody
-		public List<String> FileUploader(String folder,List<MultipartFile> files) {
+		public List<String> tempFileUploader(String folder,List<MultipartFile> files) {
 			List<String> list = new ArrayList<String>();
 			
 			files.forEach((file)->{
@@ -106,12 +106,12 @@ public class LoginController {
 		
 		@PostMapping("/fileUpload")
 		@ResponseBody
-		public List<String> FileUploader(String folder,String[] name,List<MultipartFile> files) {
+		public List<String> FileUploader(String folder,List<MultipartFile> files) {
 			List<String> list = new ArrayList<String>();
 			
 			for(int a = 0 ; a < files.size() ; a++) {
 				if(files.get(a).getSize() != 0)
-					list.add(FileUploader.Uploader(files.get(a), folder, name[a]));
+					list.add(FileUploader.Uploader(files.get(a) ,folder,files.get(a).getOriginalFilename()));
 			}		
 			
 			return list; 

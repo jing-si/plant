@@ -2,7 +2,7 @@ package kr.co.gardener.admin.dao.user;
 
 import java.util.List;
 
-import kr.co.gardener.admin.model.user.Forest;
+import kr.co.gardener.admin.model.forest.Forest;
 
 public interface ForestDao {
 
