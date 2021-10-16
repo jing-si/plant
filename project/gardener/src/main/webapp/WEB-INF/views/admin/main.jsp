@@ -21,7 +21,7 @@
 	    position: relative;
 	    display: inline-block;
 	}
-	#logo{
+	#mainContent #logo{
 	    /* width: 70px; */
 	    /* height: 115.1px; */
 	    height: 150px;
@@ -86,7 +86,7 @@
 		<!--전체 div - 왼쪽 사이드와 메인을 나눠줌.-->
 		<div class="row">
 			<!--왼쪽 사이드 바 -->
-			<div class="rightSide col-1">
+			<div class="rightSide col-1  mx-0 px-0">
 				<div>
 				<jsp:include page="../include/left_side.jsp"></jsp:include>
 				</div>

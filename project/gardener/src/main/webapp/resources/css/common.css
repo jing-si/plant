@@ -8,7 +8,8 @@ root{
 .header {  /* header �κ� (������ ������, ������) */
 	width: 100%;
 	height: 50px;
-	background-color: #ccc;
+	color:#ddd;
+	background-color: #646464;
 	font-family:MaruBuri-Regular;
 		
 }
@@ -16,7 +17,8 @@ root{
 	font-weight: 600;
 }
 .selectedHeader{
-	background-color: #eee;
+	background-color: #ddd;
+	color:black;
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
 }
@@ -38,7 +40,7 @@ root{
 }
 
 .border-bot {
-	border-bottom: 1px solid #bbb;
+	border-bottom: 1px solid #ccc;
 	
 }
 
@@ -81,6 +83,10 @@ root{
 
 .mainBorder {
 	border: 1px solid #005b21;
+}
+
+.white{
+	background-color: white;
 }
 
 #mainContent { /* �������̺� ǥ�� */
@@ -146,6 +152,9 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 
 .option {
 	cursor: pointer;
+}
+.option h5{
+	font-size: 1.1rem;
 }
 
 thead{
@@ -273,11 +282,9 @@ footer h5 {
 	background-color: #434343;
 }
 .side-nav-text{
-	font-size: 18px;
+	font-size: 17px;
 	text-decoration: none;
 	color: #ddd;
-	padding: 0;	
-	margin-left: 10px;
 	overflow: hidden;
 }
 .side-nav-text:hover{
@@ -290,12 +297,24 @@ footer h5 {
 	cursor:pointer;
 	background-color: #545454;
 }
-.side-nav:hover a{
-	color: white;
-}	
+.selectedNav{
+	color: white;	
+	background-color: #626262;
+}
+
+.left-side-th{
+	color:#eee;	
+	
+}
+	
 .side-hr{
 	color:#ccc;
 }
+.activeable{
+	height: 100%;
+	width: 60%;	
+}
+
 .viewImage{
 	
 	 object-fit: contain;
