@@ -88,7 +88,8 @@ public class BookmarkDaoImpl implements BookmarkDao {
 	@Override
 	public List<Bookmark> list_date(String userId) {
 		return sql.selectList("bookmark.list_date", userId);
-		
+	}
+	
 	public List<ComboItem> combo() {
 		return sql.selectList("bookmark.combo");
 	}
