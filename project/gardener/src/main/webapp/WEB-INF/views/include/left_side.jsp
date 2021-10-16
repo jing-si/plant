@@ -65,6 +65,12 @@
 			</a>
 		</div>
 		<hr class="mx-1 my-0 p-0 side-hr">
+		<div class="side-nav py-2" onclick='location.href="/admin/forest/"'>
+			<a href="/admin/forest/" class="side-nav-text "> <i
+				class="bi bi-check"></i>숲 관리
+			</a>
+		</div>
+		<hr class="mx-1 my-0 p-0 side-hr">
 		<div class="side-nav py-2" onclick='location.href="/admin/other/"'>
 			<a href="/admin/other/" class="side-nav-text "> <i
 				class="bi bi-check"></i>기타 관리

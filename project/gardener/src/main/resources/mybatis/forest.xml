@@ -24,4 +24,50 @@
   	DELETE FROM FOREST
   	WHERE FOREST_ID=#{forestId}
   </delete>
+  
+  <!--대량 처리 -->
+	<select id="list_pager" resultType="Forest">
+		SELECT * FROM FOREST 		
+		LIMIT #{offset}, #{perPage}
+	</select>
+
+	<select id="update_list" resultType="Forest">
+		Insert into FOREST
+		values
+		<foreach collection="list" item="item" separator=",">
+			(#{item.forestId},#{item.forestName},#{item.forestImage},#{item.forestInfo})
+		</foreach>
+		on duplicate key update
+		FOREST_NAME = VALUES(FOREST_NAME)
+		,FOREST_IMAGE = VALUES(FOREST_IMAGE)
+		,FOREST_INFO = VALUES(FOREST_INFO)
+		
+	
+	</select>
+
+	<insert id="insert_list">
+		INSERT INTO FOREST
+		VALUES
+		<foreach collection="list" item="item" separator="," index="index">
+			(
+			#{item.forestId}
+			,#{item.forestName}
+			,#{item.forestImage}
+			,#{item.forestInfo}
+			)
+		</foreach>
+	</insert>
+
+	<delete id="delete_list">		
+		DELETE FROM  FOREST		
+		WHERE FOREST_ID in (
+		<foreach collection="list" item="item" separator=",">
+				(#{item.forestId})
+		</foreach>
+		)		
+	</delete>
+
+	<select id="total" resultType="float">
+		select COUNT(*) from FOREST
+	</select>
 </mapper>

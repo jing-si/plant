@@ -73,6 +73,7 @@ $(function() {
 		action = $(this).attr("id");
 		switch (action) {
 			case "add":
+			insertCount=0;
 				commonAdd();
 				break;
 
@@ -434,7 +435,7 @@ function viewMarker(selectedRow) {
 
 			case "area":
 
-				temp.find(".showbox").removeClass("center").css("min-height", "200px")
+				temp.find(".showbox").removeClass("center showbox-restraint").css("min-height", "200px")
 
 				break;
 			case "file":
@@ -515,8 +516,8 @@ function commonAdd() {
 	//thead 만들기
 	let thead = $('<thead>')
 	let theadTr = $('<tr>')
-	theadTr.append($('<th class="center col-1">').append($("<div class='cell'>").text("+")));
-	theadTr.append($('<th class="center col-1">').append($("<div class='cell'>").text("No.#")));
+	theadTr.append($('<th class="col-auto">').append($("<div class='cell mx-2'>").text("+")));
+	theadTr.append($('<th class="center col-auto">').append($("<div class='cell'>").text("No.#")));
 	for (let a = 0; a < addType.length; a++) {
 		let th = $("<th class='center'>").append($("<div class='cell'>").text(addType[a][0]));
 		theadTr.append(th);
@@ -649,7 +650,7 @@ function makeGrid(data) {
 
 	//헤드 작업	
 	tr.append($('<th class="center col-auto" scope="col">')
-		.append($('<div class="cell">').append('<input type="checkbox" class="form-check-input">'))
+		.append($('<div class="cell">').append('<input type="checkbox" class="mx-3 form-check-input">'))
 	)
 	tr.append($('<th class="center col-auto" scope="col">')
 		.append($('<div class="cell">').text("No.#")));
@@ -857,7 +858,9 @@ function makeCell(val, col, row, name, type, action) {
 			temp.val(val).addClass(c).attr("name", name)
 			break;
 		case "date":
-			temp.val(val.split(" ")[0]).addClass(c).attr("name", name)
+			if(val != null)
+			temp.val(val.split(" ")[0])
+			temp.addClass(c).attr("name", name)
 			break;
 
 		case "area":
