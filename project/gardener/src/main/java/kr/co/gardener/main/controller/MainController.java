@@ -48,9 +48,10 @@ public class MainController {
 		
 	}
 	
+	// qr스캐너 테스트 중
 	@RequestMapping("/camera")
 	public String camera() {
-		return path + "camera06";
+		return path + "qrscanner";
 	}
 	
 	
