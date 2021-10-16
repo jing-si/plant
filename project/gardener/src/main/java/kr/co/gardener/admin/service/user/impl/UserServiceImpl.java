@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.gardener.admin.dao.user.UserDao;
-import kr.co.gardener.admin.model.user.Notice;
+import kr.co.gardener.admin.model.other.Notice;
 import kr.co.gardener.admin.model.user.User;
 import kr.co.gardener.admin.model.user.list.UserList;
 import kr.co.gardener.admin.service.user.UserService;

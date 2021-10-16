@@ -4,6 +4,8 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import kr.co.gardener.util.GridSystem;
 
 public class User extends GridSystem{
@@ -11,6 +13,7 @@ public class User extends GridSystem{
 	private String userNick;
 	private String userPass;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd",timezone="Asia/Seoul")
 	private Date userBirth;
 	private String userGender;
 	private int stateId;

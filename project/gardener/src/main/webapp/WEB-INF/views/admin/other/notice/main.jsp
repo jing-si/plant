@@ -10,7 +10,7 @@
 <jsp:include page="../../../include/head.jsp"></jsp:include>
 <script type="text/javascript">
 	$(function() {
-		$("div[data-url='user']").trigger("click")
+		$("div[data-url='notice']").trigger("click")
 
 	})//on load 끝
 </script>
@@ -36,10 +36,10 @@
 					<div class="row row-cols-2 mx-0 px-0">
 						<!--테이블 카테고리 선택상자  -->
 						<div class="col-10  hstack mx-3 pt-2 nav">
-							<div class="option col-2 pt-2 pb-3" data-url="user">
-								<h5 class="center"><i class="bi"></i> 유저 관리</h5>
+							<div class="option col-2 pt-2 pb-3" data-url="notice">
+								<h5 class="center"><i class="bi"></i> 공지 관리</h5>
 							</div>
-														
+							
 							
 						</div>
 						<div class="col-1 ">
@@ -74,7 +74,6 @@
 											<li><a class="dropdown-item" href="#">Separated link</a></li>
 										</ul>
 										<input type="text" class="form-control" placeholder="Search"
-											aria-label="Username"> <input type="text" class="form-control" placeholder="Search"
 											aria-label="Username"> <span class="input-group-text"
 											id="search"><i class="bi bi-search"></i></span>
 									</div>

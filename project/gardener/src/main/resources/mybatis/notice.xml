@@ -35,5 +35,51 @@
 		WHERE NOTICE_ID=#{noticeId}
 	</delete>
 
+	<!--대량 처리 -->
+	<select id="list_pager" resultType="Notice">
+		SELECT * FROM NOTICE		
+		LIMIT #{offset}, #{perPage}
+	</select>
+
+	<select id="update_list" resultType="Notice">
+		Insert into NOTICE
+		values
+		<foreach collection="list" item="item" separator=",">
+			(#{item.noticeId},#{item.noticeTitle},#{item.noticeDate},#{item.noticeContent})
+		</foreach>
+		on duplicate key update
+		NOTICE_TITLE = VALUES(NOTICE_TITLE)
+		, NOTICE_DATE = VALUES(NOTICE_DATE)
+		, NOTICE_CONTENT = VALUES(NOTICE_CONTENT)
+		
+	</select>
+
+	<insert id="insert_list">
+		INSERT INTO NOTICE
+		VALUES
+		<foreach collection="list" item="item" separator="," index="index">
+			(
+			#{item.noticeId}
+			,#{item.noticeTitle}
+			,now()
+			,#{item.noticeContent}
+			)
+		</foreach>
+	</insert>
+
+	<delete id="delete_list">		
+		DELETE FROM  NOTICE		
+		WHERE NOTICE_ID in (
+		<foreach collection="list" item="item" separator=",">
+				#{item.noticeId}
+		</foreach>
+		)		
+	</delete>
+
+	<select id="total" resultType="float">
+		select COUNT(*) from NOTICE
+	</select>
+
+	
 
 </mapper>
