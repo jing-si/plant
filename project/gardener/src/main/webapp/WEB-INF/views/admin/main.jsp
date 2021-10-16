@@ -15,6 +15,70 @@
 	})//on load 끝
 </script>
 <style type="text/css">
+	#align{
+	    width: 550px;
+	    margin: 0 auto;
+	    position: relative;
+	    display: inline-block;
+	}
+	#mainContent #logo{
+	    /* width: 70px; */
+	    /* height: 115.1px; */
+	    height: 150px;
+	    /* margin: 148px auto 30.9px 0; */
+	    margin-top: 148px;
+	    display: inline-block;
+	    float: left;
+	}
+	#logo img{
+		height: 150px;
+	}
+	#inputs{
+		width: 266px;
+		/* float: right; */
+		display: inline-block;
+		/* margin-top: 148px; */
+		display: inline-block;
+		margin: 150px 0px 0 40px;
+	}
+	#inputs p{
+		font-weight: bold;
+	}
+	input{
+		
+	    width: 266px;
+	    height: 45px;
+	    margin-bottom: 20px;
+	    position: relative;
+	    background-color: #f5f5f5;
+	    border-radius: 4px;
+	    border: 0px;
+	    padding: 12px;
+	    padding-right: 20px;
+	}
+	#login{
+		/* margin-top: 148px; */
+	    width: 100px;
+	    height: 110px;
+	    text-align: center;
+	    background-color: #66bb6a;
+	    float: right;
+	    /* background-color: 4px; */
+	    /* position: relative; */
+	    /* vertical-align: top; */
+	    display: inline-block;
+	    margin-top: 190px;
+	    color: #fff;
+	}
+	#login p{
+	    text-decoration: none;
+	    color: #fff;
+	    font-size: 15px;
+	    position: absolute;
+	    left: 41%;
+	    top: 25%;
+	
+	}
 </style>
 </head>
 <body>
@@ -22,7 +86,7 @@
 		<!--전체 div - 왼쪽 사이드와 메인을 나눠줌.-->
 		<div class="row">
 			<!--왼쪽 사이드 바 -->
-			<div class="rightSide col-1">
+			<div class="rightSide col-1  mx-0 px-0">
 				<div>
 				<jsp:include page="../include/left_side.jsp"></jsp:include>
 				</div>
@@ -55,9 +119,22 @@
 						<div class="col-12 ">
 							<section class="">
 								<div id="mainContent" class="col">
-
 									<div class="row mx-0">
-
+										<div id="align">
+											<div id="logo">
+												<img src="/resources/images/login-logo.png">
+											</div>
+											
+											<form method="post">
+												<div id="inputs">
+													<p>관리자 로그인</p>
+													<input id="email" placeholder="아이디" type="text" name="userId">
+													<input id="passWord" placeholder="비밀번호" type="password" name="userPass">
+												</div>
+													<input type="submit" id="login" class="border" value="로그인"></input>
+											</form>
+											
+										</div>
 
 									</div>
 								</div>

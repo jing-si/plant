@@ -15,8 +15,7 @@ import kr.co.gardener.admin.model.forest.Forest;
 import kr.co.gardener.admin.service.forest.ForestService;
 import kr.co.gardener.util.FileUpload;
 
-@Controller
-@RequestMapping("/admin/forests/forest")
+
 public class ForestController {
 	final String path = "admin/forests/forest/";
 

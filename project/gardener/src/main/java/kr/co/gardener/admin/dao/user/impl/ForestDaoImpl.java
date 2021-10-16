@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.gardener.admin.dao.user.ForestDao;
 import kr.co.gardener.admin.model.forest.Forest;
+import kr.co.gardener.util.Pager;
 @Repository
 public class ForestDaoImpl implements ForestDao {
 
@@ -37,6 +38,31 @@ public class ForestDaoImpl implements ForestDao {
 	@Override
 	public void delete(int forestId) {
 		sql.delete("forest.delete", forestId);
+	}
+
+	@Override
+	public List<Forest> list_pager(Pager pager) {
+		return sql.selectList("forest.list_pager", pager);
+	}
+
+	@Override
+	public float total(Pager pager) {
+		return sql.selectOne("forest.total", pager);
+	}
+
+	@Override
+	public void insert_list(List<Forest> list) {
+		sql.insert("forest.insert_list",list);
+	}
+
+	@Override
+	public void delete_list(List<Forest> list) {
+		sql.delete("forest.delete_list",list);		
+	}
+
+	@Override
+	public void update_list(List<Forest> list) {
+		sql.update("forest.update_list",list);		
 	}
 
 }
