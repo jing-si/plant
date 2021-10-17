@@ -15,6 +15,8 @@
 		$("#autoupdate").on("click",function(){
 			action = $(this).attr("id");
 			common();
+			$(".modal-title").text("회사 정보를 자동으로 업데이트 합니다.");
+			$(".commonModal").text("자동 업데이트");
 			$("#commonModal").modal("show");
 		});
 

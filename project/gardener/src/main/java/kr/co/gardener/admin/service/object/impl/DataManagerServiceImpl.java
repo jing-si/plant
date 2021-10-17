@@ -108,7 +108,9 @@ public class DataManagerServiceImpl implements DataManagerService {
 		
 		for (ApiProduct item : list) {
 			item.setCert(certService.getCertInfo(item.getCertName()));
-			item.setElId(botClassService.searchBotClass(item.getProductInfo()));			
+			int elId = botClassService.searchBotClass(item.getProductInfo());
+			item.setElId(elId);
+			if(elId == 0) item.setProdElcd("0");
 		}
 		
 			

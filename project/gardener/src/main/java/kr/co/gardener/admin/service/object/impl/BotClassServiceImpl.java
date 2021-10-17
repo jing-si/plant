@@ -51,7 +51,7 @@ public class BotClassServiceImpl implements BotClassService {
 		
 		for(BotClass data : this.list) {
 			//System.out.println("ProductInfo:"+ productInfo + ", className :" +data.getBotClassName() + ", count"+ productInfo.indexOf(data.getBotClassName()));
-			if(productInfo.indexOf(data.getBotClassName())>0) {
+			if(productInfo.indexOf(data.getBotClassName())>=0) {
 				
 				return data.getBotClassId();
 			}

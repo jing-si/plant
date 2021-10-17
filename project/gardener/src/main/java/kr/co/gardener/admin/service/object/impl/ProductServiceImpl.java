@@ -74,10 +74,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public void insert_list(ProductList list) {
-		List<Product> items = list.getList();
-		for(Product item : items) {
-			item.setElId(botClassService.searchBotClass(item.getProductInfo()));
-		}
+		List<Product> items = list.getList();		
 		dao.insert_list(items);
 	}
 
@@ -89,6 +86,15 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public void update_list(ProductList list) {
 		dao.update_list(list.getList());
+	}
+
+	@Override
+	public void autoUpdate(ProductList list) {
+		List<Product> items = list.getList();
+		for(Product item : items) {
+			item.setElId(botClassService.searchBotClass(item.getProductInfo()));
+		}
+		dao.autoClassify(items);
 	}
 
 }

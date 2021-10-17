@@ -78,4 +78,9 @@ public class ProductDaoImpl implements ProductDao {
 		return sql.selectList("product.combo");
 	}
 
+	@Override
+	public void autoClassify(List<Product> items) {
+		sql.update("product.autoClassify",items);
+	}
+
 }

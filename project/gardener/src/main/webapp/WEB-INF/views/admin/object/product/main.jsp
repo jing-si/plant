@@ -11,6 +11,14 @@
 <script type="text/javascript">
 	$(function() {
 		$("div[data-url='product']").trigger("click")
+		
+		$("#autoupdate").on("click",function(){
+			action = $(this).attr("id");
+			common();
+			$(".modal-title").text("제품 분류를 자동으로 업데이트 합니다.");
+			$(".commonModal").text("자동 업데이트");
+			$("#commonModal").modal("show");
+		});
 
 	})//on load 끝
 </script>
@@ -146,6 +154,10 @@
 								<hr class="mx-2 my-0 p-0">
 								<div id="update" class="commonAction center button  py-2">
 									<i class="bi bi-save"></i> 수 정
+								</div>
+								<hr class="mx-2 my-0 p-0">
+								<div id="autoupdate" class=" center button  py-2">
+									<i class="bi bi-save"></i> 자동 분류
 								</div>
 								<hr class="mx-2 my-0 p-0">
 							</div>

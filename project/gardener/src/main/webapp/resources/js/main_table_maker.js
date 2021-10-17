@@ -334,7 +334,8 @@ function fileUploader(inputs) {
 
 					if (data[index] != undefined) {
 						$(value).val(data[index]);
-						$(".C4").val(data[index]);
+						console.log(data[index]);
+						console.log($(value).val());
 					}
 				})
 

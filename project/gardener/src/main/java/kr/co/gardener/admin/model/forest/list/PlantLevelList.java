@@ -10,12 +10,12 @@ public class PlantLevelList extends CommonList<PlantLevel>{
 		
 		this.addTh("식물","plantName","none");
 		this.addTh("식물Level","plantLevelId","none");
-		this.addTh("식물Image","plantCategory","file");
+		this.addTh("식물Image","plantImage","file");
 		this.addTh("식물ID","plantId","hide");
 		
 		this.addInsert("식물ID","plantId","combo",0);
-		this.addInsert("식물이름","plantLevelId","number");
-		this.addInsert("식물카테고리","plantCategory","file");
+		this.addInsert("식물Level","plantLevelId","number");
+		this.addInsert("식물Image","plantImage","file");
 		
 		setView(true);
 		

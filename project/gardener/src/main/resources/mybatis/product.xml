@@ -74,6 +74,17 @@
 		select * from PRODUCT
 		where PRODUCT_NAME like #{search}
 	</select>
+	
+	<update id="autoClassify">
+		Insert into PRODUCT(PRODUCT_ID,EL_ID)
+		values
+		<foreach collection="list" item="item" separator=",">
+			(#{item.productId},			
+			#{item.elId})
+		</foreach>
+		on duplicate key update		
+		EL_ID = VALUES(EL_ID)
+	</update>
 
 
 
@@ -122,7 +133,7 @@
 	</update>
 	
 	<update id="api_insert_list">
-		Insert ignore into PRODUCT
+		Insert into PRODUCT
 		values
 		<foreach collection="list" item="item" separator=",">
 			(#{item.productId},
