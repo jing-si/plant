@@ -21,6 +21,7 @@ import kr.co.gardener.admin.service.object.ProductService;
 import kr.co.gardener.admin.service.object.TopClassService;
 import kr.co.gardener.admin.service.user.BookmarkService;
 import kr.co.gardener.main.vo.TopClassVO;
+import kr.co.gardener.main.vo.BrandVO;
 import kr.co.gardener.util.Pager;
 
 @Controller
@@ -51,8 +52,9 @@ public class CategoryController {
 		model.addAttribute("productCategoryList",list);
 		
 		//brandName(브랜드명),brandId(브랜드 아이디)가 들어있는 리스트 구현해주세요.		 
-		List<Company> companyList = companyService.list(new Pager()); 
-		model.addAttribute("brandList",companyList);
+//		List<Company> companyList = companyService.list(new Pager()); 
+//		model.addAttribute("brandList",companyList);
+		BrandVO brandVO = 
 		
 		//markId(인증마크 아이디), markImg(인증마크 이미지), markName(인증마크명)이 들어있는 리스트 구형해주세요.
 		model.addAttribute("markList",new ArrayList<String>());
