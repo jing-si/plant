@@ -128,6 +128,12 @@ public class SettingController {
 		
 		return "redirect:../../";
 	}
+	
+	//이용약관
+	@RequestMapping("/agreement")
+	public String agreement() {
+		return "main/login/agreement";
+	}
 
 //	@RequestMapping(value = "/out", method = RequestMethod.POST)
 //	public String out(String userId) {
