@@ -32,6 +32,8 @@ public class Product extends GridSystem {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy.MM.dd",timezone="Asia/Seoul")
 	protected Date productEndDate;
 	
+	protected String productInfo;
+	
 	private String companyName;
 	protected int g2bId;
 	protected int elId;
@@ -133,6 +135,12 @@ public class Product extends GridSystem {
 	}
 	public void setCompanyName(String companyName) {
 		this.companyName = companyName;
+	}
+	public String getProductInfo() {
+		return productInfo;
+	}
+	public void setProductInfo(String productInfo) {
+		this.productInfo = productInfo;
 	}
 	
 	

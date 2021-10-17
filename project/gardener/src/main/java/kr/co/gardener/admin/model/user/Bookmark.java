@@ -11,8 +11,8 @@ import kr.co.gardener.util.GridSystem;
 public class Bookmark extends GridSystem {
 	private int bookmarkId;
 	private String userId;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss",timezone="Asia/Seoul")
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy.MM.dd HH:mm:ss",timezone="Asia/Seoul")
+	@DateTimeFormat(pattern = "yyyy.MM.dd HH:mm:ss")
 	private Date bookmarkDatetime;
 	private int productId;
 	private String companyId;

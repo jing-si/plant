@@ -9,7 +9,8 @@ import kr.co.gardener.admin.service.object.MidClassService;
 import kr.co.gardener.util.Pager;
 @Service
 public class MidClassServiceImpl implements MidClassService {
-
+	
+	
 	@Autowired
 	MidClassDao dao;
 	

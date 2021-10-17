@@ -4,10 +4,9 @@ import kr.co.gardener.util.GridSystem;
 
 public class PlantLevel extends GridSystem{
 	private String plantName;
-	private int plantId;
-	private String plantImage;
 	private int plantLevelId;
-	
+	private String plantImage;	
+	private int plantId;
 	
 	
 	public String getPlantName() {

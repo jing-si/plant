@@ -12,8 +12,8 @@ public class History extends GridSystem{
 	private int historyId;
 	private String userId;
 	private String productId;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss",timezone="Asia/Seoul")
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy.MM.dd HH:mm:ss",timezone="Asia/Seoul")
+	@DateTimeFormat(pattern = "yyyy.MM.dd HH:mm:ss")
 	private Date historyDatetime;
 	private String historyComment;
 	

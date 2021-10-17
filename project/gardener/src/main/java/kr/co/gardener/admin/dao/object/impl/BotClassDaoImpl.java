@@ -47,4 +47,9 @@ public class BotClassDaoImpl implements BotClassDao {
 		sql.update("botclass.update_list", list);
 	}
 
+	@Override
+	public List<BotClass> list() {
+		return sql.selectList("botclass.list");
+	}
+
 }

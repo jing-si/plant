@@ -20,4 +20,6 @@ public interface BotClassDao {
 
 	void update(List<BotClass> list);
 
+	List<BotClass> list();
+
 }
