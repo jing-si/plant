@@ -31,7 +31,7 @@
     let item ;
 	$().ready(()=>{
 	 
-		//세이
+		//세이브
 	$(".save_btn").click(()=>{
       let aaa = [{
          userId:"A"
@@ -106,7 +106,14 @@
 		console.log(item);
 	})
 	
+	/* 
 	$("#image-container").on("mouseover", ".userPlant",function(data){
+		$(this).draggable();
+		
+	})
+	 */
+	 
+	$("#image-container").on("click", ".userPlant",function(data){
 		$(this).draggable();
 		
 	})

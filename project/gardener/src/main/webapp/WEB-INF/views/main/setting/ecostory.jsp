@@ -10,19 +10,76 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="/resources/css/eco-story.css">
+    <link rel="stylesheet" href="/resources/css/product-list.css">
+    
+    <style>
+    	#align{
+    		text-align: center;
+    	}
+    	#topTitle{
+    		margin-top: 20px;
+    		margin-bottom : 20px;
+    		font-size: 30px;
+    	}
+    	#middleTitle{
+    		margin-top: 10px;
+    		font-size: 20px;
+    		margin-bottom: 20px;
+    	}
+    	.mark img{
+    		width: 150px;
+    	}
+    	.title{
+    		font-size: 20px;
+    		margin-top: 10px;
+    		margin-bottom: 10px;
+    	}
+    	.content{
+    		text-align: left;
+    		margin-bottom: 50px;
+    	}
+	    .scroll{
+	    	overflow: auto;
+	    	height: calc(100vh - 59.5px - 44px);
+	    }
+    </style>
 </head>
 <body>
     <div id="header">
-        <a href="/login/setting/"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12l4.58-4.59z"/></svg></a>
+        <a href=""><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12l4.58-4.59z"/></svg></a>
         <p>친환경 이야기</p>
     </div>
-    <div id="body">
-        <div id="align">
-            <div id="big-title">친환경 인증 제품 이야기</div>
-            <div class="small-title">친환경 인증마크 종류</div>
+<div class="scroll">
+    <div id="align">
+        
+        <p id="topTitle">친환경 인증 제품 이야기</p>
+        <p id="middleTitle">친환경 인증 마크 종류</p>
+
+
+        <div class="mark">
+            <img src="/resources/images/mark_EcoCover.jpg">
+            <p class="title">환경표지제도</p>
+            <p class="content">환경표지제도는 같은 용도의 다른 제품에 비해 ‘제품의 환경성’을 개선한 경우 그 제품에 로고(환경표지)를 표시함으로써 소비자(구매자)에게 환경성 개선 정보를 제공하고, 소비자의 환경표지 제품 선호에 부응해 기업이 친환경제품을 개발·생산하도록 유도해 자발적 환경개선을 유도하는 자발적 인증제도입니다.</p>
         </div>
+
+        <div class="mark">
+            <img src="/resources/images/mark_EcoScore.jpg">
+            <p class="title">환경성적표지</p>
+            <p class="content">환경성적표지 제도는 제품 및 서비스의 환경성 제고를 위해 제품 및 서비스의 원료채취, 생산, 수송·유통, 사용, 폐기 등 전과정에 대한 환경영향을 계량적으로 표시하는 제도입니다.</p>
+        </div>
+
+        <div class="mark">
+            <img src="/resources/images/mark_LowCarbon.jpg">
+            <p class="title">저탄소제품</p>
+            <p class="content">일상 생활용품, 가정용 전기기기 등 모든 제품의 탄소배출량 정보를 공개하고
+                저탄소제품의 인증을 통해 시장주도의 저탄소 소비문화 확산에 기여합니다.<br>
+                저탄소제품 인증은 대상제품의 환경성적표지 환경성 정보 중 탄소발자국 값이 최대허용탄소배출량 이하이거나 최소탄소감축률 이상이여야 합니다.</p>
+        </div>
+
+
     </div>
+</div>
+
 
     <nav class="sticky">
         <a href="/login/"><div><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 5.69l5 4.5V18h-2v-6H9v6H7v-7.81l5-4.5M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/></svg><p id="home">홈</p>

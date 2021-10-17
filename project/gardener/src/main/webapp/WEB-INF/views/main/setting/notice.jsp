@@ -12,6 +12,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="/resources/css/notice.css">
+    
+    <style>
+    	.scroll{
+			overflow: auto;
+			height: calc(100vh - 59.5px - 44px);
+			width: 100%;
+		}
+    </style>
 </head>
 <body>
 <script src="/resources/js/jquery.min.js"></script>
@@ -29,7 +37,7 @@ $().ready(()=>{
         <a href="/login/setting/"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12l4.58-4.59z"/></svg></a>
         <p>공지사항</p>
     </div>
-    <div id="body">
+    <div id="body" class="scroll">
         <div id="align">
         
         <c:if test="${noticeList.size()<1}">
