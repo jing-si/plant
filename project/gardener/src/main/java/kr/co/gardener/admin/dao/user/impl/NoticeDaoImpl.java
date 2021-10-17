@@ -7,7 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.co.gardener.admin.dao.user.NoticeDao;
-import kr.co.gardener.admin.model.user.Notice;
+import kr.co.gardener.admin.model.other.Notice;
+import kr.co.gardener.util.Pager;
 @Repository
 public class NoticeDaoImpl implements NoticeDao {
 
@@ -37,6 +38,31 @@ public class NoticeDaoImpl implements NoticeDao {
 	@Override
 	public void delete(int noticeId) {
 		sql.delete("notice.delete", noticeId);
+	}
+
+	@Override
+	public List<Notice> list_pager(Pager pager) {
+		return sql.selectList("notice.list_pager", pager);
+	}
+
+	@Override
+	public float total(Pager pager) {
+		return sql.selectOne("notice.total", pager);
+	}
+
+	@Override
+	public void insert_list(List<Notice> list) {
+		sql.insert("notice.insert_list",list);
+	}
+
+	@Override
+	public void delete_list(List<Notice> list) {
+		sql.delete("notice.delete_list",list);
+	}
+
+	@Override
+	public void update_list(List<Notice> list) {
+		sql.update("notice.update_list",list);		
 	}
 
 }

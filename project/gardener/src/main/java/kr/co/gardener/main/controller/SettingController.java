@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import kr.co.gardener.admin.model.user.Notice;
+import kr.co.gardener.admin.model.other.Notice;
 import kr.co.gardener.admin.model.user.User;
 import kr.co.gardener.admin.service.user.NoticeService;
 import kr.co.gardener.admin.service.user.UserService;
@@ -127,6 +127,12 @@ public class SettingController {
 		service.delete(id);
 		
 		return "redirect:../../";
+	}
+	
+	//이용약관
+	@RequestMapping("/agreement")
+	public String agreement() {
+		return "main/login/agreement";
 	}
 
 //	@RequestMapping(value = "/out", method = RequestMethod.POST)

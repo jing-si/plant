@@ -25,22 +25,17 @@
 			<c:if test="${brandProductList.size()<1}">
 				<div class="brand">
                 <p class="brand-name">등록된 품목이 없습니다.</p>
-            </div></a>
+            </div>
 			</c:if>
 			
+			<c:if test="${brandProductList.size()>1}">
 			<c:forEach var="list" items="${brandProductList}">
 				<a href="product/${list.productId}"><div class="brand">
-                	<div class="brand-img">${list.productImg}</div>
+                	<div class="brand-img"><img src="${list.productImage}"></div>
                 	<p class="brand-name">${list.productName}</p>
             	</div></a>
 			</c:forEach>
-        
-<!-- 완성시 이부분 지우기 -->
-            <a href="/login/category/product/${productId}"><div class="brand">
-                <div class="brand-img">${productImgList}</div>
-                <p class="brand-name">${productNameList}</p>
-            </div></a>
-<!-- 여기까지 -->
+       		</c:if>
 
         </div>
     </div>

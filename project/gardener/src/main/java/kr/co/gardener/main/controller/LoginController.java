@@ -79,6 +79,12 @@ public class LoginController {
 		return service.duplication(id);
 	}
 	
+	//이용약관
+	@RequestMapping("/membership/agreement")
+	public String agreement() {
+		return path + "agreement";
+	}
+	
 	//비밀번호 재설정 메일발송
 	//당장 구현 불가
 	@RequestMapping("/pwupdate")

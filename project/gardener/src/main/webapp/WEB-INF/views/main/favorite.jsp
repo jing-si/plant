@@ -62,7 +62,7 @@
                         
                         <c:if test="${list_date.size()>0}">
                         <c:forEach var="list" items="${list_date}">
-                            <a href="../category/product/${list.productId}">
+                            <a href="../category/product/${list.productId}/${list.companyId}">
                             <div class="brand">
                                 <div class="brand-img" src="${list.productImage}"></div>
                                 <p class="brand-name">${list.productName}</p>
@@ -84,7 +84,7 @@
                     
                     <c:if test="${list_name.size()>0}">
                         <c:forEach var="list" items="${list_name}">
-                            <a href="../category/product/${list.productId}">
+                            <a href="../category/product/${list.productId}/${list.companyId}">
                             <div class="brand">
                                 <div class="brand-img" src="${list.productImage}"></div>
                                 <p class="brand-name">${list.productName}</p>

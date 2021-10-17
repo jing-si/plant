@@ -24,18 +24,19 @@ public class Product extends GridSystem {
 	protected int certId;
 	protected int productCertId;
 
-	@DateTimeFormat(pattern = "yyyy-MM-dd" )
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd",timezone="Asia/Seoul")
+	@DateTimeFormat(pattern = "yyyy.MM.dd" )
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy.MM.dd",timezone="Asia/Seoul")
 	protected Date productStartDate;
 
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd",timezone="Asia/Seoul")
+	@DateTimeFormat(pattern = "yyyy.MM.dd")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy.MM.dd",timezone="Asia/Seoul")
 	protected Date productEndDate;
-	protected String companyId;
+	
+	private String companyName;
 	protected int g2bId;
 	protected int elId;
 
-	
+	protected String companyId;
 
 	// 추가 필드
 	protected List<CertReason> certReasons;
@@ -86,13 +87,13 @@ public class Product extends GridSystem {
 		this.productCertId = productCertId;
 	}
 	public String getProductStartDate() {
-		return new SimpleDateFormat("yyyy-MM-dd").format(productStartDate);
+		return new SimpleDateFormat("yyyy.MM.dd").format(productStartDate);
 	}
 	public void setProductStartDate(Date productStartDate) {
 		this.productStartDate = productStartDate;
 	}
 	public String getProductEndDate() {
-		return new SimpleDateFormat("yyyy-MM-dd").format(productEndDate);
+		return new SimpleDateFormat("yyyy.MM.dd").format(productEndDate);
 	}
 	public void setProductEndDate(Date productEndDate) {
 		this.productEndDate = productEndDate;
@@ -127,7 +128,14 @@ public class Product extends GridSystem {
 	public void setCert(Cert cert) {
 		this.cert = cert;
 	}
-
+	public String getCompanyName() {
+		return companyName;
+	}
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
+	
+	
 	// api용 get,seet
 	
 

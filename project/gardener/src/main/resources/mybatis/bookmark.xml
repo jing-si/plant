@@ -38,10 +38,17 @@
 		#{bookmarkDatetime},null) -->
 		
 		INSERT INTO BOOKMARK
-		VALUES ((SELECT IFNULL(MAX(BOOKMARK_ID) + 1, 1) FROM BOOKMARK B where user_id = #{userId}),
+		VALUES ((SELECT IFNULL(MAX(BOOKMARK_ID) + 1, 1) FROM BOOKMARK B),
 		 		#{userId}, 
 				now(), 
-				#{productId})
+				#{productId},
+				#{companyId}
+				)
+				
+<!-- 		insert into bookmark
+		values #{userId}, 
+				now(), 
+				#{productId} -->
 
 	</insert>
 
@@ -112,6 +119,7 @@
 			,#{item.userId}
 			,#{item.bookmarkDatetime}
 			,#{item.productId}
+			,#{item.companyId}
 			)
 		</foreach>
 	</insert>
@@ -137,6 +145,10 @@
 		SELECT "1" AS "table",
 		USER_ID AS "id", USER_ID AS "text"
 		FROM USER
+		UNION
+		SELECT "2" AS "table",
+		COMPANY_ID AS "id", COMPANY_NAME AS "text"
+		FROM COMPANY
 		
 		
 	</select>

@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>admin</title>
+<title>'가꿈' 관리자 페이지</title>
 <jsp:include page="../../../include/head.jsp"></jsp:include>
 <script type="text/javascript">
 	$(function() {
@@ -190,7 +190,7 @@
 	<div class="modal fade" id="commonModal" tabindex="-1"
 		aria-labelledby="commonModalLabel" aria-hidden="true">
 		<div
-			class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+			class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="commonModalLabel">확 인 요 망</h5>

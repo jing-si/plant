@@ -369,7 +369,11 @@ a{
     width: 328px;
     height: calc(100vh - 56px - 35px);
     /* 100 - 하단메뉴바 - 타이틀 상단 마진*/
-    margin: 0 auto;
+    /* margin: 0 auto; */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform : translate(-50%, -50%);
 }
 
 

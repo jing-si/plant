@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>admin</title>
+<title>'가꿈' 관리자 페이지</title>
 <jsp:include page="../include/head.jsp"></jsp:include>
 <script type="text/javascript">
 	$(function() {
@@ -79,6 +79,15 @@
 	    top: 25%;
 	
 	}
+	#mainContent{
+	background-image: url("/resources/image/need/B1.jpg");
+	background-repeat: no-repeat;
+	background-color: #fbfadb;
+	height: 900px;
+	}
+	.option{
+		border-radius: 5px;
+	}
 </style>
 </head>
 <body>
@@ -97,11 +106,11 @@
 			<div class="col container-custom p-0">
 				<!--Header - 로고, 로그아웃, option-->
 				<header class="header border-bot">
-					<div class="row row-cols-2 ">
+					<div class="row row-cols-2 mx-0 px-0">
 						<!--테이블 카테고리 선택상자  -->
 						<div class="col-10  hstack mx-3 pt-2 nav">
-							<div class="option col-10 py-2" data-url="authority">
-								<h5 class="mx-4 my-auto">일반 소비자를 위한 친환경 제품 정보제공 시스템 <span class="text-success">'가꿈'</span></h5>
+							<div class="option col-8 pt-2 pb-2" data-url="authority">
+								<h5 class="mx-4 my-auto"><i class="bi bi-droplet"></i> 일반 소비자를 위한 친환경 제품 정보제공 시스템 <span class="text-success">'가꿈'</span></h5>
 							</div>
 						</div>
 						<div class="col-1 ">
@@ -144,24 +153,7 @@
 					</div>
 					<!--mainContent 영역 - end  -->
 
-					<!--subContent 영역-->
-					<div class="row my-2 ms-0 row-cols-2">
-						<!--sub-side 바 -->
-						<div id="sub-side" class="col-1 content-side">
-							
-							
-						</div>
-						<!--subside end-->
-
-						<!--subContent-->
-						<section class="col-11 ps-2">
-
-							<div id="subContent" class="col"></div>
-						</section>
-						<!--subContent - end-->
-
-					</div>
-					<!--subContent - end -->
+					
 
 				</div>
 				<!-- 메인 페이지 - end -->

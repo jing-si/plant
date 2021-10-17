@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="state">
+
+	<!--대량 처리 -->
+	<select id="list_pager" resultType="State">
+		SELECT * FROM STATE		
+		LIMIT #{offset}, #{perPage}
+	</select>
+
+	<select id="update_list" resultType="State">
+		Insert into STATE
+		values
+		<foreach collection="list" item="item" separator=",">
+			(#{item.stateId},#{item.stateName},#{item.stateMessage})
+		</foreach>
+		on duplicate key update
+		STATE_NAME = VALUES(STATE_NAME)
+		, STATE_MESSAGE = VALUES(STATE_MESSAGE)
+		
+	</select>
+
+	<insert id="insert_list">
+		INSERT INTO STATE
+		VALUES
+		<foreach collection="list" item="item" separator="," index="index">
+			(
+			#{item.stateId}
+			,#{item.stateName}
+			,#{item.stateMessage}
+			)
+		</foreach>
+	</insert>
+
+	<delete id="delete_list">		
+		DELETE FROM  STATE		
+		WHERE STATE_ID in (
+		<foreach collection="list" item="item" separator=",">
+				#{item.stateId}
+		</foreach>
+		)		
+	</delete>
+
+	<select id="total" resultType="float">
+		select COUNT(*) from STATE
+	</select>
+
+	
+	
+
+</mapper>

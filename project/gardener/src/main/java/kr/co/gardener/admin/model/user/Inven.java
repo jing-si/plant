@@ -25,4 +25,12 @@ public class Inven extends GridSystem{
 	public void setInvenAmount(int invenAmount) {
 		this.invenAmount = invenAmount;
 	}
+	public String getPlantName() {
+		return plantName;
+	}
+	public void setPlantName(String plantName) {
+		this.plantName = plantName;
+	}
+	
+	
 }

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="randomMessage">
+
+	<!--대량 처리 -->
+	<select id="list_pager" resultType="RandomMessage">
+		SELECT * FROM RANDOM_MESSAGE		
+		LIMIT #{offset}, #{perPage}
+	</select>
+
+	<select id="update_list" resultType="RandomMessage">
+		Insert into RANDOM_MESSAGE
+		values
+		<foreach collection="list" item="item" separator=",">
+			(#{item.randomMessageId},#{item.randomMessageCategory},#{item.randomMessageText})
+		</foreach>
+		on duplicate key update
+		RANDOM_MESSAGE_CATEGORY = VALUES(RANDOM_MESSAGE_CATEGORY)
+		, RANDOM_MESSAGE_TEXT = VALUES(RANDOM_MESSAGE_TEXT)
+		
+	</select>
+
+	<insert id="insert_list">
+		INSERT INTO RANDOM_MESSAGE
+		VALUES
+		<foreach collection="list" item="item" separator="," index="index">
+			(
+			#{item.randomMessageId}
+			,#{item.randomMessageCategory}
+			,#{item.randomMessageText}
+			)
+		</foreach>
+	</insert>
+
+	<delete id="delete_list">		
+		DELETE FROM  RANDOM_MESSAGE		
+		WHERE RANDOM_MESSAGE_ID in (
+		<foreach collection="list" item="item" separator=",">
+				#{item.randomMessageId}
+		</foreach>
+		)		
+	</delete>
+
+	<select id="total" resultType="float">
+		select COUNT(*) from RANDOM_MESSAGE
+	</select>
+
+	
+	
+
+</mapper>

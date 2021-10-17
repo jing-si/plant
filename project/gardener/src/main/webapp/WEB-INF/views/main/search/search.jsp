@@ -19,7 +19,7 @@
     	width: 100%;
     	height: 100%;
     }
-    #scroll{
+    .scroll{
     	overflow: auto;
     }
     </style>
@@ -39,8 +39,8 @@
         </svg><img src="/resources/images/qr-text.png">
        </div>
     </div>
-	<div id="scroll">
-    <div id="body">
+    
+    <div id="body" class="scroll">
         <div id="align">
         	
         <c:if test="${latestProducList.size()<1}">
@@ -80,7 +80,7 @@
         
 
                 <c:forEach var="list" items="${list}">
-        	<a href="../category/product/${list.productId}"><div class="brand">
+        	<a href="../category/product/${list.productId}/${list.companyId}"><div class="brand">
                 <div class="brand-img"><img src="${list.productImage}"></div>
                 <p class="brand-name">${list.productName}</p>
             </div></a>
@@ -100,7 +100,6 @@
 <!-- 여기까지 -->
 
         </div>
-    </div>
     </div>
 
     <nav class="sticky">

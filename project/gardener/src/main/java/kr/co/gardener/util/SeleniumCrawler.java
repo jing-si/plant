@@ -16,7 +16,7 @@ public class SeleniumCrawler {
 	private String url;
 	
 	public SeleniumCrawler() {
-		Properties pro = FileUpload.makeProp();
+		Properties pro = FileUploader.makeProp();
 		String driverPath = pro.getProperty("java.chromeDriver.path");
 		
 		System.setProperty("webdriver.chrome.driver", driverPath);

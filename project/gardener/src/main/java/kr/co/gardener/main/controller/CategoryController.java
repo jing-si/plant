@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.gardener.admin.model.object.Company;
 import kr.co.gardener.admin.model.object.Product;
-import kr.co.gardener.admin.model.object.productCategoryList;
 import kr.co.gardener.admin.model.user.Bookmark;
 import kr.co.gardener.admin.model.user.User;
-import kr.co.gardener.admin.service.object.ClassifyService;
 import kr.co.gardener.admin.service.object.CompanyService;
 import kr.co.gardener.admin.service.object.ProductService;
+import kr.co.gardener.admin.service.object.TopClassService;
 import kr.co.gardener.admin.service.user.BookmarkService;
+import kr.co.gardener.main.vo.TopClassVO;
 import kr.co.gardener.util.Pager;
 
 @Controller
@@ -29,7 +29,7 @@ public class CategoryController {
 	final String path = "main/category/";
 	
 	@Autowired
-	ClassifyService cs;
+	TopClassService topClassService;
 	
 	@Autowired
 	CompanyService companyService;
@@ -46,7 +46,7 @@ public class CategoryController {
 		//productCategoryName(품목별 카테고리 대분류명),
 		//subProductCategoryList(productId(품목아이디)와 subProductCategoryName(중분류 카테고리명)이 들어있는 리스트)
 		//이 들어있는 품목 대분류 리스트 구현해주세요.(리스트 안에 리스트가 들어있는거 맞습니다^^)
-		List<productCategoryList> list = cs.productCategoryList();
+		List<TopClassVO> list = topClassService.includMidClassList();
 		
 		model.addAttribute("productCategoryList",list);
 		
@@ -73,12 +73,11 @@ public class CategoryController {
 	}
 	
 	//해당 제품의 상세페이지
-	@RequestMapping("/product/{productId}")
-	public String productdetail(@PathVariable String productId, Model model) {
-
-		Company company = companyService.productId(productId);	
-		//uri로 받은 productId에 해당하는 productId(동일브랜드 제품의 아이디) sameBrandImg(동일브랜드 제품의 이미지), sameBrandName(동일브랜드 제품명)
-		//이 들어있는 리스트 구현해주세요.
+	@RequestMapping("/product/{productId}/{companyId}")
+	public String productdetail(@PathVariable String productId,@PathVariable String companyId, Model model,HttpSession session) {
+		String userId = ((User) session.getAttribute("user")).getUserId();		
+			
+		Company company = companyService.itemIncludeProduct(companyId,userId);
 		Product item = company.getProduct(productId);
 		model.addAttribute("company",company);
 		model.addAttribute("item",item);
@@ -87,13 +86,16 @@ public class CategoryController {
 	
 	//브랜드별 카테고리
 	@RequestMapping("/brand/{companyId}")
-	public String brandList(Model model,@PathVariable int companyId) {
+	public String brandList(Model model,@PathVariable String companyId,HttpSession session) {
+		String userId = ((User) session.getAttribute("user")).getUserId();		
+		
+		Company company = companyService.itemIncludeProduct(companyId,userId);
 		
 		//브랜드 이름
-		model.addAttribute("brandName","brandName");
+		model.addAttribute("brandName",company.getCompanyName());
 		//productId(브랜드별 제품 아이디), productImg(브랜드별 제품이미지)
 		//productName(브랜드별 제품명)이 들어있는 리스트 구현해주세요.
-		  model.addAttribute("brandProductList",new ArrayList<String>());
+		  model.addAttribute("brandProductList",company.getList());
 		 
 		
 		//가상데이터
@@ -101,7 +103,6 @@ public class CategoryController {
 		 * model.addAttribute("brandName","브랜드1"); List<Product> list = new
 		 * ArrayList<Product>(); Product l1 = new Product(); l1.set
 		 */
-		model.addAttribute("brandProductList",new ArrayList<String>());
 		return path + "brand-list";
 	}
 	
@@ -124,27 +125,31 @@ public class CategoryController {
 	}
 	
 	
-	
+	//제품상세 페이지에서 즐겨찾기 추가
 	@RequestMapping("/product/insert")
 	@ResponseBody
-	public void insert(int productId,HttpSession session) {
-		String userId = (String) session.getAttribute("userId");
+	public void insert(int productId,HttpSession session, String companyId) {
+		String userId = ((User) session.getAttribute("user")).getUserId();
 		
 		Bookmark item = new Bookmark();
 		item.setProductId(productId);
+		item.setCompanyId(companyId);
 		item.setUserId(userId);
 		
 		bookmarkService.add(item);
 	}
 	
+	//제품상세 페이지에서 즐겨찾기 삭제
 	@RequestMapping("/product/delete")
 	@ResponseBody
 	public void delete(int productId, HttpSession session) {
-		String userId = (String) session.getAttribute("userId");
+		String userId = ((User) session.getAttribute("user")).getUserId();
 		
 		Bookmark item = new Bookmark();
 		item.setProductId(productId);
 		item.setUserId(userId);
+		System.out.println(item.getProductId());
+		System.out.println(item.getUserId());
 		
 		bookmarkService.delete(item);
 	}

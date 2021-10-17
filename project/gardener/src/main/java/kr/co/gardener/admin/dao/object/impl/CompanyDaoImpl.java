@@ -1,5 +1,6 @@
 package kr.co.gardener.admin.dao.object.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -29,7 +30,7 @@ public class CompanyDaoImpl implements CompanyDao {
 	public Company productId(String productId) {
 		return sql.selectOne("company.productId", productId);
 	}
-
+	
 	@Override
 	public void insert_list(List<Company> list) {
 		sql.insert("company.insert_list", list);
@@ -59,6 +60,13 @@ public class CompanyDaoImpl implements CompanyDao {
 	public void insert(Company item) {
 		sql.update("company.insert",item);
 	}
+
+	@Override
+	public Company itemIncludeProduct(HashMap<String, String> hm) {
+		return sql.selectOne("company.includeProduct", hm);
+	}
+
+	
 	
 
 }

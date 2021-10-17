@@ -1,6 +1,7 @@
 package kr.co.gardener.admin.service.object.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -41,16 +42,17 @@ public class CompanyServiceImpl implements CompanyService {
 	}
 
 	@Override
-	public void autoUpdate(List<String> companyIds) {
-		List<Company> list = new ArrayList<Company>();
-		companyIds.forEach((data)->{
-			System.out.print("companyID :" +data);
-			Company company = search(data.replaceAll("-", ""));
-			System.out.print(company.toString() + "\n");
-			list.add(company);
+	public void autoUpdate(CompanyList item) {
+		List<Company> list = item.getList();
+		List<Company> updateList = new ArrayList<Company>();
+		list.forEach((data)->{			
+			data = search(data.getCompanyId().replaceAll("-", ""));
+			updateList.add(data);
 		});
 		
-		dao.insert_list(list);
+		
+		
+		dao.update_list(updateList);
 	}
 
 	@Override
@@ -97,6 +99,17 @@ public class CompanyServiceImpl implements CompanyService {
 			return true;
 		}
 		
+	}
+
+
+
+
+	@Override
+	public Company itemIncludeProduct(String companyId, String userId) {
+		HashMap<String,String> hm = new HashMap<>();
+		hm.put("companyId", companyId);
+		hm.put("userId", userId);
+		return dao.itemIncludeProduct(hm);
 	}
 	
 	

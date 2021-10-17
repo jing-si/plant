@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>admin</title>
+<title>'가꿈' 관리자 페이지</title>
 <jsp:include page="../../../include/head.jsp"></jsp:include>
 <script type="text/javascript">
 	$(function() {
@@ -39,7 +39,7 @@
 							<div class="option col-2 pt-2 pb-3" data-url="user">
 								<h5 class="center"><i class="bi"></i> 유저 관리</h5>
 							</div>
-							
+														
 							
 						</div>
 						<div class="col-1 ">
@@ -74,6 +74,7 @@
 											<li><a class="dropdown-item" href="#">Separated link</a></li>
 										</ul>
 										<input type="text" class="form-control" placeholder="Search"
+											aria-label="Username"> <input type="text" class="form-control" placeholder="Search"
 											aria-label="Username"> <span class="input-group-text"
 											id="search"><i class="bi bi-search"></i></span>
 									</div>

@@ -3,12 +3,12 @@
 <div class="col mt-3">
 	<!-- 로고 -->
 	<div id="logo" class="mt-4">
-		<a href="../../"> <img class="logo" alt="logo"
+		<a href="/admin/"> <img class="logo" alt="logo"
 			src="/resources/image/need/logo_3.png">
 		</a>
 	</div>
 	<div>
-		<br> <br>
+		<br>
 
 	</div>
 	<!-- 네비 -->
@@ -233,22 +233,7 @@
 
 				<hr class="mx-0 my-0 p-0 side-hr">
 				
-				<!-- 링크 박스 -->
-				<div id="nav-policy"  class="row side-nav">
-					<div class="px-0 mx-0 col">
-						<div class="px-0 mx-0 activeable"></div>
-					</div>
-					<div class="col-10 mx-0 p-0">
-						<div class="side-nav-text   m-0  py-2 px-1 "
-							onclick='location.href="/admin/policy/?nav=policy"'>
-							<i class="bi bi-nut"></i> 정책 관리
-						</div>
-
-					</div>
-				</div>
-				<!-- 링크 박스 끝-->
 				
-				<hr class="mx-0 my-0 p-0 side-hr">
 			</div>
 			<!-- 그룹 박스 끝 -->
 		</nav>
