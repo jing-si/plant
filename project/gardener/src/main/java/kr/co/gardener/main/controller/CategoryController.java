@@ -54,7 +54,9 @@ public class CategoryController {
 		//brandName(브랜드명),brandId(브랜드 아이디)가 들어있는 리스트 구현해주세요.		 
 //		List<Company> companyList = companyService.list(new Pager()); 
 //		model.addAttribute("brandList",companyList);
-		BrandVO brandVO = 
+		List<BrandVO> brandList = companyService.brandList();
+		
+		model.addAttribute("brandList", brandList);
 		
 		//markId(인증마크 아이디), markImg(인증마크 이미지), markName(인증마크명)이 들어있는 리스트 구형해주세요.
 		model.addAttribute("markList",new ArrayList<String>());
