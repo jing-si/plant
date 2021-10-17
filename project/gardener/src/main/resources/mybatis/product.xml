@@ -36,6 +36,7 @@
 		#{productCertId},
 		#{productStartDate},
 		#{productEndDate},
+		#{item.productInfo},
 		#{companyId},
 		#{g2bId},
 		#{elId}
@@ -96,6 +97,7 @@
 			#{item.productCertId},
 			#{item.productStartDate},
 			#{item.productEndDate},
+			#{item.productInfo},
 			#{item.companyId},
 			#{item.g2bId},
 			#{item.elId})
@@ -112,6 +114,7 @@
 		VALUES(PRODUCT_START_DATE),
 		PRODUCT_END_DATE =
 		VALUES(PRODUCT_END_DATE),
+		PRODUCT_INFO = VALUES(PRODUCT_INFO),
 		COMPANY_ID = VALUES(COMPANY_ID),
 		G2B_ID =
 		VALUES(G2B_ID),
@@ -130,9 +133,10 @@
 			#{item.productCertId},
 			#{item.productStartDate},
 			#{item.productEndDate},
+			#{item.productInfo},
 			#{item.companyId},
 			#{item.g2bId},
-			0)
+			#{item.elId})
 		</foreach>
 				
 	</update>
@@ -150,6 +154,7 @@
 			#{item.productCertId},
 			#{item.productStartDate},
 			#{item.productEndDate},
+			#{item.productInfo},
 			#{item.companyId},
 			#{item.g2bId},
 			0)

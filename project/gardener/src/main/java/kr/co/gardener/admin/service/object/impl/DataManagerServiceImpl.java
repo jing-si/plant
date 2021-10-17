@@ -15,8 +15,10 @@ import com.google.gson.JsonParser;
 import kr.co.gardener.admin.dao.object.DataManagerDao;
 import kr.co.gardener.admin.model.object.ApiProduct;
 import kr.co.gardener.admin.model.object.Company;
+import kr.co.gardener.admin.model.object.Product;
 import kr.co.gardener.admin.model.object.ProductCertReason;
 import kr.co.gardener.admin.model.object.list.ApiProductList;
+import kr.co.gardener.admin.service.object.BotClassService;
 import kr.co.gardener.admin.service.object.CertReasonService;
 import kr.co.gardener.admin.service.object.CertService;
 import kr.co.gardener.admin.service.object.DataManagerService;
@@ -40,6 +42,9 @@ public class DataManagerServiceImpl implements DataManagerService {
 
 	@Autowired
 	ProductCertReasonService productCertReasonService;
+	
+	@Autowired
+	BotClassService botClassService;
 
 	@Override
 	public List<Company> list(int start, int end) {
@@ -100,9 +105,13 @@ public class DataManagerServiceImpl implements DataManagerService {
 	public void UploadApiProduct(ApiProductList apiProductList) {
 		// 이건 일차원적인 해결 방법 뿐이 없는것일까?
 		List<ApiProduct> list = apiProductList.getList();
+		
 		for (ApiProduct item : list) {
 			item.setCert(certService.getCertInfo(item.getCertName()));
+			item.setElId(botClassService.searchBotClass(item.getProductInfo()));			
 		}
+		
+			
 		dao.UploadApiProduct(list);
 	}
 

@@ -13,4 +13,6 @@ public interface BotClassService {
 
 	void update(BotClassList list);
 
+	int searchBotClass(String productInfo);
+
 }

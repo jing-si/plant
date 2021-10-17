@@ -4,6 +4,9 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="botclass">
+	<select id="list" resultType="BotClass">
+		SELECT * FROM BOT_CLASS
+	</select>
 	
 	<!--대량 처리 -->
 	<select id="list_pager" resultType="BotClass">

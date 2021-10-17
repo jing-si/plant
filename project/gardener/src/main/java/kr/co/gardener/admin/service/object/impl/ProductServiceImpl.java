@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import kr.co.gardener.admin.dao.object.ProductDao;
 import kr.co.gardener.admin.model.object.Product;
 import kr.co.gardener.admin.model.object.list.ProductList;
+import kr.co.gardener.admin.service.object.BotClassService;
 import kr.co.gardener.admin.service.object.CertService;
 import kr.co.gardener.admin.service.object.ProductService;
 import kr.co.gardener.util.Pager;
@@ -20,6 +21,9 @@ public class ProductServiceImpl implements ProductService {
 	
 	@Autowired
 	CertService certService;
+	
+	@Autowired
+	BotClassService botClassService; 
 	
 	@Override
 	public void add(Product product) {
@@ -71,7 +75,9 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public void insert_list(ProductList list) {
 		List<Product> items = list.getList();
-	
+		for(Product item : items) {
+			item.setElId(botClassService.searchBotClass(item.getProductInfo()));
+		}
 		dao.insert_list(items);
 	}
 

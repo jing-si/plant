@@ -411,6 +411,7 @@ label {
 				$("#certName").val(product.certName);
 				$("#prodInrs").val(product.prodInrs);
 				$("#elId").val(product.elId);
+				$("#productInfo").val(product.productInfo);
 				if(product.provimg != null)
 				$("#productImage").attr("src",product.productImage);
 
@@ -571,10 +572,7 @@ label {
 															data-kind="Api">API
 															<div class="company_span black"></div>
 														</li>
-														<li class="col-3 nav_icon" data-sub="product"
-															data-kind="Db">DB
-															<div class="company_span "></div>
-														</li>
+														
 													</ul>
 												</div>
 
@@ -728,7 +726,10 @@ label {
 													<input type="text" class="form-control" id="elId">
 												</div>
 												<div class="input-group mb-4">
-
+													<span class="input-group-text col-4 textcenter">제품 정보</span>
+													<input type="text" class="form-control" id="productInfo">
+												</div>
+												<div class="input-group mb-4">
 													<img alt="" src="" id="productImage" class="productImage">
 												</div>
 											</div>
