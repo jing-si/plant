@@ -4,6 +4,7 @@ import java.util.List;
 
 import kr.co.gardener.admin.model.object.Company;
 import kr.co.gardener.admin.model.object.list.CompanyList;
+import kr.co.gardener.main.vo.BrandVO;
 import kr.co.gardener.util.Pager;
 
 public interface CompanyService {
@@ -30,6 +31,8 @@ public interface CompanyService {
 
 
 	Company itemIncludeProduct(String companyId, String userId);
+
+	List<BrandVO> brandList();
 
 
 }

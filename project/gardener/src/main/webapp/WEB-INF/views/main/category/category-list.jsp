@@ -6,7 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, user-scalable=no">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
@@ -53,7 +54,8 @@ a {
 	text-decoration: none;
 	color: #333;
 }
-.scroll{
+
+.scroll {
 	overflow: auto;
 	height: calc(100vh - 59.5px - 44px - 50px);
 }
@@ -275,15 +277,15 @@ a {
 </head>
 <body>
 	<script>
-	/*
- $().ready(()=>{
-	$(".menu-toggle-btn").click(function(){
-		$(".gnb").addClass("hide");
-		$(".i"+$(this).data("index")).removeClass("hide")
-	})
-})
-*/
-</script>
+		/*
+		$().ready(()=>{
+		$(".menu-toggle-btn").click(function(){
+			$(".gnb").addClass("hide");
+			$(".i"+$(this).data("index")).removeClass("hide")
+		})
+		})
+		 */
+	</script>
 
 	<div id="title">
 		<p>카테고리</p>
@@ -312,23 +314,18 @@ a {
 									</div>
 									<c:forEach var="item" items="${list.midList}">
 										<a href="/login/category/${item.midClassId}">
-										<div id="product-subtitle-sub-box" class="gnb hide i${list.topClassName }">
+											<div id="product-subtitle-sub-box"
+												class="gnb hide i${list.topClassName }">
 												<div class="product-subtitle-sub">${item.midClassName}</div>
 											</div>
 										</a>
 									</c:forEach>
-									</div>
+								</div>
 							</c:forEach>
 						</div>
-					</div>
-		
-
-
-
-		</li><li>
-		<a href="#tab2" class="btn"><p class="btn-title">브랜드</p>
-				<span id="bar"></a>
-			<div id="tab3" class="cont scroll">
+					</div></li>
+				<li><a href="#tab2" class="btn"><p class="btn-title">브랜드</p>
+						<span id="bar"></a> <%-- 			<div id="tab3" class="cont scroll">
 				<div id="brand-body">
 					<c:forEach var="list" items="${brandList}">
 						<a href="brand/${list.companyId}/"><div class="brand-subtitle">
@@ -339,56 +336,72 @@ a {
 									
 											<path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6-6-6z" /></svg>
 							</div></a>
-					</c:forEach>
+					</c:forEach> --%>
 
 
-					<!-- 완성시 이부분 지우기 -->
-					<a href="brand"><div class="brand-subtitle">
-							<p>Brand 1</p>
-							<svg xmlns="http://www.w3.org/2000/svg" height="24px"
-										viewBox="0 0 24 24" width="24px" fill="#000000">
-								<path d="M0 0h24v24H0V0z" fill="none" />
-								
-										<path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6-6-6z" /></svg>
-						</div></a>
-					<!-- 여기까지 -->
-				</div>
-			</div>
-			</li><li>
-		<a href="#tab3" class="btn"><p class="btn-title">인증마크</p>
-				<span id="bar"></a>
-			<div id="tab3" class="cont scroll">
-				<div id="mark-body">
-					<c:forEach var="list" items="${markList}">
-						<a href="mark/${list.markId}/"><div class="mark">
-								<div class="mark-img">${list.markImg}</div>
-								<div class="mark-name">${list.markName}</div>
-							</div></a>
-					</c:forEach>
+					<div id="tab3" class="cont scroll">
+						<div id="product-body">
 
-					<!-- 완성시 이부분 지우기 -->
-					<a href="mark"><div class="mark">
-							<div class="mark-img"></div>
-							<div class="mark-name">mark 1</div>
-						</div></a><a href="mark"><div class="mark">
-							<div class="mark-img"></div>
-							<div class="mark-name">mark 1</div>
-						</div></a><a href="mark"><div class="mark">
-							<div class="mark-img"></div>
-							<div class="mark-name">mark 1</div>
-						</div></a><a href="mark"><div class="mark">
-							<div class="mark-img"></div>
-							<div class="mark-name">mark 1</div>
-						</div></a>
-					<!-- 여기까지 -->
+							<c:forEach var="list" items="${brandList}">
+								<div id="categoryBundle">
+									<div id="product-subtitle" class="menu-toggle-btn"
+										data-index="${list.title}">
+										<p>${list.title}</p>
+										<svg xmlns="http://www.w3.org/2000/svg" height="24px"
+											viewBox="0 0 24 24" width="24px" fill="#000000">
+											<path d="M24 24H0V0h24v24z" fill="none" opacity=".87" />
+											<path
+												d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6-1.41-1.41z" />
+										</svg>
+									</div>
 
-				</div>
-			</div></li>
+									<c:forEach var="item" items="${list.list}">
+										<a href="/login/category/${item.companyId}">
+											<div id="product-subtitle-sub-box"
+												class="gnb hide i${list.title}">
+												<div class="product-subtitle-sub">${item.companyName}</div>
+											</div>
+										</a>
+									</c:forEach>
+								</div>
+							</c:forEach>
+
+						</div>
+					</div></li>
+				<li><a href="#tab3" class="btn"><p class="btn-title">인증마크</p>
+						<span id="bar"></a>
+					<div id="tab3" class="cont scroll">
+						<div id="mark-body">
+							<c:forEach var="list" items="${markList}">
+								<a href="mark/${list.markId}/"><div class="mark">
+										<div class="mark-img">${list.markImg}</div>
+										<div class="mark-name">${list.markName}</div>
+									</div></a>
+							</c:forEach>
+
+							<!-- 완성시 이부분 지우기 -->
+							<a href="mark"><div class="mark">
+									<div class="mark-img"></div>
+									<div class="mark-name">mark 1</div>
+								</div></a><a href="mark"><div class="mark">
+									<div class="mark-img"></div>
+									<div class="mark-name">mark 1</div>
+								</div></a><a href="mark"><div class="mark">
+									<div class="mark-img"></div>
+									<div class="mark-name">mark 1</div>
+								</div></a><a href="mark"><div class="mark">
+									<div class="mark-img"></div>
+									<div class="mark-name">mark 1</div>
+								</div></a>
+							<!-- 여기까지 -->
+
+						</div>
+					</div></li>
 
 
-		</ul>
-		
-	</div>
+			</ul>
+
+		</div>
 	</div>
 
 	<nav class="sticky">
@@ -436,5 +449,4 @@ a {
 				<p>설정</p>
 			</div></a>
 	</nav>
-
 </html>
