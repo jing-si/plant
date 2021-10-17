@@ -48,16 +48,18 @@ public class UserForestController {
 		return path + "/setforest";
 	}
 	
-	@RequestMapping("userforest/setforest/init2")
-	@ResponseBody
-	public List<Location> init2(HttpSession session) {
-		User user = (User) session.getAttribute("user");
-		List<Location> list = lService.list(user.getUserId());		
-		list.forEach((data)->{
-			System.out.println(data.toString());
-		});
-		return list;
-	}
+//	
+//	@RequestMapping("userforest/setforest/init2")
+//	@ResponseBody
+//	public List<Location> init2(HttpSession session) {
+//		User user = (User) session.getAttribute("user");
+//		List<Location> list = lService.list(user.getUserId());		
+//		list.forEach((data)->{
+//			System.out.println(data.toString());
+//		});
+//		return list;
+//	}
+//	
 	
 	@ResponseBody
 	   @RequestMapping("/setforest/update")
