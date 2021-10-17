@@ -4,7 +4,7 @@ import java.util.List;
 
 import kr.co.gardener.util.GridSystem;
 
-public class productCategoryList extends GridSystem {
+public class productCategoryList{
 	private String productCategoryName;
 	private String productCategoryId;
 	private List<Classify> midList;
