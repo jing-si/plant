@@ -12,14 +12,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
 	
     <link rel="stylesheet" href="/resources/css/product-list.css">
-	
+	<style type="text/css">
+    img{
+    	width: 100%;
+    	height: 100%;
+    }
+	.scroll{
+	    	overflow: auto;
+	    	height: calc(100vh - 59.5px - 44px);
+	    }
+    </style>
 </head>
 <body>
     <div id="header">
         <a href="/login/category/"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12l4.58-4.59z"/></svg></a>
         <p>${brandName}</p>
     </div>
-    <div id="body">
+    <div id="body" class="scroll">
         <div id="align">
         
 			<c:if test="${brandProductList.size()<1}">
@@ -30,7 +39,7 @@
 			
 			<c:if test="${brandProductList.size()>1}">
 			<c:forEach var="list" items="${brandProductList}">
-				<a href="product/${list.productId}"><div class="brand">
+				<a href="../../product/${list.productId}/${list.companyId}"><div class="brand">
                 	<div class="brand-img"><img src="${list.productImage}"></div>
                 	<p class="brand-name">${list.productName}</p>
             	</div></a>
