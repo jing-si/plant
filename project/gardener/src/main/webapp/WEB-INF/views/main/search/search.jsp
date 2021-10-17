@@ -39,8 +39,8 @@
         </svg><img src="/resources/images/qr-text.png">
        </div>
     </div>
-	<div id="scroll">
-    <div id="body">
+    
+    <div id="body scroll">
         <div id="align">
         	
         <c:if test="${latestProducList.size()<1}">
@@ -100,7 +100,6 @@
 <!-- 여기까지 -->
 
         </div>
-    </div>
     </div>
 
     <nav class="sticky">
