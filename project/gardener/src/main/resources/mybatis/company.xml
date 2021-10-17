@@ -64,10 +64,10 @@
 		select count(*) from COMPANY
 	</select>
 	
-	<select id="include_product" resultMap="icProdMap">
-		select * from COMPANY C
+	<select id="includeProduct" resultMap="icProdMap">
+		select * from (select * from COMPANY WHERE COMPANY_ID = #{companyId}) C
 		join PRODUCT P on C.COMPANY_ID = P.COMPANY_ID
-		WHERE C.COMPANY_ID = #{companyId}		
+				
 	</select>
 	
 	<resultMap type="Company" id="icProdMap" autoMapping="true">
@@ -78,14 +78,8 @@
 	</resultMap>
 	
 	<select id="productId" resultMap="icProdMap">
-		select * from COMPANY C
-		JOIN (SELECT p.*,
-		IFNULL(b.BOOKMARK_ID,'N') 'bookmark' FROM (select * from PRODUCT
-		where PRODUCT_ID
-		= #{productId}) p
-		left JOIN bookmark b ON p.PRODUCT_ID = b.PRODUCT_ID) P ON P.COMPANY_ID = C.COMPANY_ID
-		WHERE C.COMPANY_ID = 
-		(SELECT P2.COMPANY_ID FROM PRODUCT P2 WHERE P2.PRODUCT_ID = #{productId} LIMIT 1);
+		select * from (select * from COMPANY WHERE COMPANY_ID = #{companyId}) C
+		join PRODUCT P on C.COMPANY_ID = P.COMPANY_ID
 		
 		
 	</select>

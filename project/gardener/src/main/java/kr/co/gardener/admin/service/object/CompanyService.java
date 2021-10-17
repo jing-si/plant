@@ -28,4 +28,6 @@ public interface CompanyService {
 
 	boolean existCompany(Company company);
 
+	Company itemIncludeProduct(String companyId);
+
 }

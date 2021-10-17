@@ -25,4 +25,6 @@ public interface CompanyDao {
 
 	void insert(Company item);
 
+	Company itemIncludeProduct(String companyId);
+
 }

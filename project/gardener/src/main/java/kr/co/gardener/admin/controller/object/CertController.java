@@ -18,7 +18,7 @@ import kr.co.gardener.admin.model.object.list.ProductCertReasonList;
 import kr.co.gardener.admin.service.object.CertReasonService;
 import kr.co.gardener.admin.service.object.CertService;
 import kr.co.gardener.admin.service.object.ProductCertReasonService;
-import kr.co.gardener.util.FileUpload;
+import kr.co.gardener.util.FileUploader;
 import kr.co.gardener.util.Pager;
 
 @Controller
@@ -41,37 +41,6 @@ public class CertController {
 		return path + "main";
 	}
 
-	@GetMapping("/add")
-	public String add() {
-
-		return path + "add";
-	}
-
-	@PostMapping("/add")
-	public String add(Cert item, MultipartFile uploadFile) {
-		item.setCertImage(FileUpload.Uploader(uploadFile, "cert"));
-		service.add(item);
-		return "redirect:list";
-	}
-
-	@GetMapping("/update/{certId}")
-	public String update(@PathVariable int certId, Model model) {
-		Cert item = service.item(certId);
-		model.addAttribute("item", item);
-		return path + "update";
-	}
-
-	@PostMapping("/update/{certId}")
-	public String update(Cert item) {
-		service.update(item);
-		return "redirect:../list";
-	}
-
-	@RequestMapping("delete/{certId}")
-	public String delete(@PathVariable int certId) {
-		service.delete(certId);
-		return "redirect:../list";
-	}
 
 	// 인증-------------------------------------
 	@RequestMapping("/api/cert")

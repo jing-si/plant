@@ -74,10 +74,10 @@ public class CategoryController {
 	}
 	
 	//해당 제품의 상세페이지
-	@RequestMapping("/product/{productId}")
-	public String productdetail(@PathVariable String productId, Model model) {
+	@RequestMapping("/product/{productId}/{companyId}")
+	public String productdetail(@PathVariable String productId,@PathVariable String companyId, Model model) {
 
-		Company company = companyService.productId(productId);	
+		Company company = companyService.itemIncludeProduct(companyId);
 		//uri로 받은 productId에 해당하는 productId(동일브랜드 제품의 아이디) sameBrandImg(동일브랜드 제품의 이미지), sameBrandName(동일브랜드 제품명)
 		//이 들어있는 리스트 구현해주세요.
 		Product item = company.getProduct(productId);
