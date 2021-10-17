@@ -247,8 +247,8 @@ function check(){
     <div id="agreement" class="info">
         <p class="title">약관동의</p>
         <div id="agreeBox">
-            <div><p class="terms" id="terms_1">이용약관 동의(필수)<a href=""><p class="fullText" id="fullText_1">전문보기</p></a></div>
-            <div><p class="terms" id="terms_2">개인정보 수집 및 이용 동의(필수)<a href=""><p class="fullText" id="fullText_2">전문보기</p></a></div>
+            <div><p class="terms" id="terms_1">이용약관 동의(필수)<a href="agreement/"><p class="fullText" id="fullText_1">전문보기</p></a></div>
+            <div><p class="terms" id="terms_2">개인정보 수집 및 이용 동의(필수)<a href="agreement/"><p class="fullText" id="fullText_2">전문보기</p></a></div>
         </div>
     </div>
 </div>

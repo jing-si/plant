@@ -12,7 +12,8 @@
         
         #align{
             width: 328px;
-            height: calc(100vh - 44px - 40.5px - 31.5px);
+            /* height: calc(100vh - 44px - 40.5px - 31.5px); */
+            height: calc(100vh - 44px - 31.5px - 24px);
             margin: 0 auto;
             position: relative;
         }
@@ -151,6 +152,8 @@
             height: 44px;
             background-color: #66bb6a;
             position: relative;
+            border: 0px;
+            color: white;
         }
         #submit p{
             position: absolute;
