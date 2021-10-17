@@ -53,6 +53,10 @@ a {
 	text-decoration: none;
 	color: #333;
 }
+.scroll{
+	overflow: auto;
+	height: calc(100vh - 59.5px - 44px - 50px);
+}
 
 .wrap {
 	padding: 15px;
@@ -291,7 +295,7 @@ a {
 
 				<li class="is_on"><a href="#tab1" class="btn"><p
 							class="btn-title">품목</p> <span id="bar"></span></a>
-					<div id="tab3" class="cont">
+					<div id="tab3" class="cont scroll">
 						<div id="product-body">
 
 							<c:forEach var="list" items="${productCategoryList}">
@@ -324,7 +328,7 @@ a {
 		</li><li>
 		<a href="#tab2" class="btn"><p class="btn-title">브랜드</p>
 				<span id="bar"></a>
-			<div id="tab3" class="cont">
+			<div id="tab3" class="cont scroll">
 				<div id="brand-body">
 					<c:forEach var="list" items="${brandList}">
 						<a href="brand/${list.companyId}/"><div class="brand-subtitle">
@@ -353,7 +357,7 @@ a {
 			</li><li>
 		<a href="#tab3" class="btn"><p class="btn-title">인증마크</p>
 				<span id="bar"></a>
-			<div id="tab3" class="cont">
+			<div id="tab3" class="cont scroll">
 				<div id="mark-body">
 					<c:forEach var="list" items="${markList}">
 						<a href="mark/${list.markId}/"><div class="mark">
