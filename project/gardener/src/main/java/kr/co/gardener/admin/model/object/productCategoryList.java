@@ -2,8 +2,6 @@ package kr.co.gardener.admin.model.object;
 
 import java.util.List;
 
-import kr.co.gardener.util.GridSystem;
-
 public class productCategoryList{
 	private String productCategoryName;
 	private String productCategoryId;

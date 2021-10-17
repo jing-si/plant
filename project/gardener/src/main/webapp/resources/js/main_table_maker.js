@@ -555,7 +555,7 @@ function commonAdd() {
 //삭제, 수정 모달에 띄우기
 function common() {
 	const table = $('<table id="modal-table" class="table table-striped">');
-	const selectedRow = $('input[type="checkbox"]:checked').parent().parent()
+	const selectedRow = $('tbody input[type="checkbox"]:checked').parent().parent()
 	const selectedRow_clone = selectedRow.clone();
 	const showRow = selectedRow_clone.find(".nothing");
 	showRow.remove();

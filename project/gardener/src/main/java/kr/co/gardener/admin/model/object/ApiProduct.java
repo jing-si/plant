@@ -5,6 +5,9 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class ApiProduct extends Product{
 	//Open API
@@ -65,6 +68,18 @@ public class ApiProduct extends Product{
 		private String checkDate; // 조회일자(YYYYMMDD)
 		private String prodImg; // 제품 이미지
 		
+		
+		/*
+		 * @DateTimeFormat(pattern = "yyyy.MM.dd" )
+		 * 
+		 * @JsonFormat(shape = JsonFormat.Shape.STRING, pattern =
+		 * "yyyy.MM.dd",timezone="Asia/Seoul") protected Date productStartDate;
+		 * 
+		 * @DateTimeFormat(pattern = "yyyy.MM.dd")
+		 * 
+		 * @JsonFormat(shape = JsonFormat.Shape.STRING, pattern =
+		 * "yyyy.MM.dd",timezone="Asia/Seoul") protected Date productEndDate;
+		 */
 		
 		public String getProdProd() {
 			return prodProd;

@@ -65,9 +65,13 @@
 	</select>
 	
 	<select id="includeProduct" resultMap="icProdMap">
-		select * from (select * from COMPANY WHERE COMPANY_ID = #{companyId}) C
-		join PRODUCT P on C.COMPANY_ID = P.COMPANY_ID
-				
+		select C.COMPANY_ID
+		, C.COMPANY_NAME, P.*
+		, IFNULL(b.BOOKMARK_ID,'N') 'bookmark' 
+		from 
+		 (select * from COMPANY WHERE COMPANY_ID = #{companyId}) C
+		join PRODUCT P on C.COMPANY_ID = P.COMPANY_ID		
+		left JOIN (select * from bookmark where USER_ID = #{userId}) b ON p.PRODUCT_ID = b.PRODUCT_ID		
 	</select>
 	
 	<resultMap type="Company" id="icProdMap" autoMapping="true">

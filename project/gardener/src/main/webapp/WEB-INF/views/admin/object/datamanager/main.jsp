@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>admin</title>
+<title>'가꿈' 관리자 페이지</title>
 <jsp:include page="../../../include/head.jsp"></jsp:include>
 <style type="text/css">
 #tab {

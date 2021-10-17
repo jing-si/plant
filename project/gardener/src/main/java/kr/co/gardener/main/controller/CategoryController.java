@@ -16,7 +16,6 @@ import kr.co.gardener.admin.model.object.Company;
 import kr.co.gardener.admin.model.object.Product;
 import kr.co.gardener.admin.model.user.Bookmark;
 import kr.co.gardener.admin.model.user.User;
-import kr.co.gardener.admin.service.object.ClassifyService;
 import kr.co.gardener.admin.service.object.CompanyService;
 import kr.co.gardener.admin.service.object.ProductService;
 import kr.co.gardener.admin.service.object.TopClassService;
@@ -75,11 +74,10 @@ public class CategoryController {
 	
 	//해당 제품의 상세페이지
 	@RequestMapping("/product/{productId}/{companyId}")
-	public String productdetail(@PathVariable String productId,@PathVariable String companyId, Model model) {
-
-		Company company = companyService.itemIncludeProduct(companyId);
-		//uri로 받은 productId에 해당하는 productId(동일브랜드 제품의 아이디) sameBrandImg(동일브랜드 제품의 이미지), sameBrandName(동일브랜드 제품명)
-		//이 들어있는 리스트 구현해주세요.
+	public String productdetail(@PathVariable String productId,@PathVariable String companyId, Model model,HttpSession session) {
+		String userId = ((User) session.getAttribute("user")).getUserId();		
+			
+		Company company = companyService.itemIncludeProduct(companyId,userId);
 		Product item = company.getProduct(productId);
 		model.addAttribute("company",company);
 		model.addAttribute("item",item);
@@ -88,13 +86,16 @@ public class CategoryController {
 	
 	//브랜드별 카테고리
 	@RequestMapping("/brand/{companyId}")
-	public String brandList(Model model,@PathVariable int companyId) {
+	public String brandList(Model model,@PathVariable String companyId,HttpSession session) {
+		String userId = ((User) session.getAttribute("user")).getUserId();		
+		
+		Company company = companyService.itemIncludeProduct(companyId,userId);
 		
 		//브랜드 이름
-		model.addAttribute("brandName","brandName");
+		model.addAttribute("brandName",company.getCompanyName());
 		//productId(브랜드별 제품 아이디), productImg(브랜드별 제품이미지)
 		//productName(브랜드별 제품명)이 들어있는 리스트 구현해주세요.
-		  model.addAttribute("brandProductList",new ArrayList<String>());
+		  model.addAttribute("brandProductList",company.getList());
 		 
 		
 		//가상데이터
@@ -102,7 +103,6 @@ public class CategoryController {
 		 * model.addAttribute("brandName","브랜드1"); List<Product> list = new
 		 * ArrayList<Product>(); Product l1 = new Product(); l1.set
 		 */
-		model.addAttribute("brandProductList",new ArrayList<String>());
 		return path + "brand-list";
 	}
 	
@@ -128,11 +128,12 @@ public class CategoryController {
 	//제품상세 페이지에서 즐겨찾기 추가
 	@RequestMapping("/product/insert")
 	@ResponseBody
-	public void insert(int productId,HttpSession session) {
+	public void insert(int productId,HttpSession session, String companyId) {
 		String userId = ((User) session.getAttribute("user")).getUserId();
 		
 		Bookmark item = new Bookmark();
 		item.setProductId(productId);
+		item.setCompanyId(companyId);
 		item.setUserId(userId);
 		
 		bookmarkService.add(item);

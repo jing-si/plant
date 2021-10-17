@@ -17,9 +17,10 @@ public class ProductList extends CommonList<Product> {
 		this.addTh("제품인증번호","productCertId","text");
 		this.addTh("인증 시작일","productStartDate","date");
 		this.addTh("인증 만료일","productEndDate","date");
-		this.addTh("사업자 번호","companyId","text");
+		this.addTh("사업자 명","companyName","none");
 		this.addTh("G2B ID","g2bId","number");
 		this.addTh("분류번호(EL)","elId","combo",1);
+		this.addTh("사업자 번호","companyId","hide");
 		
 		this.addInsert("제품ID","productId","text");
 		this.addInsert("제품명","productName","text");

@@ -40,7 +40,7 @@ public class ProductDaoImpl implements ProductDao {
 
 	@Override
 	public List<Product> list(Pager pager) {
-		return sql.selectList("product.list", pager);
+		return sql.selectList("product.list_pager", pager);
 	}
 	@Override
 	public float total(Pager pager) {		

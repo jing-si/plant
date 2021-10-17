@@ -1,7 +1,5 @@
 package kr.co.gardener.admin.controller.object;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,7 +7,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.gardener.admin.model.object.Company;
@@ -38,11 +35,7 @@ public class CompanyController {
 		return item;
 	}
 	
-	@PostMapping("/autoupdate")
-	public String autoUpdate(@RequestParam("companyIds") List<String> companyIds) {
-		companyService.autoUpdate(companyIds);
-		return "redirect:list";
-	}
+	
 	
 	@PostMapping("/existCompany")
 	@ResponseBody
@@ -79,5 +72,11 @@ public class CompanyController {
 		return "ok";
 	}
 	
+	@PostMapping("/autoupdate/company")
+	@ResponseBody
+	public String autoUpdate(@RequestBody CompanyList list) {
+		companyService.autoUpdate(list);
+		return "ok";
+	}
 	
 }

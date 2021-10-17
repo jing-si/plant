@@ -12,7 +12,7 @@ public interface CompanyService {
 
 	Company search(String companyId);
 
-	void autoUpdate(List<String> companyIds);
+	void autoUpdate(CompanyList list);
 
 	List<Company> list();
 
@@ -28,6 +28,8 @@ public interface CompanyService {
 
 	boolean existCompany(Company company);
 
-	Company itemIncludeProduct(String companyId);
+
+	Company itemIncludeProduct(String companyId, String userId);
+
 
 }
