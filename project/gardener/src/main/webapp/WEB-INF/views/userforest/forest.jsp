@@ -78,7 +78,7 @@ img{
 	</div>
 
 	<div class="main_container">
-		<a href="/"><button type="button" id="button_close">
+		<a href="../"><button type="button" id="button_close">
 				<img src="/resources/images/btn_close.png" width="50" height="50">
 			</button></a> <a href="/login/userforest/setforest/"><button type="button"
 				id="button_setting">
@@ -173,14 +173,14 @@ img{
 			document.getElementById("popup").style.display="none";
 		}
 		
-		
+		/* 
 		document.getElementById("popup_close").onclick = function() {
 			localStorage.setItem('img','list.plantId');
 			console.log(img);
 			window.location.href = "../userforest/setforest/"; 
 		}
 		
-
+ */
 			
 
 		
