@@ -38,10 +38,15 @@
 		#{bookmarkDatetime},null) -->
 		
 		INSERT INTO BOOKMARK
-		VALUES ((SELECT IFNULL(MAX(BOOKMARK_ID) + 1, 1) FROM BOOKMARK B where user_id = #{userId}),
+		VALUES ((SELECT IFNULL(MAX(BOOKMARK_ID) + 1, 1) FROM BOOKMARK B),
 		 		#{userId}, 
 				now(), 
 				#{productId})
+				
+<!-- 		insert into bookmark
+		values #{userId}, 
+				now(), 
+				#{productId} -->
 
 	</insert>
 

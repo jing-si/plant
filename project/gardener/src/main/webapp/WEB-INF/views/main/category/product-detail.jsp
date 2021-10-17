@@ -269,12 +269,17 @@ img{
 	
 	$("#header").on("click","#back",goBack());
 	
+	
+	var productId = ${item.productId};
+	
 	$("#heart").click(function(){
 		console.log("클릭1");
  		//$("#heart").empty();
-		if(${item.bookmark} == 'N'){
+ 		if($("#heart img").attr("src") == "/resources/images/white_heart.png"){
+		/* if(${item.bookmark} == 'N'){ */
 			console.log("N");
-			$.ajax({
+		
+/* 			$.ajax({
 				url : "/login/category/product/insert?productId="+${item.productId},
 				success : function(){
 					$("#heart img").attr("src","/resources/images/green_heart.png");
@@ -283,11 +288,27 @@ img{
 				error : function(){
 					console.log("즐겨찾기 등록 실패")
 				}
+			})  //ajax 끝 */
+			
+			$.ajax({
+				url : "/login/category/product/insert",
+				type : "post",
+				data : {"productId" : productId},
+				dataType : "text",
+				success : function(){
+					$("#heart img").attr("src","/resources/images/green_heart.png");
+					console.log("즐겨찾기 등록 성공")
+				},
+				error : function(){
+					console.log("즐겨찾기 등록 실패")
+				}
 			})  //ajax 끝
+			
 		}  //if끝
 		
 		else{
 			/* console.log("${item.bookmark}"); */
+/* 			
 			$.ajax({
 				url : "/login/category/product/delete?productId="+${item.productId},
 				success : function(){
@@ -298,6 +319,21 @@ img{
 					console.log("즐겨찾기 해제 실패")
 				}
 			})  //ajax 끝
+			 */
+			 
+				$.ajax({
+					url : "/login/category/product/delete",
+					type : "post",
+					data : {"productId" : productId},
+					dataType : "text",
+					success : function(){
+						$("#heart img").attr("src","/resources/images/white_heart.png");
+						console.log("즐겨찾기 해제 성공")
+					},
+					error : function(){
+						console.log("즐겨찾기 해제 실패")
+					}
+				})  //ajax 끝
 		} 
 		
 	})  //heart 클릭 끝
