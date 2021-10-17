@@ -297,8 +297,8 @@ a {
 							<c:forEach var="list" items="${productCategoryList}">
 								<div id="categoryBundle">
 									<div id="product-subtitle" class="menu-toggle-btn"
-										data-index="${list.productCategoryId}">
-										<p>${list.productCategoryName}</p>
+										data-index="${list.topClassId}">
+										<p>${list.topClassName}</p>
 										<svg xmlns="http://www.w3.org/2000/svg" height="24px"
 											viewBox="0 0 24 24" width="24px" fill="#000000">
 											<path d="M24 24H0V0h24v24z" fill="none" opacity=".87" />
@@ -307,9 +307,9 @@ a {
 												d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6-1.41-1.41z" /></svg>
 									</div>
 									<c:forEach var="item" items="${list.midList}">
-										<a href="/login/category/${item.primaryId}">
-										<div id="product-subtitle-sub-box" class="gnb hide i${list.productCategoryId }">
-												<div class="product-subtitle-sub">${item.name}</div>
+										<a href="/login/category/${item.midClassId}">
+										<div id="product-subtitle-sub-box" class="gnb hide i${list.topClassName }">
+												<div class="product-subtitle-sub">${item.midClassName}</div>
 											</div>
 										</a>
 									</c:forEach>

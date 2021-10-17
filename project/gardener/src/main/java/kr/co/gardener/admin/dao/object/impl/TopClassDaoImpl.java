@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.gardener.admin.dao.object.TopClassDao;
 import kr.co.gardener.admin.model.object.TopClass;
+import kr.co.gardener.main.vo.TopClassVO;
 import kr.co.gardener.util.Pager;
 
 @Repository
@@ -40,6 +41,11 @@ public class TopClassDaoImpl implements TopClassDao {
 	@Override
 	public float total(Pager pager) {
 		return sql.selectOne("topclass.total", pager);
+	}
+
+	@Override
+	public List<TopClassVO> includMidClassList() {
+		return sql.selectList("topclass.includMidClassList");
 	}
 
 }

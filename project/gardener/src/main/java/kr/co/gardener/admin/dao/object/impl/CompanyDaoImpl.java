@@ -29,6 +29,12 @@ public class CompanyDaoImpl implements CompanyDao {
 	public Company productId(String productId) {
 		return sql.selectOne("company.productId", productId);
 	}
+	
+	@Override
+	public Company itemIncludeProduct(String companyId) {
+		return sql.selectOne("company.includeProduct", companyId);
+	}
+	
 
 	@Override
 	public void insert_list(List<Company> list) {
@@ -59,6 +65,8 @@ public class CompanyDaoImpl implements CompanyDao {
 	public void insert(Company item) {
 		sql.update("company.insert",item);
 	}
+
+	
 	
 
 }

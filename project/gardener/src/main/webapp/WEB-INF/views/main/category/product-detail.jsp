@@ -263,38 +263,23 @@ img{
 <script>
  $().ready(()=>{ 
 	 console.log("시작");
- 	function goBack(){
-	//	history.back();
-	}
 	
-	$("#header").on("click","#back",goBack());
+	$("#header").on("click","#back",function(){
+//		history.back();
+	});
 	
 	
-	var productId = ${item.productId};
 	
-	$("#heart").click(function(){
-		console.log("클릭1");
- 		//$("#heart").empty();
- 		if($("#heart img").attr("src") == "/resources/images/white_heart.png"){
-		/* if(${item.bookmark} == 'N'){ */
-			console.log("N");
+	
+	$("#heart").on("click",function(){	
+		var productId = ${item.productId};
 		
-/* 			$.ajax({
-				url : "/login/category/product/insert?productId="+${item.productId},
-				success : function(){
-					$("#heart img").attr("src","/resources/images/green_heart.png");
-					console.log("즐겨찾기 등록 성공")
-				},
-				error : function(){
-					console.log("즐겨찾기 등록 실패")
-				}
-			})  //ajax 끝 */
-			
+ 		if($("#heart img").attr("src") == "/resources/images/white_heart.png"){
+		
 			$.ajax({
 				url : "/login/category/product/insert",
 				type : "post",
-				data : {"productId" : productId},
-				dataType : "text",
+				data : {"productId" : productId},				
 				success : function(){
 					$("#heart img").attr("src","/resources/images/green_heart.png");
 					console.log("즐겨찾기 등록 성공")
@@ -306,26 +291,11 @@ img{
 			
 		}  //if끝
 		
-		else{
-			/* console.log("${item.bookmark}"); */
-/* 			
-			$.ajax({
-				url : "/login/category/product/delete?productId="+${item.productId},
-				success : function(){
-					$("#heart img").attr("src","/resources/images/white_heart.png");
-					console.log("즐겨찾기 해제 성공")
-				},
-				error : function(){
-					console.log("즐겨찾기 해제 실패")
-				}
-			})  //ajax 끝
-			 */
-			 
+		else{			 
 				$.ajax({
 					url : "/login/category/product/delete",
 					type : "post",
-					data : {"productId" : productId},
-					dataType : "text",
+					data : {"productId" : productId},					
 					success : function(){
 						$("#heart img").attr("src","/resources/images/white_heart.png");
 						console.log("즐겨찾기 해제 성공")
@@ -334,7 +304,7 @@ img{
 						console.log("즐겨찾기 해제 실패")
 					}
 				})  //ajax 끝
-		} 
+		}//else 끝 
 		
 	})  //heart 클릭 끝
 

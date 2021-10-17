@@ -1,11 +1,14 @@
 package kr.co.gardener.admin.service.object.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.gardener.admin.dao.object.TopClassDao;
 import kr.co.gardener.admin.model.object.list.TopClassList;
 import kr.co.gardener.admin.service.object.TopClassService;
+import kr.co.gardener.main.vo.TopClassVO;
 import kr.co.gardener.util.Pager;
 
 @Service
@@ -37,6 +40,11 @@ public class TopClassImpl implements TopClassService {
 	@Override
 	public void update(TopClassList list) {
 		dao.update(list.getList());
+	}
+
+	@Override
+	public List<TopClassVO> includMidClassList() {
+		return dao.includMidClassList();
 	}
 
 }

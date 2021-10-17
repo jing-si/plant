@@ -11,6 +11,7 @@
 	<typeAliases>
 	
 		<package name="kr.co.gardener.admin.model"/>
+		<package name="kr.co.gardener.main.vo"/>	
 		<package name="kr.co.gardener.util"/>	
 	</typeAliases>
 
