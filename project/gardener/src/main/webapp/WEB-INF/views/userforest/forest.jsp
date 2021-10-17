@@ -140,19 +140,6 @@ img{
 									</div>
 									</c:if>
 								</c:forEach>
-
-<!-- 
-								<div class="item_card" id="plant_02">
-									<img class="item_bg" src="/resources/images/tree01_bg.png">
-									<p class="text_left">보관중인 나무 :</p>
-									<p class="text_right">그루</p>
-									<p class="text_amount">1</p>
-									<a href="../userforest/setforest/">
-										<p class="planting_btn"></p>
-										<p class="planting_btn_text">나무 심기</p>
-									</a>
-								</div> -->
-
 							</div>
 						</div>
 					</div>
