@@ -19,7 +19,7 @@
     	width: 100%;
     	height: 100%;
     }
-    #scroll{
+    .scroll{
     	overflow: auto;
     }
     </style>
@@ -40,7 +40,7 @@
        </div>
     </div>
     
-    <div id="body scroll">
+    <div id="body" class="scroll">
         <div id="align">
         	
         <c:if test="${latestProducList.size()<1}">
