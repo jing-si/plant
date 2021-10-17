@@ -101,8 +101,14 @@ public class CompanyServiceImpl implements CompanyService {
 		
 	}
 
+
+
+
 	@Override
-	public Company itemIncludeProduct(HashMap<String, String> hm) {
+	public Company itemIncludeProduct(String companyId, String userId) {
+		HashMap<String,String> hm = new HashMap<>();
+		hm.put("companyId", companyId);
+		hm.put("userId", userId);
 		return dao.itemIncludeProduct(hm);
 	}
 	

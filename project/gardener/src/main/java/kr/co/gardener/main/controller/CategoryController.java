@@ -1,7 +1,6 @@
 package kr.co.gardener.main.controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -77,11 +76,8 @@ public class CategoryController {
 	@RequestMapping("/product/{productId}/{companyId}")
 	public String productdetail(@PathVariable String productId,@PathVariable String companyId, Model model,HttpSession session) {
 		String userId = ((User) session.getAttribute("user")).getUserId();		
-		HashMap<String,String> hm = new HashMap<>();
-		hm.put("companyId", companyId);
-		hm.put("userId", userId);
-		
-		Company company = companyService.itemIncludeProduct(hm);
+			
+		Company company = companyService.itemIncludeProduct(companyId,userId);
 		Product item = company.getProduct(productId);
 		model.addAttribute("company",company);
 		model.addAttribute("item",item);
@@ -90,13 +86,16 @@ public class CategoryController {
 	
 	//브랜드별 카테고리
 	@RequestMapping("/brand/{companyId}")
-	public String brandList(Model model,@PathVariable int companyId) {
+	public String brandList(Model model,@PathVariable String companyId,HttpSession session) {
+		String userId = ((User) session.getAttribute("user")).getUserId();		
+		
+		Company company = companyService.itemIncludeProduct(companyId,userId);
 		
 		//브랜드 이름
-		model.addAttribute("brandName","brandName");
+		model.addAttribute("brandName",company.getCompanyName());
 		//productId(브랜드별 제품 아이디), productImg(브랜드별 제품이미지)
 		//productName(브랜드별 제품명)이 들어있는 리스트 구현해주세요.
-		  model.addAttribute("brandProductList",new ArrayList<String>());
+		  model.addAttribute("brandProductList",company.getList());
 		 
 		
 		//가상데이터
@@ -104,7 +103,6 @@ public class CategoryController {
 		 * model.addAttribute("brandName","브랜드1"); List<Product> list = new
 		 * ArrayList<Product>(); Product l1 = new Product(); l1.set
 		 */
-		model.addAttribute("brandProductList",new ArrayList<String>());
 		return path + "brand-list";
 	}
 	

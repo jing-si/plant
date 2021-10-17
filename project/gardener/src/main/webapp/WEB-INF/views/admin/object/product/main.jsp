@@ -190,7 +190,7 @@
 	<div class="modal fade" id="commonModal" tabindex="-1"
 		aria-labelledby="commonModalLabel" aria-hidden="true">
 		<div
-			class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+			class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="commonModalLabel">확 인 요 망</h5>

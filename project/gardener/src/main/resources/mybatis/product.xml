@@ -77,7 +77,12 @@
 
 
 	<!--대량 처리 -->
-
+	<select id="list_pager" resultType="Product">
+		select P.* , C.COMPANY_NAME from (select * from PRODUCT 
+		LIMIT
+		#{offset}, #{perPage}) P
+		JOIN COMPANY C on P.COMPANY_ID = C.COMPANY_ID
+	</select>
 
 	<update id="update_list">
 		Insert into PRODUCT
@@ -112,6 +117,26 @@
 		VALUES(G2B_ID),
 		EL_ID = VALUES(EL_ID)
 	</update>
+	
+	<update id="api_insert_list">
+		Insert ignore into PRODUCT
+		values
+		<foreach collection="list" item="item" separator=",">
+			(#{item.productId},
+			#{item.productName},
+			#{item.productSize},
+			#{item.productImage},
+			#{item.certId},
+			#{item.productCertId},
+			#{item.productStartDate},
+			#{item.productEndDate},
+			#{item.companyId},
+			#{item.g2bId},
+			0)
+		</foreach>
+				
+	</update>
+	
 
 	<insert id="insert_list">
 		INSERT INTO PRODUCT

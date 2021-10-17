@@ -69,14 +69,17 @@ public class ApiProduct extends Product{
 		private String prodImg; // 제품 이미지
 		
 		
-		@DateTimeFormat(pattern = "yyyy.MM.dd" )
-		@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy.MM.dd",timezone="Asia/Seoul")
-		protected Date productStartDate;
-
-		@DateTimeFormat(pattern = "yyyy.MM.dd")
-		@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy.MM.dd",timezone="Asia/Seoul")
-		protected Date productEndDate;
-		
+		/*
+		 * @DateTimeFormat(pattern = "yyyy.MM.dd" )
+		 * 
+		 * @JsonFormat(shape = JsonFormat.Shape.STRING, pattern =
+		 * "yyyy.MM.dd",timezone="Asia/Seoul") protected Date productStartDate;
+		 * 
+		 * @DateTimeFormat(pattern = "yyyy.MM.dd")
+		 * 
+		 * @JsonFormat(shape = JsonFormat.Shape.STRING, pattern =
+		 * "yyyy.MM.dd",timezone="Asia/Seoul") protected Date productEndDate;
+		 */
 		
 		public String getProdProd() {
 			return prodProd;
