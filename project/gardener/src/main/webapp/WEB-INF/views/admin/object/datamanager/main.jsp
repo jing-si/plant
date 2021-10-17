@@ -432,7 +432,7 @@ label {
 		<!--전체 div - 왼쪽 사이드와 메인을 나눠줌.-->
 		<div class="row">
 			<!--왼쪽 사이드 바 -->
-			<div class="rightSide col-1">
+			<div class="rightSide col-1  mx-0 px-0">
 				<div>
 					<jsp:include page="../../../include/left_side.jsp"></jsp:include>
 				</div>
@@ -443,11 +443,11 @@ label {
 			<div class="col container-custom p-0">
 				<!--Header - 로고, 로그아웃, option-->
 				<header class="header border-bot">
-					<div class="row row-cols-2 ">
+					<div class="row row-cols-2 mx-0 px-0">
 						<!--테이블 카테고리 선택상자  -->
 						<div class="col-10  hstack mx-3 pt-2 nav">
-							<div class="option col-4 py-2" data-url="#">
-								<h5 class="center">Database 관리자</h5>
+							<div class="option col-3 pt-2 pb-3" data-url="#">
+								<h5 class="center"><i class="bi"></i> Database 관리자</h5>
 							</div>
 
 

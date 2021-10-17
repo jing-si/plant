@@ -23,6 +23,9 @@ const state = {
 
 
 $(function() {
+	//QueryString 분석, 선택한 nav 표시하기
+
+	selectedNav()
 
 	//val 함수에 이벤트 추가.
 	const originalVal = $.fn.val;
@@ -32,10 +35,13 @@ $(function() {
 			$(this).change();
 		return result;
 	};
+	
 	//메인페이지 선택 하는 버튼
 	$(".option").on("click", function() {
 		$(".selectedHeader").removeClass("selectedHeader");
 		$(this).addClass("selectedHeader");
+		$(".option").find("i").removeClass("bi-caret-right-fill");
+		$(this).find("i").addClass(" bi-caret-right-fill");
 
 		const url = $(this).data("url");
 		if (url != "#") {
@@ -73,7 +79,7 @@ $(function() {
 		action = $(this).attr("id");
 		switch (action) {
 			case "add":
-			insertCount=0;
+				insertCount = 0;
 				commonAdd();
 				break;
 
@@ -466,7 +472,7 @@ function viewMarker(selectedRow) {
 				break;
 			case "file":
 				let src = makeSrc(temp.find(".fileSrc").val());
-				
+
 				div1.append($("<div class='col  mt-3 imgDiv'>").append(innerDiv));
 				div1.append($("<div class='col form-control center'>").append($("<img class='viewImage  mt-2 mx-0 p-0'>").attr("src", src)));
 				break;
@@ -488,7 +494,15 @@ function viewMarker(selectedRow) {
 	$("#subContent").append(div);
 	makePerfect("view");
 }
-
+//QueryString 분석, 선택한 nav 표시하기
+function selectedNav() {
+	const url = new URLSearchParams(window.location.search)
+	if(url.has("nav")){
+	const selectedNav = $("#left-side").find("#nav-" + url.get("nav"));	
+	selectedNav.addClass("selectedNav");
+	selectedNav.find(".activeable").addClass("white");
+	}
+}
 
 //common-add
 function commonAdd() {
@@ -664,8 +678,8 @@ function makeGrid(data) {
 		if (insertLen > a) {
 			addType.push(insertData["add" + a].split("-"));
 		}
-		
-		if(str[2] != "hide")
+
+		if (str[2] != "hide")
 			th.append($('<div class="cell">').text(str[0]));
 		tr.append(th);
 	}
@@ -761,7 +775,7 @@ function makeSrc(src) {
 	str = src.split("?");
 	const queryString = new URLSearchParams(str[1]);
 	queryString.append("a", Math.random())
-	src = str[0]+ "?"+ queryString.toString();
+	src = str[0] + "?" + queryString.toString();
 	return src
 }
 
@@ -770,14 +784,14 @@ function makePerfect(action) {
 	$("." + action + "Combo").combobox();
 	//달력 완성
 	$("." + action + "Date").datepicker({
-		language: 'ko',		
+		language: 'ko',
 	});
 	//달력 + 시간 설정
 	$("." + action + "Datetime").datepicker({
 		language: 'ko'
-		,timepicker: true	
-		,timeFormat:'hh:ii:00'
-		
+		, timepicker: true
+		, timeFormat: 'hh:ii:00'
+
 
 	});
 	//이미지 완성
@@ -799,8 +813,8 @@ function makeCell(val, col, row, name, type, action) {
 		comboNumber = Number(addType[col][3])
 
 	switch (type) {
-		
-		
+
+
 		case "none":
 		case "hide":
 			temp = $("<input type='text' readonly class=''>")
@@ -833,7 +847,7 @@ function makeCell(val, col, row, name, type, action) {
 		case "datetime":
 			temp = $("<input type='text' readonly class='date'>")
 			break;
-		
+
 		case "file":
 			let src = "/upload/noImage.gif"
 
@@ -858,8 +872,8 @@ function makeCell(val, col, row, name, type, action) {
 			temp.val(val).addClass(c).attr("name", name)
 			break;
 		case "date":
-			if(val != null)
-			temp.val(val.split(" ")[0])
+			if (val != null)
+				temp.val(val.split(" ")[0])
 			temp.addClass(c).attr("name", name)
 			break;
 
