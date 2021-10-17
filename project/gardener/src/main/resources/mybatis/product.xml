@@ -127,7 +127,7 @@
 			#{item.productEndDate},
 			#{item.companyId},
 			#{item.g2bId},
-			#{item.elId})
+			0)
 		</foreach>
 	</insert>
 

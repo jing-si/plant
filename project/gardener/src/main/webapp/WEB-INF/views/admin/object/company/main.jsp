@@ -6,11 +6,17 @@
 <meta charset="UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>admin</title>
+<title>'가꿈' 관리자 페이지</title>
 <jsp:include page="../../../include/head.jsp"></jsp:include>
 <script type="text/javascript">
 	$(function() {
 		$("div[data-url='company']").trigger("click")
+		
+		$("#autoupdate").on("click",function(){
+			action = $(this).attr("id");
+			common();
+			$("#commonModal").modal("show");
+		});
 
 	})//on load 끝
 </script>
@@ -146,6 +152,10 @@
 								<hr class="mx-2 my-0 p-0">
 								<div id="update" class="commonAction center button  py-2">
 									<i class="bi bi-save"></i> 수 정
+								</div>
+								<hr class="mx-2 my-0 p-0">
+								<div id="autoupdate" class="center button  py-2">
+									<i class="bi bi-save"></i> 자동수정
 								</div>
 								<hr class="mx-2 my-0 p-0">
 							</div>

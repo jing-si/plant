@@ -1,5 +1,6 @@
 package kr.co.gardener.admin.dao.object;
 
+import java.util.HashMap;
 import java.util.List;
 
 import kr.co.gardener.admin.model.object.Company;
@@ -25,6 +26,6 @@ public interface CompanyDao {
 
 	void insert(Company item);
 
-	Company itemIncludeProduct(String companyId);
+	Company itemIncludeProduct(HashMap<String, String> hm);
 
 }

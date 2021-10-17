@@ -272,14 +272,15 @@ img{
 	
 	
 	$("#heart").on("click",function(){	
-		var productId = ${item.productId};
+		let productId = ${item.productId};
+		let companyId = ${item.companyId};
 		
  		if($("#heart img").attr("src") == "/resources/images/white_heart.png"){
 		
 			$.ajax({
 				url : "/login/category/product/insert",
 				type : "post",
-				data : {"productId" : productId},				
+				data : {"productId" : productId,"companyId":companyId},				
 				success : function(){
 					$("#heart img").attr("src","/resources/images/green_heart.png");
 					console.log("즐겨찾기 등록 성공")

@@ -1,6 +1,7 @@
 package kr.co.gardener.main.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -16,7 +17,6 @@ import kr.co.gardener.admin.model.object.Company;
 import kr.co.gardener.admin.model.object.Product;
 import kr.co.gardener.admin.model.user.Bookmark;
 import kr.co.gardener.admin.model.user.User;
-import kr.co.gardener.admin.service.object.ClassifyService;
 import kr.co.gardener.admin.service.object.CompanyService;
 import kr.co.gardener.admin.service.object.ProductService;
 import kr.co.gardener.admin.service.object.TopClassService;
@@ -75,11 +75,13 @@ public class CategoryController {
 	
 	//해당 제품의 상세페이지
 	@RequestMapping("/product/{productId}/{companyId}")
-	public String productdetail(@PathVariable String productId,@PathVariable String companyId, Model model) {
-
-		Company company = companyService.itemIncludeProduct(companyId);
-		//uri로 받은 productId에 해당하는 productId(동일브랜드 제품의 아이디) sameBrandImg(동일브랜드 제품의 이미지), sameBrandName(동일브랜드 제품명)
-		//이 들어있는 리스트 구현해주세요.
+	public String productdetail(@PathVariable String productId,@PathVariable String companyId, Model model,HttpSession session) {
+		String userId = ((User) session.getAttribute("user")).getUserId();		
+		HashMap<String,String> hm = new HashMap<>();
+		hm.put("companyId", companyId);
+		hm.put("userId", userId);
+		
+		Company company = companyService.itemIncludeProduct(hm);
 		Product item = company.getProduct(productId);
 		model.addAttribute("company",company);
 		model.addAttribute("item",item);
@@ -128,11 +130,12 @@ public class CategoryController {
 	//제품상세 페이지에서 즐겨찾기 추가
 	@RequestMapping("/product/insert")
 	@ResponseBody
-	public void insert(int productId,HttpSession session) {
+	public void insert(int productId,HttpSession session, String companyId) {
 		String userId = ((User) session.getAttribute("user")).getUserId();
 		
 		Bookmark item = new Bookmark();
 		item.setProductId(productId);
+		item.setCompanyId(companyId);
 		item.setUserId(userId);
 		
 		bookmarkService.add(item);

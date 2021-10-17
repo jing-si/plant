@@ -1,5 +1,6 @@
 package kr.co.gardener.admin.service.object;
 
+import java.util.HashMap;
 import java.util.List;
 
 import kr.co.gardener.admin.model.object.Company;
@@ -12,7 +13,7 @@ public interface CompanyService {
 
 	Company search(String companyId);
 
-	void autoUpdate(List<String> companyIds);
+	void autoUpdate(CompanyList list);
 
 	List<Company> list();
 
@@ -28,6 +29,6 @@ public interface CompanyService {
 
 	boolean existCompany(Company company);
 
-	Company itemIncludeProduct(String companyId);
+	Company itemIncludeProduct(HashMap<String, String> hm);
 
 }
