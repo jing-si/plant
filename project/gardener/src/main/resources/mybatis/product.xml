@@ -6,7 +6,7 @@
 <mapper namespace="product">
 
 	<select id="total" resultType="float">
-		select count(*) from PRODUCT
+		select count(*) from (<include refid="search"></include>) main
 	</select>
 
 	<!-- List -->
@@ -90,11 +90,26 @@
 
 	<!--대량 처리 -->
 	<select id="list_pager" resultType="Product">
-		select P.* , C.COMPANY_NAME from (select * from PRODUCT 
-		LIMIT
-		#{offset}, #{perPage}) P
-		JOIN COMPANY C on P.COMPANY_ID = C.COMPANY_ID
+		<include refid="search"></include> 
+		LIMIT #{offset}, #{perPage}
+		
 	</select>
+	
+	<sql id="search">
+		select P.*, C.COMPANY_NAME from PRODUCT P
+		JOIN COMPANY C on P.COMPANY_ID = C.COMPANY_ID
+		<where>
+			<if test="search == 'total' or search == 'productId' and keyword != ''">OR PRODUCT_ID like #{searchKeyword}</if>
+			<if test="search == 'total' or search == 'productName' and keyword != ''">OR PRODUCT_NAME like #{searchKeyword}</if>
+			<if test="search == 'total' or search == 'productSize' and keyword != ''">OR PRODUCT_SIZE like #{searchKeyword}</if>
+			<if test="search == 'total' or search == 'certId' and keyword != ''">OR CERT_ID IN (SELECT CERT.CERT_ID FROM CERT CERT WHERE CERT.CERT_NAME like #{searchKeyword})</if>
+			<if test="search == 'total' or search == 'productCertId' and keyword != ''">OR PRODUCT_CERT_ID like #{searchKeyword}</if>
+			<if test="search == 'total' or search == 'productInfo' and keyword != ''">OR PRODUCT_INFO like #{searchKeyword}</if>
+			<if test="search == 'total' or search == 'companyName' and keyword != ''">OR COMPANY_NAME like #{searchKeyword}</if>
+			<if test="search == 'total' or search == 'elId' and keyword != ''">OR EL_ID IN (SELECT BOT_CLASS_ID FROM BOT_CLASS WHERE BOT_CLASS_NAME like #{searchKeyword})</if>						
+		</where>
+	</sql>
+	
 
 	<update id="update_list">
 		Insert into PRODUCT

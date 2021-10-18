@@ -13,4 +13,6 @@ public interface MidClassService {
 
 	void update(MidClassList list);
 
+	String item(int midClassId);
+
 }
