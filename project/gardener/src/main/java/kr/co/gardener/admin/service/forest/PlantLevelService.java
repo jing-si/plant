@@ -25,4 +25,5 @@ public interface PlantLevelService {
 	void delete_list(PlantLevelList list);
 
 	void update_list(PlantLevelList list);
+
 }

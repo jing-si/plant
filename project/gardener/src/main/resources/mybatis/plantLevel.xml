@@ -7,7 +7,7 @@
   </select>
   
   <select id="item" resultType="PlantLevel">
-  	SELECT * FROM PLANT_LEVEL
+  	SELECT * FROM PLANT_LEVEL where PLANT_ID = #{plantLevelId} and PLANT_LEVEL_ID = 1
   </select>
   
   <insert id="add">

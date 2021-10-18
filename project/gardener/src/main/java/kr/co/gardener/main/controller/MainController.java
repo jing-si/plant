@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.gardener.admin.model.forest.PlantLevel;
 import kr.co.gardener.admin.model.user.User;
+import kr.co.gardener.admin.service.forest.PlantLevelService;
+import kr.co.gardener.admin.service.forest.PlantService;
 import kr.co.gardener.admin.service.user.UserService;
 
 @Controller
@@ -22,6 +24,9 @@ public class MainController {
 	
 	@Autowired
 	UserService service;
+	
+	@Autowired
+	PlantLevelService plantLevelService;
 	
 	//메인페이지
 	@RequestMapping("/") //db변경이 없을때 용도
@@ -67,21 +72,44 @@ public class MainController {
 		
 		model.addAttribute("stateId",0);
 		
+//		List<PlantLevel> list = new ArrayList<PlantLevel>();
+//		PlantLevel l1 = new PlantLevel();
+//		l1.setPlantId(1);
+//		l1.setPlantImage("/resources/images/tree_01.png");
+//		list.add(l1);
+//		
+//		PlantLevel l2 = new PlantLevel();
+//		l2.setPlantId(2);
+//		l2.setPlantImage("/resources/images/tree_02.png");
+//		list.add(l2);
+//		
+//		PlantLevel l3 = new PlantLevel();
+//		l3.setPlantId(3);
+//		l3.setPlantImage("/resources/images/tree_03.png");
+//		list.add(l3);
+		
 		List<PlantLevel> list = new ArrayList<PlantLevel>();
 		PlantLevel l1 = new PlantLevel();
-		l1.setPlantId(1);
-		l1.setPlantImage("/resources/images/tree_01.png");
+		int plantId1 = (int)((Math.random()*10000)%10);
+		System.out.println(plantId1);
+		l1.setPlantId(plantId1);
+		l1.setPlantImage(plantLevelService.item(plantId1).getPlantImage());
 		list.add(l1);
 		
 		PlantLevel l2 = new PlantLevel();
-		l2.setPlantId(2);
-		l2.setPlantImage("/resources/images/tree_02.png");
+		int plantId2 = (int)((Math.random()*10000)%10);
+		System.out.println(plantId2);
+		l2.setPlantId(plantId2);
+		l2.setPlantImage(plantLevelService.item(plantId2).getPlantImage());
 		list.add(l2);
 		
 		PlantLevel l3 = new PlantLevel();
-		l3.setPlantId(3);
-		l3.setPlantImage("/resources/images/tree_03.png");
+		int plantId3 = (int)((Math.random()*10000)%10);
+		System.out.println(plantId3);
+		l3.setPlantId(plantId3);
+		l3.setPlantImage(plantLevelService.item(plantId3).getPlantImage());
 		list.add(l3);
+		
 		
 		return list;
 	}
