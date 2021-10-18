@@ -7,8 +7,15 @@ import java.util.List;
 public  class CommonList<T> {
 	// thName : 테이블의 제목
 	// colName : input name 속성에 들어갈 이름, 만약 수정같은거 할때 넘길 값이 아니라면 "" 처리 해줌
-	// boxType : input box의 타입을 결정, none -> 수정 불가, text->일반적인 텍스트(수정가능)
-
+	// boxType : input box의 타입을 결정, 
+	    /*	1. none -> 수정 불가, 
+	     * 	2. text->일반적인 텍스트(수정가능)
+	     * 	3. combo -> combo목록으로 보여줌, combo리스트를 등록하고 콤보 리스트 명을 따로 써주어야함.
+	     * 	4. date -> 날짜용 서식
+	     * 	5. datetime -> 날짜, 시간 서식
+	     * 	6. hide -> 숨겨진 데이터.
+	     *  7. file -> 이미지 파일
+		*/
 	// main에 표시할 table의 열이름
 	private HashMap<String, String> th;
 	// combo박스가 필요 할 시에

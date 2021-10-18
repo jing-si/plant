@@ -24,7 +24,7 @@
 			<!--왼쪽 사이드 바 -->
 			<div class="rightSide col-1 mx-0 px-0">
 				<div>
-				<jsp:include page="../../../include/left_side.jsp"></jsp:include>
+					<jsp:include page="../../../include/left_side.jsp"></jsp:include>
 				</div>
 			</div>
 			<!--왼쪽 사이드 바 끝 -->
@@ -37,15 +37,21 @@
 						<!--테이블 카테고리 선택상자  -->
 						<div class="col-10  hstack mx-3 pt-2 nav">
 							<div class="option col-2 pt-2 pb-3" data-url="cert">
-								<h5 class="center"><i class="bi"></i> 인증 관리</h5>
+								<h5 class="center">
+									<i class="bi"></i> 인증 관리
+								</h5>
 							</div>
 							<div class="option col-2 pt-2 pb-3" data-url="certReason">
-								<h5 class="center"><i class="bi"></i> 인증 사유 관리</h5>
+								<h5 class="center">
+									<i class="bi"></i> 인증 사유 관리
+								</h5>
 							</div>
 							<div class="option col-2 pt-2 pb-3" data-url="productCertReason">
-								<h5 class="center"><i class="bi"></i> 제품 인증 사유 관리</h5>
+								<h5 class="center">
+									<i class="bi"></i> 제품 인증 사유 관리
+								</h5>
 							</div>
-							
+
 						</div>
 						<div class="col-1 ">
 							<a href="#">log out</a>
@@ -66,21 +72,20 @@
 								<!--검색 -->
 								<div class="col-10">
 									<div class="input-group">
-										<button
+										<button id="searchCode"
 											class="border-ccc btn btn-outline-secondary dropdown-toggle"
-											type="button" data-bs-toggle="dropdown" aria-expanded="false">전
-											체</button>
-										<ul class="dropdown-menu">
-											<li><a class="dropdown-item" href="#">Action</a></li>
-											<li><a class="dropdown-item" href="#">Another action</a></li>
-											<li><a class="dropdown-item" href="#">Something else
-													here</a></li>
+											type="button" data-bs-toggle="dropdown" aria-expanded="false">전 체</button>
+										<ul id="searchCode-list" class="dropdown-menu">
+											<li><button class="dropdown-item searchCode-btn" data-name="total">전 체</button></li>
 											<li><hr class="dropdown-divider"></li>
-											<li><a class="dropdown-item" href="#">Separated link</a></li>
+											
 										</ul>
-										<input type="text" class="form-control" placeholder="Search"
-											aria-label="Username"> <span class="input-group-text"
-											id="search"><i class="bi bi-search"></i></span>
+										<div id="searchStart"></div>
+										<input id="q" type="text" class="form-control" placeholder="Search"
+											aria-label="Username">
+										<div id="init-search" class="py-1 px-2 m-0 hide"><i class="bi bi-x-lg"></i></div>
+										<span class="input-group-text" id="search"><i
+											class="bi bi-search"></i></span>
 									</div>
 								</div>
 								<!--검색 끝 -->
@@ -163,10 +168,7 @@
 					<!--subContent 영역-->
 					<div class="row my-2 ms-0 row-cols-2">
 						<!--sub-side 바 -->
-						<div id="sub-side" class="col-1 content-side">
-							
-							
-						</div>
+						<div id="sub-side" class="col-1 content-side"></div>
 						<!--subside end-->
 
 						<!--subContent-->
