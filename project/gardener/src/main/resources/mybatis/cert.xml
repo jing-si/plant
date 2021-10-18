@@ -85,7 +85,7 @@
 	</delete>
 
 	<select id="total" resultType="float">
-		select COUNT(*) from CERT
+		select COUNT(*) from (<include refid="search"></include>) m		
 	</select>
 
 	<select id="combo" resultType="ComboItem">

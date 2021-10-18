@@ -18,7 +18,7 @@
 	
 	<!--대량 처리 -->
 	<select id="list_pager" resultType="BotClass">
-		SELECT * FROM BOT_CLASS		
+		SELECT * FROM (<include refid="search"></include>) M	
 		LIMIT #{offset}, #{perPage}
 	</select>
 
@@ -53,7 +53,7 @@
 	</delete>
 
 	<select id="total" resultType="float">
-		select COUNT(*) from BOT_CLASS
+		select COUNT(*) from (<include refid="search"></include>) M	
 	</select>
 
 	<select id="combo" resultType="ComboItem">
