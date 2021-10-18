@@ -129,7 +129,8 @@
 		$('#cards').on("click",".card",function(data){  		
 		    
             if($("#cards").hasClass("cardsback")){
-                $(".card").fadeOut();
+                /* $(".card").fadeOut(); */
+                $(".card").hide();
                 $(this).addClass("selectedCard")
                 $('#cards').removeClass("cardsback")
                 $(this).fadeIn();
@@ -363,10 +364,12 @@ a{
     margin-left: 50%;
     height: auto;
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 45%;
     transform : translate(-50%, -50%);
-    max-width: 100%;
+   /*  max-width: 100%; */
+    width: 130px !important;
+    margin-top : 0px !important;
 
 }
 #align{
