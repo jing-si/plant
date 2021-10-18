@@ -40,9 +40,18 @@
 	
 	<!--대량 처리 -->
 	<select id="list_pager" resultType="CertReason">
-		SELECT * FROM CERT_REASON		
+		SELECT * FROM (<include refid="search"></include>) M		
 		LIMIT #{offset}, #{perPage}
 	</select>
+	
+	<sql id="search">
+		select * from CERT_REASON
+		<where>
+			<if test="(search == 'total' or search == 'certReasonId') and keyword != ''">OR CERT_REASON_ID like #{searchKeyword}</if>
+			<if test="(search == 'total' or search == 'certReasonName') and keyword != ''">OR CERT_REASON_NAME like #{searchKeyword}</if>			
+		</where>
+	</sql>
+	
 
 	<update id="update_list">
 		Insert into CERT_REASON

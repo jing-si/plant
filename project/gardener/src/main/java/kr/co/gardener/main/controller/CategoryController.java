@@ -17,6 +17,7 @@ import kr.co.gardener.admin.model.object.Product;
 import kr.co.gardener.admin.model.user.Bookmark;
 import kr.co.gardener.admin.model.user.User;
 import kr.co.gardener.admin.service.object.CompanyService;
+import kr.co.gardener.admin.service.object.MidClassService;
 import kr.co.gardener.admin.service.object.ProductService;
 import kr.co.gardener.admin.service.object.TopClassService;
 import kr.co.gardener.admin.service.user.BookmarkService;
@@ -40,6 +41,9 @@ public class CategoryController {
 	
 	@Autowired
 	BookmarkService bookmarkService;
+	
+	@Autowired
+	MidClassService midClassService;
 	
 	//카테고리
 	@RequestMapping({"/",""})
@@ -69,9 +73,10 @@ public class CategoryController {
 	public String productlist(Model model,@PathVariable int midClassId) {
 		
 		List<Product> list = productService.MidList(midClassId);		
-		
+		String midClassName = midClassService.item(midClassId);
 		//productId(품목별 제품아이디), productImg(품목별 제품이미지), 
 		//productName(품목별 제품명)이 들어있는 리스트 구현해주세요.
+		model.addAttribute("midClassName", midClassName);
 		model.addAttribute("productList",list);
 		return path + "product-list";
 	}

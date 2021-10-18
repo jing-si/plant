@@ -8,7 +8,7 @@ public class Pager {
 	private int perPage;
 	private float total;
 	private int perGroup = 5;
-	private String search = "";
+	private String search = "total";
 	private String keyword;
 	
 	public int getOffset() {

@@ -5,8 +5,16 @@
 
 <mapper namespace="botclass">
 	<select id="list" resultType="BotClass">
-		SELECT * FROM BOT_CLASS
+		SELECT * FROM (<include refid="search"></include>) M
 	</select>
+	
+	<sql id="search">
+		select * from BOT_CLASS
+		<where>
+			<if test="(search == 'total' or search == 'midClassId') and keyword != ''">OR MID_CLASS_ID IN (select MID_CLASS_ID from MID_CLASS where MID_CLASS_NAME  like #{searchKeyword})</if>
+			<if test="(search == 'total' or search == 'botClassName') and keyword != ''">OR BOT_CLASS_NAME  like #{searchKeyword}</if>
+		</where>
+	</sql>
 	
 	<!--대량 처리 -->
 	<select id="list_pager" resultType="BotClass">

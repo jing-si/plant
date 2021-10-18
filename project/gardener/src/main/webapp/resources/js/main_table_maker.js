@@ -15,7 +15,7 @@ const state = {
 	url: "",
 	page: 1,
 	perPage: 10,
-	search: "",
+	search: "total",
 	keyword: "",
 	order: "",
 	orderMode: 0
@@ -30,7 +30,8 @@ $(function() {
 	//검색하기
 	$("#search").on("click",function(){
 		state.keyword = $("#q").val()
-		state.search = $("#searchCode").data("name")		
+		state.search = $("#searchCode").data("name")
+		state.page=1;		
 		content();
 	});
 	
@@ -90,13 +91,16 @@ $(function() {
 		$(this).addClass("selectedHeader");
 		$(".option").find("i").removeClass("bi-caret-right-fill");
 		$(this).find("i").addClass(" bi-caret-right-fill");
-
+		$("#init-search").trigger("click")
+		$('[data-name="total"]').trigger("click")
 		const url = $(this).data("url");
 		if (url != "#") {
 			state.url = url
 			$("#subContent").empty();
 			state.page = 1;
+			state.keyword ="";
 			insertCount = 0;
+			
 			content(state.url);
 		}
 	})

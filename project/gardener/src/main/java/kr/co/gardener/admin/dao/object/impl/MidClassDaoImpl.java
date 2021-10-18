@@ -47,6 +47,11 @@ public class MidClassDaoImpl implements MidClassDao{
 	public void update(List<MidClass> list) {
 		sql.update("midclass.update_list",list);
 	}
+
+	@Override
+	public String item(int midClassId) {
+		return sql.selectOne("midclass.item", midClassId);
+	}
 	
 	
 }
