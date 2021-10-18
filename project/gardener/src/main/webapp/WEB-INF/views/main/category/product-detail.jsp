@@ -380,7 +380,7 @@ img{
 
             <div id="same-brand">
                 <p id="same-brand-title">동일한 브랜드 제품</p>
-                <a href="brand-list"><p id="same-brand-more">+더보기</p></a>
+                <a href="../../brand/${item.companyId}"><p id="same-brand-more">+더보기</p></a>
                 <ul id="same-brand-list">
                 
                 	<c:if test="${sameBrandProductList.size()<1}">

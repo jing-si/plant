@@ -541,7 +541,7 @@ a{
 									</div>
 
 									<c:forEach var="item" items="${list.list}">
-										<a href="/login/category/${item.companyId}">
+										<a href="/login/category/brand/${item.companyId}">
 											<div id="product-subtitle-sub-box"
 												class="gnb hide i${list.title}">
 												<div class="product-subtitle-sub">${item.companyName}</div>

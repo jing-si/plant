@@ -125,7 +125,7 @@ a{
     font-size: 14px;
     font-weight: 500;
 }
-.brand img{
+.brand .heart{
     position: absolute;
     right: 15px;
     top: 24.2px;
