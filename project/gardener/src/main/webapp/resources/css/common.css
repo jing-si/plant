@@ -324,3 +324,11 @@ footer h5 {
 	width: auto;
 	display: inline-block;
 }
+#q{
+	border-right:none;	
+}
+#init-search{
+	border-top:1px solid #ccc;
+	border-bottom:1px solid #ccc;
+	background-color: white;	
+}

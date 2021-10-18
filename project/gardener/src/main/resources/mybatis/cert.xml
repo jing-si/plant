@@ -42,9 +42,17 @@
 	
 	<!--대량 처리 -->
 	<select id="list_pager" resultType="Cert">
-		SELECT * FROM CERT		
+		SELECT m.* FROM (<include refid="search"></include>) m		
 		LIMIT #{offset}, #{perPage}
 	</select>
+	
+	<sql id="search">
+		select * from CERT
+		<where>
+			<if test="search == 'total' or search == 'certName' and keyword != ''">OR CERT_NAME like #{searchKeyword}</if>
+			<if test="search == 'certId' and keyword != ''">OR CERT_ID like #{searchKeyword}</if>			
+		</where>
+	</sql>
 
 	<select id="update_list" resultType="Cert">
 		Insert into CERT
