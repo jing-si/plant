@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.gardener.admin.dao.object.MidClassDao;
+import kr.co.gardener.admin.model.object.MidClass;
 import kr.co.gardener.admin.model.object.list.MidClassList;
 import kr.co.gardener.admin.service.object.MidClassService;
 import kr.co.gardener.util.Pager;
@@ -40,7 +41,7 @@ public class MidClassServiceImpl implements MidClassService {
 	}
 
 	@Override
-	public String item(int midClassId) {
+	public MidClass item(int midClassId) {
 		return dao.item(midClassId);
 	}
 

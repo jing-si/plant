@@ -20,6 +20,6 @@ public interface MidClassDao {
 
 	void update(List<MidClass> list);
 
-	String item(int midClassId);
+	MidClass item(int midClassId);
 
 }
