@@ -72,6 +72,8 @@ img{
 
 </head>
 <body>
+	<!-- 상단 투명 영역(사용자 숲 꾸미기와 나무 이미지 같은 영역에 위치하도록) -->
+	<div class="header"></div>
 
 	<div id="image-container">
 		
