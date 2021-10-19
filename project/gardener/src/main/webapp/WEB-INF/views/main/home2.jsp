@@ -101,7 +101,14 @@
     $().ready(()=>{
     	
     	console.log("${user}");
-        	
+        
+    	$(".go-certify").click(function(){
+    		if($(".go-certify").text() == "친환경 소비 인증하기"){
+    			location.href = "certify";
+    		}
+    	})
+    	
+    	
 
     	//버튼 클릭 이벤트
 			$('#plantButton').click(function(){
@@ -704,7 +711,7 @@ a{
         </div>
 
         <div class="home-button">
-            <a href="certify"></a><div class="go-certify">친환경 소비 인증하기</div>
+            <!-- <a href="certify"></a> --><div class="go-certify">친환경 소비 인증하기</div>
             <a href="userforest"><div class="go-forest">숲으로 가기</div></a>
         	
         </div>
