@@ -5,16 +5,21 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>숲꾸미기</title>
 <link rel="stylesheet" href="/resources/css/005-01-01.css">
 <link
 	href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans+KR:wght@400;700;900&display=swap"
 	rel="stylesheet">
-	
-<link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+
+<!-- 모바일 draggable() 지원 -->
+<script src="/resources/js/jquery.ui.touch-punch.min.js"></script>
 
 <!-- 
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -61,7 +66,7 @@
    })
 		
 	$.ajax({
-		url:"../userforest/setforest/init2",
+		url:"../setforest/init",
 		success:function(data){
 			arr = data;
 			console.log(data);
@@ -73,11 +78,12 @@
 				
 				div1.attr("id", 'userPlant'+value.plantId);
 				div1.data("index",index);
+				div1.attr("data-order",value.locationOrder);
 				
 				img.attr("id", value.PlantId);				
 				img.attr("src",value.plantImage);
 				
-				console.log("z인덱스 : " + value.locationOrder);
+			
 				div1.css("zindex",value.locationOrder);
 				div1.css("zoom", value.locationSize);
 			
@@ -88,10 +94,12 @@
 				$("#image-container").append(div1);
 				div1.append(img);
 				div1.css("left",value.locationX);
-				div1.css("top",value.locationY);				
-				
-				console.log(arr);
-				
+				div1.css("top",value.locationY);
+				div1.draggable();
+				console.log($(window).width())
+				//div1.draggable({Array:[-10,-30,$(window).width()+10,$(window).height()+30]});
+				console.log(index)
+				value.div = div1;
 				/* 아래와 같이 넣어주고자 함
 				<div id="userPlant01" class="userPlant">
 					<img src="/resources/images/tree_01.png"></div>
@@ -104,19 +112,20 @@
 	
 	
 	$("#image-container").on("click", ".userPlant",function(data){
-		item = $(this);
-		$('.userPlant').removeClass('imgBox');
-		$(this).addClass('imgBox');	
-		console.log(item);
+		selectItem(this)
+	})
+
+	$("#image-container").on("dragstart", ".userPlant",function(data){
+		selectItem(this)
 	})
 	
-	
+	// pc, mobile 모두 움직이게 jquery.ui.touch-punch.min.js 추가
 	$("#image-container").on("mouseover", ".userPlant",function(data){
-		$(this).draggable();
+		//$(this).draggable();
 
 	})
 	 
-	 
+		 
 /* 	$("#image-container").on("click", ".userPlant",function(data){
 		$(this).draggable();
 		
@@ -124,7 +133,8 @@
 	
 	$('#zoom-in').click(function() { 
 		
-		let imgInfo = arr[$(item).data("index")];	
+		let imgInfo = arr[item.data("index")];
+		
 		let imgZoom = imgInfo.locationSize;
 		let userPlantId = 'userPlant'+imgInfo.plantId;
 		let zoomLevel = 0.1;
@@ -133,7 +143,7 @@
 		console.log(imgZoom);
 		
 		if( imgZoom > 0.5 && imgZoom < 1.5 ){
-			$("#"+userPlantId).css( {'zoom' : imgZoom });
+			$(item).css( {'zoom' : imgZoom });
 		} else {
 			imgZoom = 1.4;
 		}
@@ -141,9 +151,10 @@
 		imgInfo.locationSize = imgZoom;
 	})
 	
+	
 	$('#zoom-out').click(function() { 
 		
-		let imgInfo = arr[$(item).data("index")];	
+		let imgInfo = arr[item.data("index")];	
 		let imgZoom = imgInfo.locationSize;
 		let userPlantId = 'userPlant'+imgInfo.plantId;
 		let zoomLevel = 0.1;
@@ -152,7 +163,7 @@
 		console.log(imgZoom);
 		
 		if( imgZoom > 0.5 && imgZoom < 1.5 ){
-			$("#"+userPlantId).css( {'zoom' : imgZoom });
+			$(item).css( {'zoom' : imgZoom });
 		} else {
 			imgZoom = 0.6;
 		}
@@ -164,15 +175,23 @@
     
 	$('#btn-front').click(function() { 
 		
-		let imgInfo = arr[$(item).data("index")];
-		let imgZindex = Number(imgInfo.locationOrder);
-		let userPlantId = 'userPlant'+imgInfo.plantId;
 		
-		/* console.log(imgInfo);
-		console.log('arr.lengrh: ' + arr.length);
-		console.log('imgZindex: ' + imgInfo.locationOrder);
-		console.log(userPlantId); */
 		
+		let imgZindex = Number(item.attr("data-order"));
+		
+		
+		if(imgZindex < arr.length){
+		let targetImgInfo = $(`[data-order=\${imgZindex+1}]`)
+		
+		console.log("(현재 선택된)"+item.attr("data-index") +"번의 oreder은 " +item.attr("data-order"))
+		console.log(targetImgInfo.attr("data-index") +"번의 oreder은 " + targetImgInfo.attr("data-order"))
+		
+		item.attr("data-order",imgZindex + 1);
+		targetImgInfo.attr("data-order",imgZindex);
+		item.css("z-index", item.attr("data-order"));
+		targetImgInfo.css("z-index", targetImgInfo.attr("data-order"));
+		}
+		/*
 		for(let i=0; i<arr.length; i++) {	
 			if(Number(arr[i].locationOrder) === (imgZindex+1)) {
 				
@@ -193,20 +212,36 @@
 				console.log(arr[i].locationOrder);
 				console.log(arr[i]);
 				
+				break;
+				
 			}
 			else {
 				continue;
 			}
 		}
-		
+		*/
 		
 		
 	})
 	
 	
 	$('#btn-back').click(function() { 
+		let imgZindex = Number(item.attr("data-order"));
 		
-		let imgInfo = arr[$(item).data("index")];
+		
+		if(imgZindex > 0){
+		let targetImgInfo = $(`[data-order=\${imgZindex-1}]`)
+		
+		console.log("(현재 선택된)"+item.attr("data-index") +"번의 oreder은 " +item.attr("data-order"))
+		console.log(targetImgInfo.attr("data-index") +"번의 oreder은 " + targetImgInfo.attr("data-order"))
+		
+		item.attr("data-order",imgZindex - 1);
+		targetImgInfo.attr("data-order",imgZindex);
+		item.css("z-index", item.attr("data-order"));
+		targetImgInfo.css("z-index", targetImgInfo.attr("data-order"));
+		}
+		/*
+		let imgInfo = arr[item.data("index")];
 		let imgZindex = imgInfo.locationOrder;
 		let userPlantId = 'userPlant'+imgInfo.plantId;
 		
@@ -214,7 +249,7 @@
 		console.log('arr.lengrh: ' + arr.length);
 		console.log('imgZindex: ' + imgInfo.locationOrder);
 		console.log(userPlantId); */
-		
+		/*
 		for(let i=0; i<arr.length; i++) {
 			if(Number(arr[i].locationOrder) === (imgZindex - 1)) {
 				
@@ -224,9 +259,7 @@
 				imgZindex = arrZindex;
 				arrZindex = temp;
 				
-				/* console.log(i);
-				console.log('arr[i].locationOrder: ' + arr[i].locationOrder);
-				console.log('imgZindex: ' + imgZindex); */
+			
 				
 				$("#"+userPlantId).css("zindex", imgZindex);
 				$("#"+userPlantId).css("zindex", arr[i].locationOrder); 
@@ -243,14 +276,15 @@
 				continue;
 			}
 		}
+		*/
 		
-		imgInfo.locationOrder = imgZindex;
 		
 		
 	})
 	
 	$('#btn-delete').click(function() { 
-		$(item).remove();
+		item.remove();
+		
 	})
 	
 	
@@ -271,6 +305,13 @@
 	
 	});
 	
+	function selectItem(selectedItem){
+		item = $(selectedItem);
+		$('.userPlant').removeClass('imgBox');
+		$(selectedItem).addClass('imgBox');	
+		console.log($(selectedItem).data("index"));
+	}
+	
 </script>
 
 
@@ -283,7 +324,6 @@
 	border: 2px solid blue;
 	padding: 0;
 }
-
 
 #image-container {
 	width: 100%;
@@ -306,18 +346,35 @@
 	<div class="wrapper">
 		<div class="header">
 			<p class="header_text">숲 꾸미기</p>
-			<a href="/login/userforest/"><p class="close_btn"><img src="/resources/images/icon_close.png" width="18" height="18"></p></a> 
-			<p class="save_btn"><img src="/resources/images/icon_save.png" width="24" height="24"></p>
+			<a href="/login/userforest/"><p class="close_btn">
+					<img src="/resources/images/icon_close.png" width="18" height="18">
+				</p></a>
+			<p class="save_btn">
+				<img src="/resources/images/icon_save.png" width="24" height="24">
+			</p>
 		</div>
 
 		<div id="image-container"></div>
-		
+
 		<div class="footer">
-			<div class="footer_btn"><img class="btn" id="btn-front"src="/resources/images/btn_front.png" width="45" height="45">
-			</div><div class="footer_btn"><img class="btn" id="btn-back" src="/resources/images/btn_back.png" width="45" height="45">
-			</div><div class="footer_btn"><img class="btn_delete" id="btn-delete" src="/resources/images/btn_delete.png" width="60" height="60">
-			</div><div class="footer_btn"><img class="btn" id="zoom-in" src="/resources/images/btn_plus.png" width="45" height="45">
-			</div><div class="footer_btn"><img class="btn" id="zoom-out" src="/resources/images/btn_minus.png" width="45" height="45"></div></div></div>
+			<div class="footer_btn">
+				<img class="btn" id="btn-front"
+					src="/resources/images/btn_front.png" width="45" height="45">
+			</div><div class="footer_btn">
+				<img class="btn" id="btn-back" src="/resources/images/btn_back.png"
+					width="45" height="45">
+			</div><div class="footer_btn">
+				<img class="btn_delete" id="btn-delete"
+					src="/resources/images/btn_delete.png" width="60" height="60">
+			</div><div class="footer_btn">
+				<img class="btn" id="zoom-in" src="/resources/images/btn_plus.png"
+					width="45" height="45">
+			</div><div class="footer_btn">
+				<img class="btn" id="zoom-out" src="/resources/images/btn_minus.png"
+					width="45" height="45">
+			</div>
+		</div>
+	</div>
 
 </body>
 </html>

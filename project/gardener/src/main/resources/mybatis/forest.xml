@@ -27,9 +27,17 @@
   
   <!--대량 처리 -->
 	<select id="list_pager" resultType="Forest">
-		SELECT * FROM FOREST 		
+		SELECT * FROM (<include refid="search"></include>) M 		
 		LIMIT #{offset}, #{perPage}
 	</select>
+	
+	<sql id="search">
+		select * from FOREST
+		<where>
+			<if test="(search == 'total' or search == 'forestId') and keyword != ''">OR FOREST_ID like #{searchKeyword}</if>
+			<if test="(search == 'total' or search == 'forestName') and keyword != ''">OR FOREST_NAME like #{searchKeyword}</if>
+		</where>
+	</sql>
 
 	<select id="update_list" resultType="Forest">
 		Insert into FOREST
@@ -68,6 +76,6 @@
 	</delete>
 
 	<select id="total" resultType="float">
-		select COUNT(*) from FOREST
+		select COUNT(*) from (<include refid="search"></include>) M 
 	</select>
 </mapper>

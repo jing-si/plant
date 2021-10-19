@@ -20,43 +20,46 @@
 let arr = new Array();
 let item ;
 $().ready(()=>{
-$.ajax({
-	url:"../init",
-	success:function(data){
-		arr = data;
-		console.log(data);
-		
-		arr.forEach((value,index)=>{
-			let div1 = $("<div class='userPlant'>");				
-			let img = $("<img class='userPlantImg'>");
-			// img.data("index",index);
+	$.ajax({
+		url:"setforest/init",
+		success:function(data){
+			arr = data;
+			console.log(data);
 			
-			div1.attr("id", 'userPlant'+value.plantId);
-			div1.data("index",index);
+			arr.forEach((value,index)=>{
+				let div1 = $("<div class='userPlant'>");				
+				let img = $("<img class='userPlantImg'>");
+				// img.data("index",index);
+				
+				div1.attr("id", 'userPlant'+value.plantId);
+				div1.data("index",index);
+				div1.attr("data-order",value.locationOrder);
+				
+				img.attr("id", value.PlantId);				
+				img.attr("src",value.plantImage);
+				
 			
-			img.attr("id", value.PlantId);
-			img.attr("src",value.plantImage);
-							
-			div1.css("z-index",value.locationOrder);
-			div1.css("transform : scale", value.locationSize);
-		
+				div1.css("zindex",value.locationOrder);
+				div1.css("zoom", value.locationSize);
 			
-			
-			//item.locationX = currentlocation;
-
-			$("#image-container").append(div1);
-			div1.append(img);
-			div1.css("left",value.locationX);
-			div1.css("top",value.locationY);				
-			
-			/* 아래와 같이 넣어주고자 함
-			<div id="userPlant01" class="userPlant">
-				<img src="/resources/images/tree_01.png"></div>
-			</div> 
-			*/
-		})
-	}
-})
+				
+				
+				//item.locationX = currentlocation;
+  
+				$("#image-container").append(div1);
+				div1.append(img);
+				div1.css("left",value.locationX);
+				div1.css("top",value.locationY);
+				//div1.draggable({Array:[-10,-30,$(window).width()+10,$(window).height()+30]});
+				/* 아래와 같이 넣어주고자 함
+				<div id="userPlant01" class="userPlant">
+					<img src="/resources/images/tree_01.png"></div>
+				</div> 
+				*/
+				
+			})
+		}
+	})
 })
 </script>
 
@@ -72,13 +75,15 @@ img{
 
 </head>
 <body>
+	<!-- 상단 투명 영역(사용자 숲 꾸미기와 나무 이미지 같은 영역에 위치하도록) -->
+	<div class="header"></div>
 
 	<div id="image-container">
 		
 	</div>
 
 	<div class="main_container">
-		<a href="../"><button type="button" id="button_close">
+		<a href="/login/"><button type="button" id="button_close">
 				<img src="/resources/images/btn_close.png" width="50" height="50">
 			</button></a> <a href="/login/userforest/setforest/"><button type="button"
 				id="button_setting">

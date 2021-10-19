@@ -4,33 +4,15 @@ import kr.co.gardener.util.GridSystem;
 
 public class Location extends GridSystem{
 	private int locationId;
-	private String userId;
-	private int plantId;
+	private String userId;	
 	private float locationSize;
-	private int locationX;
-	private int locationY;
+	private double locationX;
+	private double locationY;
 	private int locationOrder;
+	private int plantId;
 
 	private String plantImage; // 식물 이미지(join으로 PlantLevel에서 가지고올것)
 	
-
-	public String getPlantImage() {
-		return plantImage;
-	}
-
-	public void setPlantImage(String plantImage) {
-		this.plantImage = plantImage;
-	}
-
-	
-	public String getUserId() {
-		return userId;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-
 	public int getLocationId() {
 		return locationId;
 	}
@@ -39,12 +21,13 @@ public class Location extends GridSystem{
 		this.locationId = locationId;
 	}
 
-	public int getPlantId() {
-		return plantId;
+
+	public String getUserId() {
+		return userId;
 	}
 
-	public void setPlantId(int plantId) {
-		this.plantId = plantId;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 	public float getLocationSize() {
@@ -55,29 +38,65 @@ public class Location extends GridSystem{
 		this.locationSize = locationSize;
 	}
 
-	public int getLocationX() {
+	public double getLocationX() {
 		return locationX;
 	}
 
-	public void setLocationX(int locationX) {
+
+
+	public void setLocationX(double locationX) {
 		this.locationX = locationX;
 	}
 
-	public int getLocationY() {
+
+
+	public double getLocationY() {
 		return locationY;
 	}
 
-	public void setLocationY(int locationY) {
+
+
+	public void setLocationY(double locationY) {
 		this.locationY = locationY;
 	}
+
+
 
 	public int getLocationOrder() {
 		return locationOrder;
 	}
 
+
+
 	public void setLocationOrder(int locationOrder) {
 		this.locationOrder = locationOrder;
 	}
+
+
+
+	public int getPlantId() {
+		return plantId;
+	}
+
+
+
+	public void setPlantId(int plantId) {
+		this.plantId = plantId;
+	}
+
+
+
+	public String getPlantImage() {
+		return plantImage;
+	}
+
+
+
+	public void setPlantImage(String plantImage) {
+		this.plantImage = plantImage;
+	}
+
+
 
 	// 서버에 데이터 보낼때 사용?
 	// plantImage는 어디서 가져오는건지?

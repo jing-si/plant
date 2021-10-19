@@ -7,9 +7,18 @@
 
 	<!--대량 처리 -->
 	<select id="list_pager" resultType="RandomMessage">
-		SELECT * FROM RANDOM_MESSAGE		
+		SELECT * FROM (<include refid="search"></include>) M		
 		LIMIT #{offset}, #{perPage}
 	</select>
+	
+	<sql id="search">
+		select * from RANDOM_MESSAGE
+		<where>
+			<if test="(search == 'total' or search == 'randomMessageId') and keyword != ''">OR RANDOM_MESSAGE_ID like #{searchKeyword}</if>
+			<if test="(search == 'total' or search == 'randomMessageCetegory') and keyword != ''">OR RANDOM_MESSAGE_CATEGORY like #{searchKeyword}</if>
+			<if test="(search == 'total' or search == 'randomMessageText') and keyword != ''">OR RANDOM_MESSAGE_TEXT like #{searchKeyword}</if>
+		</where>
+	</sql>
 
 	<select id="update_list" resultType="RandomMessage">
 		Insert into RANDOM_MESSAGE
@@ -45,7 +54,7 @@
 	</delete>
 
 	<select id="total" resultType="float">
-		select COUNT(*) from RANDOM_MESSAGE
+		select COUNT(*) from (<include refid="search"></include>) M	
 	</select>
 
 	
