@@ -11,13 +11,17 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans+KR:wght@400;700;900&display=swap"
 	rel="stylesheet">
+	
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 
-
-<link rel="stylesheet"
-	href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-
+<!-- 
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 <script src="/resources/jq/jquery.js"></script>
+ -->
+
 <script>
 
 /* if(localStorage.getItem('img')){
@@ -28,7 +32,7 @@
  */
 
     let arr = new Array();
-    let item ;
+    let item;
 	$().ready(()=>{
 	 
 		//세이브
@@ -109,7 +113,7 @@
 	
 	$("#image-container").on("mouseover", ".userPlant",function(data){
 		$(this).draggable();
-		
+
 	})
 	 
 	 

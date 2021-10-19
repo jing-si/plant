@@ -124,7 +124,7 @@ public class UserForestController {
 //	  list.add(l3);
 //	  
 //	  return list; }
-	  
+//	  
 	  //숲꾸미기
 	  @RequestMapping("/userforest/setforest/init2")
 	  @ResponseBody public List<Location> init2() { List<Location> list = new
