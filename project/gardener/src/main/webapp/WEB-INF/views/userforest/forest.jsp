@@ -21,7 +21,7 @@ let arr = new Array();
 let item ;
 $().ready(()=>{
 	$.ajax({
-		url:"../setforest/init",
+		url:"setforest/init",
 		success:function(data){
 			arr = data;
 			console.log(data);
