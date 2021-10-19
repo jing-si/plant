@@ -7,9 +7,17 @@
 	
 	<!--대량 처리 -->
 	<select id="list_pager" resultType="MidClass">
-		SELECT * FROM Mid_CLASS		
+		SELECT * FROM (<include refid="search"></include>) M	
 		LIMIT #{offset}, #{perPage}
 	</select>
+	
+	<sql id="search">
+		select * from MID_CLASS
+		<where>
+			<if test="(search == 'total' or search == 'topClassId') and keyword != ''">OR TOP_CLASS_ID IN (select TOP_CLASS_ID from TOP_CLASS where TOP_CLASS_NAME  like #{searchKeyword})</if>
+			<if test="(search == 'total' or search == 'midClassName') and keyword != ''">OR MID_CLASS_NAME  like #{searchKeyword}</if>
+		</where>
+	</sql>
 
 	<update id="update_list" >
 		Insert into Mid_CLASS
@@ -42,7 +50,7 @@
 	</delete>
 
 	<select id="total" resultType="float">
-		select COUNT(*) from Mid_CLASS
+		select COUNT(*) from (<include refid="search"></include>) M	
 	</select>
 
 	<select id="combo" resultType="ComboItem">
@@ -50,6 +58,11 @@
 		TOP_CLASS_ID AS "id", TOP_CLASS_NAME AS "text"
 		from TOP_CLASS
 		
+	</select>
+	
+	<select id="item" resultType="MidClass">
+		select * from MID_CLASS 
+		where MID_CLASS_ID = #{midClassId}
 	</select>
 	
 </mapper>

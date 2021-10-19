@@ -7,10 +7,18 @@
 
 	<!--대량 처리 -->
 	<select id="list_pager" resultType="TopClass">
-		SELECT * FROM TOP_CLASS
+		SELECT * FROM (<include refid="search"></include>) M
 		LIMIT
 		#{offset}, #{perPage}
 	</select>
+	
+	<sql id="search">
+		select * from TOP_CLASS
+		<where>
+			<if test="(search == 'total' or search == 'topClassName') and keyword != ''">OR TOP_CLASS_NAME like #{searchKeyword}</if>
+		</where>
+	</sql>
+	
 
 	<update id="update_list">
 		Insert into TOP_CLASS
@@ -42,7 +50,7 @@
 	</delete>
 
 	<select id="total" resultType="float">
-		select COUNT(*) from TOP_CLASS
+		select COUNT(*) from (<include refid="search"></include>) M
 	</select>
 
 	<select id="combo" resultType="ComboItem">

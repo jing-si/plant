@@ -7,9 +7,23 @@
 	
 	<!-- List -->
 	<select id="list" resultType="Company">
-		select * from COMPANY limit #{offset}, #{perPage}
+		select * from (<include refid="search"></include>) M 
+		limit #{offset}, #{perPage}
 		
 	</select>
+	
+	<sql id="search">
+		select * from Company
+		<where>
+			<if test="(search == 'total' or search == 'companyId') and keyword != ''">OR COMPANY_ID like #{searchKeyword}</if>
+			<if test="(search == 'total' or search == 'companyNAME') and keyword != ''">OR COMPANY_NAME like #{searchKeyword}</if>
+			<if test="(search == 'total' or search == 'companyTel') and keyword != ''">OR COMPANY_TEL like #{searchKeyword}</if>
+			<if test="(search == 'total' or search == 'companyAddress') and keyword != ''">OR COMPANY_ADDRESS like #{searchKeyword}</if>
+			<if test="(search == 'total' or search == 'companyHomepage') and keyword != ''">OR COMPANY_HOMEPAGE like #{searchKeyword}</if>
+			
+		</where>
+	</sql>
+	
 	
 	<select id="listall" resultType="Company">
 		select * from COMPANY
@@ -61,7 +75,7 @@
 	</update>
 	
 	<select id="total" resultType="float">
-		select count(*) from COMPANY
+		select count(*) from (<include refid="search"></include>) M 
 	</select>
 	
 	<select id="includeProduct" resultMap="icProdMap">

@@ -20,6 +20,10 @@
 			height: calc(100vh - 59.5px - 44px - 35px);
 			width: 100%;
 		}
+		 .brand-img img{
+    	width: 100%;
+    	height: 100%;
+    }
 	</style>
 </head>
 <body>
@@ -72,7 +76,7 @@
                         <c:forEach var="list" items="${list_date}">
                             <a href="../category/product/${list.productId}/${list.companyId}">
                             <div class="brand">
-                                <div class="brand-img" src="${list.productImage}"></div>
+                                <div class="brand-img"><img src="${list.productImage}"></div>
                                 <p class="brand-name">${list.productName}</p>
                                 <img src="/resources/images/favorite-heart.png">
                             </div></a>
@@ -94,9 +98,9 @@
                         <c:forEach var="list" items="${list_name}">
                             <a href="../category/product/${list.productId}/${list.companyId}">
                             <div class="brand">
-                                <div class="brand-img" src="${list.productImage}"></div>
+                                <div class="brand-img"><img src="${list.productImage}"></div>
                                 <p class="brand-name">${list.productName}</p>
-                                <img src="/resources/images/favorite-heart.png">
+                                <img class="heart" src="/resources/images/favorite-heart.png">
                             </div></a>
                         </c:forEach>
                     </c:if>

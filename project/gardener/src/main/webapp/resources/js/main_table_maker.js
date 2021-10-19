@@ -15,7 +15,7 @@ const state = {
 	url: "",
 	page: 1,
 	perPage: 10,
-	search: 0,
+	search: "total",
 	keyword: "",
 	order: "",
 	orderMode: 0
@@ -26,6 +26,52 @@ $(function() {
 	//QueryString 분석, 선택한 nav 표시하기
 
 	selectedNav()
+	
+	//검색하기
+	$("#search").on("click",function(){
+		state.keyword = $("#q").val()
+		state.search = $("#searchCode").data("name")
+		state.page=1;		
+		content();
+	});
+	
+	//search바 keyup 이벤트
+	$("#q").on("keyup",function(){
+		const init = $("#init-search")
+		if($(this).val().length > 0){
+			if(init.hasClass("hide"))
+				init.removeClass("hide")
+			
+		}else{
+			if(!init.hasClass("hide")){
+				init.addClass("hide")
+			}
+		}
+		
+		
+	});
+	
+	//search바 enter 이벤트		
+	$("#q").keydown(function(key){
+		if(key.keyCode == 13)
+		$("#search").trigger("click")
+		if(key.keyCode == 27)
+		$("#init-search").trigger("click")
+	});
+	
+	//search바 초기화 이벤트
+	$("#init-search").on("click",function(){
+		$("#q").val("");
+		$(this).addClass("hide");
+	})
+	
+	//SearchCode 선택
+	$("#searchCode-list").on("click",".searchCode-btn",function(){
+		console.log($(this).text())
+		$("#searchCode").text($(this).text())
+		$("#searchCode").data("name",$(this).data("name"))
+	})
+	
 
 	//val 함수에 이벤트 추가.
 	const originalVal = $.fn.val;
@@ -36,19 +82,25 @@ $(function() {
 		return result;
 	};
 	
+	
+	
+	
 	//메인페이지 선택 하는 버튼
 	$(".option").on("click", function() {
 		$(".selectedHeader").removeClass("selectedHeader");
 		$(this).addClass("selectedHeader");
 		$(".option").find("i").removeClass("bi-caret-right-fill");
 		$(this).find("i").addClass(" bi-caret-right-fill");
-
+		$("#init-search").trigger("click")
+		$('[data-name="total"]').trigger("click")
 		const url = $(this).data("url");
 		if (url != "#") {
 			state.url = url
 			$("#subContent").empty();
 			state.page = 1;
+			state.keyword ="";
 			insertCount = 0;
+			
 			content(state.url);
 		}
 	})
@@ -662,7 +714,7 @@ function makeGrid(data) {
 	const insertData = data.insert;
 	initArray();
 
-
+	$(".search-btn-flex").remove()
 	//헤드 작업	
 	tr.append($('<th class="center col-auto" scope="col">')
 		.append($('<div class="cell">').append('<input type="checkbox" class="mx-3 form-check-input">'))
@@ -679,9 +731,22 @@ function makeGrid(data) {
 		if (insertLen > a) {
 			addType.push(insertData["add" + a].split("-"));
 		}
-
-		if (str[2] != "hide")
-			th.append($('<div class="cell">').text(str[0]));
+		
+		
+		th.append($('<div class="cell">').text(str[0]));
+		if (str[2] === "hide")
+			th.addClass("hide");
+			
+		//searchCode 작업
+		switch(str[2]){
+			case "none":
+			case "text":
+			case "combo":
+			let li = $("<li>")
+			li.append($(`<button class="dropdown-item searchCode-btn search-btn-flex" data-name="${str[1]}">${str[0]}</button>`))
+			$("#searchCode-list").append(li);
+		}
+		
 		tr.append(th);
 	}
 	thead.append(tr)
@@ -753,8 +818,10 @@ function makeGrid(data) {
 
 //maintable 내용 요청하기
 function content(url_) {
-	state.url = url_;
-	$.ajax("api/" + url_ + "?", {
+	console.log(url_)
+	if(url_ != undefined)
+		state.url = url_
+	$.ajax("api/" + state.url + "?", {
 		contentType: "application/json",
 		dataType: "json",
 		method: "get",

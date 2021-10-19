@@ -129,7 +129,8 @@
 		$('#cards').on("click",".card",function(data){  		
 		    
             if($("#cards").hasClass("cardsback")){
-                $(".card").fadeOut();
+                /* $(".card").fadeOut(); */
+                $(".card").hide();
                 $(this).addClass("selectedCard")
                 $('#cards').removeClass("cardsback")
                 $(this).fadeIn();
@@ -359,10 +360,16 @@ a{
     color: black;
 }
 .selectedCard{
-    scale: 2;
+    /* scale: 2; */
     margin-left: 50%;
-    height: 100%;
-    
+    height: auto;
+    position: absolute;
+    top: 40%;
+    left: 45%;
+    transform : translate(-50%, -50%);
+   /*  max-width: 100%; */
+    width: 130px !important;
+    margin-top : 0px !important;
 
 }
 #align{
@@ -423,7 +430,7 @@ a{
     top : 60px;
     left: 145px;
     transform: translate(-50%);
-    border : 1px solid blue;
+    /* border : 1px solid blue; */
 }
 .home-screen .process{
     position: absolute;
@@ -585,10 +592,13 @@ a{
     	#cards{
             width: 80%;
             height: 130px;
-            border: 1px solid blue;
-            margin: 0 auto;
-            margin-top: 50px;
-            position: relative; 
+            /* border: 1px solid blue; */
+            /* margin: 0 auto; */
+            /* margin-top: 50px; */
+            top : 60%;
+            left : 50%;
+            transform : translate(-50%, -50%);
+            position: absolute; 
             
             background-size : contain; 
             background-repeat : no-repeat;       
@@ -605,7 +615,11 @@ a{
             left: 12px; */
             width: 50px;
             margin: 13.7px;
-    		margin-top: 25px;
+    		margin-top: 25px; 
+/*     		position: absolute;
+    		top: 50%;
+    		left: 50%;
+    		transform: translate(-50%, -50%); */
         }
         /* #cards #card2{
             left: 101px;

@@ -39,7 +39,7 @@
 			
 			<c:if test="${brandProductList.size()>1}">
 			<c:forEach var="list" items="${brandProductList}">
-				<a href="../../product/${list.productId}/${list.companyId}"><div class="brand">
+				<a href="../product/${list.productId}/${list.companyId}"><div class="brand">
                 	<div class="brand-img"><img src="${list.productImage}"></div>
                 	<p class="brand-name">${list.productName}</p>
             	</div></a>

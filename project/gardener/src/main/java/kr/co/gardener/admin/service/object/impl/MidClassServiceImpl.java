@@ -39,4 +39,9 @@ public class MidClassServiceImpl implements MidClassService {
 		dao.update(list.getList());
 	}
 
+	@Override
+	public String item(int midClassId) {
+		return dao.item(midClassId);
+	}
+
 }
