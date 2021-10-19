@@ -16,6 +16,8 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 
+<script src="/resources/js/jquery.ui.touch-punch.min.js"></script>
+
 <!-- 
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
@@ -110,6 +112,9 @@
 		console.log(item);
 	})
 	
+	$("#image-container").on("touchstart", function(data) {
+		$(this).draggable();
+	}) 
 	
 	$("#image-container").on("mouseover", ".userPlant",function(data){
 		$(this).draggable();
