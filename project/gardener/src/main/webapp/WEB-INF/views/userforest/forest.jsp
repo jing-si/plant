@@ -21,7 +21,7 @@ let arr = new Array();
 let item ;
 $().ready(()=>{
 $.ajax({
-	url:"../init",
+	url:"setforest/init",
 	success:function(data){
 		arr = data;
 		console.log(data);
@@ -78,7 +78,7 @@ img{
 	</div>
 
 	<div class="main_container">
-		<a href="../"><button type="button" id="button_close">
+		<a href="/login/"><button type="button" id="button_close">
 				<img src="/resources/images/btn_close.png" width="50" height="50">
 			</button></a> <a href="/login/userforest/setforest/"><button type="button"
 				id="button_setting">

@@ -64,7 +64,7 @@
    })
 		
 	$.ajax({
-		url:"../userforest/setforest/init2",
+		url:"../setforest/init",
 		success:function(data){
 			arr = data;
 			console.log(data);

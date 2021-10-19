@@ -239,3 +239,7 @@ body {
 }
 
 /* 팝업창 보관중인 나무 끝 */
+
+.userPlant{
+	position: absolute;
+}
