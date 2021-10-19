@@ -1,5 +1,6 @@
 package kr.co.gardener.admin.service.object;
 
+import kr.co.gardener.admin.model.object.MidClass;
 import kr.co.gardener.admin.model.object.list.MidClassList;
 import kr.co.gardener.util.Pager;
 
@@ -13,6 +14,6 @@ public interface MidClassService {
 
 	void update(MidClassList list);
 
-	String item(int midClassId);
+	MidClass item(int midClassId);
 
 }

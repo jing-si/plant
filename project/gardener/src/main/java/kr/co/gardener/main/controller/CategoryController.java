@@ -73,7 +73,7 @@ public class CategoryController {
 	public String productlist(Model model,@PathVariable int midClassId) {
 		
 		List<Product> list = productService.MidList(midClassId);		
-		String midClassName = midClassService.item(midClassId);
+		String midClassName = midClassService.item(midClassId).getMidClassName();
 		//productId(품목별 제품아이디), productImg(품목별 제품이미지), 
 		//productName(품목별 제품명)이 들어있는 리스트 구현해주세요.
 		model.addAttribute("midClassName", midClassName);

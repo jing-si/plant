@@ -56,9 +56,24 @@
 	
 	<!--대량 처리 -->
 	<select id="list_pager" resultType="User">
-		SELECT * FROM USER		
+		SELECT * FROM (<include refid="search"></include>) M		
 		LIMIT #{offset}, #{perPage}
 	</select>
+	
+	
+	<sql id="search">
+		select * from user
+		<where>
+			<if test="(search == 'total' or search == 'userId') and keyword != ''">OR UESR_ID like #{searchKeyword}</if>
+			<if test="(search == 'total' or search == 'userNick') and keyword != ''">OR USER_NICK like #{searchKeyword}</if>
+			<if test="(search == 'total' or search == 'userGender') and keyword != ''">OR USER_PASS like #{searchKeyword}</if>
+			<if test="(search == 'total' or search == 'stateId') and keyword != ''">OR STATE_ID IN (SELECT STATE_ID FROM STATE WHERE STATE_NAME like #{searchKeyword})</if>
+			<if test="(search == 'total' or search == 'forestId') and keyword != ''">OR STATE_ID IN (SELECT FOREST_ID FROM STATE WHERE FOREST_NAME like #{searchKeyword})</if>
+			<if test="(search == 'total' or search == 'plantId') and keyword != ''">OR STATE_ID IN (SELECT PLANT_ID FROM STATE WHERE PLANT_NAME like #{searchKeyword})</if>
+			
+			
+		</where>
+	</sql>
 
 	<select id="update_list" resultType="User">
 		Insert into USER

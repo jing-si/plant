@@ -49,7 +49,7 @@ public class MidClassDaoImpl implements MidClassDao{
 	}
 
 	@Override
-	public String item(int midClassId) {
+	public MidClass item(int midClassId) {
 		return sql.selectOne("midclass.item", midClassId);
 	}
 	
