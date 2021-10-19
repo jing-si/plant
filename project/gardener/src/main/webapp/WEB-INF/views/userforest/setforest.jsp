@@ -16,6 +16,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 
+<!-- 모바일 draggable() 지원 -->
 <script src="/resources/js/jquery.ui.touch-punch.min.js"></script>
 
 <!-- 
@@ -112,10 +113,7 @@
 		console.log(item);
 	})
 	
-	$("#image-container").on("touchstart", function(data) {
-		$(this).draggable();
-	}) 
-	
+	// pc, mobile 모두 움직이게 jquery.ui.touch-punch.min.js 추가
 	$("#image-container").on("mouseover", ".userPlant",function(data){
 		$(this).draggable();
 
@@ -146,6 +144,7 @@
 		imgInfo.locationSize = imgZoom;
 	})
 	
+	
 	$('#zoom-out').click(function() { 
 		
 		let imgInfo = arr[$(item).data("index")];	
@@ -169,14 +168,16 @@
     
 	$('#btn-front').click(function() { 
 		
+		
 		let imgInfo = arr[$(item).data("index")];
 		let imgZindex = Number(imgInfo.locationOrder);
 		let userPlantId = 'userPlant'+imgInfo.plantId;
 		
-		/* console.log(imgInfo);
+		
+		console.log(imgInfo);
 		console.log('arr.lengrh: ' + arr.length);
 		console.log('imgZindex: ' + imgInfo.locationOrder);
-		console.log(userPlantId); */
+		console.log(userPlantId);
 		
 		for(let i=0; i<arr.length; i++) {	
 			if(Number(arr[i].locationOrder) === (imgZindex+1)) {
@@ -197,6 +198,8 @@
 				console.log(imgInfo.locationOrder);
 				console.log(arr[i].locationOrder);
 				console.log(arr[i]);
+				
+				break;
 				
 			}
 			else {
