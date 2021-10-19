@@ -11,6 +11,8 @@
 		WHERE USER_ID = #{userId}
 	</select>
 	
+	
+	
 	<select id="list_userId" resultType="Location">
 		select L.*, PL.PLANT_IMAGE from LOCATION L
 		join PLANT_LEVEL PL ON PL.PLANT_ID = L.PLANT_ID
@@ -51,9 +53,18 @@
 	
 	<!--대량 처리 -->
 	<select id="list_pager" resultType="Location">
-		SELECT * FROM LOCATION		
+		SELECT * FROM (<include refid="search"></include>) M	
 		LIMIT #{offset}, #{perPage}
 	</select>
+
+	<sql id="search">
+		select * from LOCATION
+		<where>
+			<if test="(search == 'total' or search == 'locationId') and keyword != ''">OR LOCATION_ID like #{searchKeyword}</if>
+			<if test="(search == 'total' or search == 'userId') and keyword != ''">OR USER_ID like #{searchKeyword}</if>
+			<if test="(search == 'total' or search == 'plantId') and keyword != ''">OR PLANT_ID IN (SELECT PLANT_ID FROM PLANT WHERE PLANT_NAME like #{searchKeyword})</if>
+		</where>
+	</sql>
 
 	<select id="update_list" resultType="Location">
 		Insert into LOCATION
@@ -96,7 +107,7 @@
 	</delete>
 
 	<select id="total" resultType="float">
-		select COUNT(*) from LOCATION
+		select COUNT(*) from (<include refid="search"></include>) M
 	</select>
 
 	<select id="combo" resultType="ComboItem">

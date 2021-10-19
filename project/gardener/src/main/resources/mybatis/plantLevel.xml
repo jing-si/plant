@@ -30,10 +30,18 @@
   
   <!--대량 처리 -->
 	<select id="list_pager" resultType="PlantLevel">
-		SELECT * FROM PLANT_LEVEL m		
-		JOIN PLANT s on m.PLANT_ID = s.PLANT_ID 
+		<include refid="search"></include>
 		LIMIT #{offset}, #{perPage}
 	</select>
+	
+	<sql id="search">
+		SELECT m.*,s.PLANT_NAME FROM PLANT_LEVEL m		
+		JOIN PLANT s on m.PLANT_ID = s.PLANT_ID
+		<where>
+			<if test="(search == 'total' or search == 'plantId') and keyword != ''">OR PLANT_NAME like #{searchKeyword}</if>
+			<if test="(search == 'total' or search == 'plantLevelId') and keyword != ''">OR PLANT_LEVEL_ID like #{searchKeyword}</if>
+		</where>
+	</sql>
 
 	<select id="update_list" resultType="PlantLevel">
 		Insert into PLANT_LEVEL
@@ -69,7 +77,7 @@
 	</delete>
 
 	<select id="total" resultType="float">
-		select COUNT(*) from PLANT_LEVEL
+		select COUNT(*) from (<include refid="search"></include>) C
 	</select>
 
 	<select id="combo" resultType="ComboItem">

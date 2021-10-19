@@ -64,12 +64,12 @@
 	<sql id="search">
 		select * from user
 		<where>
-			<if test="(search == 'total' or search == 'userId') and keyword != ''">OR UESR_ID like #{searchKeyword}</if>
+			<if test="(search == 'total' or search == 'userId') and keyword != ''">OR USER_ID like #{searchKeyword}</if>
 			<if test="(search == 'total' or search == 'userNick') and keyword != ''">OR USER_NICK like #{searchKeyword}</if>
-			<if test="(search == 'total' or search == 'userGender') and keyword != ''">OR USER_PASS like #{searchKeyword}</if>
+			<if test="(search == 'total' or search == 'userGender') and keyword != ''">OR USER_GENDER like #{searchKeyword}</if>
 			<if test="(search == 'total' or search == 'stateId') and keyword != ''">OR STATE_ID IN (SELECT STATE_ID FROM STATE WHERE STATE_NAME like #{searchKeyword})</if>
-			<if test="(search == 'total' or search == 'forestId') and keyword != ''">OR STATE_ID IN (SELECT FOREST_ID FROM STATE WHERE FOREST_NAME like #{searchKeyword})</if>
-			<if test="(search == 'total' or search == 'plantId') and keyword != ''">OR STATE_ID IN (SELECT PLANT_ID FROM STATE WHERE PLANT_NAME like #{searchKeyword})</if>
+			<if test="(search == 'total' or search == 'forestId') and keyword != ''">OR FOREST_ID IN (SELECT FOREST_ID FROM FOREST WHERE FOREST_NAME like #{searchKeyword})</if>
+			<if test="(search == 'total' or search == 'plantId') and keyword != ''">OR PLANT_ID IN (SELECT PLANT_ID FROM PLANT WHERE PLANT_NAME like #{searchKeyword})</if>
 			
 			
 		</where>
@@ -110,7 +110,7 @@
 	</delete>
 
 	<select id="total" resultType="float">
-		select COUNT(*) from USER
+		select COUNT(*) from (<include refid="search"></include>) M	
 	</select>
 
 	<select id="combo" resultType="ComboItem">

@@ -42,10 +42,20 @@
 	
 	<!--대량 처리 -->
 	<select id="list_pager" resultType="Inven">
-		SELECT * FROM INVEN i		
-		JOIN PLANT p on p.PLANT_ID = i.PLANT_ID 
+		<include refid="search"></include>
 		LIMIT #{offset}, #{perPage}
 	</select>
+	
+	<sql id="search">
+		SELECT i.*, p.PLANT_NAME FROM INVEN i		
+		JOIN PLANT p on p.PLANT_ID = i.PLANT_ID 
+		<where>
+			<if test="(search == 'total' or search == 'userId') and keyword != ''">OR USER_ID like #{searchKeyword}</if>
+			<if test="(search == 'total' or search == 'plantName') and keyword != ''">OR PLANT_NAME like #{searchKeyword} </if>
+		</where>
+	</sql>
+	
+	
 
 	<select id="update_list" resultType="Inven">
 		Insert into INVEN
@@ -81,7 +91,7 @@
 	</delete>
 
 	<select id="total" resultType="float">
-		select COUNT(*) from INVEN
+		select COUNT(*) from (<include refid="search"></include>) M
 	</select>
 
 	<select id="combo" resultType="ComboItem">

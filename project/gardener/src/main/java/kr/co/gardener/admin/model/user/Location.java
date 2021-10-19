@@ -4,12 +4,12 @@ import kr.co.gardener.util.GridSystem;
 
 public class Location extends GridSystem{
 	private int locationId;
-	private String userId;
-	private int plantId;
+	private String userId;	
 	private float locationSize;
 	private int locationX;
 	private int locationY;
 	private int locationOrder;
+	private int plantId;
 
 	private String plantImage; // 식물 이미지(join으로 PlantLevel에서 가지고올것)
 	

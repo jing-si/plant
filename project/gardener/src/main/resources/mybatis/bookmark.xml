@@ -93,9 +93,19 @@
 	
 	<!--대량 처리 -->
 	<select id="list_pager" resultType="Bookmark">
-		SELECT * FROM BOOKMARK		
+		SELECT * FROM (<include refid="search"></include>) M		
 		LIMIT #{offset}, #{perPage}
 	</select>
+	
+	<sql id="search">
+		select * from BOOKMARK
+		<where>
+			<if test="(search == 'total' or search == 'bookmarkId') and keyword != ''">OR BOOKMARK_ID like #{searchKeyword}</if>
+			<if test="(search == 'total' or search == 'userId') and keyword != ''">OR USER_ID like #{searchKeyword}</if>
+			<if test="(search == 'total' or search == 'productId') and keyword != ''">OR PRODUCT_ID IN (SELECT PRODUCT_ID FROM PRODUCT WHERE PRODUCT_NAME like #{searchKeyword})</if>
+			<if test="(search == 'total' or search == 'companyId') and keyword != ''">OR COMPANY_ID IN (SELECT COMPANY_ID FROM COMPANY WHERE COMPANY_NAME like #{searchKeyword})</if>
+		</where>
+	</sql>
 
 	<select id="update_list" resultType="Bookmark">
 		Insert into BOOKMARK
@@ -134,7 +144,7 @@
 	</delete>
 
 	<select id="total" resultType="float">
-		select COUNT(*) from BOOKMARK
+		select COUNT(*) from (<include refid="search"></include>) M
 	</select>
 
 	<select id="combo" resultType="ComboItem">

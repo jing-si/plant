@@ -34,9 +34,18 @@
 	
 	<!--대량 처리 -->
 	<select id="list_pager" resultType="Plant">
-		SELECT * FROM PLANT		
+		SELECT * FROM (<include refid="search"></include>) M		
 		LIMIT #{offset}, #{perPage}
 	</select>
+	
+	<sql id="search">
+		select * from PLANT
+		<where>
+			<if test="(search == 'total' or search == 'plantId') and keyword != ''">OR PLANT_ID like #{searchKeyword}</if>
+			<if test="(search == 'total' or search == 'plantName') and keyword != ''">OR PLANT_NAME like #{searchKeyword}</if>
+			<if test="(search == 'total' or search == 'plantCategory') and keyword != ''">OR PLANT_CATEGORY like #{searchKeyword}</if>
+		</where>
+	</sql>
 
 	<select id="update_list" resultType="Plant">
 		Insert into PLANT
@@ -75,7 +84,7 @@
 	</delete>
 
 	<select id="total" resultType="float">
-		select COUNT(*) from PLANT
+		select COUNT(*) from (<include refid="search"></include>) M	
 	</select>
 
 	<select id="combo" resultType="ComboItem">

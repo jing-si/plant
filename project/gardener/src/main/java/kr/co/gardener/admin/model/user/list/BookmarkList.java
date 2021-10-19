@@ -13,7 +13,7 @@ public class BookmarkList extends CommonList<Bookmark>{
 		this.addTh("유저ID","userId","none");
 		this.addTh("등록날짜","bookmarkDatetime","datetime");
 		this.addTh("제품ID","productId","combo",0);
-		this.addTh("사업자ID","companyId","combo",1);
+		this.addTh("사업자ID","companyId","combo",2);
 		
 		this.addInsert("즐겨찾기ID","bookmarkId","none");
 		this.addInsert("유저ID","userId","combo",1);
