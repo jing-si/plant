@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="/resources/css/product-list.css">
+    <script src="/resources/js/jquery.min.js"></script>
     
     <style>
     	#align{
@@ -45,8 +46,21 @@
     </style>
 </head>
 <body>
+
+	<script>
+	$(document).ready(function(){
+		
+		//뒤로가기 버튼
+		$(".historyBack").click(function(){
+			window.history.back();
+		})
+		
+	})	//ready끝
+	</script>
+
+
     <div id="header">
-        <a href=""><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12l4.58-4.59z"/></svg></a>
+        <svg class="historyBack" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12l4.58-4.59z"/></svg>
         <p>친환경 이야기</p>
     </div>
 <div class="scroll">

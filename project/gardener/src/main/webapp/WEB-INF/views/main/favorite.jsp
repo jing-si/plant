@@ -78,7 +78,7 @@
                             <div class="brand">
                                 <div class="brand-img"><img src="${list.productImage}"></div>
                                 <p class="brand-name">${list.productName}</p>
-                                <img src="/resources/images/favorite-heart.png">
+                                <img class="heart" src="/resources/images/favorite-heart.png">
                             </div></a>
                         </c:forEach>
                         </c:if>

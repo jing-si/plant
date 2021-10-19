@@ -29,6 +29,11 @@
 			$("#select2").attr("checked","'checked'");
 		}
 		
+		//뒤로가기 버튼
+		$(".historyBack").click(function(){
+			window.history.back();
+		})
+		
 	})//레디 끝
 </script>
 
@@ -36,7 +41,7 @@
 
 <form method="post">
     <div id="header">
-        <a href="/login/setting/myinfo/"><svg id="back" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12l4.58-4.59z"/></svg></a>
+        <svg id="back" class="historyBack" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12l4.58-4.59z"/></svg>
         <p>내 정보 수정</p>
         <input type="image" src="/resources/images/check-icon.png" style="width: 14px;height: 14px;" id="check">
 <!--         <svg id="check" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg></a>

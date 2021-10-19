@@ -14,11 +14,26 @@
 	
     <link rel="stylesheet" href="/resources/css/myinfo.css">
     <link rel="stylesheet" href="/resources/js/modal.js">
+    <script src="/resources/js/jquery.min.js"></script>
 </head>
 
 <body>
+
+	<script>
+	$(document).ready(function(){
+		
+		//뒤로가기 버튼
+		$(".historyBack").click(function(){
+			window.history.back();
+		})
+		
+	})	//ready끝
+	</script>
+
+
+
     <div id="header">
-        <a href="/login/setting/"><svg id="back" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12l4.58-4.59z"/></svg></a>
+        <svg id="back" class="historyBack" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12l4.58-4.59z"/></svg>
         <p>내 정보 보기</p>
     </div>
 
