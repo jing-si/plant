@@ -49,16 +49,16 @@ public class UserForestController {
 	}
 
 	
-	@RequestMapping("userforest/setforest/init2")
-	@ResponseBody
-	public List<Location> init2(HttpSession session) {
-		User user = (User) session.getAttribute("user");
-		List<Location> list = lService.list(user.getUserId());		
-		list.forEach((data)->{
-			System.out.println(data.toString());
-		});
-		return list;
-	}
+//	@RequestMapping("userforest/setforest/init2")
+//	@ResponseBody
+//	public List<Location> init2(HttpSession session) {
+//		User user = (User) session.getAttribute("user");
+//		List<Location> list = lService.list(user.getUserId());		
+//		list.forEach((data)->{
+//			System.out.println(data.toString());
+//		});
+//		return list;
+//	}
 	
 
 	@ResponseBody
@@ -101,48 +101,49 @@ public class UserForestController {
 		 */
 	  
 	  
-	  @RequestMapping("/userforest/init1")
+//	  @RequestMapping("/userforest/init1")
+//	  
+//	  @ResponseBody public List<Location> init() { List<Location> list = new
+//	  ArrayList<Location>(); Location l1 = new Location(); l1.setLocationId(1);
+//	  l1.setLocationOrder(100); l1.setLocationSize(1); l1.setLocationX(300);
+//	  l1.setLocationY(50); l1.setPlantId(1);
+//	  l1.setPlantImage("/resources/images/tree1.png");
+//	  
+//	  list.add(l1);
+//	  
+//	  Location l2 = new Location(); l2.setLocationId(1); l2.setLocationOrder(101);
+//	  l2.setLocationSize(2); l2.setLocationX(200); l2.setLocationY(100);
+//	  l2.setPlantId(1); l2.setPlantImage("/resources/images/tree2.png");
+//	  
+//	  list.add(l2);
+//	  
+//	  Location l3 = new Location(); l3.setLocationId(1); l3.setLocationOrder(102);
+//	  l3.setLocationSize(3); l3.setLocationX(300); l3.setLocationY(300);
+//	  l3.setPlantId(1); l3.setPlantImage("/resources/images/tree3.png");
+//	  
+//	  list.add(l3);
+//	  
+//	  return list; }
 	  
-	  @ResponseBody public List<Location> init() { List<Location> list = new
-	  ArrayList<Location>(); Location l1 = new Location(); l1.setLocationId(1);
-	  l1.setLocationOrder(100); l1.setLocationSize(1); l1.setLocationX(300);
-	  l1.setLocationY(500); l1.setPlantId(1);
-	  l1.setPlantImage("/resources/images/tree1.png");
-	  
-	  list.add(l1);
-	  
-	  Location l2 = new Location(); l2.setLocationId(1); l2.setLocationOrder(101);
-	  l2.setLocationSize(2); l2.setLocationX(200); l2.setLocationY(500);
-	  l2.setPlantId(1); l2.setPlantImage("/resources/images/tree2.png");
-	  
-	  list.add(l2);
-	  
-	  Location l3 = new Location(); l3.setLocationId(1); l3.setLocationOrder(102);
-	  l3.setLocationSize(3); l3.setLocationX(300); l3.setLocationY(300);
-	  l3.setPlantId(1); l3.setPlantImage("/resources/images/tree3.png");
-	  
-	  list.add(l3);
-	  
-	  return list; }
-	  
-	  @RequestMapping("/userforest/init2")
+	  //숲꾸미기
+	  @RequestMapping("/userforest/setforest/init2")
 	  @ResponseBody public List<Location> init2() { List<Location> list = new
 	  ArrayList<Location>(); Location l1 = new Location(); l1.setLocationId(1);
-	  l1.setLocationOrder(100); l1.setLocationSize(1); l1.setLocationX(300);
-	  l1.setLocationY(500); l1.setPlantId(1);
+	  l1.setLocationOrder(100); l1.setLocationSize(1); l1.setLocationX(10);
+	  l1.setLocationY(10); l1.setPlantId(1);
 	  l1.setPlantImage("/resources/images/tree1.png");
 	  
 	  list.add(l1);
 	  
 	  Location l2 = new Location(); l2.setLocationId(1); l2.setLocationOrder(101);
-	  l2.setLocationSize(2); l2.setLocationX(200); l2.setLocationY(500);
-	  l2.setPlantId(1); l2.setPlantImage("/resources/images/tree2.png");
+	  l2.setLocationSize(1.2f); l2.setLocationX(50); l2.setLocationY(50);
+	  l2.setPlantId(2); l2.setPlantImage("/resources/images/tree2.png");
 	  
 	  list.add(l2);
 	  
 	  Location l3 = new Location(); l3.setLocationId(1); l3.setLocationOrder(102);
-	  l3.setLocationSize(3); l3.setLocationX(300); l3.setLocationY(300);
-	  l3.setPlantId(1); l3.setPlantImage("/resources/images/tree3.png");
+	  l3.setLocationSize(0.7f); l3.setLocationX(100); l3.setLocationY(100);
+	  l3.setPlantId(3); l3.setPlantImage("/resources/images/tree3.png");
 	  
 	  list.add(l3);
 	  

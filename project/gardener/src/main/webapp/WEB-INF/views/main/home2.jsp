@@ -704,8 +704,8 @@ a{
         </div>
 
         <div class="home-button">
-            <a href="certify"></a><div class="go-certify">친환경 소비 인증하기
-            </div></a><a href="userforest"><div class="go-forest">숲으로 가기</div></a>
+            <a href="certify"></a><div class="go-certify">친환경 소비 인증하기</div>
+            <a href="userforest"><div class="go-forest">숲으로 가기</div></a>
         	
         </div>
     </div>

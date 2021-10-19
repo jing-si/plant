@@ -106,17 +106,17 @@
 		console.log(item);
 	})
 	
-	/* 
+	
 	$("#image-container").on("mouseover", ".userPlant",function(data){
 		$(this).draggable();
 		
 	})
-	 */
 	 
-	$("#image-container").on("click", ".userPlant",function(data){
+	 
+/* 	$("#image-container").on("click", ".userPlant",function(data){
 		$(this).draggable();
 		
-	})
+	}) */
 	
 	$('#zoom-in').click(function() { 
 		
