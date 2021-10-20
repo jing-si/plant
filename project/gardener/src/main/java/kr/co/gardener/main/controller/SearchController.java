@@ -73,10 +73,10 @@ public class SearchController {
 	}
 	
 	//qr 정보 받기
-	@PostMapping("/qr")
+	@PostMapping("/qrajax")
 	@ResponseBody
 	public Product qr(int barcode) {
-		System.out.println(barcode);
+		System.out.println("바코드" + barcode);
 		String certifyResult = productService.certify(barcode);
 		System.out.println("db에 있나 "+certifyResult);
 		
@@ -87,6 +87,7 @@ public class SearchController {
 		}else {
 			return null;
 		}
+		/* return certifyResult; */
 	}
 	
 }

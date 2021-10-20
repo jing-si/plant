@@ -147,22 +147,9 @@ img{
 						<div class="scroll_container">
 							<div class="scroll_wrap">
 
-								<c:forEach var="list" items="${list}">
-									<c:if test="${list.invenAmount < 1}"> <!-- 특정 나무의 보유 수량이 0이면, 백그라운드 카드 이미지 노출 -->
-										<div class="item_card" id="plant_01">
-											<img class="item_bg"
-												src="/resources/images/treeBg${list.plantId}.png">
-											<p class="text_left">보관중인 나무 :</p>
-											<p class="text_right">그루</p>
-											<p class="text_amount">${list.invenAmount}</p>
-											<!-- <a href="../userforest/setforest/"> -->
-												<p class="planting_btn"></p>
-												<p class="planting_btn_text">나무 심기</p>
-											<!-- </a> -->
-										</div>
-									</c:if>
+								<c:forEach var="list" items="${list}">									
 									<c:if test="${list.invenAmount > 0}">
-									<div class="item_card" id="plant_01"> <!-- 특정 나무의 보유 수량이 1개 이상 이면, 백그라운드 카드 이미지 노출 -->
+									<div class="item_card" id="plant_01 "> <!-- 특정 나무의 보유 수량이 1개 이상 이면, 백그라운드 카드 이미지 노출 -->
 										<img class="item_bg" src="/resources/images/treecd${list.plantId}.png">
 										<p class="text_left">보관중인 나무 :</p>
 										<p class="text_right">그루</p>

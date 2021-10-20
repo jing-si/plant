@@ -103,4 +103,12 @@
 		PLANT_ID AS "id", PLANT_NAME AS "text"
 		FROM PLANT
 	</select>
+	
+	<update id="plant">		
+		Insert into INVEN
+		values
+				(#{userId},#{plantId},1)
+		on duplicate key update
+		INVEN_AMOUNT = INVEN_AMOUNT+1
+	</update>
 </mapper>

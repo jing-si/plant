@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import kr.co.gardener.admin.dao.user.PlantLevelDao;
 import kr.co.gardener.admin.model.forest.PlantLevel;
 import kr.co.gardener.admin.model.forest.list.PlantLevelList;
-import kr.co.gardener.admin.model.user.list.BookmarkList;
 import kr.co.gardener.admin.service.forest.PlantLevelService;
 import kr.co.gardener.util.Pager;
 @Service

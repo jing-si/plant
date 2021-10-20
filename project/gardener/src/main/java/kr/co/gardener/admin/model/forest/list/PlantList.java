@@ -13,12 +13,14 @@ public class PlantList extends CommonList<Plant>{
 		this.addTh("식물카테고리","plantCategory","combo",0);
 		this.addTh("식물INFO","plantInfo","area");
 		this.addTh("실루엣","plantShadow","file");
+		this.addTh("썸네일","plantThumbnail","file");
 		
 		this.addInsert("식물ID","plantId","none");
 		this.addInsert("식물이름","plantName","text");
 		this.addInsert("식물카테고리","plantCategory","combo",0);
 		this.addInsert("식물INFO","plantInfo","area");
 		this.addInsert("실루엣","plantShadow","file");
+		this.addInsert("썸네일","plantThumbnail","file");
 		
 		setView(true);
 		
