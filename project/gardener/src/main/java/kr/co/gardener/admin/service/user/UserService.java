@@ -31,5 +31,7 @@ public interface UserService {
 
 	void update_list(UserList list);
 
+	User levelUp(User user);
+
 
 }

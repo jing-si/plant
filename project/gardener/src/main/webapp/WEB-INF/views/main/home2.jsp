@@ -102,12 +102,37 @@
     	
     	console.log("${user}");
         
+    	//친환경 소비 인증 버튼
     	$(".go-certify").click(function(){
+    		//소비 인증
     		if($(".go-certify").text() == "친환경 소비 인증하기"){
     			location.href = "certify";
     		}
-    	})
+    		
+    		//숲에 심기
+    		if($(".go-certify").text() == "숲에 심어보세요"){
+    			$.ajax({
+    				url : "/login/plant",
+    				type : "post",
+    				data : {"plantId" : ${user.plantId}},
+    				success : function(){
+    					location.href = "userforest";
+    				}  //success 끝
+    			})  //ajax 끝
+    		}
+    		
+    	})  //친환경 소비 인증 버튼 끝
     	
+    	
+/*     	//숲에 심기
+    	$("go-certify").click(function(){
+    		
+    	})  //숲에 심기 끝 */
+    	
+    	
+    	if(${user.stateId} == 0){
+    		$(".go-certify").text("씨앗을 심어보세요")
+    	}
     	
 
     	//버튼 클릭 이벤트
@@ -198,6 +223,7 @@
         	let img = $("<img class='plantImg'>")
         		img.attr("src","${user.plant}");
         		
+        		$("#plnat").empty();
         		$("#plant").append(img);
             	$("#plant").removeClass("hide");
             	
@@ -230,6 +256,7 @@
                 	$("#gauge").css('width','200px');
                 	$("#heart").css('display','block');
                 	$("#heart").css('left','209px');
+                	$(".go-certify").text("숲에 심어보세요")
                 }
 		}
 
