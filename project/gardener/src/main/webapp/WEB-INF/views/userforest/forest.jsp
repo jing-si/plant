@@ -39,15 +39,20 @@ $().ready(()=>{
 				img.attr("src",value.plantImage);
 				
 			
-				div1.css("zindex",value.locationOrder);
-				div1.css("zoom", value.locationSize);
-			
+				div1.css("z-index",value.locationOrder);
+				//div1.css("zoom", value.locationSize);
+				
 				
 				
 				//item.locationX = currentlocation;
   
 				$("#image-container").append(div1);
 				div1.append(img);
+				div1.attr("data-size",value.locationSize);
+				//크기 조절
+				changeSize(div1);
+				
+				
 				div1.css("left",value.locationX);
 				div1.css("top",value.locationY);
 				//div1.draggable({Array:[-10,-30,$(window).width()+10,$(window).height()+30]});
@@ -61,6 +66,22 @@ $().ready(()=>{
 		}
 	})
 })
+function changeSize(target){
+		const img = $(target).children("img");
+		const originW = Number(img.get(0).naturalWidth);
+		const originH = Number(img.get(0).naturalHeight);
+		const size = Number(target.attr("data-size"));
+		
+		console.log(size)
+		console.log(originH * size)
+		target.css("height", originH * size)
+		target.css("width", originW * size)
+		
+		return originH * 0.1
+		//item.css("height",h)
+		//item.css("width",w)
+		
+	}
 </script>
 
 <style>

@@ -42,19 +42,21 @@
 	 
 		//세이브
 	$(".save_btn").click(()=>{
-      let aaa = [{
-         userId:"A"
-         }, {
-         userId:"B"
-         }, {
-         userId:"C"
-         }];
+      arr.map((value)=>{
+    	  value.locationSize = value.div.attr("data-size");
+		  value.locationX = value.div.css("left").replace("px","");
+		  value.locationY = value.div.css("top").replace("px","");
+		  value.locationOrder = value.div.css("z-index")
+		  console.log(value.locationOrder)
+		  console.log(value.div.css("zoom"))
+		  value.div = "";
+      })
       
       console.log("저장중")
       $.ajax({
          method: "post",
          url:"update",
-         data: JSON.stringify(aaa),
+         data: JSON.stringify({list:arr}),
          contentType: 'application/json',
          dataType: 'json',
          success:function(data){
@@ -84,23 +86,26 @@
 				img.attr("src",value.plantImage);
 				
 			
-				div1.css("zindex",value.locationOrder);
-				div1.css("zoom", value.locationSize);
-			
+				div1.css("z-index",value.locationOrder);
+				//div1.css("zoom", value.locationSize);
+				
 				
 				
 				//item.locationX = currentlocation;
   
 				$("#image-container").append(div1);
 				div1.append(img);
+				div1.attr("data-size",value.locationSize);
+				//크기 조절
+				changeSize(div1);
+				
+				
 				div1.css("left",value.locationX);
-				div1.css("bottom",value.locationY);
+				div1.css("top",value.locationY);
 				
 				// pc, mobile 모두 움직이게 jquery.ui.touch-punch.min.js 추가
 				div1.draggable();
-				console.log($(window).width())
 				//div1.draggable({Array:[-10,-30,$(window).width()+10,$(window).height()+30]});
-				console.log(index)
 				value.div = div1;
 				/* 아래와 같이 넣어주고자 함
 				<div id="userPlant01" class="userPlant">
@@ -132,42 +137,25 @@
 	
 	$('#zoom-in').click(function() { 
 		
-		let imgInfo = arr[item.data("index")];
-		
-		let imgZoom = imgInfo.locationSize;
-		let userPlantId = 'userPlant'+imgInfo.plantId;
-		let zoomLevel = 0.1;
-				 
-		imgZoom += zoomLevel;
-		console.log(imgZoom);
-		
-		if( imgZoom > 0.5 && imgZoom < 1.5 ){
-			$(item).css( {'zoom' : imgZoom });
-		} else {
-			imgZoom = 1.4;
+		if(item != undefined){
+			const size = Number(item.attr("data-size"));
+			if(size < 1.4){
+				item.attr("data-size",(size + 0.1).toFixed(1))
+				changeLocation(item,changeSize(item)*-1)
+			}
 		}
-		
-		imgInfo.locationSize = imgZoom;
 	})
 	
 	
 	$('#zoom-out').click(function() { 
-		
-		let imgInfo = arr[item.data("index")];	
-		let imgZoom = imgInfo.locationSize;
-		let userPlantId = 'userPlant'+imgInfo.plantId;
-		let zoomLevel = 0.1;
-		
-		imgZoom -= zoomLevel;
-		console.log(imgZoom);
-		
-		if( imgZoom > 0.5 && imgZoom < 1.5 ){
-			$(item).css( {'zoom' : imgZoom });
-		} else {
-			imgZoom = 0.6;
+		if(item != undefined){
+			const size = Number(item.attr("data-size"));
+			if(size > 0.6){
+				item.attr("data-size",(size - 0.1).toFixed(1))
+				changeLocation(item,changeSize(item))
+			}
 		}
 		
-		imgInfo.locationSize = imgZoom;
 	})
 	
 	
@@ -311,6 +299,28 @@
 		
 	}
 	
+	function changeSize(target){
+		const img = $(target).children("img");
+		const originW = Number(img.get(0).naturalWidth);
+		const originH = Number(img.get(0).naturalHeight);
+		const size = Number(target.attr("data-size"));
+		
+		console.log(size)
+		console.log(originH * size)
+		target.css("height", originH * size)
+		target.css("width", originW * size)
+		
+		return originH * 0.1
+		//item.css("height",h)
+		//item.css("width",w)
+		
+	}
+	
+	function changeLocation(target,location){
+		const top = Number(target.css("top").replace("px",""));
+		target.css("top", top + location)
+	}
+	
 </script>
 
 
@@ -334,6 +344,10 @@
 	position: absolute;
 }
 
+.userPlantImg {
+	object-fit: contain;
+	height: 100%;
+}
 /* .userPlantImg {
 	width: 200px;
 	height: 230px;
