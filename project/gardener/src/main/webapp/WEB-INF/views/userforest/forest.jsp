@@ -39,15 +39,18 @@ $().ready(()=>{
 				img.attr("src",value.plantImage);
 				
 			
-				div1.css("zindex",value.locationOrder);
-				div1.css("zoom", value.locationSize);
-			
+				div1.css("z-index",value.locationOrder);
+				//div1.css("zoom", value.locationSize);
+				
 				
 				
 				//item.locationX = currentlocation;
   
 				$("#image-container").append(div1);
 				div1.append(img);
+				div1.attr("data-size",value.locationSize);
+				//크기 조절
+				changeSize(div1);
 				div1.css("left",value.locationX);
 				div1.css("top",value.locationY);
 				//div1.draggable({Array:[-10,-30,$(window).width()+10,$(window).height()+30]});
@@ -61,14 +64,41 @@ $().ready(()=>{
 		}
 	})
 })
+function changeSize(target){
+		const img = $(target).children("img");
+		const originW = Number(img.get(0).naturalWidth);
+		const originH = Number(img.get(0).naturalHeight);
+		const size = Number(target.attr("data-size"));
+		
+		console.log(size)
+		console.log(originH * size)
+		target.css("height", originH * size)
+		target.css("width", originW * size)
+		
+		return originH * 0.1
+		//item.css("height",h)
+		//item.css("width",w)
+		
+	}
 </script>
 
 <style>
 img{
 	position: absolute;
 }
-#image-container{
+#image-container {
+	width: 100%;
+	height: 100%;
 	position: relative;
+}
+
+.userPlant {
+	position: absolute;
+}
+
+.userPlantImg {
+	object-fit: contain;
+	height: 100%;
 }
 /* 유저가 저장한 나무 이미지 CSS 생성공간 */
 </style>
@@ -76,7 +106,7 @@ img{
 </head>
 <body>
 	<!-- 상단 투명 영역(사용자 숲 꾸미기와 나무 이미지 같은 영역에 위치하도록) -->
-	<div class="header"></div>
+	<!-- <div class="header"></div> -->
 
 	<div id="image-container">
 		
