@@ -119,6 +119,26 @@
 		where
 		USER_ID = #{userId} 
 		AND PLANT_ID = #{plantId}
+	</update>
+	
+	<update id="countUp_list">
+	Insert into INVEN
+		values
+		<foreach collection="list" item="item" separator="," >
+				(#{item.userId},#{item.plantId},INVEN_AMOUNT+1)
+		</foreach>
+		on duplicate key update
+		INVEN_AMOUNT = INVEN_AMOUNT+1
+	</update>
+	
+	<update id="countDown_list">
+	Insert into INVEN
+		values
+		<foreach collection="list" item="item" separator="," >
+				(#{item.userId},#{item.plantId},INVEN_AMOUNT-1)
+		</foreach>
+		on duplicate key update
+		INVEN_AMOUNT = INVEN_AMOUNT-1
 		
 	</update>
 </mapper>

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.co.gardener.admin.dao.user.LocationDao;
+import kr.co.gardener.admin.model.user.Inven;
 import kr.co.gardener.admin.model.user.Location;
 import kr.co.gardener.util.ComboItem;
 import kr.co.gardener.util.Pager;
@@ -75,5 +76,6 @@ public class LocationDaoImpl implements LocationDao {
 	public void update_list(List<Location> list) {
 		sql.update("location.update_list", list);
 	}
+
 
 }

@@ -28,5 +28,7 @@ public interface LocationService {
 
 	void update_list(LocationList list);
 
+	void save(LocationList list);
+
 
 }

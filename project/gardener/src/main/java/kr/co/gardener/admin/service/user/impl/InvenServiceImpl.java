@@ -84,6 +84,16 @@ public class InvenServiceImpl implements InvenService {
 		return dao.countDown(inven);
 	}
 
+	@Override
+	public void countDown_list(List<Inven> invenList) {
+		dao.countDown_list(invenList);
+	}
+
+	@Override
+	public void countUp_list(List<Inven> invenList) {
+		dao.countUp_list(invenList);
+	}
+
 
 
 }

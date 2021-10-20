@@ -14,7 +14,7 @@ public interface LocationDao {
 
 	Location item(int locationId);
 
-	void update(Location item);
+	void update(Location item);	
 
 	void delete(int locationId);
 
@@ -31,6 +31,8 @@ public interface LocationDao {
 	void delete_list(List<Location> list);
 
 	void update_list(List<Location> list);
+
+
 
 
 

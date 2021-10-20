@@ -8,9 +8,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.gardener.admin.dao.user.LocationDao;
+import kr.co.gardener.admin.model.user.Inven;
 import kr.co.gardener.admin.model.user.Location;
 import kr.co.gardener.admin.model.user.list.BookmarkList;
 import kr.co.gardener.admin.model.user.list.LocationList;
+import kr.co.gardener.admin.service.user.InvenService;
 import kr.co.gardener.admin.service.user.LocationService;
 import kr.co.gardener.util.Pager;
 
@@ -19,6 +21,9 @@ public class LocationServiceImpl implements LocationService {
 
 	@Autowired
 	LocationDao dao;
+	
+	@Autowired
+	InvenService invenService;
 
 	@Override
 	public List<Location> list() {
@@ -74,11 +79,17 @@ public class LocationServiceImpl implements LocationService {
 	@Override
 	@Transactional
 	public void update_list(LocationList list) {
+		dao.update_list(list.getList());
+	}
+
+	@Override
+	@Transactional
+	public void save(LocationList list) {
 		List<Location> nomalItem = new ArrayList<Location>();
 		List<Location> newItem = new ArrayList<Location>();
 		List<Location> deleteItem = new ArrayList<Location>();
-		
-		for(Location item : list.getList()) {
+
+		for (Location item : list.getList()) {
 			switch (item.getLocationState()) {
 			case 0:
 				nomalItem.add(item);
@@ -91,12 +102,36 @@ public class LocationServiceImpl implements LocationService {
 				break;
 			}
 		}
-		if(nomalItem.size() > 0)
-		dao.update_list(nomalItem);
-		if(newItem.size() > 0)
-		dao.insert_list(newItem);
-		if(deleteItem.size() > 0)
-		dao.delete_list(deleteItem);
+		if (nomalItem.size() > 0)
+			dao.update_list(nomalItem);
+
+		if (newItem.size() > 0) {
+			
+			List<Inven> invenList = new ArrayList<Inven>();
+			for (Location location : newItem) {
+				Inven inven = new Inven();
+				inven.setPlantId(location.getPlantId());
+				inven.setUserId(location.getUserId());
+				invenList.add(inven);
+			}
+			dao.insert_list(newItem);
+			invenService.countDown_list(invenList);
+
+		}
+
+		if (deleteItem.size() > 0) {
+			List<Inven> invenList = new ArrayList<Inven>();
+			
+			for (Location location : deleteItem) {
+				Inven inven = new Inven();
+				inven.setPlantId(location.getPlantId());
+				inven.setUserId(location.getUserId());
+				invenList.add(inven);
+			}			
+			dao.delete_list(deleteItem);
+			invenService.countUp_list(invenList);
+		}
+		
 	}
 
 }

@@ -30,6 +30,10 @@ public interface InvenService {
 
 	int countUp(Inven inven);
 	
-	int countDown(Inven inven); 
+	int countDown(Inven inven);
+
+	void countDown_list(List<Inven> invenList);
+
+	void countUp_list(List<Inven> invenList); 
 
 }

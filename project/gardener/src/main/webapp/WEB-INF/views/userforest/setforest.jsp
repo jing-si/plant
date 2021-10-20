@@ -58,7 +58,7 @@
          data: JSON.stringify({list:arr}),
          contentType: 'application/json',         
          success:function(data){
-            location.href="/login/userforest/"
+          	location.href="/login/userforest/"
          },
          error:function(data){
         	 alert("저장에 실패했습니다.")
@@ -182,6 +182,8 @@
 	})
 	
 	$('#btn-delete').click(function() { 
+		let target = arr[item.data("index")];
+		target.locationState = 2;
 		item.remove();
 		
 	})
