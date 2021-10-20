@@ -35,6 +35,8 @@ body {
     background-color: rgb(255, 255, 255, 0);
 }
  */
+ 
+ 
 /* width: 360px; height: 640px; 기준 */
 #button_close {
     position: absolute;
@@ -42,6 +44,8 @@ body {
     top: 2.4%;      /* top: 15px; */
     border: none;
     background-color: transparent;
+    position: absolute;
+    z-index: 9999;
 }
 
 /* width: 360px; height: 640px; 기준 */
@@ -51,6 +55,8 @@ body {
     top: 80%;     /* top: 514px; */
     border: none;
     background-color: transparent;
+    position: absolute;
+    z-index: 9999;
 }
 
 /* width: 360px; height: 640px; 기준 */
@@ -60,6 +66,8 @@ body {
     top: 90%;     /* top: 579px; */
     border: none;
     background-color: transparent;
+    position: absolute;
+    z-index: 9999;
 }
 
 /* 사용자 숲 메인 끝 */
