@@ -111,7 +111,7 @@ function check(){
 	//아이디 공백 확인 
     if ($("#emailValue").val() == "") {
         alert("아이디 입력바람");
-        $("#id").focus(); 
+        $("#emailValue").focus(); 
         return false;
     }
 	

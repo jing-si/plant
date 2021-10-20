@@ -52,7 +52,7 @@
 		Insert into PLANT
 		values
 		<foreach collection="list" item="item" separator=",">
-			(#{item.plantId},#{item.plantName},#{item.plantCategory},#{item.plantInfo},#{item.plantShadow}, #{plantThumbnail})
+			(#{item.plantId},#{item.plantName},#{item.plantCategory},#{item.plantInfo},#{item.plantShadow}, #{item.plantThumbnail})
 		</foreach>
 		on duplicate key update
 		PLANT_NAME = VALUES(PLANT_NAME)	
@@ -72,7 +72,7 @@
 			,#{item.plantCategory}
 			,#{item.plantInfo}
 			,#{item.plantShadow}
-			,#{plantThumbnail}
+			,#{item.plantThumbnail}
 			)
 		</foreach>
 	</insert>

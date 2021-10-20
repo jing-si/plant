@@ -11,8 +11,31 @@
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="/resources/css/login.css">
+    <script src="/resources/jq/jquery.js"></script>
 </head>
 <body>
+<script>
+//submit하기전 검사
+function check(){
+	
+	//아이디 공백 확인 
+    if ($("#email").val() == "") {
+        alert("아이디를 입력하세요");
+        $("#email").focus(); 
+        return false;
+    }
+	
+	//비밀번호 공백 확인 
+    if ($("#passWord").val() == "") {
+        alert("비밀번호를 입력하세요");
+        $("#passWord").focus(); 
+        return false;
+    }
+}
+</script>
+
+
+
     <div id="align">
     		<a href="admin/"><p style="color:red; font-weight:bold; font-size:2em;">관리자 야호!</p></a>
             <a href="login/"><p style="font-size: 2em;">홈화면</p></a>
@@ -23,7 +46,7 @@
     <div id="logo">
         <img src="/resources/images/login-logo.png">
       </div>
-      <form method="post">
+      <form method="post" onsubmit="return check();">
     <input id="email" placeholder="아이디" type="text" name="userId">
     <input id="passWord" placeholder="비밀번호" type="password" name="userPass">
     	<input type="submit" id="login" class="border" value="로그인"></input>
