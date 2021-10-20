@@ -10,68 +10,149 @@
 	</select>
 
 
-	<select id="item" resultType="User">
-		select *, 
-		(select PLANT_IMAGE 
-		from PLANT_LEVEL P 
-		WHERE P.PLANT_LEVEL_ID = (select STATE_ID from USER U1 where U1.USER_ID = #{uesrId}) AND P.PLANT_ID = U.PLANT_ID) 
-		PLANT 
-		from USER U
-		where U.USER_ID = #{userId} <!-- 알리아스 주의 -->
+	<select id="item_checkPass" resultType="User">
+		<include refid="includePlant"></include>
+		where U.USER_ID = #{userId} and U.USER_PASS = #{userPass}
 	</select>
+
+	<select id="item" resultType="User">
+		<include refid="includePlant"></include>
+		where U.USER_ID = #{userId}
+	</select>
+
+	<sql id="includePlant">
+		select *,
+		(select PLANT_IMAGE
+		from PLANT_LEVEL P
+		WHERE
+		P.PLANT_LEVEL_ID = (select STATE_ID from USER U1 where U1.USER_ID =
+		#{userId}) AND P.PLANT_ID = U.PLANT_ID)
+		PLANT
+		from USER U
+	</sql>
 
 	<insert id="add">
 		INSERT INTO USER
 		VALUES (#{userId},#{userNick},
 		#{userPass},#{userBirth},#{userGender},0,1,null)
 	</insert>
-	
+
 	<select id="imgSrc" resultType="String">
 		SELECT PLANT_IMAGE
-		FROM PLANT_LEVEL
+		FROM
+		PLANT_LEVEL
 		WHERE PLANT_ID=#{plantId} and PLANT_LEVEL_ID=5
 	</select>
-	
-	
+
+	<update id="levelUp">
+		<selectKey order="AFTER" resultType="String"
+			keyProperty="plant">
+			select (select PLANT_IMAGE
+			from
+			PLANT_LEVEL P
+			WHERE
+			P.PLANT_LEVEL_ID = #{stateId}
+			AND P.PLANT_ID = U.PLANT_ID)
+			PLANT
+			from
+			USER U
+			where U.USER_ID = #{userId}
+		</selectKey>
+		update USER
+		set STATE_ID = #{stateId}
+		where USER_ID = #{userId}
+
+	</update>
+
+
 	<update id="update">
 		UPDATE USER
-		SET USER_NICK=#{userNick},
-			USER_PASS=#{userPass},
-			USER_BIRTH=#{userBirth},
-			USER_GENDER=#{userGender},
-			STATE_ID=#{stateId},
-			FOREST_ID=#{forestId},
-			PLANT_ID=#{plantId}
+
+		<set>
+			<if test="userNick != null">
+				USER_NICK=#{userNick},
+			</if>
+			<if test="userPass != null">
+				USER_PASS=#{userPass},
+			</if>
+			<if test="userBirth != null">
+				USER_BIRTH=#{userBirth},
+			</if>
+			<if test="userGender != null">
+				USER_GENDER=#{userGender},
+			</if>
+			<if test="stateId != null">
+				STATE_ID=#{stateId},
+			</if>
+			<if test="forestId != null">
+				FOREST_ID=#{forestId},
+			</if>
+			<if test="plantId != null">
+				PLANT_ID=#{plantId},
+			</if>
+		</set>
+
 		WHERE USER_ID=#{userId}
+
+		<selectKey order="AFTER" resultType="String"
+			keyProperty="plant">
+			
+			select (select PLANT_IMAGE
+			from
+			PLANT_LEVEL P
+			WHERE
+			P.PLANT_LEVEL_ID = U.STATE_ID
+			AND P.PLANT_ID = U.PLANT_ID)
+			PLANT
+			from
+			USER U
+			where U.USER_ID = #{userId}
+			
+		</selectKey>
 	</update>
 
 	<delete id="delete">
 		DELETE FROM USER
 		WHERE USER_ID=#{userId}
 	</delete>
-	
+
 	<select id="duplication" resultType="Integer">
-		SELECT COUNT(*) FROM USER WHERE USER_ID = #{id}
+		SELECT COUNT(*) FROM USER
+		WHERE USER_ID = #{id}
 	</select>
-	
+
 	<!--대량 처리 -->
 	<select id="list_pager" resultType="User">
-		SELECT * FROM (<include refid="search"></include>) M		
+		SELECT * FROM (
+		<include refid="search"></include>
+		) M
 		LIMIT #{offset}, #{perPage}
 	</select>
-	
-	
+
+
 	<sql id="search">
 		select * from user
 		<where>
-			<if test="(search == 'total' or search == 'userId') and keyword != ''">OR USER_ID like #{searchKeyword}</if>
-			<if test="(search == 'total' or search == 'userNick') and keyword != ''">OR USER_NICK like #{searchKeyword}</if>
-			<if test="(search == 'total' or search == 'userGender') and keyword != ''">OR USER_GENDER like #{searchKeyword}</if>
-			<if test="(search == 'total' or search == 'stateId') and keyword != ''">OR STATE_ID IN (SELECT STATE_ID FROM STATE WHERE STATE_NAME like #{searchKeyword})</if>
-			<if test="(search == 'total' or search == 'forestId') and keyword != ''">OR FOREST_ID IN (SELECT FOREST_ID FROM FOREST WHERE FOREST_NAME like #{searchKeyword})</if>
-			<if test="(search == 'total' or search == 'plantId') and keyword != ''">OR PLANT_ID IN (SELECT PLANT_ID FROM PLANT WHERE PLANT_NAME like #{searchKeyword})</if>
-			
-			
+			<if
+				test="(search == 'total' or search == 'userId') and keyword != ''">OR USER_ID like #{searchKeyword}</if>
+			<if
+				test="(search == 'total' or search == 'userNick') and keyword != ''">OR USER_NICK like #{searchKeyword}</if>
+			<if
+				test="(search == 'total' or search == 'userGender') and keyword != ''">OR USER_GENDER like #{searchKeyword}</if>
+			<if
+				test="(search == 'total' or search == 'stateId') and keyword != ''">OR STATE_ID IN (SELECT STATE_ID FROM STATE WHERE STATE_NAME
+				like #{searchKeyword})
+			</if>
+			<if
+				test="(search == 'total' or search == 'forestId') and keyword != ''">OR FOREST_ID IN (SELECT FOREST_ID FROM FOREST WHERE FOREST_NAME
+				like #{searchKeyword})
+			</if>
+			<if
+				test="(search == 'total' or search == 'plantId') and keyword != ''">OR PLANT_ID IN (SELECT PLANT_ID FROM PLANT WHERE PLANT_NAME
+				like #{searchKeyword})
+			</if>
+
+
 		</where>
 	</sql>
 
@@ -83,13 +164,16 @@
 		</foreach>
 		on duplicate key update
 		USER_NICK = VALUES(USER_NICK),
-		USER_PASS = VALUES(USER_PASS),
+		USER_PASS =
+		VALUES(USER_PASS),
 		USER_BIRTH = VALUES(USER_BIRTH),
-		USER_GENDER = VALUES(USER_GENDER),
+		USER_GENDER =
+		VALUES(USER_GENDER),
 		STATE_ID = VALUE(STATE_ID),
-		FOREST_ID = VALUE(FOREST_ID),
+		FOREST_ID =
+		VALUE(FOREST_ID),
 		PLANT_ID = VALUE(PLANT_ID)
-		
+
 	</select>
 
 	<insert id="insert_list">
@@ -100,38 +184,47 @@
 		</foreach>
 	</insert>
 
-	<delete id="delete_list">		
-		DELETE FROM USER		
+	<delete id="delete_list">
+		DELETE FROM USER
 		WHERE USER_ID in (
 		<foreach collection="list" item="item" separator=",">
-				#{item.userId}
+			#{item.userId}
 		</foreach>
-		)		
+		)
 	</delete>
 
 	<select id="total" resultType="float">
-		select COUNT(*) from (<include refid="search"></include>) M	
+		select COUNT(*) from (
+		<include refid="search"></include>
+		) M
 	</select>
 
 	<select id="combo" resultType="ComboItem">
 		SELECT "0" AS "table",
-		'여' AS "id", '여' AS "text"				
+		'여' AS "id",
+		'여' AS "text"
 		UNION
 		SELECT "0" AS "table",
 		'남' AS "id", '남' AS "text"
 		UNION
-		SELECT "1" AS "table",
+		SELECT "1" AS
+		"table",
 		STATE_ID AS "id", STATE_NAME AS "text"
-		FROM STATE
+		FROM
+		STATE
 		UNION
-		SELECT "2" AS "table",
-		FOREST_ID AS "id", FOREST_NAME AS "text"
-		FROM FOREST	
+		SELECT
+		"2" AS "table",
+		FOREST_ID AS "id", FOREST_NAME AS
+		"text"
+		FROM FOREST
 		UNION
 		SELECT "3" AS "table",
-		PLANT_ID AS "id", PLANT_NAME AS "text"
-		FROM PLANT	
-		
+		PLANT_ID AS "id",
+		PLANT_NAME AS "text"
+		FROM
+		PLANT
+
 	</select>
 
 </mapper>

@@ -30,4 +30,6 @@ public interface PlantLevelDao {
 
 	void update_list(List<PlantLevel> list);
 
+	List<PlantLevel> maturePlant();
+
 }

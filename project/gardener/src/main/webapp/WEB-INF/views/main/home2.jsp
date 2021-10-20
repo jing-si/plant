@@ -14,87 +14,6 @@
     <script src="/resources/jq/jquery.js"></script>
     
     <script>
-/*     let arr = new Array();
-    $().ready(()=>{
-    	$.ajax({
-    		url : "/init",
-    		success : function(data){
-    			arr = data;
-    			console.log(data);
-    			if(${stateId}==0){
-    	    		$(".screen-img").append("<img src='/resources/images/씨앗심기 버튼.png' id='seed'>"); */
-    	    		
-    	    		
-/*     	    		$(".screen-img").on('click',"#seed",function(){
-    	    			$(".screen-img").empty();
-    	    			$(".screen-img").append("<div id='cards'>");
-    	    			arr.forEach((value,index)=>{
-    	    				let img = $("<img>");
-    	    				
-    	    				img.attr("src",value.plantImage);
-    	    				img.attr("id","card"+${status.number});
-    	    				img.attr("class","card"); */
-    	    				
-    	    				
-    	    				
-    						/* $(".screen-img").append("<img class='card' id='card+${status.number}' src=${value.PlantImage}>"); */
-    						
-/*     						$("image-container").append(img); */
-    						
-    	    			/* }) */
-    					/* $('plantList plantImg').each(function(index,item){
-    						$(".screen-img").append("<img class='card' id='card+${status.number}' src=${item.randomPlantImg}>");
-    					}) */
-    	    			/* $(".screen-img").append("</div>"); */
-    	    		/* }); */
-    	    		
-    	    		
-/*     	    		$(".screen-img").on('click',".card",function(){ */
-    	    			//카드의 id값을 컨트롤러로 보낸다
-    	    			//컨트롤러에서는 메인화면을 갱신
-/*     	    		});
-    	    	}
-    			
-    			
-    	    	else{
-    	    		$(".screen-img").empty();
-    	    		
-    	    		
-    						let img = $("<img>");
-    				
-    						img.attr("src",plantImg);
-    						img.attr("id","plant");
-    				
-    						$(".screen-img").append(img);
-    						}
-    					})
-    				}
-    		}
-    	})
-    }) */
-/*     $(function){
-    	if(${statusId}==0){
-    		$(".screen-img").append("<img src='/resources/images/씨앗심기 버튼.png' id='seed'>");
-    		
-    		
-    		$(".screen-img").on('click',"#seed",function(){
-    			$(".screen-img").empty();
-    			$(".screen-img").append("<div id='cards'>");
-				$('plantList plantImg').each(function(index,item){
-					$(".screen-img").append("<img class='card' id='card+${status.number}' src=${item.randomPlantImg}>");
-				})
-    			$(".screen-img").append("</div>");
-    		});
-    		
-    		
-    		$(".screen-img").on('click',".card",function(){
-    			//카드의 id값을 컨트롤러로 보낸다
-    			//컨트롤러에서는 메인화면을 갱신
-    		});
-    	}
-    	
-
-    } */
     
     let arr = new Array();    
     
@@ -123,13 +42,7 @@
     		
     	})  //친환경 소비 인증 버튼 끝
     	
-    	
-/*     	//숲에 심기
-    	$("go-certify").click(function(){
-    		
-    	})  //숲에 심기 끝 */
-    	
-    	
+    	//처음 페이지 로딩시
     	if(${user.stateId} == 0){
     		$(".go-certify").text("씨앗을 심어보세요")
     	}
@@ -153,6 +66,7 @@
 						$("#cards").removeClass("hide");
 					}
 				})
+				
                 $(".go-certify").text("식물을 선택해 주세요.")
 			})
 			
@@ -190,7 +104,7 @@
                 $.ajax({
                     url:"/login/update?plantId="+$(this).data("select")+"&stateId="+1,
                     success : function(data){
-                        location.replace("/login/home")
+                        location.replace("/login/")
         
                     },		
                     error: function(data){
@@ -265,119 +179,7 @@
 	})//onreday 끝
     
     	
-    	/*  
-    	//키우고 있는 나무가 없을 떄
-    		if(stateId == 0){
-    	//plantButton 클릭시 plantButton은 css에 display : block;이 추가, cards는 css에 display : none;이 추가
-/*     	${".screen-img"}.on("click","#plantButton",function(){
-    		 $('#plantButton').css({"display" : "none"});
-    		 $('#cards').css({"display" : "block"});
-    	}) 
-    	
-    	$('#plantButton').click(function(){
-    		
-    		
-            $('#plantButton').css('display', 'none');
-            $('#cards').css('display', 'block');
-            
-            $.ajax({
-        		url : "/login/init",
-        		success : function(data){
-        			arr = data;
-        			console.log(data);
-        			arr.forEach((value,index)=>{
-        	               
-        	                let img = $("<img class='card'>");        	                
-        	                img.attr("id",value.plantId);
-        	                img.attr("src",value.plantImage);
-        	                
-        	                $("#cards").append(img);
-        	             })
-        		}
-        	})
-            
-        });
-    	
-    	$('#cards').on("click",".card",function(data){  		
-    		
-    		$(".card").fadeOut();
-    		$(".card").empty();
-            
-            $.ajax({
-            	url:"/login/update?plantId="+$(this).attr("id")+"&stateId="+1,
-            	success : function(data){
-            		location.replace("/login/home")
-
-            	},		
-            	error: function(data){
-                    console.log(data);
-                }
-            	
-            })         
-    		
-    		
-    	})}
-    		//키우고 있는 나무가 있을때
-    	else if(stateId > 0){
-    		$('#plantButton').css('display', 'none');
-				let certData = "인증"
-				let img = $("<img class='tree'>");            
-                
-                img.attr("src",${sessionScope.user.plant});
-                
-                $(".plant").append(img);
-                
-                //나무가 1단계일떄
-                if(stateId===1){
-                	$("#gauge").css('width','0px');
-                	$("#heart").css('display','block');
-                	$("#heart").css('left','9px');
-                }
-              	//나무가 2단계일떄
-              	else if(stateId===2){
-                	$("#gauge").css('width','50px');
-                	$("#heart").css('display','block');
-                	$("#heart").css('left','59px');
-                }
-              	//나무가 3단계일떄
-              	else if(stateId===3){
-                	$("#gauge").css('width','100px');
-                	$("#heart").css('display','block');
-                	$("#heart").css('left','109px');
-                }
-              	//나무가 4단계일떄
-              	else if(stateId===4){
-                	$("#gauge").css('width','150px');
-                	$("#heart").css('display','block');
-                	$("#heart").css('left','159px');
-                }
-              	//나무가 5단계일떄
-              	else if(stateId===5){
-                	$("#gauge").css('width','200px');
-                	$("#heart").css('display','block');
-                	$("#heart").css('left','209px');
-                }
-                
-                
-                $.ajax({
-            		url : "/login/dlswmd",
-            		data: certData,
-            		success : function(data){
-            			if(data === "인증성공"){
-            			console.log(data);
-            			location.replace("/login/home")            		
-            			}else{
-            				$("#id").text("인증실패입니다.")
-            			}
-            			
-            	}
-            })
-	
-    	}
-    	
-    	
-    	
-    }) */
+   
 
     </script>
     
@@ -435,12 +237,7 @@ a{
 }
 
 
-/* .home-screen{
-    width: 328px;
-    height: 320.54px;
-    background-color: blue;
-    margin: 0 auto;
-} */
+
 .home-screen .screen-bg{
     width: 100%;
     height: 292.44px;
@@ -453,12 +250,7 @@ a{
 .home-screen #seed{
     width: 127px;
     height: 127px;
-    /* background-color: #b1eab2; */
-    /* box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16); */
-    /* border-radius: 50%; */
-    /* position: relative; */
-    /* margin: 0 auto; */
-    /* padding-top: 20px; */
+ 
     position: absolute;
     /* top: 100px; */
     top : 60px;
@@ -542,55 +334,13 @@ a{
 }
 
 
-/*         #cards{
-            width: 90%;
-            height: 150px;
-            border: 1px solid blue;
-            margin: 0 auto;
-            margin-top: 50px;
-            position: relative;
-            
-        } */
+
         #cards .card{
-            /* position: absolute;
-            width: 60px;
-            top: 50%;
-            transform: translate(0,-50%);
-            left: 12px; */
+     
             width: 60px;
             margin: 11px;
         }
-        /* #cards #card2{
-            left: 101px;
-        }
-        #cards #card3{
-            left: 188px;
-        } */
-
-
-
-/*         #seed{
-            width: 127px;
-            height: 127px;
-            position: absolute;
-            top: 60px;
-            left: 50%;
-            transform: translate(-50%);
-            border: 1px solid blue;
-            display: none;
-        } */
-	
-
-        
-        /* #plant img{
-            height: 180px;
-            width: 180px;
-            border: 1px solid blue;
-            position: absolute;
-            top: 30px;
-            left: 50%;
-            transform: translate(-50%);
-        } */
+ 
         
           #gauge{
             width: 0px;
@@ -614,7 +364,7 @@ a{
     	
     	
 		.screen-img{
-		    /* border: 1px solid red; */
+		   
 		    position: relative;
 		    top: 53%;
 		    left: 50%;
@@ -626,9 +376,7 @@ a{
     	#cards{
             width: 80%;
             height: 130px;
-            /* border: 1px solid blue; */
-            /* margin: 0 auto; */
-            /* margin-top: 50px; */
+           
             top : 60%;
             left : 50%;
             transform : translate(-50%, -50%);
@@ -642,25 +390,13 @@ a{
         }
 		
         #cards .card{
-            /* position: absolute;
-            width: 60px;
-            top: 50%;
-            transform: translate(0,-50%);
-            left: 12px; */
+         
             width: 50px;
             margin: 13.7px;
     		margin-top: 25px; 
-/*     		position: absolute;
-    		top: 50%;
-    		left: 50%;
-    		transform: translate(-50%, -50%); */
+
         }
-        /* #cards #card2{
-            left: 101px;
-        }
-        #cards #card3{
-            left: 188px;
-        } */
+    
 
 
 

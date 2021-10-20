@@ -26,4 +26,6 @@ public interface PlantLevelService {
 
 	void update_list(PlantLevelList list);
 
+	List<PlantLevel> random();
+
 }
