@@ -32,6 +32,8 @@ public interface UserService {
 	User item(User item);
 
 	User login(User item);
+	
+	User levelUp(User user);
 
 
 }

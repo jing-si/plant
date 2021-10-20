@@ -207,4 +207,13 @@
 		from BOT_CLASS
 
 	</select>
+	
+	
+	<!-- 바코드 들어왔을때 제품번호와 일치하는게 있는지 -->
+	<select id="count" resultType="Integer">
+		select count(*) from product
+		where PRODUCT_ID = #{barcode}
+	</select>
+	
+	
 </mapper>

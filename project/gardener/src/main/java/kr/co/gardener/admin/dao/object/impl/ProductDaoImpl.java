@@ -83,4 +83,9 @@ public class ProductDaoImpl implements ProductDao {
 		sql.update("product.autoClassify",items);
 	}
 
+	@Override
+	public int count(int barcode) {
+		return sql.selectOne("product.count", barcode);
+	}
+
 }

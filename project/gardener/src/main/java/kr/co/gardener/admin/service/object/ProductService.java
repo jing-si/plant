@@ -33,4 +33,6 @@ public interface ProductService {
 
 	void autoUpdate(ProductList list);
 
+	String certify(int barcode);
+
 }

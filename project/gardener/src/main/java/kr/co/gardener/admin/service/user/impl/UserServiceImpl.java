@@ -154,5 +154,12 @@ public class UserServiceImpl implements UserService {
 		}
 		return null;
 	}
+	@Override
+	public User levelUp(User user) {
+		user.setStateId(user.getStateId()+1);
+		dao.update(user);
+		return dao.item(user.getUserId());
+	}
+
 
 }
