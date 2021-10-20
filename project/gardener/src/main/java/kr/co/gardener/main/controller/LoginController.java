@@ -1,24 +1,22 @@
 package kr.co.gardener.main.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.gardener.admin.model.user.User;
 import kr.co.gardener.admin.service.user.UserService;
-import kr.co.gardener.main.service.LoginService;
 import kr.co.gardener.util.FileUploader;
 
 @Controller
@@ -101,14 +99,16 @@ public class LoginController {
 		
 		@PostMapping("/fileUpload")
 		@ResponseBody
-		public List<String> FileUploader(String folder,List<MultipartFile> files) {
-			List<String> list = new ArrayList<String>();
-			
+		public Map<String,String> FileUploader(String folder,String[] name,List<MultipartFile> files) {
+			Map<String,String> map = new HashMap<String, String>();
 			for(int a = 0 ; a < files.size() ; a++) {
-				if(files.get(a).getSize() != 0)
-					list.add(FileUploader.Uploader(files.get(a) ,folder,files.get(a).getOriginalFilename()));
+				if(files.get(a).getSize() != 0) {
+					map.put(name[a], FileUploader.Uploader(files.get(a) ,folder,files.get(a).getOriginalFilename()));
+					
+					
+				}
 			}		
 			
-			return list; 
+			return map; 
 		}
 }

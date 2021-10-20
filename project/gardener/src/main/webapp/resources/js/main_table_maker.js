@@ -9,7 +9,7 @@ let tableName = "";
 let view = false;
 let selectedBox;
 let popoverList = Array();
-
+let plusCount = 0; //플러스 클릭횟수
 
 const state = {
 	url: "",
@@ -148,16 +148,20 @@ $(function() {
 		$(".viewImage").css("width", $(this).val());
 	})
 
+	
 	//플러스 클릭
 	$("#subContent").on("click", ".plus", function() {
 
 		let tr = $("<tr class='insertRow'>");
 		tr.append($("<td class='center'>").append($("<div class='minus'>")))
 		tr.append($("<td class='center'>").append($("<label class='form-label numLabel'>").text(++insertCount)));
-
+		
+		plusCount++
 		for (let a = 0; a < addType.length; a++) {
 			let td = $("<td>");
-			let temp = makeCell(null, a, 0, addType[a][1], addType[a][2], "add")
+			
+			let temp = makeCell(null, a, plusCount, addType[a][1], addType[a][2], "add")
+			console.log(plusCount)
 			switch (addType[a][2]) {
 				case "none":
 					temp.addClass("center form-control");
@@ -357,8 +361,24 @@ $(function() {
 //fileUploader
 function fileUploader(inputs) {
 	const file = inputs.find(".fileUploader");
-	const id = inputs.find(".C0");
+	const fileSrcObject = {};
+	
 	if (file.length > 0) {
+		const form = $('<form method="POST" enctype="multipart/form-data">')	
+		form.append($('<input type="text" name="folder">').attr("value", state.url));
+		file.each((index,value) =>{
+			$value = $(value) 
+			if($value.val()){
+				const parent = $value.parent();
+				console.log(parent.get(0))
+				const point = parent.data("point");
+				fileSrcObject[point] = parent.find(".fileSrc");
+				form.append($value.clone());
+				form.append($('<input type="text" name="name">').attr("value", point));
+			}
+		})	
+			
+		/*
 		const fileSrc = inputs.find(".fileSrc");
 		console.log(fileSrc);
 		const form = $('<form method="POST" enctype="multipart/form-data">').append(file.clone());
@@ -367,9 +387,9 @@ function fileUploader(inputs) {
 		id.each((index, value) => {
 			form.append($('<input type="text" name="name">').attr("value", $(value).val()));
 		});
-
+		*/
 		const formData = new FormData(form.get(0));
-
+		console.log(fileSrcObject)
 		$.ajax({
 			method: "post",
 			enctype: 'multipart/form-data',
@@ -381,15 +401,10 @@ function fileUploader(inputs) {
 			cache: false,
 			timeout: 600000,
 			success: function(data) {
-
-				fileSrc.each((index, value) => {
-
-					if (data[index] != undefined) {
-						$(value).val(data[index]);
-						console.log(data[index]);
-						console.log($(value).val());
-					}
-				})
+					let keys = Object.keys(data)
+					keys.forEach((key)=>{
+						fileSrcObject[key].val(data[key]);	
+					})
 
 			},
 			error: function(e) {
