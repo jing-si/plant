@@ -24,6 +24,12 @@
     	width: 100%;
     	height: 100%;
     }
+    #heart{
+    	width: 24px;
+    }
+    .clickbox{
+    	width: 80%;
+    }
 	</style>
 </head>
 <body>
@@ -41,9 +47,58 @@
                 $('.tabArea .tab li:eq(' + num + ')').addClass("on"); 
                 $('.tabArea .tabBox:eq(' + num + ')').addClass("on"); 
             }); 
+            
+            
+            
+         //즐겨찾기
+    	$("#heart").on("click",function(){	
+    		console.log("클릭");
+    		let productId = $(this).attr("class");
+    		let companyId = $(this).attr("data");
+    		
+     		if($(this).attr("src") == "/resources/images/white_heart.png"){
+    		
+    			$.ajax({
+    				url : "/login/category/product/insert",
+    				type : "post",
+    				data : {"productId" : productId,"companyId":companyId},				
+    				success : function(){
+    					$("#heart").attr("src","/resources/images/green_heart.png");
+    					console.log("즐겨찾기 등록 성공")
+    				},
+    				error : function(){
+    					console.log("즐겨찾기 등록 실패")
+    				}
+    			})  //ajax 끝
+    			
+    		}  //if끝
+    		
+    		else{			 
+    				$.ajax({
+    					url : "/login/category/product/delete",
+    					type : "post",
+    					data : {"productId" : productId},					
+    					success : function(){
+    						$("#heart").attr("src","/resources/images/white_heart.png");
+    						console.log("즐겨찾기 해제 성공")
+    					},
+    					error : function(){
+    						console.log("즐겨찾기 해제 실패")
+    					}
+    				})  //ajax 끝
+    		}//else 끝 
+    		
+    	})  //heart 클릭 끝   
+            
+            
+            
+            
         });
 
         
+        
+        
+    	
     </script>
 
 
@@ -74,12 +129,17 @@
                         
                         <c:if test="${list_date.size()>0}">
                         <c:forEach var="list" items="${list_date}">
-                            <a href="../category/product/${list.productId}/${list.companyId}">
+                            
                             <div class="brand">
+                            <a href="../category/product/${list.productId}/${list.companyId}">
+                            <div class="clickbox">
                                 <div class="brand-img"><img src="${list.productImage}"></div>
                                 <p class="brand-name">${list.productName}</p>
-                                <img class="heart" src="/resources/images/favorite-heart.png">
-                            </div></a>
+                                
+                            </div>
+                            </a>
+                            <img class="${list.productId}" data="${list.companyId}" id="heart" src="/resources/images/green_heart.png">
+                            </div>
                         </c:forEach>
                         </c:if>
                     </div>
@@ -96,12 +156,16 @@
                     
                     <c:if test="${list_name.size()>0}">
                         <c:forEach var="list" items="${list_name}">
+                          <div class="brand">
                             <a href="../category/product/${list.productId}/${list.companyId}">
-                            <div class="brand">
+                            <div class="clickbox">
                                 <div class="brand-img"><img src="${list.productImage}"></div>
                                 <p class="brand-name">${list.productName}</p>
-                                <img class="heart" src="/resources/images/favorite-heart.png">
-                            </div></a>
+                                
+                            </div>
+                            </a>
+                            <img class="${list.productId}" data="${list.companyId}" id="heart" src="/resources/images/green_heart.png">
+                            </div>
                         </c:forEach>
                     </c:if>
                     

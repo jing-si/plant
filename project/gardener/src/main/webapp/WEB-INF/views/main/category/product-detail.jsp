@@ -279,7 +279,7 @@ img{
 	
 	
 	
-	
+	//즐겨찾기
 	$("#heart").on("click",function(){	
 		let productId = ${item.productId};
 		let companyId = ${item.companyId};
