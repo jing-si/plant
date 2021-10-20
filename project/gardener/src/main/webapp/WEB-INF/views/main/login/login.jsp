@@ -31,7 +31,32 @@ function check(){
         $("#passWord").focus(); 
         return false;
     }
-}
+	
+/* 	if()
+    $.ajax({
+		url : "/membership/duplication",
+		type : "post",
+		data : {"id" : emailValue},
+		dataType : "text",
+		success : function(data){
+			console.log(data)
+			if(data==="true"){
+				alert("이 아이디는 사용 가능합니다.");
+				console.log("이 아이디는 사용가능합니다");
+			}else{
+				alert("이 아이디는 사용 불가능합니다");
+				console.log("이 아이디는 사용불가능합니다");
+			}
+		},  //success 끝
+		error : function(){
+			alert("아이디 중복 확인 ajax 실행 실패");
+			console.log("실패");
+			console.log(emailValue);
+		}
+	})  //ajax 끝 */
+	
+	
+}  //check 끝
 </script>
 
 
