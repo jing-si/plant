@@ -25,7 +25,9 @@
     	$(".go-certify").click(function(){
     		//소비 인증
     		if($(".go-certify").text() == "친환경 소비 인증하기"){
-    			location.href = "certify";
+    			
+    			window.js.startBarcodeReader();
+    			// location.href = "certify";
     		}
     		
     		//숲에 심기
@@ -35,7 +37,7 @@
     				type : "post",
     				data : {"plantId" : ${user.plantId}},
     				success : function(){
-    					location.href = "userforest/";
+    					location.href = "userforest/?inven=on";
     				}  //success 끝
     			})  //ajax 끝
     		}

@@ -28,4 +28,6 @@ public interface PlantLevelService {
 
 	List<PlantLevel> random();
 
+	String PlantImage(int plantId, int plantLevel);
+
 }

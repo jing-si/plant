@@ -1,5 +1,6 @@
 package kr.co.gardener.admin.service.user.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +12,13 @@ import kr.co.gardener.admin.model.user.list.BookmarkList;
 import kr.co.gardener.admin.model.user.list.LocationList;
 import kr.co.gardener.admin.service.user.LocationService;
 import kr.co.gardener.util.Pager;
+
 @Service
 public class LocationServiceImpl implements LocationService {
 
 	@Autowired
 	LocationDao dao;
-	
+
 	@Override
 	public List<Location> list() {
 		return dao.list();
@@ -60,17 +62,37 @@ public class LocationServiceImpl implements LocationService {
 	@Override
 	public void insert_list(LocationList list) {
 		dao.insert_list(list.getList());
-		
+
 	}
 
 	@Override
 	public void delete_list(LocationList list) {
-		dao.delete_list(list.getList());		
+		dao.delete_list(list.getList());
 	}
 
 	@Override
 	public void update_list(LocationList list) {
-		dao.update_list(list.getList());
+		List<Location> nomalItem = new ArrayList<Location>();
+		List<Location> newItem = new ArrayList<Location>();
+		List<Location> deleteItem = new ArrayList<Location>();
+		
+		for(Location item : list.getList()) {
+			switch (item.getLocationState()) {
+			case 0:
+				nomalItem.add(item);
+				break;
+			case 1:
+				newItem.add(item);
+				break;
+			case 2:
+				deleteItem.add(item);
+				break;
+			}
+		}
+		
+		dao.update_list(nomalItem);
+		dao.insert_list(newItem);
+		dao.delete_list(deleteItem);
 	}
 
 }

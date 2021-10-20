@@ -96,18 +96,21 @@
   
 				$("#image-container").append(div1);
 				div1.append(img);
-				div1.attr("data-size",value.locationSize);
-				//크기 조절
-				changeSize(div1);
-				
-				
 				div1.css("left",value.locationX);
 				div1.css("top",value.locationY);
+				div1.draggable();
+				value.div = div1;
+				div1.attr("data-size",value.locationSize);
+				//크기 조절
+				img.load(function(){changeSize(div1)});
+				
+				
+				
 				
 				// pc, mobile 모두 움직이게 jquery.ui.touch-punch.min.js 추가
-				div1.draggable();
+				
 				//div1.draggable({Array:[-10,-30,$(window).width()+10,$(window).height()+30]});
-				value.div = div1;
+				
 				/* 아래와 같이 넣어주고자 함
 				<div id="userPlant01" class="userPlant">
 					<img src="/resources/images/tree_01.png"></div>
@@ -302,6 +305,7 @@
 		
 		console.log(size)
 		console.log(originH * size)
+		
 		target.css("height", originH * size)
 		target.css("width", originW * size)
 		

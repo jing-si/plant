@@ -20,8 +20,9 @@
 let arr = new Array();
 let item ;
 $().ready(()=>{
+	//식물 배치 ajax
 	$.ajax({
-		url:"setforest/init",
+		url:"../setforest/init",
 		success:function(data){
 			arr = data;
 			console.log(data);
@@ -48,12 +49,19 @@ $().ready(()=>{
   
 				$("#image-container").append(div1);
 				div1.append(img);
-				div1.attr("data-size",value.locationSize);
-				//크기 조절
-				changeSize(div1);
 				div1.css("left",value.locationX);
 				div1.css("top",value.locationY);
+				div1.attr("data-size",value.locationSize);
+				//크기 조절
+				img.load(function(){changeSize(div1)});
+				
+				
+				
+				
+				// pc, mobile 모두 움직이게 jquery.ui.touch-punch.min.js 추가
+				
 				//div1.draggable({Array:[-10,-30,$(window).width()+10,$(window).height()+30]});
+				
 				/* 아래와 같이 넣어주고자 함
 				<div id="userPlant01" class="userPlant">
 					<img src="/resources/images/tree_01.png"></div>
@@ -62,7 +70,10 @@ $().ready(()=>{
 				
 			})
 		}
-	})
+	}) //ajax 끝
+	
+	//나무를 심을때 inven을 열고 시작
+	inven();
 })
 function changeSize(target){
 		const img = $(target).children("img");
@@ -80,6 +91,14 @@ function changeSize(target){
 		//item.css("width",w)
 		
 	}
+	
+function inven() {
+	const url = new URLSearchParams(window.location.search)
+	if(url.has("inven")){
+	if(url.get("inven") == 'on')
+		$("#button_item").trigger("click");
+	}
+}
 </script>
 
 <style>
@@ -154,7 +173,7 @@ img{
 										<p class="text_left">보관중인 나무 :</p>
 										<p class="text_right">그루</p>
 										<p class="text_amount">${list.invenAmount}</p>
-										<a href="../userforest/setforest/">
+										<a href="../userforest/${list.plantId }/plant">
 											<p class="planting_btn">
 											<p class="planting_btn_text">나무 심기</p>
 											</p>

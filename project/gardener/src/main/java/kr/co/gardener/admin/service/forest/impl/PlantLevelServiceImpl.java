@@ -1,7 +1,9 @@
 package kr.co.gardener.admin.service.forest.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import kr.co.gardener.admin.dao.user.PlantLevelDao;
 import kr.co.gardener.admin.model.forest.PlantLevel;
 import kr.co.gardener.admin.model.forest.list.PlantLevelList;
 import kr.co.gardener.admin.service.forest.PlantLevelService;
+import kr.co.gardener.main.vo.PlantImage;
 import kr.co.gardener.util.Pager;
 @Service
 public class PlantLevelServiceImpl implements PlantLevelService {
@@ -18,11 +21,21 @@ public class PlantLevelServiceImpl implements PlantLevelService {
 	@Autowired
 	PlantLevelDao dao;
 	
+	Map<Integer, PlantImage> plantImage;
+	
 	@Override
 	public List<PlantLevel> list() {
+		
 		return dao.list();
 	}
-
+	
+	private void initPlantImage() {
+		plantImage = new HashMap<Integer, PlantImage>();
+		List<PlantImage> list = dao.plantImage();
+		for(PlantImage item : list) {
+			plantImage.put(item.getPlantId(), item);
+		}
+	}
 	@Override
 	public void add(PlantLevel item) {
 		dao.add(item);
@@ -80,6 +93,13 @@ public class PlantLevelServiceImpl implements PlantLevelService {
 			item.add(list.get(r.nextInt(list.size()-1)));
 		
 		return item;
+	}
+	
+	@Override
+	public String PlantImage(int plantId,int plantLevel) {
+		if(plantImage == null)
+			initPlantImage();
+		return plantImage.get(plantId).getPlantImage().get(plantLevel-1);
 	}
 
 }

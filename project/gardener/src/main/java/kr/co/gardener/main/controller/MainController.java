@@ -70,6 +70,7 @@ public class MainController {
 	
 	
 	//인증
+	
 	@RequestMapping("/certify")
 	public String certify() {
 		return path + "certify";
@@ -111,7 +112,8 @@ public class MainController {
 		inven.setUserId(user.getUserId());
 		inven.setPlantId(plantId);
 		invenService.plant(inven);
-		
+		user.setStateId(0);
+		session.setAttribute("user", user);
 		//인벤토리에 추가하는 작업해야함
 	}
 	
