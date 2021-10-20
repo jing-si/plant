@@ -41,13 +41,13 @@ public class MainController {
 		return path + "home2";
 	}
 	
-	@RequestMapping("/home") //session갱신용, db변경했을떄 용도
-	public String index(HttpSession session) {
-		String userId = ((User) session.getAttribute("user")).getUserId();
-		User user = service.item(userId);  //유저만듦
-		session.setAttribute("user", user);
-		return path + "home2"; //오류날수도있음.......ㅎ...remove 필요할지도?
-	}
+	/*
+	 * @RequestMapping("/home") //session갱신용, db변경했을떄 용도 public String
+	 * index(HttpSession session) { String userId = ((User)
+	 * session.getAttribute("user")).getUserId(); User user = service.item(user);
+	 * //유저만듦 session.setAttribute("user", user); return path + "home2";
+	 * //오류날수도있음.......ㅎ...remove 필요할지도? }
+	 */
 	
 	private String imgSrc(User user) {
 		return service.imgSrc(user);

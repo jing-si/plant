@@ -29,8 +29,12 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public User item(String userId) {
-		return sql.selectOne("user.item", userId);
+	public User item_checkPass(User user) {
+		return sql.selectOne("user.item_checkPass", user);
+	}
+	@Override
+	public User item(User user) {
+		return sql.selectOne("user.item", user);
 	}
 
 	@Override

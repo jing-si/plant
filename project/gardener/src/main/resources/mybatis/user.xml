@@ -10,14 +10,24 @@
 	</select>
 
 
+	<select id="item_checkPass" resultType="User">
+		select *, 
+		(select PLANT_IMAGE 
+		from PLANT_LEVEL P 
+		WHERE P.PLANT_LEVEL_ID = (select STATE_ID from USER U1 where U1.USER_ID = #{userId}) AND P.PLANT_ID = U.PLANT_ID) 
+		PLANT 
+		from USER U
+		where U.USER_ID = #{userId} and U.USER_PASS = #{userPass}
+	</select>
+	
 	<select id="item" resultType="User">
 		select *, 
 		(select PLANT_IMAGE 
 		from PLANT_LEVEL P 
-		WHERE P.PLANT_LEVEL_ID = (select STATE_ID from USER U1 where U1.USER_ID = #{uesrId}) AND P.PLANT_ID = U.PLANT_ID) 
+		WHERE P.PLANT_LEVEL_ID = (select STATE_ID from USER U1 where U1.USER_ID = #{userId}) AND P.PLANT_ID = U.PLANT_ID) 
 		PLANT 
 		from USER U
-		where U.USER_ID = #{userId} <!-- 알리아스 주의 -->
+		where U.USER_ID = #{userId}
 	</select>
 
 	<insert id="add">
