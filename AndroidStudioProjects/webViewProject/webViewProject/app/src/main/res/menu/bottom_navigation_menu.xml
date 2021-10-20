@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="네이버"
+        android:id="@+id/naver"
+        android:icon="@drawable/ic_naver"
+        />
+    <item android:title="다음"
+        android:id="@+id/daum"
+        android:icon="@drawable/ic_daum"
+        />
+    <item android:title="구글"
+        android:id="@+id/google"
+        android:icon="@drawable/ic_icons8_google"
+        />
+</menu>
