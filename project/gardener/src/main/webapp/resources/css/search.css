@@ -76,11 +76,11 @@ input{
     /* top: 0; */
     /* left: 89%; */
 }
-#header .qr img{
+/* #header .qr img{
     width: 36px;
     height: 10px;
     margin-top: 30px;
-}
+} */
 
 #body{
     width: 360px;
