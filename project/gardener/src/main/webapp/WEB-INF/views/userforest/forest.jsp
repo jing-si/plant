@@ -51,8 +51,6 @@ $().ready(()=>{
 				div1.attr("data-size",value.locationSize);
 				//크기 조절
 				changeSize(div1);
-				
-				
 				div1.css("left",value.locationX);
 				div1.css("top",value.locationY);
 				//div1.draggable({Array:[-10,-30,$(window).width()+10,$(window).height()+30]});
@@ -88,8 +86,19 @@ function changeSize(target){
 img{
 	position: absolute;
 }
-#image-container{
+#image-container {
+	width: 100%;
+	height: 100%;
 	position: relative;
+}
+
+.userPlant {
+	position: absolute;
+}
+
+.userPlantImg {
+	object-fit: contain;
+	height: 100%;
 }
 /* 유저가 저장한 나무 이미지 CSS 생성공간 */
 </style>

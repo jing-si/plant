@@ -65,6 +65,7 @@
          }
 
       })
+      location.href="/login/userforest/"
    })
 		
 	$.ajax({
@@ -170,9 +171,6 @@
 		if(imgZindex < arr.length){
 		let targetImgInfo = $(`[data-order=\${imgZindex+1}]`)
 		
-		console.log("(현재 선택된)"+item.attr("data-index") +"번의 oreder은 " +item.attr("data-order"))
-		console.log(targetImgInfo.attr("data-index") +"번의 oreder은 " + targetImgInfo.attr("data-order"))
-		
 		item.attr("data-order",imgZindex + 1);
 		targetImgInfo.attr("data-order",imgZindex);
 		item.css("z-index", item.attr("data-order"));
@@ -218,9 +216,6 @@
 		
 		if(imgZindex > 0){
 		let targetImgInfo = $(`[data-order=\${imgZindex-1}]`)
-		
-		console.log("(현재 선택된)"+item.attr("data-index") +"번의 oreder은 " +item.attr("data-order"))
-		console.log(targetImgInfo.attr("data-index") +"번의 oreder은 " + targetImgInfo.attr("data-order"))
 		
 		item.attr("data-order",imgZindex - 1);
 		targetImgInfo.attr("data-order",imgZindex);
