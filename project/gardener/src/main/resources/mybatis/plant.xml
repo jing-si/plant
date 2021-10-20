@@ -14,7 +14,7 @@
 	
 	<insert id="add">
 		INSERT INTO PLANT
-		VALUES (#{plantId},#{plantName},#{plantCategory},#{plantInfo}, #{plantShadow})
+		VALUES (#{plantId},#{plantName},#{plantCategory},#{plantInfo}, #{plantShadow}, #{plantThumbnail})
 	</insert>
 	
 	<update id="update">
@@ -23,7 +23,8 @@
 			PLANT_NAME=#{plantName},
 			PLANT_CATEGORY=#{plantCategory},
 			PLANT_INFO=#{plantInfo},
-			PLANT_SHADOW=#{plantShadow}
+			PLANT_SHADOW=#{plantShadow},
+			PLANT_THUMBNAIL = #{plantThumbnail}
 		WHERE PLANT_ID=#{plantId}
 	</update>
 	
@@ -51,13 +52,14 @@
 		Insert into PLANT
 		values
 		<foreach collection="list" item="item" separator=",">
-			(#{item.plantId},#{item.plantName},#{item.plantCategory},#{item.plantInfo},#{item.plantShadow})
+			(#{item.plantId},#{item.plantName},#{item.plantCategory},#{item.plantInfo},#{item.plantShadow}, #{plantThumbnail})
 		</foreach>
 		on duplicate key update
 		PLANT_NAME = VALUES(PLANT_NAME)	
 		, PLANT_CATEGORY = VALUES(PLANT_CATEGORY)
 		, PLANT_INFO = VALUES(PLANT_INFO)
 		, PLANT_SHADOW = VALUES(PLANT_SHADOW)
+		, PLANT_THUMBNAIL = VALUES(PLANT_THUMBNAIL)
 	
 	</select>
 
@@ -70,6 +72,7 @@
 			,#{item.plantCategory}
 			,#{item.plantInfo}
 			,#{item.plantShadow}
+			,#{plantThumbnail}
 			)
 		</foreach>
 	</insert>

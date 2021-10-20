@@ -90,4 +90,9 @@ public class InvenDaoImpl implements InvenDao {
 		sql.insert("inven.update_list", list);		
 	}
 
+	@Override
+	public void plant(Inven inven) {
+		sql.update("inven.plant",inven);
+	}
+
 }

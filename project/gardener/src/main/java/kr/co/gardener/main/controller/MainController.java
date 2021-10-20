@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.gardener.admin.model.forest.PlantLevel;
+import kr.co.gardener.admin.model.user.Inven;
 import kr.co.gardener.admin.model.user.User;
 import kr.co.gardener.admin.service.forest.PlantLevelService;
 import kr.co.gardener.admin.service.object.ProductService;
+import kr.co.gardener.admin.service.user.InvenService;
 import kr.co.gardener.admin.service.user.UserService;
 
 @Controller
@@ -31,6 +33,9 @@ public class MainController {
 	
 	@Autowired
 	ProductService productService;
+	
+	@Autowired
+	InvenService invenService;
 	
 	//메인페이지
 	@RequestMapping("/") //db변경이 없을때 용도
@@ -100,9 +105,12 @@ public class MainController {
 	//나무 다키워서 인벤으로 보내기
 	@PostMapping("/plant")
 	@ResponseBody
-	public void plant(String userId, int plantId, HttpSession session) {
+	public void plant(int plantId, HttpSession session) {
 		User user = (User)session.getAttribute("user");
-		user.setStateId(0);
+		Inven inven = new Inven();
+		inven.setUserId(user.getUserId());
+		inven.setPlantId(plantId);
+		invenService.plant(inven);
 		
 		//인벤토리에 추가하는 작업해야함
 	}
