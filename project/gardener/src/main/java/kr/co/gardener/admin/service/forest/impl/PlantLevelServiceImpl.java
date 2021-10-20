@@ -1,6 +1,8 @@
 package kr.co.gardener.admin.service.forest.impl;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -68,6 +70,17 @@ public class PlantLevelServiceImpl implements PlantLevelService {
 	public void update_list(PlantLevelList list) {
 		dao.update_list(list.getList());
 		
+	}
+
+	@Override
+	public List<PlantLevel> random() {
+		List<PlantLevel> list = dao.maturePlant();
+		List<PlantLevel> item = new ArrayList<PlantLevel>();		
+		Random r = new Random();
+		for(int a = 0 ; a< 3 ;a++)
+			item.add(list.get(r.nextInt(list.size()-1)));
+		
+		return item;
 	}
 
 }

@@ -73,4 +73,10 @@ public class PlantLevelDaoImpl implements PlantLevelDao {
 		
 	}
 
+	@Override
+	public List<PlantLevel> maturePlant() {
+		
+		return sql.selectList("plantLevel.maturePlant");
+	}
+
 }

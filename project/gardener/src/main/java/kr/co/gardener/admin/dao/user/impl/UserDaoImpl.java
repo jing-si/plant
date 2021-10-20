@@ -87,6 +87,11 @@ public class UserDaoImpl implements UserDao {
 		sql.update("user.update_list", list);
 	}
 
+	@Override
+	public int levelUp(User user) {
+		return sql.update("user.levelUp",user);
+	}
+
 
 
 

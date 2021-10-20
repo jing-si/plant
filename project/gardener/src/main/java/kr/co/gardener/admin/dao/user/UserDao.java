@@ -38,6 +38,8 @@ public interface UserDao {
 
 	User item_checkPass(User user);
 
+	int levelUp(User user);
+
 
 
 }

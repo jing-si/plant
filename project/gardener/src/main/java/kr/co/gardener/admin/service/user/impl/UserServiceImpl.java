@@ -105,7 +105,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	private String encryption(User user) {
-		if (user == null) {
+		if (user == null || user.getUserPass() == null) {
 		    return null;
 		}
 		
@@ -146,19 +146,20 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User login(User item) {
 		User user = dao.item(item);
-		
+		System.out.println(user.getUserPass());
 		item.setUserBirth(user.getUserBirth());
 		if(user.getUserPass().equals(encryption(item))) {
-			user.setUserPass("");
+			user.setUserPass(null);
+			System.out.println("로그인 성공");
 			return user;
 		}
+		System.out.println("로그인 실패");
 		return null;
 	}
 	@Override
-	public User levelUp(User user) {
-		user.setStateId(user.getStateId()+1);
-		dao.update(user);
-		return dao.item(user.getUserId());
+	public void levelUp(User user) {	
+		dao.levelUp(user);
+		
 	}
 
 

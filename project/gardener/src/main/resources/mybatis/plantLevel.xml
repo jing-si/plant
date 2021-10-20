@@ -28,6 +28,11 @@
   	WHERE PLANT_LEVEL_ID=#{plantLevelId}
   </delete>
   
+  <select id="maturePlant" resultType="PlantLevel">
+  	select * from PLANT_LEVEL
+  	WHERE PLANT_LEVEL_ID= 5;
+  </select>
+  
   <!--대량 처리 -->
 	<select id="list_pager" resultType="PlantLevel">
 		<include refid="search"></include>
