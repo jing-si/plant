@@ -13,8 +13,6 @@ public interface UserService {
 
 	void add(User item);
 
-	User item(String userId);
-
 	void update(User item);
 
 	void delete(String userId);
@@ -30,6 +28,12 @@ public interface UserService {
 	void delete_list(UserList list);
 
 	void update_list(UserList list);
+
+	User item(User item);
+
+	User login(User item);
+	
+	User levelUp(User user);
 
 
 }

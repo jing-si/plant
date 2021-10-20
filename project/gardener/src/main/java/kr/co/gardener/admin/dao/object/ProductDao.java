@@ -35,4 +35,6 @@ public interface ProductDao {
 
 	void autoClassify(List<Product> items);
 
+	int count(int barcode);
+
 }

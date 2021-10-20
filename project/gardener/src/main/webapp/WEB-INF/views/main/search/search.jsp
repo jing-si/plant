@@ -43,7 +43,7 @@
     <div id="body" class="scroll">
         <div id="align">
         	
-        <c:if test="${latestProducList.size()<1}">
+<%--         <c:if test="${latestProducList.size()<1}">
         	
         </c:if>
         
@@ -65,7 +65,7 @@
             	</a>
             </div>
             
-        </c:forEach>
+        </c:forEach> --%>
         
 <%--         <c:forEach var="list" items="${list}">
         	
@@ -79,7 +79,7 @@
         </c:forEach> --%>
         
 
-                <c:forEach var="list" items="${list}">
+        <c:forEach var="list" items="${list}">
         	<a href="../category/product/${list.productId}/${list.companyId}"><div class="brand">
                 <div class="brand-img"><img src="${list.productImage}"></div>
                 <p class="brand-name">${list.productName}</p>

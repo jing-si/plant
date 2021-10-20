@@ -26,9 +26,7 @@ import kr.co.gardener.util.FileUploader;
 public class LoginController {
 	final String path = "main/login/";
 	
-	@Autowired
-	LoginService loginService;
-	
+		
 	@Autowired
 	UserService service;
 	
@@ -40,20 +38,11 @@ public class LoginController {
 	
 	@PostMapping({"","/"})
 	public String login(User item, HttpSession session) {
-		User user = loginService.item(item.getUserId());
+		User user = service.login(item);
 		
 		if(user != null) {
-			String userId = user.getUserId();
-			String userPass = user.getUserPass();
-			
-			if(userId.equals(item.getUserId()) && userPass.equals(item.getUserPass())) {
-				//로그인한 사람의 정보가 session에 user란 이름으로 저장됨
 				session.setAttribute("user", user);
-				System.out.println(user);
 				return  "redirect:/login/";
-			}
-			
-			return path + "login";
 		}
 	
 		return path + "login";

@@ -8,7 +8,7 @@
 </head>
 <body>
 <form method="post">
-	<input type="text" name="barcode">
+	<input type="number" name="barcode">
 	<input type="submit">
 </form>	
 </body>
