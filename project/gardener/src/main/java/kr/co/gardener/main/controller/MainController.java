@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -58,6 +59,21 @@ public class MainController {
 	public String camera() {
 		return path + "qrscanner";
 	}
+	
+	
+	//인증
+	@RequestMapping("/certify")
+	public String certify() {
+		return path + "certify";
+	}
+	
+	//인증 폼
+	@PostMapping("/certify")
+	public String membership(User user) {
+		/* service.add(user); */
+		return path + "home2";
+	}
+	
 	
 	
 	/*
