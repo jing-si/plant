@@ -70,6 +70,7 @@ public class MainController {
 	
 	
 	//인증
+	
 	@RequestMapping("/certify")
 	public String certify() {
 		return path + "certify";

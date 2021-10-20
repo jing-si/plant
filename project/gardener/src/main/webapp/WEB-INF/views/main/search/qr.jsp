@@ -20,22 +20,26 @@ $().ready(()=>{
 	
 	$("#submit").click(function(){
 		var qrNum = $("#barcode").val();
+		console.log(qrNum);
 		
 		$.ajax({
 			
 			/* var qrNum = $("#barcode").val(); */
 			
-			url : "/search/qrajax",
+			url : "/login/search/qrajax",
 			type : "post",
 			data : {"barcode" : qrNum},
 			success : function(data){
 				if(data != null){
+					console.log(qrNum)
 					arr = data;
-					location.href = "./category/product/"+${arr.productId}+"/"+${arr.companyId}"
+					console.log(arr.productId)
+					location.href = "../category/product/"+arr.productId+"/"+arr.companyId
 				}
 				
 			},
 			error: function(){
+				console.log(qrNum)
 				console.log("전송실패")
 			}
 		})  //ajax 끝
