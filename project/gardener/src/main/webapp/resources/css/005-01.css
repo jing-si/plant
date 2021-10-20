@@ -45,7 +45,7 @@ body {
     border: none;
     background-color: transparent;
     position: absolute;
-    z-index: 9999;
+    z-index: 1000;
 }
 
 /* width: 360px; height: 640px; 기준 */
@@ -56,7 +56,7 @@ body {
     border: none;
     background-color: transparent;
     position: absolute;
-    z-index: 9999;
+    z-index: 1001;
 }
 
 /* width: 360px; height: 640px; 기준 */
@@ -67,12 +67,17 @@ body {
     border: none;
     background-color: transparent;
     position: absolute;
-    z-index: 9999;
+    z-index: 1002;
 }
 
 /* 사용자 숲 메인 끝 */
 
 /* 모달영역 */
+
+.container {
+	position: absolute;
+	z-index: 9999;
+}
 
 .popup_wrap {
     background-color: rgba(0, 0, 0, 0.3);   /* 뒷배경 */
