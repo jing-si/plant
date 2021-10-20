@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.gardener.admin.model.object.Product;
 import kr.co.gardener.admin.model.user.SearchList;
@@ -63,6 +64,29 @@ public class SearchController {
 		model.addAttribute("word", q);
 		
 		return path + "search";		
+	}
+	
+	//qr 코드 인식화면으로 넘기기
+	@RequestMapping("/qr")
+	public String qr() {
+		return path + "qr";
+	}
+	
+	//qr 정보 받기
+	@PostMapping("/qr")
+	@ResponseBody
+	public Product qr(int barcode) {
+		System.out.println(barcode);
+		String certifyResult = productService.certify(barcode);
+		System.out.println("db에 있나 "+certifyResult);
+		
+		//인증성공시
+		if(certifyResult.equals("인증성공")) {
+			Product item = productService.item(barcode);
+			return item;
+		}else {
+			return null;
+		}
 	}
 	
 }

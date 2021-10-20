@@ -60,10 +60,10 @@
         <input value="${user.userNick}" type="text" name="userNick">
     </div>
     
-    <div id="birth" class="info">
+<%--     <div id="birth" class="info">
         <p class="title">생년월일</p>
         <input value="${user.userBirth}" type="date" name="userBirth">
-    </div>
+    </div> --%>
     
         <div class="select info">
         <p class="title">성별</p>
