@@ -32,4 +32,6 @@ public interface InvenDao {
 
 	void update_list(List<Inven> list);
 
+	void plant(Inven inven);
+
 }

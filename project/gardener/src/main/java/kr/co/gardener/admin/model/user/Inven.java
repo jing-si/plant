@@ -1,12 +1,24 @@
 package kr.co.gardener.admin.model.user;
 
+import kr.co.gardener.admin.model.forest.Plant;
 import kr.co.gardener.util.GridSystem;
 
 public class Inven extends GridSystem{
 	private String userId;
 	private String plantName;
 	private int invenAmount;
+	
 	private int plantId;
+	
+	private Plant plant;
+	
+	public Plant getPlant() {
+		return plant;
+	}
+	public void setPlant(Plant plant) {
+		this.plant = plant;
+	}
+	
 	public String getUserId() {
 		return userId;
 	}

@@ -73,6 +73,11 @@ public class InvenServiceImpl implements InvenService {
 		dao.update_list(list.getList());		
 	}
 
+	@Override
+	public void plant(Inven inven) {
+		dao.plant(inven);
+	}
+
 
 
 }

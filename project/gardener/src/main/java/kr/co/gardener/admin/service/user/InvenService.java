@@ -28,4 +28,6 @@ public interface InvenService {
 
 	void update_list(InvenList list);
 
+	void plant(Inven inven);
+
 }
