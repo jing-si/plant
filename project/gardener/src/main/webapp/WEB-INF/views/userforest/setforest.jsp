@@ -94,7 +94,9 @@
 				$("#image-container").append(div1);
 				div1.append(img);
 				div1.css("left",value.locationX);
-				div1.css("top",value.locationY);
+				div1.css("bottom",value.locationY);
+				
+				// pc, mobile 모두 움직이게 jquery.ui.touch-punch.min.js 추가
 				div1.draggable();
 				console.log($(window).width())
 				//div1.draggable({Array:[-10,-30,$(window).width()+10,$(window).height()+30]});
@@ -119,11 +121,8 @@
 		selectItem(this)
 	})
 	
-	// pc, mobile 모두 움직이게 jquery.ui.touch-punch.min.js 추가
-	$("#image-container").on("mouseover", ".userPlant",function(data){
-		//$(this).draggable();
-
-	})
+	
+	
 	 
 		 
 /* 	$("#image-container").on("click", ".userPlant",function(data){
@@ -309,7 +308,7 @@
 		item = $(selectedItem);
 		$('.userPlant').removeClass('imgBox');
 		$(selectedItem).addClass('imgBox');	
-		console.log($(selectedItem).data("index"));
+		
 	}
 	
 </script>
