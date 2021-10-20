@@ -34,4 +34,8 @@ public interface InvenDao {
 
 	void plant(Inven inven);
 
+	int countDown(Inven inven);
+
+	int countUp(Inven inven);
+
 }

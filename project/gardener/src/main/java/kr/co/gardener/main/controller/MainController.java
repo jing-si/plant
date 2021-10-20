@@ -111,7 +111,7 @@ public class MainController {
 		Inven inven = new Inven();
 		inven.setUserId(user.getUserId());
 		inven.setPlantId(plantId);
-		invenService.plant(inven);
+		invenService.countUp(inven);
 		user.setStateId(0);
 		session.setAttribute("user", user);
 		//인벤토리에 추가하는 작업해야함

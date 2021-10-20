@@ -104,11 +104,21 @@
 		FROM PLANT
 	</select>
 	
-	<update id="plant">		
+	<update id="countUp">		
 		Insert into INVEN
 		values
 				(#{userId},#{plantId},1)
 		on duplicate key update
 		INVEN_AMOUNT = INVEN_AMOUNT+1
+	</update>
+	
+	<update id="countDown">		
+		update INVEN
+		set 
+		INVEN_AMOUNT = INVEN_AMOUNT-1
+		where
+		USER_ID = #{userId} 
+		AND PLANT_ID = #{plantId}
+		
 	</update>
 </mapper>

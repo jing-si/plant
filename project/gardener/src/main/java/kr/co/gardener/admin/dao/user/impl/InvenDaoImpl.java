@@ -92,7 +92,17 @@ public class InvenDaoImpl implements InvenDao {
 
 	@Override
 	public void plant(Inven inven) {
-		sql.update("inven.plant",inven);
+		
+	}
+
+	@Override
+	public int countDown(Inven inven) {
+		return sql.update("inven.countDown",inven);
+	}
+
+	@Override
+	public int countUp(Inven inven) {
+		return sql.update("inven.countUp",inven);
 	}
 
 }

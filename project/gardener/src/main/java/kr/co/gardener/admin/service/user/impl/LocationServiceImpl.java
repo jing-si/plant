@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.gardener.admin.dao.user.LocationDao;
 import kr.co.gardener.admin.model.user.Location;
@@ -71,6 +72,7 @@ public class LocationServiceImpl implements LocationService {
 	}
 
 	@Override
+	@Transactional
 	public void update_list(LocationList list) {
 		List<Location> nomalItem = new ArrayList<Location>();
 		List<Location> newItem = new ArrayList<Location>();
@@ -89,9 +91,11 @@ public class LocationServiceImpl implements LocationService {
 				break;
 			}
 		}
-		
+		if(nomalItem.size() > 0)
 		dao.update_list(nomalItem);
+		if(newItem.size() > 0)
 		dao.insert_list(newItem);
+		if(deleteItem.size() > 0)
 		dao.delete_list(deleteItem);
 	}
 

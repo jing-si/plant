@@ -77,6 +77,11 @@ public class UserForestController {
 	public String update(@RequestBody LocationList list,HttpSession session) {
 		lService.update_list(list);
 		if(session.getAttribute("newItem") != null) {
+			Location location = (Location)session.getAttribute("newItem");
+			Inven inven = new Inven();
+			inven.setPlantId(location.getPlantId());
+			inven.setUserId(location.getUserId());
+			invenService.countDown(inven);
 			session.removeAttribute("newItem");
 		}
 		return "ok";

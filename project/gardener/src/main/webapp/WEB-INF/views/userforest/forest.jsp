@@ -22,7 +22,7 @@ let item ;
 $().ready(()=>{
 	//식물 배치 ajax
 	$.ajax({
-		url:"../setforest/init",
+		url:"/login/userforest/setforest/init",
 		success:function(data){
 			arr = data;
 			console.log(data);
@@ -53,7 +53,8 @@ $().ready(()=>{
 				div1.css("top",value.locationY);
 				div1.attr("data-size",value.locationSize);
 				//크기 조절
-				img.load(function(){changeSize(div1)});
+				img.on("load",function(){changeSize(div1)});
+				
 				
 				
 				
