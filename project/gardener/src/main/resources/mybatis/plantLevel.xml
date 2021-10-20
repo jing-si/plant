@@ -91,4 +91,18 @@
 		FROM PLANT
 		
 	</select>
+	
+	<select id="plantImage" resultMap="PlantImageMap">
+		select PLANT_ID, PLANT_LEVEL_ID, PLANT_IMAGE FROM PLANT_LEVEL
+		order by PLANT_ID, PLANT_LEVEL_ID
+		
+	</select>
+	
+	<resultMap type="PlantImage" id="PlantImageMap">
+		<id column="PLANT_ID" property="plantId"/>
+		<collection property="plantImage" column="PLANT_IMAGE" ofType="String" javaType="ArrayList">
+			<id column="PLANT_IMAGE" property="plantImage"/>
+		</collection>
+		
+	</resultMap>
 </mapper>
