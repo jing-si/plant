@@ -26,7 +26,7 @@
     		//소비 인증
     		if($(".go-certify").text() == "친환경 소비 인증하기"){
     			
-    			window.js.startBarcodeReader();
+    			window.andriod.startBarcodeReader();
     			// location.href = "certify";
     		}
     		
