@@ -30,11 +30,14 @@ $().ready(()=>{
 			type : "post",
 			data : {"barcode" : qrNum},
 			success : function(data){
-				if(data != null){
+				if(data != "0"){
 					console.log(qrNum)
 					arr = data;
 					console.log(arr.productId)
 					location.href = "../category/product/"+arr.productId+"/"+arr.companyId
+				}
+				else{
+					$("form").submit();
 				}
 				
 			},
@@ -52,8 +55,10 @@ $().ready(()=>{
 
 
 
-
-	<input type="number" name="barcode" id="barcode">
+	<form action="../search" method="post">
+		<input type="text" name="q" id="barcode">
+	</form>
+	
 	<button id="submit">
 </body>
 </html>

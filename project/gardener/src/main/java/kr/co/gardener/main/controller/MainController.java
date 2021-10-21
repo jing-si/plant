@@ -42,6 +42,7 @@ public class MainController {
 	public String index(Model model,HttpSession session) {
 		User user = (User) session.getAttribute("user");
 		model.addAttribute("img", imgSrc(user));
+		model.addAttribute("result", "0");
 		/*
 		 * model.addAttribute("userNick","userNick"); model.addAttribute("plantId","1");
 		 * model.addAttribute("stateId","0");
@@ -75,16 +76,15 @@ public class MainController {
 	public String certify() {
 		return path + "certify";
 	}
-	
+/*
 	//인증 폼 전송 -> 홈화면으로
 	@PostMapping("/certify")
-	public String membership(int barcode, Model model, HttpSession session) {
+	public String certify(int barcode, Model model, HttpSession session) {
 		//이상하게 프로덕트 아이디 확인만 갔다오면 세션이 종료되어서 다시 세션
 		User user = (User) session.getAttribute("user");
 		
 		System.out.println(barcode);
 		//certifyResult = 인증성공 or 인증 실패
-		//인증실패시의 널값 처리해야함(매퍼에서 카운트를 가져오면 어떨까)
 		String certifyResult = productService.certify(barcode);
 		System.out.println(certifyResult);
 		
@@ -94,12 +94,40 @@ public class MainController {
 			service.levelUp(user);
 		}
 		
-		/* User user2 = (User) session.getAttribute("user"); */
+		//User user2 = (User) session.getAttribute("user");
 		
-		/* model.addAttribute(certifyResult); */
+		//model.addAttribute(certifyResult);
+		model.addAttribute("result",certifyResult); 
 		session.setAttribute("user", user);
 		model.addAttribute("img", user.getPlant());
-		return "redirect:./";
+		return path + "home2";
+	}
+*/
+	
+	//인증 폼 전송 -> 홈화면으로
+	@PostMapping("/certify")
+	public String certify(int barcode, Model model, HttpSession session) {
+		//이상하게 프로덕트 아이디 확인만 갔다오면 세션이 종료되어서 다시 세션
+		User user = (User) session.getAttribute("user");
+		
+		System.out.println(barcode);
+		//certifyResult = 인증성공 or 인증 실패
+		String certifyResult = productService.certify(barcode);
+		System.out.println(certifyResult);
+		
+		//인증성공시
+		if(certifyResult.equals("인증성공")) {
+			user.setStateId(user.getStateId()+1); 
+			service.levelUp(user);
+		}
+		
+		//User user2 = (User) session.getAttribute("user");
+		
+		//model.addAttribute(certifyResult);
+		model.addAttribute("result",certifyResult); 
+		session.setAttribute("user", user);
+		model.addAttribute("img", user.getPlant());
+		return path + "home2";
 	}
 	
 	

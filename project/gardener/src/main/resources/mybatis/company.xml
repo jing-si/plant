@@ -147,46 +147,50 @@
 	
 	<select id="brandList" resultMap="BrandMap">
 		select 
-		'가 나 다' as 'TITLE', COMPANY_ID, COMPANY_NAME from COMPANY
+		'가 나 다' as 'TITLE', COMPANY_ID, COMPANY_NAME from <include refid="brandSql"></include>
 		<![CDATA[ where LEFT(COMPANY_NAME,1) >= '가' AND LEFT(COMPANY_NAME,1) < '라'  ]]>
 		 UNION
 		SELECT 
-		'라 마 바' as 'TITLE', COMPANY_ID, COMPANY_NAME from COMPANY
+		'라 마 바' as 'TITLE', COMPANY_ID, COMPANY_NAME from <include refid="brandSql"></include>
 		<![CDATA[ where LEFT(COMPANY_NAME,1) >= '라' AND LEFT(COMPANY_NAME,1) < '사'  ]]>
 		UNION
 		SELECT 
-		'사 아 자' as 'TITLE', COMPANY_ID, COMPANY_NAME from COMPANY
+		'사 아 자' as 'TITLE', COMPANY_ID, COMPANY_NAME from <include refid="brandSql"></include>
 		<![CDATA[ where LEFT(COMPANY_NAME,1) >= '사' AND LEFT(COMPANY_NAME,1) < '차'  ]]>
 		UNION
 		SELECT 
-		'차 카 타' as 'TITLE', COMPANY_ID, COMPANY_NAME from COMPANY
+		'차 카 타' as 'TITLE', COMPANY_ID, COMPANY_NAME from <include refid="brandSql"></include>
 		<![CDATA[ where LEFT(COMPANY_NAME,1) >= '차' AND LEFT(COMPANY_NAME,1) < '파'  ]]>
 		UNION
 		SELECT 
-		'파 하' as 'TITLE', COMPANY_ID, COMPANY_NAME from COMPANY
+		'파 하' as 'TITLE', COMPANY_ID, COMPANY_NAME from <include refid="brandSql"></include>
 		<![CDATA[ where LEFT(COMPANY_NAME,1) >= '파' ]]>
 		UNION
 		SELECT 
-		'A B C D E' as 'TITLE', COMPANY_ID, COMPANY_NAME from COMPANY
+		'A B C D E' as 'TITLE', COMPANY_ID, COMPANY_NAME from <include refid="brandSql"></include>
 		<![CDATA[ where LEFT(COMPANY_NAME,1) >= 'A' AND LEFT(COMPANY_NAME,1) < 'F'  ]]>
 		UNION
 		SELECT 
-		'F G H I J' as 'TITLE', COMPANY_ID, COMPANY_NAME from COMPANY
+		'F G H I J' as 'TITLE', COMPANY_ID, COMPANY_NAME from <include refid="brandSql"></include>
 		<![CDATA[ where LEFT(COMPANY_NAME,1) >= 'F' AND LEFT(COMPANY_NAME,1) < 'K'  ]]>
 		UNION
 		SELECT 
-		'K L M N O' as 'TITLE', COMPANY_ID, COMPANY_NAME from COMPANY
+		'K L M N O' as 'TITLE', COMPANY_ID, COMPANY_NAME from <include refid="brandSql"></include>
 		<![CDATA[ where LEFT(COMPANY_NAME,1) >= 'K' AND LEFT(COMPANY_NAME,1) < 'P'  ]]>
 		UNION
 		SELECT 
-		'P Q R S T' as 'TITLE', COMPANY_ID, COMPANY_NAME from COMPANY
+		'P Q R S T' as 'TITLE', COMPANY_ID, COMPANY_NAME from <include refid="brandSql"></include>
 		<![CDATA[ where LEFT(COMPANY_NAME,1) >= 'P' AND LEFT(COMPANY_NAME,1) < 'U'  ]]>
 		UNION
 		SELECT 
-		'U V W X Y Z' as 'TITLE', COMPANY_ID, COMPANY_NAME from COMPANY
+		'U V W X Y Z' as 'TITLE', COMPANY_ID, COMPANY_NAME from <include refid="brandSql"></include>
 		<![CDATA[ where LEFT(COMPANY_NAME,1) >= 'U' AND LEFT(COMPANY_NAME,1) <= 'Z' ]]>
 		ORDER BY COMPANY_NAME
 	</select>
+	<sql id="brandSql">
+	(SELECT DISTINCT P.COMPANY_ID, C.COMPANY_NAME FROM (SELECT COMPANY_ID, EL_ID FROM product WHERE EL_ID != 0) P
+	LEFT JOIN company C ON C.COMPANY_ID = P.COMPANY_ID) M
+	</sql>
 	
 	<resultMap type="BrandVO" id="BrandMap"  autoMapping="true" >
 			<id column="TITLE" property="title"/>

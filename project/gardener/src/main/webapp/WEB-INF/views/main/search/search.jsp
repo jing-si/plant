@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="/resources/css/search.css">
     
     <link rel="stylesheet" href="/resources/css/product-list.css">
+    <script src="/resources/jq/jquery.js"></script>
     <style type="text/css">
     img{
     	width: 100%;
@@ -22,12 +23,63 @@
     .scroll{
     	overflow: auto;
     }
+    #no-result{
+    	width: 100%;
+    	height: calc(100vh - 59.5px - 56px);
+		background-color: #f5f5f5;
+		position: absolute;
+		
+    }
+    #no-result p{
+    	position: absolute;
+    	top: 23%;
+    	left: 50%;
+    	transform : translate(-50%, -50%); 
+    	opacity: 30%;
+    }
+    #no-result img{
+    	width: 100px;
+    	height: 100px;
+    	/* margin: 0 auto; */
+    	position: absolute;
+    	top: 10%;
+    	left: 50%;
+    	transform: translate(-50%, -50%);
+    }
     </style>
 </head>
 <body>
 <script>
+	var event = jQuery.Event("keypress", {
+	    keyCode:13
+	});
+
+
+$().ready(()=>{
+	
+	//inven();
+
+});
+
+function inven() {
+	const url = new URLSearchParams(window.location.search)
+	if(url.has("q")){
+	/* if(url.get("q") == 'on') */
+	//	console.log(url.get("q"))
+	//	$("#q").val(url.get("q"));
+	//$("form").trigger("submit");
+	//	console.log($("#q").val())
+		
+		/* form.submit(); */
+		/* $("input").trigger(event); */
+		
+		console.log(url.get("q"));
+
+	}
+}
 
 </script>
+
 
 
 
@@ -36,7 +88,7 @@
         <div class="input">
         	<form method="post">
         	<input type="image" src="/resources/images/search-glass.png" id="img">            
-            <input placeholder="검색어를 입력하세요" type="text" name="q" value="${word }"></input>
+            <input placeholder="검색어를 입력하세요" type="text" name="q" value="${word }" id="q"></input>
             <!-- <p>검색어를 입력하세요</p> -->
             </form>
         </div>
@@ -51,22 +103,29 @@
     </div>
     
     <div id="body" class="scroll">
+        <c:if test="${list.size()<1}">
+        	<div id="no-result">
+        		<img src="/resources/images/search_error.png">
+        		<p>검색결과가 없습니다</p>
+        	</div>
+        </c:if> 
+    
+    
+    
         <div id="align">
         	
-<%--         <c:if test="${latestProducList.size()<1}">
-        	
-        </c:if>
+
         
-        <c:if test="${latestProductList.size()>0}">
+<%--         <c:if test="${list.size()>0}">
         	<div id="latest-search-title">
                 <p id="latest-search">최근검색</p>
                 <a href="delete/${latestProductList}">
                 	<p id="all-delete">전체삭제</p>
                 </a>
             </div>
-        </c:if>
+        </c:if> --%>
         
-        <c:forEach var="list" items="${latestProductList}">
+<%--         <c:forEach var="list" items="${latestProductList}">
         	
             <div class="last-search-list">
                 <p>${list.searchWord}</p>

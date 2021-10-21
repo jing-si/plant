@@ -64,7 +64,7 @@ public class UserForestController {
 			newItem.setLocationSize(1);
 			newItem.setPlantImage(plService.PlantImage(newItem.getPlantId(), 5));
 			newItem.setLocationX(100);
-			newItem.setLocationY(150);
+			newItem.setLocationY(200);
 			newItem.setLocationState(1);
 			list.add(newItem);
 		}

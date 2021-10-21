@@ -159,7 +159,7 @@ body {
     margin: 0 10px 10px 10px;
     border-top: 5px solid #f4f4f4;
     border-bottom: 5px solid #f4f4f4;
-    border: 1px solid lawngreen;
+    /* border: 1px solid lawngreen; */
 }
 
 .popup_body .scroll_container {
@@ -254,7 +254,7 @@ body {
     font-weight: bold;
     text-align: center;
     color: #000;
-    border: 1px solid skyblue;
+    /* border: 1px solid skyblue; */
 }
 
 /* 팝업창 보관중인 나무 끝 */

@@ -75,6 +75,22 @@ $().ready(()=>{
 	
 	//나무를 심을때 inven을 열고 시작
 	inven();
+	
+	//인벤 분류 icon 클릭시 이벤트
+	$(".item_all").on("click",function(){
+		$(".item_card").removeClass("hide");
+	})
+	
+	$(".item_tree").on("click",function(){
+		$(".tree").removeClass("hide");
+		$(".flower").addClass("hide");
+	})
+	
+	$(".item_flower").on("click",function(){
+		$(".tree").addClass("hide");
+		$(".flower").removeClass("hide");
+	})
+	
 })
 function changeSize(target){
 		const img = $(target).children("img");
@@ -119,6 +135,9 @@ img{
 .userPlantImg {
 	object-fit: contain;
 	height: 100%;
+}
+.hide{
+	display:none;
 }
 /* 유저가 저장한 나무 이미지 CSS 생성공간 */
 </style>
@@ -169,7 +188,7 @@ img{
 
 								<c:forEach var="list" items="${list}">									
 									<c:if test="${list.invenAmount > 0}">
-									<div class="item_card ${liat.plantCategory }" id="plant_01 "> <!-- 특정 나무의 보유 수량이 1개 이상 이면, 백그라운드 카드 이미지 노출 -->
+									<div class="item_card ${list.plantCategory }" id="plant_01 "> <!-- 특정 나무의 보유 수량이 1개 이상 이면, 백그라운드 카드 이미지 노출 -->
 										<img class="item_bg" src="${list.plantThumbnail }">
 										<p class="text_left">보관중인 나무 :</p>
 										<p class="text_right">그루</p>
