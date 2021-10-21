@@ -157,9 +157,7 @@ public class CategoryController {
 		Bookmark item = new Bookmark();
 		item.setProductId(productId);
 		item.setUserId(userId);
-		System.out.println(item.getProductId());
-		System.out.println(item.getUserId());
-		
+	
 		bookmarkService.delete(item);
 	}
 }
