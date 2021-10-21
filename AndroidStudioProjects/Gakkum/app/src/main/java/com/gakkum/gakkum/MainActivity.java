@@ -59,35 +59,12 @@ public class MainActivity extends AppCompatActivity {
 
         mContext = this.getApplicationContext();
 
-/*
-
-        // 네이티브에서 자바스크립트 함수 호출
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // mWebView.loadUrl("javascript:changeColor()");
-
-                IntentIntegrator intentIntegrator = new IntentIntegrator(
-                         MainActivity.this
-                );
-                intentIntegrator.setPrompt("바코드를 스캔하세요");   // 바코드 하단 문구설정
-                intentIntegrator.setCameraId(0);
-                intentIntegrator.setBeepEnabled(false);  // 바코드 스캔시 소리 on(true), off(false)
-                intentIntegrator.setOrientationLocked(false);
-                intentIntegrator.initiateScan();
-
-            }
-        });
-*/
         // 자바스크립트에서 네이티브 바코드 스캐너 호출
         mWebView.addJavascriptInterface(new CustomJavaScriptCallback() {
 
             @JavascriptInterface
             @Override
             public void webViewToApp() {
-
-                /*Intent intent = new Intent(mContext.getApplicationContext(), SubActivity.class);
-                startActivity(intent);*/
 
                 IntentIntegrator intentIntegrator = new IntentIntegrator(
                         MainActivity.this
@@ -99,6 +76,8 @@ public class MainActivity extends AppCompatActivity {
                 intentIntegrator.initiateScan();
 
             }
+
+
         }, "WebViewCallbackInterface");
 
     }
@@ -113,39 +92,48 @@ public class MainActivity extends AppCompatActivity {
 
         if (intentResult.getContents() != null) {
 
+            String getUrl = mWebView.getUrl();
+            String loginUrl = "https://www.gakkum.info/login/";
+            String searchUrl = "https://www.gakkum.info/login/search/qr";
+
+            if(getUrl.equals(loginUrl)) {
+
+                String certify = "https://www.gakkum.info/login/certify?";
+                String barcode = intentResult.getContents();    // 바코드 번호
+                String certifyUrl = certify + barcode;              // 현재 url + 바코드번호
+
+                mWebView.loadUrl(certifyUrl);
+
+            } else if(getUrl.equals(searchUrl)) {
+
+                String qr = "https://www.gakkum.info/login/search/qr?";
+                String barcode = intentResult.getContents();    // 바코드 번호
+                String qrUrl = qr + barcode;              // 현재 url + 바코드번호
+
+                mWebView.loadUrl(qrUrl);
+
+            }
+
+            Toast.makeText(getApplicationContext(), mWebView.getUrl(), Toast.LENGTH_LONG).show();
+
+        } else {
+
             AlertDialog.Builder builder = new AlertDialog.Builder(
                     MainActivity.this
             );
 
-            /*builder.setTitle("Result");
-            builder.setMessage(intentResult.getContents());
+            builder.setTitle("인식 실패");
+            builder.setMessage("바코드를 다시 인식해주세요.");
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     dialogInterface.dismiss();
                 }
-            });*/
+            });
 
             builder.show();
 
-            String url = "https://www.gakkum.info/certify?";
-            String barcode = intentResult.getContents();
-            String barcodeUrl = url + barcode;
-            // String postData = "barcode=" +barcode;
-            // String msg = intentResult.getContents();
-
-            // mWebView.loadUrl("javascript:setReceivedMessage('"+msg+"')");
-            mWebView.loadUrl("https://www.gakkum.info/certify?"+ barcode);
-            //  mWebView.postUrl(url, barcode.getBytes());
-            //  mWebView.getUrl();
-
-            // 현재 url 경로확인
-            Toast.makeText(getApplicationContext(), mWebView.getUrl(), Toast.LENGTH_LONG).show();
-
-
-        } /*else {
-            Toast.makeText(getApplicationContext(), "Opps...", Toast.LENGTH_LONG).show();
-        }*/
+        }
 
 
     }
