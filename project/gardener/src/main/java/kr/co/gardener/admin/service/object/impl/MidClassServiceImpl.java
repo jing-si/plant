@@ -2,6 +2,7 @@ package kr.co.gardener.admin.service.object.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.gardener.admin.dao.object.MidClassDao;
 import kr.co.gardener.admin.model.object.MidClass;

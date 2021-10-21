@@ -12,8 +12,8 @@ public class User extends GridSystem{
 	private String userId;  //이메일주소
 	private String userNick;
 	private String userPass;
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd",timezone="Asia/Seoul")
+	@DateTimeFormat(pattern = "yyyy.MM.dd")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy.MM.dd",timezone="Asia/Seoul")
 	private Date userBirth;
 	private String userGender;
 	private Integer stateId;

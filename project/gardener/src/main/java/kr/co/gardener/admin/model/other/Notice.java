@@ -13,8 +13,8 @@ public class Notice extends GridSystem{
 	private int noticeId;
 	private String noticeTitle;
 	
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd",timezone="Asia/Seoul")
+	@DateTimeFormat(pattern = "yyyy.MM.dd")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy.MM.dd",timezone="Asia/Seoul")
 	private Date noticeDate;
 	
 	private String noticeContent;

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.gardener.admin.model.object.ApiProduct;
@@ -67,10 +68,13 @@ public class DataManagerController {
 		return list;
 	}
 	
-	@RequestMapping("add/apiproduct")
+	@RequestMapping(value = "add/apiproduct", method = RequestMethod.POST,produces ="text/plain; charset=UTF-8" )
 	@ResponseBody
-	public void UploadApiProduct(@RequestBody ApiProductList list) {		
-		service.UploadApiProduct(list);		
-	
+	public String UploadApiProduct(@RequestBody ApiProductList list) {		
+		String result = service.UploadApiProduct(list);
+		if(result == null) {
+			return "ok";
+		}
+		return  result;
 	}
 }

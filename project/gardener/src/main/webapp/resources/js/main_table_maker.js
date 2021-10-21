@@ -250,7 +250,9 @@ $(function() {
 	//모달 버튼 commonModal 일때 반응
 	$(".modal-footer").on("click", "#commonButton", function() {
 		let selectedRow = $("#modal-table").find("tr");
-		fileUploader(selectedRow);
+		
+		if(action != "delete")
+			fileUploader(selectedRow);
 		let list = makeList(selectedRow, "select");
 		console.log(list);
 		$.ajax(action + "/" + state.url, {
@@ -262,6 +264,9 @@ $(function() {
 				content(state.url);
 				$("#subContent").empty();
 
+			},
+			error:function(data){
+				alert(action + " 실패 \n 연관된 데이터가 없는지 확인해 주세요.")
 			}
 		})
 	})

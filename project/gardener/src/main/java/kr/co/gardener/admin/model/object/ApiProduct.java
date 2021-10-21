@@ -67,6 +67,7 @@ public class ApiProduct extends Product {
 	private String totalCount; // 조회결과건수
 	private String checkDate; // 조회일자(YYYYMMDD)
 	private String prodImg; // 제품 이미지
+	private int g2bId;
 
 	/*
 	 * @DateTimeFormat(pattern = "yyyy.MM.dd" )
@@ -742,7 +743,6 @@ public class ApiProduct extends Product {
 	}
 
 	// G2BId -> G2B ID
-	@Override
 	public int getG2bId() {
 		if (g2bId != 0) {
 			return g2bId;
@@ -792,6 +792,17 @@ public class ApiProduct extends Product {
 		}
 		if(this.prodPrnm != null) {
 			return this.prodPrnm;
+		}
+		return productInfo;
+	}
+	
+	@Override
+	public String getProductCertReason() {
+		if(productCertReason != null) {
+			return productCertReason;
+		}
+		if(this.prodInrs != null) {
+			return this.prodInrs;
 		}
 		return productInfo;
 	}

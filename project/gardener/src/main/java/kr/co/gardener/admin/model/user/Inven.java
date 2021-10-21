@@ -1,6 +1,5 @@
 package kr.co.gardener.admin.model.user;
 
-import kr.co.gardener.admin.model.forest.Plant;
 import kr.co.gardener.util.GridSystem;
 
 public class Inven extends GridSystem{
@@ -8,17 +7,25 @@ public class Inven extends GridSystem{
 	private String plantName;
 	private int invenAmount;
 	
-	private int plantId;
+	private int plantId;		
+	private String plantThumbnail;
+	private String plantShadow;
+	private String plantCategory;
 	
-	private Plant plant;
 	
-	public Plant getPlant() {
-		return plant;
+	
+	public String getPlantThumbnail() {
+		return plantThumbnail;
 	}
-	public void setPlant(Plant plant) {
-		this.plant = plant;
+	public void setPlantThumbnail(String plantThumbnail) {
+		this.plantThumbnail = plantThumbnail;
 	}
-	
+	public String getPlantShadow() {
+		return plantShadow;
+	}
+	public void setPlantShadow(String plantShadow) {
+		this.plantShadow = plantShadow;
+	}
 	public String getUserId() {
 		return userId;
 	}
@@ -43,6 +50,13 @@ public class Inven extends GridSystem{
 	public void setPlantName(String plantName) {
 		this.plantName = plantName;
 	}
+	public String getPlantCategory() {
+		return plantCategory;
+	}
+	public void setPlantCategory(String plantCategory) {
+		this.plantCategory = plantCategory;
+	}
+	
 	
 	
 }
