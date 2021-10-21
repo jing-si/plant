@@ -34,5 +34,7 @@ public interface CompanyService {
 
 	List<BrandVO> brandList();
 
+	List<Company> listIncludeCount();
+
 
 }

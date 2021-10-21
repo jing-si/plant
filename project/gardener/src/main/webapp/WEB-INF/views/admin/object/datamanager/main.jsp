@@ -377,7 +377,8 @@ label {
 					value.companyId)
 				let td3 = $('<td class="col-5 textcenter overflow">').text(
 					value.companyName)
-				let td4 = $('<td class="col-2 textcenter overflow">')
+				let td4 = $('<td class="col-2 textcenter overflow">').text(
+					value.productCount)
 				tr.append(th1).append(td2).append(td3).append(td4)
 				$("#company_"+point+"_tbody").append(tr)
 
@@ -409,6 +410,7 @@ label {
 				$("#product_api_tbody").append(tr)
 
 			});
+			$("#apiProductCount").text(productArr.length);
 		}
 
 		//제품 상세정보 뿌려주는 함수
@@ -582,7 +584,7 @@ label {
 														<li class="col-5"><span class=".bg-info">Product</span>
 															<div class="company_span "></div></li>
 														<li class="col-3 nav_icon" data-sub="product"
-															data-kind="Api">API
+															data-kind="Api">API (<span id="apiProductCount">0</span>)
 															<div class="company_span black"></div>
 														</li>
 

@@ -63,7 +63,7 @@ public class DataManagerController {
 	@RequestMapping("/companylist/db")
 	@ResponseBody
 	public List<Company> companylist(){
-		List<Company> list = companyService.list();
+		List<Company> list = companyService.listIncludeCount();
 		
 		return list;
 	}

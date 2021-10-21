@@ -119,6 +119,13 @@ public class CompanyServiceImpl implements CompanyService {
 	public List<BrandVO> brandList() {
 		return dao.brandList();
 	}
+
+
+
+	@Override
+	public List<Company> listIncludeCount() {
+		return dao.listIncludeCount();
+	}
 	
 	
 }

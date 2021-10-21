@@ -72,6 +72,11 @@ public class CompanyDaoImpl implements CompanyDao {
 		return sql.selectList("company.brandList");
 	}
 
+	@Override
+	public List<Company> listIncludeCount() {
+		return sql.selectList("company.listIncludeCount");
+	}
+
 	
 	
 

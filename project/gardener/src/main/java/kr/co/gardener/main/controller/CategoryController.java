@@ -12,10 +12,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.co.gardener.admin.model.object.Cert;
+import kr.co.gardener.admin.model.object.CertReason;
 import kr.co.gardener.admin.model.object.Company;
 import kr.co.gardener.admin.model.object.Product;
 import kr.co.gardener.admin.model.user.Bookmark;
 import kr.co.gardener.admin.model.user.User;
+import kr.co.gardener.admin.service.object.CertReasonService;
+import kr.co.gardener.admin.service.object.CertService;
 import kr.co.gardener.admin.service.object.CompanyService;
 import kr.co.gardener.admin.service.object.MidClassService;
 import kr.co.gardener.admin.service.object.ProductService;
@@ -44,6 +48,12 @@ public class CategoryController {
 	
 	@Autowired
 	MidClassService midClassService;
+	
+	@Autowired
+	CertReasonService certReasonService;
+	
+	@Autowired
+	CertService certService;
 	
 	//카테고리
 	@RequestMapping({"/",""})
@@ -87,9 +97,15 @@ public class CategoryController {
 		String userId = ((User) session.getAttribute("user")).getUserId();		
 			
 		Company company = companyService.itemIncludeProduct(companyId,userId);
-		Product item = company.getProduct(productId);
+		Product item = company.getProduct(productId);		
+		Cert cert = certService.getCertInfo(String.valueOf(item.getCertId()));
+		certReasonService.fillProduct(item);
+		
 		model.addAttribute("company",company);
 		model.addAttribute("item",item);
+		model.addAttribute("cert",cert);
+		
+		
 		return path + "product-detail";
 	}
 	
