@@ -26,5 +26,11 @@
 	
 	<context:component-scan base-package="kr.co.gardener" />
 	
-	
+	<interceptors>
+	<interceptor>
+		<mapping path="/login/**"/> 
+			
+		<beans:bean class="kr.co.gardener.util.UserInterceptor"></beans:bean>
+	</interceptor>
+</interceptors>
 </beans:beans>

@@ -183,7 +183,12 @@
 	
 	$('#btn-delete').click(function() { 
 		let target = arr[item.data("index")];
-		target.locationState = 2;
+		console.log(target.locationState)
+		if(target.locationState == '1'){
+			target.locationState = 4
+		}else{
+			target.locationState = 2
+		}
 		item.remove();
 		
 	})
