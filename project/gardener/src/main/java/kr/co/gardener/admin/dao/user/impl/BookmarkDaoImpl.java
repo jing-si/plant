@@ -77,7 +77,7 @@ public class BookmarkDaoImpl implements BookmarkDao {
 
 	@Override
 	public void delete(Bookmark item) {
-		sql.delete("bookmark.delete2", item);
+		sql.delete("bookmark.delete", item);
 	}
 
 	@Override

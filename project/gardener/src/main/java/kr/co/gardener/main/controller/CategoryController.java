@@ -137,7 +137,7 @@ public class CategoryController {
 	//제품상세 페이지에서 즐겨찾기 추가
 	@RequestMapping("/product/insert")
 	@ResponseBody
-	public void insert(int productId,HttpSession session, String companyId) {
+	public void insert(String productId,HttpSession session, String companyId) {
 		String userId = ((User) session.getAttribute("user")).getUserId();
 		
 		Bookmark item = new Bookmark();
@@ -151,7 +151,7 @@ public class CategoryController {
 	//제품상세 페이지에서 즐겨찾기 삭제
 	@RequestMapping("/product/delete")
 	@ResponseBody
-	public void delete(int productId, HttpSession session) {
+	public void delete(String productId, HttpSession session) {
 		String userId = ((User) session.getAttribute("user")).getUserId();
 		
 		Bookmark item = new Bookmark();
