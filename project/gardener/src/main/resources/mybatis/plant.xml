@@ -92,11 +92,11 @@
 
 	<select id="combo" resultType="ComboItem">
 		SELECT "0" AS "table",
-		'나무' AS "id", '나무' AS "text"
+		'tree' AS "id", '나무' AS "text"
 		
 		UNION
 		SELECT "0" AS "table",
-		'꽃' AS "id", '꽃' AS "text"
+		'flower' AS "id", '꽃' AS "text"
 		
 	</select>
 </mapper>

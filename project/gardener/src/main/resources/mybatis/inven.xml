@@ -36,7 +36,7 @@
 	</delete>
 
 	<select id="list_userId" resultType="Inven">
-		SELECT i.*, p.PLANT_ID, p.PLANT_THUMBNAIL, p.PLANT_SHADOW FROM INVEN i
+		SELECT i.*, p.PLANT_ID, p.PLANT_THUMBNAIL, p.PLANT_SHADOW,p.PLANT_CATEGORY FROM INVEN i
 		natural join plant p
 		where USER_ID = #{userId}
 	</select>
