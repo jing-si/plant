@@ -128,16 +128,19 @@ public class MainActivity extends AppCompatActivity {
 
             builder.show();
 
-            String url = "https://www.gakkum.info/";
+            String url = "https://www.gakkum.info/certify?";
             String barcode = intentResult.getContents();
-            String postData = "barcode=" +barcode;
+            String barcodeUrl = url + barcode;
+            // String postData = "barcode=" +barcode;
             // String msg = intentResult.getContents();
 
             // mWebView.loadUrl("javascript:setReceivedMessage('"+msg+"')");
-            // mWebView.loadUrl(url);
-            // mWebView.postUrl(url, postData.getBytes());
-           //  mWebView.getUrl();
-            Toast.makeText(getApplicationContext(),  mWebView.getUrl(), Toast.LENGTH_LONG).show();
+            mWebView.loadUrl("https://www.gakkum.info/certify?"+ barcode);
+            //  mWebView.postUrl(url, barcode.getBytes());
+            //  mWebView.getUrl();
+
+            // 현재 url 경로확인
+            Toast.makeText(getApplicationContext(), mWebView.getUrl(), Toast.LENGTH_LONG).show();
 
 
         } /*else {
