@@ -62,11 +62,13 @@ function check(){
 
 
     <div id="align">
+<!--     
     		<a href="admin/"><p style="color:red; font-weight:bold; font-size:2em;">관리자 야호!</p></a>
             <a href="login/"><p style="font-size: 2em;">홈화면</p></a>
             <a href="splash/"><p style="font-size: 2em;">스플래시 확인</p></a>
             <a href="login/userforest/"><p style="font-size: 2em;">숲 확인</p></a>
             <a href="login/camera/"><p style="font-size: 2em;">카메라</p></a>
+             -->
             
     <div id="logo">
         <img src="/resources/images/login-logo.png">

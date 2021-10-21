@@ -19,10 +19,8 @@
 	</select>
 
 	<select id="item" resultType="Product">
-		SELECT p.*,
-		IFNULL(b.BOOKMARK_ID,'N') 'bookmark' FROM (select * from PRODUCT
-		where
-		PRODUCT_ID
+		SELECT p.* FROM (select * from PRODUCT
+		where PRODUCT_ID
 		= #{productId}) p
 		left JOIN bookmark b ON p.PRODUCT_ID =
 		b.PRODUCT_ID
