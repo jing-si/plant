@@ -6,7 +6,9 @@
 <mapper namespace="product">
 
 	<select id="total" resultType="float">
-		select count(*) from (<include refid="search"></include>) main
+		select count(*) from (
+		<include refid="search"></include>
+		) main
 	</select>
 
 	<!-- List -->
@@ -17,11 +19,11 @@
 	</select>
 
 	<select id="item" resultType="Product">
-		SELECT p.*,
-		IFNULL(b.BOOKMARK_ID,'N') 'bookmark' FROM (select * from PRODUCT
+		SELECT p.* FROM (select * from PRODUCT
 		where PRODUCT_ID
 		= #{productId}) p
-		left JOIN bookmark b ON p.PRODUCT_ID = b.PRODUCT_ID
+		left JOIN bookmark b ON p.PRODUCT_ID =
+		b.PRODUCT_ID
 	</select>
 
 	<!-- 생성 -->
@@ -38,21 +40,15 @@
 		#{productEndDate},
 		#{item.productInfo},
 		#{companyId},
-		#{g2bId},
-		#{elId}
+		#{elId},
+		#{productCertReason},
+		#{productBarcode}
 		);
 	</insert>
 
 	<!-- 수정 -->
 	<update id="update">
-		update CERT
-		set
-		CERT_NAME = #{certName},
-		CERT_IMAGE =
-		#{certImage},
-		CERT_INFO = #{certInfo}
-		where
-		CERT_ID = #{certId}
+
 	</update>
 
 	<!-- 삭제 -->
@@ -72,17 +68,18 @@
 
 	<select id="list_search" resultType="Product">
 		select * from PRODUCT
-		where PRODUCT_NAME like #{search}
+		where
+		PRODUCT_NAME like #{search}
 	</select>
-	
+
 	<update id="autoClassify">
 		Insert into PRODUCT(PRODUCT_ID,EL_ID)
 		values
 		<foreach collection="list" item="item" separator=",">
-			(#{item.productId},			
+			(#{item.productId},
 			#{item.elId})
 		</foreach>
-		on duplicate key update		
+		on duplicate key update
 		EL_ID = VALUES(EL_ID)
 	</update>
 
@@ -90,26 +87,42 @@
 
 	<!--대량 처리 -->
 	<select id="list_pager" resultType="Product">
-		<include refid="search"></include> 
+		<include refid="search"></include>
 		LIMIT #{offset}, #{perPage}
-		
+
 	</select>
-	
+
 	<sql id="search">
 		select P.*, C.COMPANY_NAME from PRODUCT P
-		JOIN COMPANY C on P.COMPANY_ID = C.COMPANY_ID
+		JOIN COMPANY C on
+		P.COMPANY_ID = C.COMPANY_ID
 		<where>
-			<if test="search == 'total' or search == 'productId' and keyword != ''">OR PRODUCT_ID like #{searchKeyword}</if>
-			<if test="search == 'total' or search == 'productName' and keyword != ''">OR PRODUCT_NAME like #{searchKeyword}</if>
-			<if test="search == 'total' or search == 'productSize' and keyword != ''">OR PRODUCT_SIZE like #{searchKeyword}</if>
-			<if test="search == 'total' or search == 'certId' and keyword != ''">OR CERT_ID IN (SELECT CERT.CERT_ID FROM CERT CERT WHERE CERT.CERT_NAME like #{searchKeyword})</if>
-			<if test="search == 'total' or search == 'productCertId' and keyword != ''">OR PRODUCT_CERT_ID like #{searchKeyword}</if>
-			<if test="search == 'total' or search == 'productInfo' and keyword != ''">OR PRODUCT_INFO like #{searchKeyword}</if>
-			<if test="search == 'total' or search == 'companyName' and keyword != ''">OR COMPANY_NAME like #{searchKeyword}</if>
-			<if test="search == 'total' or search == 'elId' and keyword != ''">OR EL_ID IN (SELECT BOT_CLASS_ID FROM BOT_CLASS WHERE BOT_CLASS_NAME like #{searchKeyword})</if>						
+			<if
+				test="search == 'total' or search == 'productId' and keyword != ''">OR PRODUCT_ID like #{searchKeyword}</if>
+			<if
+				test="search == 'total' or search == 'productName' and keyword != ''">OR PRODUCT_NAME like #{searchKeyword}</if>
+			<if
+				test="search == 'total' or search == 'productSize' and keyword != ''">OR PRODUCT_SIZE like #{searchKeyword}</if>
+			<if
+				test="search == 'total' or search == 'certId' and keyword != ''">OR CERT_ID IN (SELECT CERT.CERT_ID FROM CERT CERT WHERE
+				CERT.CERT_NAME like #{searchKeyword})
+			</if>
+			<if
+				test="search == 'total' or search == 'productCertId' and keyword != ''">OR PRODUCT_CERT_ID like #{searchKeyword}</if>
+			<if
+				test="search == 'total' or search == 'productInfo' and keyword != ''">OR PRODUCT_INFO like #{searchKeyword}</if>
+			<if
+				test="search == 'total' or search == 'companyName' and keyword != ''">OR COMPANY_NAME like #{searchKeyword}</if>
+			<if test="search == 'total' or search == 'elId' and keyword != ''">OR EL_ID IN (SELECT BOT_CLASS_ID FROM BOT_CLASS WHERE
+				BOT_CLASS_NAME like #{searchKeyword})
+			</if>
+			<if
+				test="search == 'total' or search == 'productCertReason' and keyword != ''">OR PRODUCT_CERT_REASON like #{searchKeyword}</if>
+			<if
+				test="search == 'total' or search == 'productBarcode' and keyword != ''">OR PRODUCT_BARCODE like #{searchKeyword}</if>
 		</where>
 	</sql>
-	
+
 
 	<update id="update_list">
 		Insert into PRODUCT
@@ -125,8 +138,9 @@
 			#{item.productEndDate},
 			#{item.productInfo},
 			#{item.companyId},
-			#{item.g2bId},
-			#{item.elId})
+			#{item.elId},
+			#{item.productCertReason},
+			#{item.productBarcode})
 		</foreach>
 		on duplicate key update
 		PRODUCT_ID = VALUES(PRODUCT_ID),
@@ -142,11 +156,14 @@
 		VALUES(PRODUCT_END_DATE),
 		PRODUCT_INFO = VALUES(PRODUCT_INFO),
 		COMPANY_ID = VALUES(COMPANY_ID),
-		G2B_ID =
-		VALUES(G2B_ID),
-		EL_ID = VALUES(EL_ID)
+		EL_ID =
+		VALUES(EL_ID),
+		PRODUCT_CERT_REASON =
+		VALUES(PRODUCT_CERT_REASON),
+		PRODUCT_BARCODE =
+		VALUES(PRODUCT_BARCODE)
 	</update>
-	
+
 	<update id="api_insert_list">
 		Insert into PRODUCT
 		values
@@ -161,12 +178,13 @@
 			#{item.productEndDate},
 			#{item.productInfo},
 			#{item.companyId},
-			#{item.g2bId},
-			#{item.elId})
+			#{item.elId},
+			#{item.productCertReason},
+			#{item.productBarcode})
 		</foreach>
-				
+
 	</update>
-	
+
 
 	<insert id="insert_list">
 		INSERT INTO PRODUCT
@@ -182,8 +200,9 @@
 			#{item.productEndDate},
 			#{item.productInfo},
 			#{item.companyId},
-			#{item.g2bId},
-			0)
+			#{item.elId},
+			#{item.productCertReason},
+			#{item.productBarcode})
 		</foreach>
 	</insert>
 
@@ -207,13 +226,14 @@
 		from BOT_CLASS
 
 	</select>
-	
-	
+
+
 	<!-- 바코드 들어왔을때 제품번호와 일치하는게 있는지 -->
 	<select id="count" resultType="Integer">
 		select count(*) from product
-		where PRODUCT_ID = #{barcode}
+		where
+		PRODUCT_ID = #{barcode}
 	</select>
-	
-	
+
+
 </mapper>

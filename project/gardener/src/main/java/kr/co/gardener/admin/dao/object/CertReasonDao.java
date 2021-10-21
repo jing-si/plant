@@ -26,6 +26,7 @@ public interface CertReasonDao {
 	void delete(List<CertReason> list);
 
 	void update(List<CertReason> list);
+
 	
 
 }

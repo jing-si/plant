@@ -19,8 +19,10 @@ public class ProductList extends CommonList<Product> {
 		this.addTh("인증 만료일","productEndDate","date");
 		this.addTh("제품정보","productInfo","text");
 		this.addTh("사업자 명","companyName","none");
-		this.addTh("G2B ID","g2bId","number");
-		this.addTh("분류번호(EL)","elId","combo",1);
+		this.addTh("분류번호(EL)","elId","combo",1);		
+		this.addTh("제품인증사유","productCertReason","text");
+		this.addTh("제품 바코드","productBarcode","text");
+		
 		this.addTh("사업자 번호","companyId","hide");
 		
 		this.addInsert("제품ID","productId","text");
@@ -33,8 +35,9 @@ public class ProductList extends CommonList<Product> {
 		this.addInsert("인증 만료일","productEndDate","date");
 		this.addInsert("제품정보","productInfo","text");
 		this.addInsert("사업자 번호","companyId","text");
-		this.addInsert("G2B ID","g2bId","number");
 		this.addInsert("분류번호(EL)","elId","combo",1);
+		this.addInsert("제품인증사유","productCertReason","text");
+		this.addInsert("제품 바코드","productBarcode","text");
 		
 		setView(true);
 		

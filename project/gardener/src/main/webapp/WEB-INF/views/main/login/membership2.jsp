@@ -14,6 +14,11 @@
     
     <link rel="stylesheet" href="/resources/css/membership.css">
     
+    <!--date Picker-->
+    <link href="/resources/dist/css/datepicker.min.css" rel="stylesheet" type="text/css" media="all">
+    <script src="/resources/dist/js/datepicker.js"></script> 
+    <script src="/resources/dist/js/datepicker.ko.js"></script> 
+    
     <style>
     	#email input{width: 80%;}
     	#email div{
@@ -99,6 +104,10 @@ $().ready(() =>{
 	$(".historyBack").click(function(){
 		window.history.back();
 	})
+	
+	$("#birthValue").datepicker({
+		language: 'ko',
+	});
 	
 	
 	
@@ -226,7 +235,8 @@ function check(){
             <div id="checkMsg"></div>
     </div>
     <div id="birth" class="info">
-        <input placeholder="생년월일(8자리)" type="date" maxlength="8" name="userBirth" id="birthValue">
+        <p class="title">생년월일</p>
+        <input placeholder="생년월일(8자리)" type="text" readonly maxlength="8" name="userBirth" id="birthValue">
             <!-- <p id="explain">생년월일(8자리)</p> -->
     </div>
     <!-- <div id="gender" class="info">
@@ -236,6 +246,7 @@ function check(){
     </div> -->
     <div id="gender" class="info" class="tab_menu">
         
+        <p class="title">성별</p>
         <div class="select">
             <input type="radio" id="select" name="userGender" value="여"><label for="select">여성
             </label><input type="radio" id="select2" name="userGender" value="남"><label for="select2">남성</label>

@@ -35,8 +35,10 @@ public class Product extends GridSystem {
 	protected String productInfo;
 	
 	private String companyName;
-	protected int g2bId;
 	protected int elId;
+	
+	protected String productCertReason;
+	protected String productBarcode;
 
 	protected String companyId;
 
@@ -106,12 +108,7 @@ public class Product extends GridSystem {
 	public void setCompanyId(String companyId) {
 		this.companyId = companyId;
 	}
-	public int getG2bId() {
-		return g2bId;
-	}
-	public void setG2bId(int g2bId) {
-		this.g2bId = g2bId;
-	}
+	
 	public int getElId() {
 		return elId;
 	}
@@ -142,6 +139,19 @@ public class Product extends GridSystem {
 	public void setProductInfo(String productInfo) {
 		this.productInfo = productInfo;
 	}
+	public String getProductCertReason() {
+		return productCertReason;
+	}
+	public void setProductCertReason(String productCertReason) {
+		this.productCertReason = productCertReason;
+	}
+	public String getProductBarcode() {
+		return productBarcode;
+	}
+	public void setProductBarcode(String productBarcode) {
+		this.productBarcode = productBarcode;
+	}
+	
 	
 	
 	// api용 get,seet

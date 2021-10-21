@@ -102,7 +102,7 @@ public class DataManagerServiceImpl implements DataManagerService {
 	}
 
 	@Override
-	public void UploadApiProduct(ApiProductList apiProductList) {
+	public String UploadApiProduct(ApiProductList apiProductList) {
 		// 이건 일차원적인 해결 방법 뿐이 없는것일까?
 		List<ApiProduct> list = apiProductList.getList();
 		
@@ -113,8 +113,9 @@ public class DataManagerServiceImpl implements DataManagerService {
 			if(elId == 0) item.setProdElcd("0");
 		}
 		
-			
 		dao.UploadApiProduct(list);
+		String msg = productCertReasonService.autoInsertProductCertReason(list);	
+		return msg;
 	}
 
 }

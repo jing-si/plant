@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.gardener.admin.dao.object.CertReasonDao;
+import kr.co.gardener.admin.model.object.Cert;
 import kr.co.gardener.admin.model.object.CertReason;
 import kr.co.gardener.admin.model.object.list.CertReasonList;
 import kr.co.gardener.admin.service.object.CertReasonService;
@@ -18,7 +19,9 @@ public class CertReasonServiceImpl implements CertReasonService{
 
 	@Autowired
 	CertReasonDao dao;
-
+	
+	HashMap<String, CertReason> certReasonMap;
+	
 	@Override
 	public List<CertReason> list() {
 		return dao.list();
@@ -27,6 +30,7 @@ public class CertReasonServiceImpl implements CertReasonService{
 	@Override
 	public void add(CertReason item) {
 		dao.add(item);
+		loadCertInfo();	
 	}
 
 	@Override
@@ -37,11 +41,13 @@ public class CertReasonServiceImpl implements CertReasonService{
 	@Override
 	public void update(CertReason item) {
 		dao.update(item);
+		loadCertInfo();	
 	}
 
 	@Override
 	public void delete(int certReasonId) {
 		dao.delete(certReasonId);
+		loadCertInfo();	
 	}
 
 	@Override
@@ -67,19 +73,41 @@ public class CertReasonServiceImpl implements CertReasonService{
 	@Override
 	public void insert(CertReasonList list) {
 		dao.insert(list.getList());
+		loadCertInfo();	
 		
 	}
 
 	@Override
 	public void delete(CertReasonList list) {
 		dao.delete(list.getList());
+		loadCertInfo();	
 	}
 
 	@Override
 	public void update(CertReasonList list) {
 		dao.update(list.getList());
+		loadCertInfo();	
 	}
 	
-	 
+	@Override
+	public CertReason getCertReasonItem(String value) {
+		if(certReasonMap == null) {			
+			loadCertInfo();			
+		}
+		
+		return certReasonMap.get(value);
+	}
+	
+	private void loadCertInfo() {
+		System.out.println("certInfo 생성");
+		certReasonMap = new HashMap<String, CertReason>();
+		
+		List<CertReason> csList = dao.list();
+		
+		for(CertReason item : csList) {
+			certReasonMap.put(item.getCertReasonName(), item);
+			certReasonMap.put(String.valueOf(item.getCertReasonId()), item);
+		}
+	}
 	
 }
