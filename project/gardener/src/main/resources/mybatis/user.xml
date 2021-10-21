@@ -180,7 +180,7 @@
 		INSERT INTO USER
 		VALUES
 		<foreach collection="list" item="item" separator=",">
-			(#{item.userId},#{item.userNick},#{item.userPass},#{item.userBirth},#{item.userGender},0,null,null)
+			(#{item.userId},#{item.userNick},#{item.userPass},#{item.userBirth},#{item.userGender},0,1,1)
 		</foreach>
 	</insert>
 

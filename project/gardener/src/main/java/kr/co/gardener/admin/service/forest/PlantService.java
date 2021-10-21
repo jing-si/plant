@@ -26,4 +26,6 @@ public interface PlantService {
 
 	void update_list(PlantList list);
 
+	String PlantThumbnailImg(int plantId);
+
 }

@@ -24,7 +24,7 @@
     	width: 100%;
     	height: 100%;
     }
-    #heart{
+    .heart{
     	width: 24px;
     }
     .clickbox{
@@ -51,19 +51,20 @@
             
             
          //즐겨찾기
-    	$("#heart").on("click",function(){	
+    	$(".tabArea").on("click",".heart",function(){	
     		console.log("클릭");
-    		let productId = $(this).attr("class");
-    		let companyId = $(this).attr("data");
+    		let $this = $(this);
+    		let productId = $this.attr("data-product");
+    		let companyId = $this.attr("data-compnay");
     		
-     		if($(this).attr("src") == "/resources/images/white_heart.png"){
+     		if($this.attr("src") == "/resources/images/white_heart.png"){
     		
     			$.ajax({
     				url : "/login/category/product/insert",
     				type : "post",
     				data : {"productId" : productId,"companyId":companyId},				
     				success : function(){
-    					$("#heart").attr("src","/resources/images/green_heart.png");
+    					$this.attr("src","/resources/images/green_heart.png");
     					console.log("즐겨찾기 등록 성공")
     				},
     				error : function(){
@@ -79,7 +80,7 @@
     					type : "post",
     					data : {"productId" : productId},					
     					success : function(){
-    						$("#heart").attr("src","/resources/images/white_heart.png");
+    						$this.attr("src","/resources/images/white_heart.png");
     						console.log("즐겨찾기 해제 성공")
     					},
     					error : function(){
@@ -138,7 +139,7 @@
                                 
                             </div>
                             </a>
-                            <img class="${list.productId}" data="${list.companyId}" id="heart" src="/resources/images/green_heart.png">
+                            <img class="heart" data-product="${list.productId}" data-company="${list.companyId}" src="/resources/images/green_heart.png">
                             </div>
                         </c:forEach>
                         </c:if>
@@ -164,7 +165,7 @@
                                 
                             </div>
                             </a>
-                            <img class="${list.productId}" data="${list.companyId}" id="heart" src="/resources/images/green_heart.png">
+                            <img class="heart" data-product="${list.productId}" data-company="${list.companyId}" src="/resources/images/green_heart.png">
                             </div>
                         </c:forEach>
                     </c:if>

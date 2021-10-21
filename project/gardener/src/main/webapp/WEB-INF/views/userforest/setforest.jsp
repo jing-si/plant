@@ -46,30 +46,30 @@
     	  value.locationSize = value.div.attr("data-size");
 		  value.locationX = value.div.css("left").replace("px","");
 		  value.locationY = value.div.css("top").replace("px","");
-		  value.locationOrder = value.div.css("z-index")
-		  console.log(value.locationOrder)
-		  console.log(value.div.css("zoom"))
+		  value.locationOrder = value.div.css("z-index")		
 		  value.div = "";
+		  
       })
       
       console.log("저장중")
       $.ajax({
          method: "post",
-         url:"update",
+         url:"/login/userforest/setforest/update",
          data: JSON.stringify({list:arr}),
-         contentType: 'application/json',
-         dataType: 'json',
+         contentType: 'application/json',         
          success:function(data){
-            console.log(data)
-
+          	location.href="/login/userforest/"
+         },
+         error:function(data){
+        	 alert("저장에 실패했습니다.")
          }
 
       })
-      location.href="/login/userforest/"
+      
    })
 		
 	$.ajax({
-		url:"../setforest/init",
+		url:"/login/userforest/setforest/init",
 		success:function(data){
 			arr = data;
 			console.log(data);
@@ -77,7 +77,7 @@
 			arr.forEach((value,index)=>{
 				let div1 = $("<div class='userPlant'>");				
 				let img = $("<img class='userPlantImg'>");
-				// img.data("index",index);
+			
 				
 				div1.attr("id", 'userPlant'+value.plantId);
 				div1.data("index",index);
@@ -88,31 +88,19 @@
 				
 			
 				div1.css("z-index",value.locationOrder);
-				//div1.css("zoom", value.locationSize);
-				
-				
-				
-				//item.locationX = currentlocation;
-  
 				$("#image-container").append(div1);
 				div1.append(img);
-				div1.attr("data-size",value.locationSize);
-				//크기 조절
-				changeSize(div1);
-				
-				
 				div1.css("left",value.locationX);
 				div1.css("top",value.locationY);
-				
-				// pc, mobile 모두 움직이게 jquery.ui.touch-punch.min.js 추가
 				div1.draggable();
-				//div1.draggable({Array:[-10,-30,$(window).width()+10,$(window).height()+30]});
 				value.div = div1;
-				/* 아래와 같이 넣어주고자 함
-				<div id="userPlant01" class="userPlant">
-					<img src="/resources/images/tree_01.png"></div>
-				</div> 
-				*/
+				div1.attr("data-size",value.locationSize);
+				//크기 조절
+				img.on("load",function(){changeSize(div1)});
+				
+				
+				
+			
 				
 			})
 		}
@@ -129,12 +117,7 @@
 	
 	
 	
-	 
-		 
-/* 	$("#image-container").on("click", ".userPlant",function(data){
-		$(this).draggable();
-		
-	}) */
+
 	
 	$('#zoom-in').click(function() { 
 		
@@ -176,35 +159,7 @@
 		item.css("z-index", item.attr("data-order"));
 		targetImgInfo.css("z-index", targetImgInfo.attr("data-order"));
 		}
-		/*
-		for(let i=0; i<arr.length; i++) {	
-			if(Number(arr[i].locationOrder) === (imgZindex+1)) {
-				
-				arrZindex = Number(arr[i].locationOrder);
-				
-				let temp = imgZindex;
-				imgZindex = arrZindex;
-				arrZindex = String(temp);
-				
-				$("#"+userPlantId).css("z-index", imgZindex);
-				$("#userPlant"+arr[i].userPlantId).css("z-index", arr[i].locationOrder); 
-				
-				imgInfo.locationOrder = imgZindex;
-				arr[i].locationOrder = arrZindex;
-				
-				
-				console.log(imgInfo.locationOrder);
-				console.log(arr[i].locationOrder);
-				console.log(arr[i]);
-				
-				break;
-				
-			}
-			else {
-				continue;
-			}
-		}
-		*/
+		
 		
 		
 	})
@@ -222,67 +177,16 @@
 		item.css("z-index", item.attr("data-order"));
 		targetImgInfo.css("z-index", targetImgInfo.attr("data-order"));
 		}
-		/*
-		let imgInfo = arr[item.data("index")];
-		let imgZindex = imgInfo.locationOrder;
-		let userPlantId = 'userPlant'+imgInfo.plantId;
-		
-		/* console.log(imgInfo);
-		console.log('arr.lengrh: ' + arr.length);
-		console.log('imgZindex: ' + imgInfo.locationOrder);
-		console.log(userPlantId); */
-		/*
-		for(let i=0; i<arr.length; i++) {
-			if(Number(arr[i].locationOrder) === (imgZindex - 1)) {
-				
-				arrZindex = Number(arr[i].locationOrder);
-				
-				let temp = imgZindex;
-				imgZindex = arrZindex;
-				arrZindex = temp;
-				
-			
-				
-				$("#"+userPlantId).css("zindex", imgZindex);
-				$("#"+userPlantId).css("zindex", arr[i].locationOrder); 
-				
-				imgInfo.locationOrder = imgZindex;
-				arr[i].locationOrder = arrZindex;
-				
-				
-				console.log(imgInfo.locationOrder);
-				console.log(arr[i].locationOrder);
-				console.log(arr[i]);
-			}
-			else {
-				continue;
-			}
-		}
-		*/
-		
 		
 		
 	})
 	
 	$('#btn-delete').click(function() { 
+		let target = arr[item.data("index")];
+		target.locationState = 2;
 		item.remove();
 		
 	})
-	
-	
-	/* $.ajax({
-		type: 'GET',
-		url: "",
-		data: {"id", id},
-		success: function (data) {
-			if(data){
-				console.log("성공");
-			} else {
-				console.log("실패");
-			}
-			
-		}
-	}) */
 	
 	
 	});
@@ -302,12 +206,11 @@
 		
 		console.log(size)
 		console.log(originH * size)
+		
 		target.css("height", originH * size)
 		target.css("width", originW * size)
 		
 		return originH * 0.1
-		//item.css("height",h)
-		//item.css("width",w)
 		
 	}
 	

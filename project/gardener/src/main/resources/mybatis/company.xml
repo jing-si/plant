@@ -81,7 +81,7 @@
 	<select id="includeProduct" resultMap="icProdMap">
 		select C.COMPANY_ID
 		, C.COMPANY_NAME, P.*
-		, IFNULL(b.BOOKMARK_ID,'N') 'bookmark' 
+		, IFNULL(b.PRODUCT_ID,'N') 'bookmark' 
 		from 
 		 (select * from COMPANY WHERE COMPANY_ID = #{companyId}) C
 		join PRODUCT P on C.COMPANY_ID = P.COMPANY_ID		

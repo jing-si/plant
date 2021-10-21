@@ -110,8 +110,8 @@ function check(){
 	
 	//아이디 공백 확인 
     if ($("#emailValue").val() == "") {
-        alert("아이디 입력바람");
-        $("#id").focus(); 
+        alert("아이디를 입력하세요");
+        $("#emailValue").focus(); 
         return false;
     }
 	
@@ -145,7 +145,7 @@ function check(){
 	
 	//닉네임 공백 검사 
     if ($("#nickValue").val() == "") {
-        alert("닉네임을 입력해주세요");
+        alert("닉네임을 입력하세요");
         $("#nickValue").focus();
         return false;
     }
@@ -153,7 +153,7 @@ function check(){
 	
     //비밀번호 공백 확인 
     if ($("#pw").val() == "") {
-        alert("패스워드 입력바람");
+        alert("비밀번호를 입력하세요");
         $("#pw").focus();
         return false;
     }
@@ -161,7 +161,7 @@ function check(){
     
     //비밀번호 확인란 공백 확인 
     if ($("#pwcheck").val() == "") {
-        alert("패스워드 확인란을 입력해주세요");
+        alert("비밀번호 확인을 입력하세요");
         $("#pwcheck").focus();
         return false;
     }
@@ -179,7 +179,7 @@ function check(){
     
     //생일 공백 확인 
     if ($("#birthValue").val() == "") {
-        alert("생일을 입력해주세요");
+        alert("생년월일을 입력하세요");
         $("birthValue").focus();
         return false;
     }

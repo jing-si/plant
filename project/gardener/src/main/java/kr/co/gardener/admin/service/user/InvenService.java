@@ -28,6 +28,12 @@ public interface InvenService {
 
 	void update_list(InvenList list);
 
-	void plant(Inven inven);
+	int countUp(Inven inven);
+	
+	int countDown(Inven inven);
+
+	void countDown_list(List<Inven> invenList);
+
+	void countUp_list(List<Inven> invenList); 
 
 }

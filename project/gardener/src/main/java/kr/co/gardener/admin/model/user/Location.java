@@ -12,7 +12,17 @@ public class Location extends GridSystem{
 	private int plantId;
 
 	private String plantImage; // 식물 이미지(join으로 PlantLevel에서 가지고올것)
+	private int locationState = 0; //0이 기본값, 0이면 정상, 1이면 신규, 2면 삭제 요망
 	
+	
+	public int getLocationState() {
+		return locationState;
+	}
+
+	public void setLocationState(int locationState) {
+		this.locationState = locationState;
+	}
+
 	public int getLocationId() {
 		return locationId;
 	}

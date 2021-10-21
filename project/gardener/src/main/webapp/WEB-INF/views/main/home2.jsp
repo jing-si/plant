@@ -37,7 +37,7 @@
     				type : "post",
     				data : {"plantId" : ${user.plantId}},
     				success : function(){
-    					location.href = "userforest/";
+    					location.href = "userforest/?inven=on";
     				}  //success 끝
     			})  //ajax 끝
     		}
