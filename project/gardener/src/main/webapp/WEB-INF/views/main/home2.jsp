@@ -26,8 +26,8 @@
     		//소비 인증
     		if($(".go-certify").text() == "친환경 소비 인증하기"){
     			
-    			window.andriod.startBarcodeReader();
-    			// location.href = "certify";
+    			/* window.andriod.startBarcodeReader(); */
+    			 location.href = "certify";
     		}
     		
     		//숲에 심기

@@ -304,7 +304,7 @@ a{
     font-weight: bold;
     color: #2c2c2c;
     margin: 0px auto;
-    padding: 10px;
+    /* padding: 10px; */
 }
 
         * { margin: 0; padding: 0; box-sizing: border-box; } 
