@@ -14,6 +14,12 @@
     <script src="/resources/jq/jquery.js"></script>
     
     <script>
+   	function webViewToApp() {
+   		WebViewCallbackInterface.webViewToApp();
+   	}
+    </script>
+    
+    <script>
     
     let arr = new Array();    
     
@@ -26,8 +32,9 @@
     		//소비 인증
     		if($(".go-certify").text() == "친환경 소비 인증하기"){
     			
-    			window.andriod.startBarcodeReader();
+    			webViewToApp();
     			// location.href = "certify";
+    			
     		}
     		
     		//숲에 심기
