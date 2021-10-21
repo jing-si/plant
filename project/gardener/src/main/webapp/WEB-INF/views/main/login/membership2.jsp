@@ -14,6 +14,11 @@
     
     <link rel="stylesheet" href="/resources/css/membership.css">
     
+    <!--date Picker-->
+    <link href="/resources/dist/css/datepicker.min.css" rel="stylesheet" type="text/css" media="all">
+    <script src="/resources/dist/js/datepicker.js"></script> 
+    <script src="/resources/dist/js/datepicker.ko.js"></script> 
+    
     <style>
     	#email input{width: 80%;}
     	#email div{
@@ -95,7 +100,14 @@ $().ready(() =>{
 		}
 	})  //비밀번호 확인
 	
+	//뒤로가기 버튼
+	$(".historyBack").click(function(){
+		window.history.back();
+	})
 	
+	$("#birthValue").datepicker({
+		language: 'ko',
+	});
 	
 	
 	
@@ -107,8 +119,8 @@ function check(){
 	
 	//아이디 공백 확인 
     if ($("#emailValue").val() == "") {
-        alert("아이디 입력바람");
-        $("#id").focus(); 
+        alert("아이디를 입력하세요");
+        $("#emailValue").focus(); 
         return false;
     }
 	
@@ -142,7 +154,7 @@ function check(){
 	
 	//닉네임 공백 검사 
     if ($("#nickValue").val() == "") {
-        alert("닉네임을 입력해주세요");
+        alert("닉네임을 입력하세요");
         $("#nickValue").focus();
         return false;
     }
@@ -150,7 +162,7 @@ function check(){
 	
     //비밀번호 공백 확인 
     if ($("#pw").val() == "") {
-        alert("패스워드 입력바람");
+        alert("비밀번호를 입력하세요");
         $("#pw").focus();
         return false;
     }
@@ -158,7 +170,7 @@ function check(){
     
     //비밀번호 확인란 공백 확인 
     if ($("#pwcheck").val() == "") {
-        alert("패스워드 확인란을 입력해주세요");
+        alert("비밀번호 확인을 입력하세요");
         $("#pwcheck").focus();
         return false;
     }
@@ -176,7 +188,7 @@ function check(){
     
     //생일 공백 확인 
     if ($("#birthValue").val() == "") {
-        alert("생일을 입력해주세요");
+        alert("생년월일을 입력하세요");
         $("birthValue").focus();
         return false;
     }
@@ -195,8 +207,10 @@ function check(){
 
 
 
-    <a href="/"><div id="header"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg></a>
-        <p>회원가입</p></div>
+    <div id="header">
+    	<svg class="historyBack" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        <p>회원가입</p>
+    </div>
 
 
 
@@ -221,7 +235,8 @@ function check(){
             <div id="checkMsg"></div>
     </div>
     <div id="birth" class="info">
-        <input placeholder="생년월일(8자리)" type="date" maxlength="8" name="userBirth" id="birthValue">
+        <p class="title">생년월일</p>
+        <input placeholder="생년월일(8자리)" type="text" readonly maxlength="8" name="userBirth" id="birthValue">
             <!-- <p id="explain">생년월일(8자리)</p> -->
     </div>
     <!-- <div id="gender" class="info">
@@ -231,6 +246,7 @@ function check(){
     </div> -->
     <div id="gender" class="info" class="tab_menu">
         
+        <p class="title">성별</p>
         <div class="select">
             <input type="radio" id="select" name="userGender" value="여"><label for="select">여성
             </label><input type="radio" id="select2" name="userGender" value="남"><label for="select2">남성</label>

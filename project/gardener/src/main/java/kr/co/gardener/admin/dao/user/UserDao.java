@@ -13,7 +13,6 @@ public interface UserDao {
 
 	void add(User item);
 
-	User item(String userId);
 
 	void update(User item);
 
@@ -34,6 +33,12 @@ public interface UserDao {
 	void delete_list(List<User> list);
 
 	void update_list(List<User> list);
+
+	User item(User user);
+
+	User item_checkPass(User user);
+
+	int levelUp(User user);
 
 
 

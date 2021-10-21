@@ -3,6 +3,7 @@ package kr.co.gardener.admin.dao.user;
 import java.util.List;
 
 import kr.co.gardener.admin.model.forest.PlantLevel;
+import kr.co.gardener.main.vo.PlantImage;
 import kr.co.gardener.util.ComboItem;
 import kr.co.gardener.util.Pager;
 
@@ -29,5 +30,9 @@ public interface PlantLevelDao {
 	void delete_list(List<PlantLevel> list);
 
 	void update_list(List<PlantLevel> list);
+
+	List<PlantLevel> maturePlant();
+
+	List<PlantImage> plantImage();
 
 }

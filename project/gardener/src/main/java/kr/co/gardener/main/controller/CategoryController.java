@@ -1,7 +1,6 @@
 package kr.co.gardener.main.controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -18,10 +17,12 @@ import kr.co.gardener.admin.model.object.Product;
 import kr.co.gardener.admin.model.user.Bookmark;
 import kr.co.gardener.admin.model.user.User;
 import kr.co.gardener.admin.service.object.CompanyService;
+import kr.co.gardener.admin.service.object.MidClassService;
 import kr.co.gardener.admin.service.object.ProductService;
 import kr.co.gardener.admin.service.object.TopClassService;
 import kr.co.gardener.admin.service.user.BookmarkService;
 import kr.co.gardener.main.vo.TopClassVO;
+import kr.co.gardener.main.vo.BrandVO;
 import kr.co.gardener.util.Pager;
 
 @Controller
@@ -41,6 +42,9 @@ public class CategoryController {
 	@Autowired
 	BookmarkService bookmarkService;
 	
+	@Autowired
+	MidClassService midClassService;
+	
 	//카테고리
 	@RequestMapping({"/",""})
 	public String category(Model model) {
@@ -52,8 +56,11 @@ public class CategoryController {
 		model.addAttribute("productCategoryList",list);
 		
 		//brandName(브랜드명),brandId(브랜드 아이디)가 들어있는 리스트 구현해주세요.		 
-		List<Company> companyList = companyService.list(new Pager()); 
-		model.addAttribute("brandList",companyList);
+//		List<Company> companyList = companyService.list(new Pager()); 
+//		model.addAttribute("brandList",companyList);
+		List<BrandVO> brandList = companyService.brandList();
+		
+		model.addAttribute("brandList", brandList);
 		
 		//markId(인증마크 아이디), markImg(인증마크 이미지), markName(인증마크명)이 들어있는 리스트 구형해주세요.
 		model.addAttribute("markList",new ArrayList<String>());
@@ -66,9 +73,10 @@ public class CategoryController {
 	public String productlist(Model model,@PathVariable int midClassId) {
 		
 		List<Product> list = productService.MidList(midClassId);		
-		
+		String midClassName = midClassService.item(midClassId).getMidClassName();
 		//productId(품목별 제품아이디), productImg(품목별 제품이미지), 
 		//productName(품목별 제품명)이 들어있는 리스트 구현해주세요.
+		model.addAttribute("midClassName", midClassName);
 		model.addAttribute("productList",list);
 		return path + "product-list";
 	}
@@ -77,11 +85,8 @@ public class CategoryController {
 	@RequestMapping("/product/{productId}/{companyId}")
 	public String productdetail(@PathVariable String productId,@PathVariable String companyId, Model model,HttpSession session) {
 		String userId = ((User) session.getAttribute("user")).getUserId();		
-		HashMap<String,String> hm = new HashMap<>();
-		hm.put("companyId", companyId);
-		hm.put("userId", userId);
-		
-		Company company = companyService.itemIncludeProduct(hm);
+			
+		Company company = companyService.itemIncludeProduct(companyId,userId);
 		Product item = company.getProduct(productId);
 		model.addAttribute("company",company);
 		model.addAttribute("item",item);
@@ -90,13 +95,16 @@ public class CategoryController {
 	
 	//브랜드별 카테고리
 	@RequestMapping("/brand/{companyId}")
-	public String brandList(Model model,@PathVariable int companyId) {
+	public String brandList(Model model,@PathVariable String companyId,HttpSession session) {
+		String userId = ((User) session.getAttribute("user")).getUserId();		
+		
+		Company company = companyService.itemIncludeProduct(companyId,userId);
 		
 		//브랜드 이름
-		model.addAttribute("brandName","brandName");
+		model.addAttribute("brandName",company.getCompanyName());
 		//productId(브랜드별 제품 아이디), productImg(브랜드별 제품이미지)
 		//productName(브랜드별 제품명)이 들어있는 리스트 구현해주세요.
-		  model.addAttribute("brandProductList",new ArrayList<String>());
+		  model.addAttribute("brandProductList",company.getList());
 		 
 		
 		//가상데이터
@@ -104,7 +112,6 @@ public class CategoryController {
 		 * model.addAttribute("brandName","브랜드1"); List<Product> list = new
 		 * ArrayList<Product>(); Product l1 = new Product(); l1.set
 		 */
-		model.addAttribute("brandProductList",new ArrayList<String>());
 		return path + "brand-list";
 	}
 	
@@ -130,7 +137,7 @@ public class CategoryController {
 	//제품상세 페이지에서 즐겨찾기 추가
 	@RequestMapping("/product/insert")
 	@ResponseBody
-	public void insert(int productId,HttpSession session, String companyId) {
+	public void insert(String productId,HttpSession session, String companyId) {
 		String userId = ((User) session.getAttribute("user")).getUserId();
 		
 		Bookmark item = new Bookmark();
@@ -144,15 +151,13 @@ public class CategoryController {
 	//제품상세 페이지에서 즐겨찾기 삭제
 	@RequestMapping("/product/delete")
 	@ResponseBody
-	public void delete(int productId, HttpSession session) {
+	public void delete(String productId, HttpSession session) {
 		String userId = ((User) session.getAttribute("user")).getUserId();
 		
 		Bookmark item = new Bookmark();
 		item.setProductId(productId);
 		item.setUserId(userId);
-		System.out.println(item.getProductId());
-		System.out.println(item.getUserId());
-		
+	
 		bookmarkService.delete(item);
 	}
 }

@@ -8,20 +8,26 @@ public class Pager {
 	private int perPage;
 	private float total;
 	private int perGroup = 5;
-	private int search = 0;
+	private String search = "total";
 	private String keyword;
 	
 	public int getOffset() {
 		return (page-1)*perPage;
 	}
 	
-	public int getSearch() {
+	
+
+	public String getSearch() {
 		return search;
 	}
 
-	public void setSearch(int search) {
+
+
+	public void setSearch(String search) {
 		this.search = search;
 	}
+
+
 
 	public String getKeyword() {
 		return keyword;
@@ -29,6 +35,10 @@ public class Pager {
 
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
+	}
+	
+	public String getSearchKeyword() {
+		return "%" +keyword.trim().replaceAll(" ", "%")+ "%";
 	}
 
 	@Override
@@ -100,7 +110,7 @@ public class Pager {
 		return Math.min((((page - 1)/perGroup)+1)*perGroup+1,getLast());
 	}
 	public String getQuery() {
-		if(search > 0) {
+		if(search != null || search !="") {
 			return "search="+search +"&keyword=" +keyword;
 		}
 		return "";

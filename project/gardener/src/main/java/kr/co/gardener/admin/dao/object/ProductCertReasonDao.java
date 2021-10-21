@@ -19,17 +19,15 @@ public interface ProductCertReasonDao {
 
 	void delete(int productCertReasonId);
 
-	void checkAdd(ProductCertReason r);
-
 	float total(Pager pager);
 
 	List<ProductCertReason> list_pager(Pager pager);
 
-	void insert(ProductCertReasonList list);
+	void insert(List<ProductCertReason> list);
 
-	void delete(ProductCertReasonList list);
+	void delete(List<ProductCertReason> list);
 
-	void update(ProductCertReasonList list);
+	void update(List<ProductCertReason> list);
 
 	List<ComboItem> combo();
 

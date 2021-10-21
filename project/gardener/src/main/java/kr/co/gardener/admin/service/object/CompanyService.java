@@ -1,10 +1,10 @@
 package kr.co.gardener.admin.service.object;
 
-import java.util.HashMap;
 import java.util.List;
 
 import kr.co.gardener.admin.model.object.Company;
 import kr.co.gardener.admin.model.object.list.CompanyList;
+import kr.co.gardener.main.vo.BrandVO;
 import kr.co.gardener.util.Pager;
 
 public interface CompanyService {
@@ -29,6 +29,10 @@ public interface CompanyService {
 
 	boolean existCompany(Company company);
 
-	Company itemIncludeProduct(HashMap<String, String> hm);
+
+	Company itemIncludeProduct(String companyId, String userId);
+
+	List<BrandVO> brandList();
+
 
 }

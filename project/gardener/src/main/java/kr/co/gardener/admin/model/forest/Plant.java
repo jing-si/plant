@@ -8,13 +8,22 @@ public class Plant extends GridSystem{
 	private String plantCategory;
 	private String plantInfo;
 	private String plantShadow;
+	private String plantThumbnail;
 	
 	/*
 	 * plantShadow 필드 추가
 	 */
 	
+	
+	
 	public String getPlantShadow() {
 		return plantShadow;
+	}
+	public String getPlantThumbnail() {
+		return plantThumbnail;
+	}
+	public void setPlantThumbnail(String plantThumbnail) {
+		this.plantThumbnail = plantThumbnail;
 	}
 	public void setPlantShadow(String plantShadow) {
 		this.plantShadow = plantShadow;

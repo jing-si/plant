@@ -25,4 +25,9 @@ public interface PlantLevelService {
 	void delete_list(PlantLevelList list);
 
 	void update_list(PlantLevelList list);
+
+	List<PlantLevel> random();
+
+	String PlantImage(int plantId, int plantLevel);
+
 }

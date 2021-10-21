@@ -11,7 +11,7 @@
         }
         
 
-        /* Çì´õ */
+        /* ï¿½ï¿½ï¿½ */
         #header{
             width: 100%;
             height: 45px;
@@ -34,16 +34,16 @@
             left: 9px;
         }
 
-        /* Á¤·Ä */
+        /* ï¿½ï¿½ï¿½ï¿½ */
         #align{
             width: 330px;
             height: calc(100vh - 45px - 56px);
-            /* 100 - Çì´õ - °øÅë¸Þ´º */
+            /* 100 - ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½Þ´ï¿½ */
             margin: 0 auto;
             position: relative;
         }
 
-        /* ¸®½ºÆ® ÇÑ»óÀÚ */
+        /* ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ñ»ï¿½ï¿½ï¿½ */
         .brand{
             position: relative;
             width: 100%;
@@ -68,8 +68,13 @@
             font-size: 14px;
             font-weight: 500;
         }
+        
+        .brand .brand-img img{
+       		border-radius: 10px;
+      		border:1px solid #ddd;
+        }
 
-        /* °øÅë¸Þ´º¹Ù */
+        /* ï¿½ï¿½ï¿½ï¿½Þ´ï¿½ï¿½ï¿½ */
         .sticky{
             position: fixed;
             bottom: 0;

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.co.gardener.admin.dao.object.CertReasonDao;
+import kr.co.gardener.admin.model.object.Cert;
 import kr.co.gardener.admin.model.object.CertReason;
 import kr.co.gardener.util.Pager;
 
@@ -65,5 +66,6 @@ public class CertReasonDaoImpl implements CertReasonDao{
 	public void update(List<CertReason> list) {
 		sql.update("certReason.update_list", list);
 	}
+
 
 }

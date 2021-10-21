@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.gardener.admin.model.object.Product;
+import kr.co.gardener.admin.model.object.list.CompanyList;
 import kr.co.gardener.admin.model.object.list.ProductList;
 import kr.co.gardener.admin.service.object.ProductService;
 import kr.co.gardener.util.Pager;
@@ -83,6 +84,13 @@ public class ProductController {
 			@PostMapping("/update/product")
 			public String productUpdate(@RequestBody ProductList list) {
 				service.update_list(list);
+				return "ok";
+			}
+			
+			@PostMapping("/autoupdate/product")
+			@ResponseBody
+			public String autoUpdate(@RequestBody ProductList list) {
+				service.autoUpdate(list);
 				return "ok";
 			}
 }

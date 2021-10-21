@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.gardener.admin.dao.user.PlantLevelDao;
 import kr.co.gardener.admin.model.forest.PlantLevel;
+import kr.co.gardener.main.vo.PlantImage;
 import kr.co.gardener.util.ComboItem;
 import kr.co.gardener.util.Pager;
 @Repository
@@ -71,6 +72,18 @@ public class PlantLevelDaoImpl implements PlantLevelDao {
 	public void update_list(List<PlantLevel> list) {
 		sql.insert("plantLevel.update_list", list);
 		
+	}
+
+	@Override
+	public List<PlantLevel> maturePlant() {
+		
+		return sql.selectList("plantLevel.maturePlant");
+	}
+
+	@Override
+	public List<PlantImage> plantImage() {
+		
+		return sql.selectList("plantLevel.plantImage");
 	}
 
 }

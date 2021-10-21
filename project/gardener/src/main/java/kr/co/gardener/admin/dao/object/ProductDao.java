@@ -33,4 +33,8 @@ public interface ProductDao {
 
 	List<ComboItem> combo();
 
+	void autoClassify(List<Product> items);
+
+	int count(int barcode);
+
 }

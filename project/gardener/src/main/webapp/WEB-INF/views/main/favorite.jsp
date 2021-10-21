@@ -13,6 +13,24 @@
 
     <link rel="stylesheet" href="/resources/css/favorite.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+
+	<style>
+		.scroll{
+			overflow: auto;
+			height: calc(100vh - 59.5px - 44px - 35px);
+			width: 100%;
+		}
+		 .brand-img img{
+    	width: 100%;
+    	height: 100%;
+    }
+    .heart{
+    	width: 24px;
+    }
+    .clickbox{
+    	width: 80%;
+    }
+	</style>
 </head>
 <body>
     <script>
@@ -29,9 +47,59 @@
                 $('.tabArea .tab li:eq(' + num + ')').addClass("on"); 
                 $('.tabArea .tabBox:eq(' + num + ')').addClass("on"); 
             }); 
+            
+            
+            
+         //즐겨찾기
+    	$(".tabArea").on("click",".heart",function(){	
+    		console.log("클릭");
+    		let $this = $(this);
+    		let productId = $this.attr("data-product");
+    		let companyId = $this.attr("data-compnay");
+    		
+     		if($this.attr("src") == "/resources/images/white_heart.png"){
+    		
+    			$.ajax({
+    				url : "/login/category/product/insert",
+    				type : "post",
+    				data : {"productId" : productId,"companyId":companyId},				
+    				success : function(){
+    					$this.attr("src","/resources/images/green_heart.png");
+    					console.log("즐겨찾기 등록 성공")
+    				},
+    				error : function(){
+    					console.log("즐겨찾기 등록 실패")
+    				}
+    			})  //ajax 끝
+    			
+    		}  //if끝
+    		
+    		else{			 
+    				$.ajax({
+    					url : "/login/category/product/delete",
+    					type : "post",
+    					data : {"productId" : productId},					
+    					success : function(){
+    						$this.attr("src","/resources/images/white_heart.png");
+    						console.log("즐겨찾기 해제 성공")
+    					},
+    					error : function(){
+    						console.log("즐겨찾기 해제 실패")
+    					}
+    				})  //ajax 끝
+    		}//else 끝 
+    		
+    	})  //heart 클릭 끝   
+            
+            
+            
+            
         });
 
         
+        
+        
+    	
     </script>
 
 
@@ -52,7 +120,7 @@
             </ul>
             
             <!-- 최신순 -->
-            <div class="tabBox on">
+            <div class="tabBox on scroll">
                     <div id="align">
                         <c:if test="${list_date.size()<1}">
                             <div class="brand">
@@ -62,19 +130,24 @@
                         
                         <c:if test="${list_date.size()>0}">
                         <c:forEach var="list" items="${list_date}">
-                            <a href="../category/product/${list.productId}/${list.companyId}">
+                            
                             <div class="brand">
-                                <div class="brand-img" src="${list.productImage}"></div>
+                            <a href="../category/product/${list.productId}/${list.companyId}">
+                            <div class="clickbox">
+                                <div class="brand-img"><img src="${list.productImage}"></div>
                                 <p class="brand-name">${list.productName}</p>
-                                <img src="/resources/images/favorite-heart.png">
-                            </div></a>
+                                
+                            </div>
+                            </a>
+                            <img class="heart" data-product="${list.productId}" data-company="${list.companyId}" src="/resources/images/green_heart.png">
+                            </div>
                         </c:forEach>
                         </c:if>
                     </div>
             </div>
             
             <!-- 이름순 -->
-            <div class="tabBox">
+            <div class="tabBox scroll">
                 <div id="align">
                     <c:if test="${list_name.size()<1}">
                         <div class="brand">
@@ -84,12 +157,16 @@
                     
                     <c:if test="${list_name.size()>0}">
                         <c:forEach var="list" items="${list_name}">
+                          <div class="brand">
                             <a href="../category/product/${list.productId}/${list.companyId}">
-                            <div class="brand">
-                                <div class="brand-img" src="${list.productImage}"></div>
+                            <div class="clickbox">
+                                <div class="brand-img"><img src="${list.productImage}"></div>
                                 <p class="brand-name">${list.productName}</p>
-                                <img src="/resources/images/favorite-heart.png">
-                            </div></a>
+                                
+                            </div>
+                            </a>
+                            <img class="heart" data-product="${list.productId}" data-company="${list.companyId}" src="/resources/images/green_heart.png">
+                            </div>
                         </c:forEach>
                     </c:if>
                     

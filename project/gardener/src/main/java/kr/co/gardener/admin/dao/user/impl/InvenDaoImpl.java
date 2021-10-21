@@ -90,4 +90,25 @@ public class InvenDaoImpl implements InvenDao {
 		sql.insert("inven.update_list", list);		
 	}
 
+	
+	@Override
+	public int countDown(Inven inven) {
+		return sql.update("inven.countDown",inven);
+	}
+
+	@Override
+	public int countUp(Inven inven) {
+		return sql.update("inven.countUp",inven);
+	}
+
+	@Override
+	public void countDown_list(List<Inven> invenList) {
+		sql.update("inven.countDown_list", invenList);
+	}
+
+	@Override
+	public void countUp_list(List<Inven> invenList) {
+		sql.update("inven.countUp_list", invenList);
+	}
+
 }

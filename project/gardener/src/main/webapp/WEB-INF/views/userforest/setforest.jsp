@@ -1,23 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>숲꾸미기</title>
 <link rel="stylesheet" href="/resources/css/005-01-01.css">
 <link
 	href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans+KR:wght@400;700;900&display=swap"
 	rel="stylesheet">
 
-
 <link rel="stylesheet"
-	href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 
+<!-- 모바일 draggable() 지원 -->
+<script src="/resources/js/jquery.ui.touch-punch.min.js"></script>
+
+<!-- 
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 <script src="/resources/jq/jquery.js"></script>
+ -->
+
 <script>
 
 /* if(localStorage.getItem('img')){
@@ -28,36 +38,40 @@
  */
 
     let arr = new Array();
-    let item ;
+    let item;
 	$().ready(()=>{
-	 
-		//세이
+	
+	
+		//세이브
 	$(".save_btn").click(()=>{
-      let aaa = [{
-         userId:"A"
-         }, {
-         userId:"B"
-         }, {
-         userId:"C"
-         }];
+      arr.map((value)=>{
+    	  value.locationSize = value.div.attr("data-size");
+		  value.locationX = value.div.css("left").replace("px","");
+		  value.locationY = value.div.css("top").replace("px","");
+		  value.locationOrder = value.div.css("z-index")		
+		  value.div = "";
+		  
+      })
       
       console.log("저장중")
       $.ajax({
          method: "post",
-         url:"update",
-         data: JSON.stringify(aaa),
-         contentType: 'application/json',
-         dataType: 'json',
+         url:"/login/userforest/setforest/update",
+         data: JSON.stringify({list:arr}),
+         contentType: 'application/json',         
          success:function(data){
-            console.log(data)
-
+          	location.href="/login/userforest/"
+         },
+         error:function(data){
+        	 alert("저장에 실패했습니다.")
          }
 
       })
+      
    })
 		
 	$.ajax({
-		url:"../userforest/setforest/init2",
+		url:"/login/userforest/setforest/init",
 		success:function(data){
 			arr = data;
 			console.log(data);
@@ -65,127 +79,93 @@
 			arr.forEach((value,index)=>{
 				let div1 = $("<div class='userPlant'>");				
 				let img = $("<img class='userPlantImg'>");
-				// img.data("index",index);
+			
 				
 				div1.attr("id", 'userPlant'+value.plantId);
 				div1.data("index",index);
+				div1.attr("data-order",value.locationOrder);
 				
 				img.attr("id", value.PlantId);				
 				img.attr("src",value.plantImage);
 				
-				console.log("z인덱스 : " + value.locationOrder);
-				div1.css("zindex",value.locationOrder);
-				div1.css("zoom", value.locationSize);
 			
-				
-				
-				//item.locationX = currentlocation;
-  
+				div1.css("z-index",value.locationOrder);
 				$("#image-container").append(div1);
 				div1.append(img);
 				div1.css("left",value.locationX);
-				div1.css("top",value.locationY);				
+				div1.css("top",value.locationY);
+				div1.draggable();
+				value.div = div1;
+				div1.attr("data-size",value.locationSize);
+				//크기 조절
+				img.on("load",function(){changeSize(div1)});
 				
-				console.log(arr);
 				
-				/* 아래와 같이 넣어주고자 함
-				<div id="userPlant01" class="userPlant">
-					<img src="/resources/images/tree_01.png"></div>
-				</div> 
-				*/
+				
+			
 				
 			})
+			
+			<c:if test="${not empty sessionScope.newItem }">
+				selectItem(arr[arr.length-1].div)		
+			</c:if>
 		}
 	})
+	
+	
 	
 	
 	$("#image-container").on("click", ".userPlant",function(data){
-		item = $(this);
-		$('.userPlant').removeClass('imgBox');
-		$(this).addClass('imgBox');	
-		console.log(item);
+		selectItem(this)
+	})
+
+	$("#image-container").on("dragstart", ".userPlant",function(data){
+		selectItem(this)
 	})
 	
-	$("#image-container").on("mouseover", ".userPlant",function(data){
-		$(this).draggable();
-		
-	})
+	
+	
+
 	
 	$('#zoom-in').click(function() { 
 		
-		let imgInfo = arr[$(item).data("index")];	
-		let imgZoom = imgInfo.locationSize;
-		let userPlantId = 'userPlant'+imgInfo.plantId;
-		let zoomLevel = 0.1;
-				 
-		imgZoom += zoomLevel;
-		console.log(imgZoom);
-		
-		if( imgZoom > 0.5 && imgZoom < 1.5 ){
-			$("#"+userPlantId).css( {'zoom' : imgZoom });
-		} else {
-			imgZoom = 1.4;
+		if(item != undefined){
+			const size = Number(item.attr("data-size"));
+			if(size < 1.4){
+				item.attr("data-size",(size + 0.1).toFixed(1))
+				changeLocation(item,changeSize(item)*-1)
+			}
 		}
-		
-		imgInfo.locationSize = imgZoom;
 	})
 	
+	
 	$('#zoom-out').click(function() { 
-		
-		let imgInfo = arr[$(item).data("index")];	
-		let imgZoom = imgInfo.locationSize;
-		let userPlantId = 'userPlant'+imgInfo.plantId;
-		let zoomLevel = 0.1;
-		
-		imgZoom -= zoomLevel;
-		console.log(imgZoom);
-		
-		if( imgZoom > 0.5 && imgZoom < 1.5 ){
-			$("#"+userPlantId).css( {'zoom' : imgZoom });
-		} else {
-			imgZoom = 0.6;
+		if(item != undefined){
+			const size = Number(item.attr("data-size"));
+			if(size > 0.6){
+				item.attr("data-size",(size - 0.1).toFixed(1))
+				changeLocation(item,changeSize(item))
+			}
 		}
 		
-		imgInfo.locationSize = imgZoom;
 	})
 	
 	
     
 	$('#btn-front').click(function() { 
 		
-		let imgInfo = arr[$(item).data("index")];
-		let imgZindex = Number(imgInfo.locationOrder);
-		let userPlantId = 'userPlant'+imgInfo.plantId;
 		
-		/* console.log(imgInfo);
-		console.log('arr.lengrh: ' + arr.length);
-		console.log('imgZindex: ' + imgInfo.locationOrder);
-		console.log(userPlantId); */
 		
-		for(let i=0; i<arr.length; i++) {	
-			if(Number(arr[i].locationOrder) === (imgZindex+1)) {
-				
-				arrZindex = Number(arr[i].locationOrder);
-				
-				let temp = imgZindex;
-				imgZindex = arrZindex;
-				arrZindex = String(temp);
-				
-				$("#"+userPlantId).css("z-index", imgZindex);
-				$("#userPlant"+arr[i].userPlantId).css("z-index", arr[i].locationOrder); 
-				
-				imgInfo.locationOrder = imgZindex;
-				arr[i].locationOrder = arrZindex;
-				
-				
-				console.log(imgInfo.locationOrder);
-				console.log(arr[i].locationOrder);
-				console.log(arr[i]);
-				
-			}
-			else {
-				continue;
-			}
+		let imgZindex = Number(item.attr("data-order"));
+		
+		
+		if(imgZindex < arr.length){
+		let targetImgInfo = $(`[data-order=\${imgZindex+1}]`)
+		
+		item.attr("data-order",imgZindex + 1);
+		targetImgInfo.attr("data-order",imgZindex);
+		item.css("z-index", item.attr("data-order"));
+		targetImgInfo.css("z-index", targetImgInfo.attr("data-order"));
 		}
 		
 		
@@ -194,71 +174,63 @@
 	
 	
 	$('#btn-back').click(function() { 
+		let imgZindex = Number(item.attr("data-order"));
 		
-		let imgInfo = arr[$(item).data("index")];
-		let imgZindex = imgInfo.locationOrder;
-		let userPlantId = 'userPlant'+imgInfo.plantId;
 		
-		/* console.log(imgInfo);
-		console.log('arr.lengrh: ' + arr.length);
-		console.log('imgZindex: ' + imgInfo.locationOrder);
-		console.log(userPlantId); */
+		if(imgZindex > 0){
+		let targetImgInfo = $(`[data-order=\${imgZindex-1}]`)
 		
-		for(let i=0; i<arr.length; i++) {
-			if(Number(arr[i].locationOrder) === (imgZindex - 1)) {
-				
-				arrZindex = Number(arr[i].locationOrder);
-				
-				let temp = imgZindex;
-				imgZindex = arrZindex;
-				arrZindex = temp;
-				
-				/* console.log(i);
-				console.log('arr[i].locationOrder: ' + arr[i].locationOrder);
-				console.log('imgZindex: ' + imgZindex); */
-				
-				$("#"+userPlantId).css("zindex", imgZindex);
-				$("#"+userPlantId).css("zindex", arr[i].locationOrder); 
-				
-				imgInfo.locationOrder = imgZindex;
-				arr[i].locationOrder = arrZindex;
-				
-				
-				console.log(imgInfo.locationOrder);
-				console.log(arr[i].locationOrder);
-				console.log(arr[i]);
-			}
-			else {
-				continue;
-			}
+		item.attr("data-order",imgZindex - 1);
+		targetImgInfo.attr("data-order",imgZindex);
+		item.css("z-index", item.attr("data-order"));
+		targetImgInfo.css("z-index", targetImgInfo.attr("data-order"));
 		}
-		
-		imgInfo.locationOrder = imgZindex;
 		
 		
 	})
 	
 	$('#btn-delete').click(function() { 
-		$(item).remove();
+		let target = arr[item.data("index")];
+		console.log(target.locationState)
+		if(target.locationState == '1'){
+			target.locationState = 4
+		}else{
+			target.locationState = 2
+		}
+		item.addClass("hide");
+		
 	})
 	
 	
-	/* $.ajax({
-		type: 'GET',
-		url: "",
-		data: {"id", id},
-		success: function (data) {
-			if(data){
-				console.log("성공");
-			} else {
-				console.log("실패");
-			}
-			
-		}
-	}) */
-	
-	
 	});
+	
+	function selectItem(selectedItem){
+		item = $(selectedItem);
+		$('.userPlant').removeClass('imgBox');
+		$(selectedItem).addClass('imgBox');	
+		
+	}
+	
+	function changeSize(target){
+		const img = $(target).children("img");
+		const originW = Number(img.get(0).naturalWidth);
+		const originH = Number(img.get(0).naturalHeight);
+		const size = Number(target.attr("data-size"));
+		
+		console.log(size)
+		console.log(originH * size)
+		
+		target.css("height", originH * size)
+		target.css("width", originW * size)
+		
+		return originH * 0.1
+		
+	}
+	
+	function changeLocation(target,location){
+		const top = Number(target.css("top").replace("px",""));
+		target.css("top", top + location)
+	}
 	
 </script>
 
@@ -273,7 +245,6 @@
 	padding: 0;
 }
 
-
 #image-container {
 	width: 100%;
 	height: 100%;
@@ -284,6 +255,13 @@
 	position: absolute;
 }
 
+.userPlantImg {
+	object-fit: contain;
+	height: 100%;
+}
+.hide{
+	display:none;
+}
 /* .userPlantImg {
 	width: 200px;
 	height: 230px;
@@ -295,18 +273,36 @@
 	<div class="wrapper">
 		<div class="header">
 			<p class="header_text">숲 꾸미기</p>
-			<a href="/login/userforest/"><p class="close_btn"><img src="/resources/images/icon_close.png" width="18" height="18"></p></a> 
-			<p class="save_btn"><img src="/resources/images/icon_save.png" width="24" height="24"></p>
+			<a href="/login/userforest/"><p class="close_btn">
+					<img src="/resources/images/icon_close.png" width="18" height="18">
+				</p></a>
+			<p class="save_btn">
+				<img src="/resources/images/icon_save.png" width="24" height="24">
+			</p>
 		</div>
 
 		<div id="image-container"></div>
-		
+
+	
 		<div class="footer">
-			<div class="footer_btn"><img class="btn" id="btn-front"src="/resources/images/btn_front.png" width="45" height="45">
-			</div><div class="footer_btn"><img class="btn" id="btn-back" src="/resources/images/btn_back.png" width="45" height="45">
-			</div><div class="footer_btn"><img class="btn_delete" id="btn-delete" src="/resources/images/btn_delete.png" width="60" height="60">
-			</div><div class="footer_btn"><img class="btn" id="zoom-in" src="/resources/images/btn_plus.png" width="45" height="45">
-			</div><div class="footer_btn"><img class="btn" id="zoom-out" src="/resources/images/btn_minus.png" width="45" height="45"></div></div></div>
+			<div class="footer_btn">
+				<img class="btn" id="btn-front"
+					src="/resources/images/btn_front.png" width="45" height="45">
+			</div><div class="footer_btn">
+				<img class="btn" id="btn-back" src="/resources/images/btn_back.png"
+					width="45" height="45">
+			</div><div class="footer_btn">
+				<img class="btn_delete" id="btn-delete"
+					src="/resources/images/btn_delete.png" width="60" height="60">
+			</div><div class="footer_btn">
+				<img class="btn" id="zoom-in" src="/resources/images/btn_plus.png"
+					width="45" height="45">
+			</div><div class="footer_btn">
+				<img class="btn" id="zoom-out" src="/resources/images/btn_minus.png"
+					width="45" height="45">
+			</div>
+		</div>
+	</div>
 
 </body>
 </html>

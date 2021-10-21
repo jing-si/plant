@@ -7,9 +7,18 @@
 
 	<!--대량 처리 -->
 	<select id="list_pager" resultType="State">
-		SELECT * FROM STATE		
+		SELECT * FROM (<include refid="search"></include>) M		
 		LIMIT #{offset}, #{perPage}
 	</select>
+	
+	<sql id="search">
+		select * from STATE
+		<where>
+			<if test="(search == 'total' or search == 'stateId') and keyword != ''">OR STATE_ID like #{searchKeyword}</if>
+			<if test="(search == 'total' or search == 'stateName') and keyword != ''">OR STATE_NAME like #{searchKeyword}</if>
+			<if test="(search == 'total' or search == 'stateMessage') and keyword != ''">OR STATE_Message like #{searchKeyword}</if>
+		</where>
+	</sql>
 
 	<select id="update_list" resultType="State">
 		Insert into STATE
@@ -45,7 +54,7 @@
 	</delete>
 
 	<select id="total" resultType="float">
-		select COUNT(*) from STATE
+		select COUNT(*) from (<include refid="search"></include>) M		
 	</select>
 
 	

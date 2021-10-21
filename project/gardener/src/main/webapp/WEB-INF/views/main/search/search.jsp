@@ -14,49 +14,118 @@
     <link rel="stylesheet" href="/resources/css/search.css">
     
     <link rel="stylesheet" href="/resources/css/product-list.css">
+    <script src="/resources/jq/jquery.js"></script>
     <style type="text/css">
     img{
     	width: 100%;
     	height: 100%;
     }
-    #scroll{
+    .scroll{
     	overflow: auto;
+    }
+    #no-result{
+    	width: 100%;
+    	height: calc(100vh - 59.5px - 56px);
+		background-color: #f5f5f5;
+		position: absolute;
+		
+    }
+    #no-result p{
+    	position: absolute;
+    	top: 23%;
+    	left: 50%;
+    	transform : translate(-50%, -50%); 
+    	opacity: 30%;
+    }
+    #no-result img{
+    	width: 100px;
+    	height: 100px;
+    	/* margin: 0 auto; */
+    	position: absolute;
+    	top: 10%;
+    	left: 50%;
+    	transform: translate(-50%, -50%);
     }
     </style>
 </head>
 <body>
+<script>
+	var event = jQuery.Event("keypress", {
+	    keyCode:13
+	});
+
+
+$().ready(()=>{
+	
+	//inven();
+
+});
+
+function inven() {
+	const url = new URLSearchParams(window.location.search)
+	if(url.has("q")){
+	/* if(url.get("q") == 'on') */
+	//	console.log(url.get("q"))
+	//	$("#q").val(url.get("q"));
+	//$("form").trigger("submit");
+	//	console.log($("#q").val())
+		
+		/* form.submit(); */
+		/* $("input").trigger(event); */
+		
+		console.log(url.get("q"));
+
+	}
+}
+
+</script>
+
+
+
+
+
     <div id="header">
         <div class="input">
         	<form method="post">
         	<input type="image" src="/resources/images/search-glass.png" id="img">            
-            <input placeholder="검색어를 입력하세요" type="text" name="q" value="${word }"></input>
+            <input placeholder="검색어를 입력하세요" type="text" name="q" value="${word }" id="q"></input>
             <!-- <p>검색어를 입력하세요</p> -->
             </form>
         </div>
-
+	
+	<a href="qr">
        <div class="qr">
-        <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><rect fill="none" height="24" width="24"/><path d="M9.5,6.5v3h-3v-3H9.5 M11,5H5v6h6V5L11,5z M9.5,14.5v3h-3v-3H9.5 M11,13H5v6h6V13L11,13z M17.5,6.5v3h-3v-3H17.5 M19,5h-6v6 h6V5L19,5z M13,13h1.5v1.5H13V13z M14.5,14.5H16V16h-1.5V14.5z M16,13h1.5v1.5H16V13z M13,16h1.5v1.5H13V16z M14.5,17.5H16V19h-1.5 V17.5z M16,16h1.5v1.5H16V16z M17.5,14.5H19V16h-1.5V14.5z M17.5,17.5H19V19h-1.5V17.5z M22,7h-2V4h-3V2h5V7z M22,22v-5h-2v3h-3v2 H22z M2,22h5v-2H4v-3H2V22z M2,2v5h2V4h3V2H2z"/>
-        </svg><img src="/resources/images/qr-text.png">
+       <img src="/resources/images/barcode.png">
+        <!-- <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><rect fill="none" height="24" width="24"/><path d="M9.5,6.5v3h-3v-3H9.5 M11,5H5v6h6V5L11,5z M9.5,14.5v3h-3v-3H9.5 M11,13H5v6h6V13L11,13z M17.5,6.5v3h-3v-3H17.5 M19,5h-6v6 h6V5L19,5z M13,13h1.5v1.5H13V13z M14.5,14.5H16V16h-1.5V14.5z M16,13h1.5v1.5H16V13z M13,16h1.5v1.5H13V16z M14.5,17.5H16V19h-1.5 V17.5z M16,16h1.5v1.5H16V16z M17.5,14.5H19V16h-1.5V14.5z M17.5,17.5H19V19h-1.5V17.5z M22,7h-2V4h-3V2h5V7z M22,22v-5h-2v3h-3v2 H22z M2,22h5v-2H4v-3H2V22z M2,2v5h2V4h3V2H2z"/>
+        </svg><img src="/resources/images/qr-text.png"> -->
        </div>
+    </a>
     </div>
     
-    <div id="body scroll">
+    <div id="body" class="scroll">
+        <c:if test="${list.size()<1}">
+        	<div id="no-result">
+        		<img src="/resources/images/search_error.png">
+        		<p>검색결과가 없습니다</p>
+        	</div>
+        </c:if> 
+    
+    
+    
         <div id="align">
         	
-        <c:if test="${latestProducList.size()<1}">
-        	
-        </c:if>
+
         
-        <c:if test="${latestProductList.size()>0}">
+<%--         <c:if test="${list.size()>0}">
         	<div id="latest-search-title">
                 <p id="latest-search">최근검색</p>
                 <a href="delete/${latestProductList}">
                 	<p id="all-delete">전체삭제</p>
                 </a>
             </div>
-        </c:if>
+        </c:if> --%>
         
-        <c:forEach var="list" items="${latestProductList}">
+<%--         <c:forEach var="list" items="${latestProductList}">
         	
             <div class="last-search-list">
                 <p>${list.searchWord}</p>
@@ -65,7 +134,7 @@
             	</a>
             </div>
             
-        </c:forEach>
+        </c:forEach> --%>
         
 <%--         <c:forEach var="list" items="${list}">
         	
@@ -79,7 +148,7 @@
         </c:forEach> --%>
         
 
-                <c:forEach var="list" items="${list}">
+        <c:forEach var="list" items="${list}">
         	<a href="../category/product/${list.productId}/${list.companyId}"><div class="brand">
                 <div class="brand-img"><img src="${list.productImage}"></div>
                 <p class="brand-name">${list.productName}</p>

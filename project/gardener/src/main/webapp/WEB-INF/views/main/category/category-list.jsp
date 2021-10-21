@@ -6,7 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, user-scalable=no">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
@@ -52,6 +53,11 @@ ul {
 a {
 	text-decoration: none;
 	color: #333;
+}
+
+.scroll {
+	overflow: auto;
+	height: calc(100vh - 59.5px - 44px - 35px);
 }
 
 .wrap {
@@ -121,7 +127,7 @@ a {
 #product-body {
 	/* border: 1px solid red; */
 	width: 330px;
-	height: calc(100vh - 45px - 56px - 9px);
+	height: calc(100vh - 45px - 56px - 9px - 35px);
 	/* 100 - 헤더 - 공통메뉴 - btn-title 밑마진 */
 	margin: 0 auto;
 	position: relative;
@@ -266,32 +272,111 @@ a {
 	/* margin-top: 28.3px; */
 	margin-top: 0px;
 }
+
+
+
+
+
+
+        *{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    box-sizing: border-box;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+
+#header{
+    width: 100%;
+    height: 45px;
+    border-bottom: 5px solid #f5f5f5;
+    position: relative;
+}
+#header p{
+    width: 200px;
+    text-align: center;
+    font-family: NotoSansKR;
+    font-size: 15px;
+    font-weight: bold;
+    color: #2c2c2c;
+    margin: 0px auto;
+    /* padding: 10px; */
+}
+
+        * { margin: 0; padding: 0; box-sizing: border-box; } 
+        a { text-decoration: none; } 
+        body { font-size: 14px; color: #333; } 
+        li { list-style: none; } 
+        #wrap { background-color: #fafafa; /* width: 330px; */ height: calc(100vh - 83.5px - 56px); margin: 0 auto;} 
+        .tabArea { background-color: #fff; width: 100%; height: 100%; margin: 0 auto;} 
+        .tabArea .tab { display: flex; height: 38px;} 
+        /* .tabArea .tab span {text-align: center; width: 40%;} */
+        .tabArea .tab li{width: 50%; text-align: center; height: 100%; padding: 10px;}
+        .tabArea .tab li a { font-size: 15px; color: #333; font-weight: 500; } 
+        /*  탭버튼 눌렀을시 글자 색상변경  */
+        .tabArea .tab li.on a { font-weight: bold; color: #66bb6a; } 
+        /* 탭박스 영역 기본 옵션은 디스플레이 숨김  */
+        .tabArea .tabBox { margin-top: 20px; display: none;  height: calc(100vh - 45px - 56px - 9px - 50px); width: 100%;} 
+        /* 탭버튼이 눌러졌을시 관련된 탭박스 활성화  */
+        .tabArea .tabBox.on { display: block; } 
+        .tabArea .tabBox p { font-size: 14px; color: #555; } 
+        .tabArea .tabBox h3 { margin-bottom: 20px; }
+        .tabArea .tab li.on .underLine{
+    display: block;
+    margin: 13px 0 0 0;
+    width: 100%;
+    height: 5px;
+    background: black;
+}
 </style>
 
 </head>
 <body>
 	<script>
-	/*
- $().ready(()=>{
-	$(".menu-toggle-btn").click(function(){
-		$(".gnb").addClass("hide");
-		$(".i"+$(this).data("index")).removeClass("hide")
-	})
-})
-*/
-</script>
+		/*
+		$().ready(()=>{
+		$(".menu-toggle-btn").click(function(){
+			$(".gnb").addClass("hide");
+			$(".i"+$(this).data("index")).removeClass("hide")
+		})
+		})
+		 */
+	</script>
+	
+	    <script>
+        $(document).ready(function(){ 
+            $(".tabArea .tab li a").on("click", function(){ 
+                // 해당 요소를 클릭하는 내 자신의 index 번호를 가져온다. [0], [1] 
+                const num = $(".tabArea .tab li a").index($(this)); 
 
-	<div id="title">
-		<p>카테고리</p>
-	</div>
+                // 기존에 적용되어 있는 on class 삭제 
+                $(".tabArea .tab li").removeClass("on"); 
+                $(".tabArea .tabBox").removeClass("on");
 
-	<div class="wrap">
+                // 다음 요소 클릭시 on class 추가 
+                $('.tabArea .tab li:eq(' + num + ')').addClass("on"); 
+                $('.tabArea .tabBox:eq(' + num + ')').addClass("on"); 
+            }); 
+        });
+
+        
+    </script>
+
+    <div id="header">
+        <p id="title">카테고리</p>
+    </div>
+
+<%-- 	<div class="wrap">
 		<div class="tab_menu">
 			<ul class="list">
 
 				<li class="is_on"><a href="#tab1" class="btn"><p
 							class="btn-title">품목</p> <span id="bar"></span></a>
-					<div id="tab3" class="cont">
+					<div id="tab3" class="cont scroll">
 						<div id="product-body">
 
 							<c:forEach var="list" items="${productCategoryList}">
@@ -308,23 +393,18 @@ a {
 									</div>
 									<c:forEach var="item" items="${list.midList}">
 										<a href="/login/category/${item.midClassId}">
-										<div id="product-subtitle-sub-box" class="gnb hide i${list.topClassName }">
+											<div id="product-subtitle-sub-box"
+												class="gnb hide i${list.topClassName }">
 												<div class="product-subtitle-sub">${item.midClassName}</div>
 											</div>
 										</a>
 									</c:forEach>
-									</div>
+								</div>
 							</c:forEach>
 						</div>
-					</div>
-		
-
-
-
-		</li><li>
-		<a href="#tab2" class="btn"><p class="btn-title">브랜드</p>
-				<span id="bar"></a>
-			<div id="tab3" class="cont">
+					</div></li>
+				<li><a href="#tab2" class="btn"><p class="btn-title">브랜드</p>
+						<span id="bar"></a> 			<div id="tab3" class="cont scroll">
 				<div id="brand-body">
 					<c:forEach var="list" items="${brandList}">
 						<a href="brand/${list.companyId}/"><div class="brand-subtitle">
@@ -338,54 +418,155 @@ a {
 					</c:forEach>
 
 
-					<!-- 완성시 이부분 지우기 -->
-					<a href="brand"><div class="brand-subtitle">
-							<p>Brand 1</p>
-							<svg xmlns="http://www.w3.org/2000/svg" height="24px"
-										viewBox="0 0 24 24" width="24px" fill="#000000">
-								<path d="M0 0h24v24H0V0z" fill="none" />
-								
-										<path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6-6-6z" /></svg>
-						</div></a>
-					<!-- 여기까지 -->
-				</div>
-			</div>
-			</li><li>
-		<a href="#tab3" class="btn"><p class="btn-title">인증마크</p>
-				<span id="bar"></a>
-			<div id="tab3" class="cont">
-				<div id="mark-body">
-					<c:forEach var="list" items="${markList}">
-						<a href="mark/${list.markId}/"><div class="mark">
-								<div class="mark-img">${list.markImg}</div>
-								<div class="mark-name">${list.markName}</div>
-							</div></a>
-					</c:forEach>
+					<div id="tab3" class="cont scroll">
+						<div id="product-body">
 
-					<!-- 완성시 이부분 지우기 -->
-					<a href="mark"><div class="mark">
-							<div class="mark-img"></div>
-							<div class="mark-name">mark 1</div>
-						</div></a><a href="mark"><div class="mark">
-							<div class="mark-img"></div>
-							<div class="mark-name">mark 1</div>
-						</div></a><a href="mark"><div class="mark">
-							<div class="mark-img"></div>
-							<div class="mark-name">mark 1</div>
-						</div></a><a href="mark"><div class="mark">
-							<div class="mark-img"></div>
-							<div class="mark-name">mark 1</div>
-						</div></a>
-					<!-- 여기까지 -->
+							<c:forEach var="list" items="${brandList}">
+								<div id="categoryBundle">
+									<div id="product-subtitle" class="menu-toggle-btn"
+										data-index="${list.title}">
+										<p>${list.title}</p>
+										<svg xmlns="http://www.w3.org/2000/svg" height="24px"
+											viewBox="0 0 24 24" width="24px" fill="#000000">
+											<path d="M24 24H0V0h24v24z" fill="none" opacity=".87" />
+											<path
+												d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6-1.41-1.41z" />
+										</svg>
+									</div>
 
-				</div>
-			</div></li>
+									<c:forEach var="item" items="${list.list}">
+										<a href="/login/category/${item.companyId}">
+											<div id="product-subtitle-sub-box"
+												class="gnb hide i${list.title}">
+												<div class="product-subtitle-sub">${item.companyName}</div>
+											</div>
+										</a>
+									</c:forEach>
+								</div>
+							</c:forEach>
+
+						</div>
+					</div></li>
+				<li><a href="#tab3" class="btn"><p class="btn-title">인증마크</p>
+						<span id="bar"></a>
+					<div id="tab3" class="cont scroll">
+						<div id="mark-body">
+							<c:forEach var="list" items="${markList}">
+								<a href="mark/${list.markId}/"><div class="mark">
+										<div class="mark-img">${list.markImg}</div>
+										<div class="mark-name">${list.markName}</div>
+									</div></a>
+							</c:forEach>
+
+							<!-- 완성시 이부분 지우기 -->
+							<a href="mark"><div class="mark">
+									<div class="mark-img"></div>
+									<div class="mark-name">mark 1</div>
+								</div></a><a href="mark"><div class="mark">
+									<div class="mark-img"></div>
+									<div class="mark-name">mark 1</div>
+								</div></a><a href="mark"><div class="mark">
+									<div class="mark-img"></div>
+									<div class="mark-name">mark 1</div>
+								</div></a><a href="mark"><div class="mark">
+									<div class="mark-img"></div>
+									<div class="mark-name">mark 1</div>
+								</div></a>
+							<!-- 여기까지 -->
+
+						</div>
+					</div></li>
 
 
-		</ul>
-		
-	</div>
-	</div>
+			</ul>
+
+		</div>
+	</div> --%>
+	
+	
+	
+	
+	
+	
+	<div id="wrap">
+        <section class="tabArea">
+            <ul class="tab">
+                <li class="on"><a href="#!"><span>품목</span><div class="underLine"></div></a>
+                </li><li><a href="#!"><span>브랜드</span></a><div class="underLine"></div></li>
+            </ul>
+            
+            <!-- 최신순 -->
+            <div class="tabBox on scroll">
+						<div id="product-body">
+
+							<c:forEach var="list" items="${productCategoryList}">
+								<div id="categoryBundle">
+									<div id="product-subtitle" class="menu-toggle-btn"
+										data-index="${list.topClassId}">
+										<p>${list.topClassName}</p>
+										<svg xmlns="http://www.w3.org/2000/svg" height="24px"
+											viewBox="0 0 24 24" width="24px" fill="#000000">
+											<path d="M24 24H0V0h24v24z" fill="none" opacity=".87" />
+											
+											<path
+												d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6-1.41-1.41z" /></svg>
+									</div>
+									<c:forEach var="item" items="${list.midList}">
+										<a href="/login/category/${item.midClassId}">
+											<div id="product-subtitle-sub-box" class="gnb hide i${list.topClassName }">
+												<div class="product-subtitle-sub">${item.midClassName}</div>
+											</div>
+										</a>
+									</c:forEach>
+								</div>
+							</c:forEach>
+						</div>
+            </div>
+            
+            <!-- 이름순 -->
+            <div class="tabBox scroll">
+            
+					<div id="product-body">
+							<c:forEach var="list" items="${brandList}">
+								<div id="categoryBundle">
+									<div id="product-subtitle" class="menu-toggle-btn"
+										data-index="${list.title}">
+										<p>${list.title}</p>
+										<svg xmlns="http://www.w3.org/2000/svg" height="24px"
+											viewBox="0 0 24 24" width="24px" fill="#000000">
+											<path d="M24 24H0V0h24v24z" fill="none" opacity=".87" />
+											<path
+												d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6-1.41-1.41z" />
+										</svg>
+									</div>
+
+									<c:forEach var="item" items="${list.list}">
+										<a href="/login/category/brand/${item.companyId}">
+											<div id="product-subtitle-sub-box"
+												class="gnb hide i${list.title}">
+												<div class="product-subtitle-sub">${item.companyName}</div>
+											</div>
+										</a>
+									</c:forEach>
+								</div>
+							</c:forEach>
+
+						</div>
+                
+                
+                
+                
+            </div>
+        </section>
+
+        
+    </div>
+	
+	
+	
+	
+	
+	
 
 	<nav class="sticky">
 		<a href="/login/"><div>
@@ -432,5 +613,4 @@ a {
 				<p>설정</p>
 			</div></a>
 	</nav>
-
 </html>

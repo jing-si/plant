@@ -7,7 +7,7 @@
   </select>
   
   <select id="item" resultType="PlantLevel">
-  	SELECT * FROM PLANT_LEVEL
+  	SELECT * FROM PLANT_LEVEL where PLANT_ID = #{plantLevelId} and PLANT_LEVEL_ID = 5
   </select>
   
   <insert id="add">
@@ -28,12 +28,25 @@
   	WHERE PLANT_LEVEL_ID=#{plantLevelId}
   </delete>
   
+  <select id="maturePlant" resultType="PlantLevel">
+  	select * from PLANT_LEVEL
+  	WHERE PLANT_LEVEL_ID= 5;
+  </select>
+  
   <!--대량 처리 -->
 	<select id="list_pager" resultType="PlantLevel">
-		SELECT * FROM PLANT_LEVEL m		
-		JOIN PLANT s on m.PLANT_ID = s.PLANT_ID 
+		<include refid="search"></include>
 		LIMIT #{offset}, #{perPage}
 	</select>
+	
+	<sql id="search">
+		SELECT m.*,s.PLANT_NAME FROM PLANT_LEVEL m		
+		JOIN PLANT s on m.PLANT_ID = s.PLANT_ID
+		<where>
+			<if test="(search == 'total' or search == 'plantId') and keyword != ''">OR PLANT_NAME like #{searchKeyword}</if>
+			<if test="(search == 'total' or search == 'plantLevelId') and keyword != ''">OR PLANT_LEVEL_ID like #{searchKeyword}</if>
+		</where>
+	</sql>
 
 	<select id="update_list" resultType="PlantLevel">
 		Insert into PLANT_LEVEL
@@ -69,7 +82,7 @@
 	</delete>
 
 	<select id="total" resultType="float">
-		select COUNT(*) from PLANT_LEVEL
+		select COUNT(*) from (<include refid="search"></include>) C
 	</select>
 
 	<select id="combo" resultType="ComboItem">
@@ -78,4 +91,18 @@
 		FROM PLANT
 		
 	</select>
+	
+	<select id="plantImage" resultMap="PlantImageMap">
+		select PLANT_ID, PLANT_LEVEL_ID, PLANT_IMAGE FROM PLANT_LEVEL
+		order by PLANT_ID, PLANT_LEVEL_ID
+		
+	</select>
+	
+	<resultMap type="PlantImage" id="PlantImageMap">
+		<id column="PLANT_ID" property="plantId"/>
+		<collection property="plantImage" column="PLANT_IMAGE" ofType="String" javaType="ArrayList">
+			<id column="PLANT_IMAGE" property="plantImage"/>
+		</collection>
+		
+	</resultMap>
 </mapper>

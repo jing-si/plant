@@ -43,22 +43,21 @@
 		#{productId}
 	</delete>
 
-	<insert id="bulkAdd">
-		INSERT INTO PRODUCT_CERT_REASON
-		(PRODUCT_ID,CERT_REASON_ID)
-		SELECT #{productId},#{certReasonId}
-		FROM dual
-		WHERE NOT EXISTS (
-		SELECT * FROM PRODUCT_CERT_REASON
-		WHERE PRODUCT_ID = #{productId} AND CERT_REASON_ID = #{certReasonId}
-	</insert>
-	
 	<!--대량 처리 -->
 	<select id="list_pager" resultType="ProductCertReason">
-		SELECT * FROM PRODUCT_CERT_REASON		
+		SELECT * FROM (<include refid="search"></include>)	M
 		LIMIT #{offset}, #{perPage}
 	</select>
-
+	
+	<sql id="search">
+		select * from PRODUCT_CERT_REASON
+		<where>
+			<if test="search == 'total' or search == 'productCertReasonId' and keyword != ''">OR PRODUCT_CERT_REASON_ID like #{searchKeyword}</if>
+			<if test="search == 'total' or search == 'productId' and keyword != ''">OR PRODUCT_ID in (select PRODUCT_ID from PRODUCT where PRODUCT_NAME like #{searchKeyword})</if>
+			<if test="search == 'total' or search == 'certReasonId' and keyword != ''">OR CERT_REASON_ID in (select CERT_REASON_ID from CERT_REASON where CERT_REASON_NAME like #{searchKeyword})</if>			
+		</where>
+	</sql>
+	
 	<select id="update_list">
 		Insert into PRODUCT_CERT_REASON
 		values
@@ -82,15 +81,15 @@
 
 	<delete id="delete_list">		
 		DELETE FROM  PRODUCT_CERT_REASON		
-		WHERE PRODUCT_CERT_REASON_ID in (
+		WHERE (PRODUCT_ID,CERT_REASON_ID) in (
 		<foreach collection="list" item="item" separator=",">
-				#{item.productCertReasonId}
+				(#{item.productId}, #{item.certReasonId})
 		</foreach>
 		)		
 	</delete>
 
 	<select id="total" resultType="float">
-		select COUNT(*) from PRODUCT_CERT_REASON
+		select COUNT(*) from (<include refid="search"></include>)	M
 	</select>
 
 	<select id="combo" resultType="ComboItem">

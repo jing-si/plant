@@ -74,11 +74,7 @@ public class FileUploader {
 		if (file != null && !file.isEmpty()) {
 			if(fileName == null)
 				fileName = uuid.toString() +"_"+ file.getOriginalFilename();
-			else{
-				String tempFileName = file.getOriginalFilename();
-				fileName += tempFileName.substring(tempFileName.lastIndexOf("."));
-				
-			}
+			
 			//파일 중복 체크
 
 			try {

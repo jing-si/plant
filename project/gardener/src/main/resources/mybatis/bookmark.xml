@@ -8,138 +8,132 @@
 	<select id="list" resultType="Bookmark">
 		<!-- SELECT * FROM BOOKMARK -->
 		SELECT b.*, p.PRODUCT_IMAGE, p.PRODUCT_NAME FROM bookmark b
-		NATURAL JOIN product p
+		NATURAL
+		JOIN product p
 		where USER_ID = #{userId}
 	</select>
-	
+
 	<select id="list_date" resultType="Bookmark">
-		SELECT b.*, p.PRODUCT_IMAGE, p.PRODUCT_NAME FROM bookmark b
+		SELECT b.*, p.PRODUCT_IMAGE,
+		p.PRODUCT_NAME FROM bookmark b
 		NATURAL JOIN product p
-		where USER_ID = #{userId}
+		where USER_ID =
+		#{userId}
 		order BY b.BOOKMARK_DATETIME desc;
 	</select>
-	
+
 	<select id="list_name" resultType="Bookmark">
-		SELECT b.*, p.PRODUCT_IMAGE, p.PRODUCT_NAME FROM bookmark b
+		SELECT b.*, p.PRODUCT_IMAGE,
+		p.PRODUCT_NAME FROM bookmark b
 		NATURAL JOIN product p
-		where USER_ID = #{userId}
+		where USER_ID =
+		#{userId}
 		order BY p.PRODUCT_NAME;
 	</select>
 
 
 	<select id="item" resultType="Bookmark">
 		SELECT * FROM BOOKMARK
-		WHERE BOOK_ID =#{bookmarkId} and USER_ID = #{userId}
+		WHERE
+		PRODUCT_ID =#{productId} and USER_ID = #{userId}
 	</select>
 
 	<insert id="add">
-	<!-- 	INSERT INTO USER
-		VALUES (#{bookmarkId},#{userId},
-		#{bookmarkDatetime},null) -->
-		
+		<!-- INSERT INTO USER VALUES (#{bookmarkId},#{userId}, #{bookmarkDatetime},null) -->
+
 		INSERT INTO BOOKMARK
-		VALUES ((SELECT IFNULL(MAX(BOOKMARK_ID) + 1, 1) FROM BOOKMARK B),
-		 		#{userId}, 
-				now(), 
-				#{productId},
-				#{companyId}
-				)
-				
-<!-- 		insert into bookmark
-		values #{userId}, 
-				now(), 
-				#{productId} -->
+		VALUES (
+		#{productId},
+		#{userId},
+		now(),
+		#{companyId}
+		)
+
+		<!-- insert into bookmark values #{userId}, now(), #{productId} -->
 
 	</insert>
 
 	<update id="update">
 		UPDATE USER
-		SET BOOKMARK_ID=#{bookmarkId}, 
-			USER_ID=#{userId},
-			BOOKMARK_DATETIME=#{bookmarkDatetime},
-			PRODUCT_ID=#{productId}
-		WHERE BOOKMARK_ID=#{bookmarkId}
+		SET
+		BOOKMARK_DATETIME=#{bookmarkDatetime},
+		WHERE PRODUCT_ID = #{productId} and USER_ID = #{userId}
 	</update>
 
 	<delete id="delete">
 		DELETE FROM BOOKMARK
-		WHERE BOOKMARK_ID=#{bookmarkId}
+		WHERE PRODUCT_ID = #{productId}
+		and USER_ID = #{userId}
 	</delete>
-	
-	<delete id="delete2">
-		delete from bookmark
-		where product_id = #{productId} and user_Id = #{userId}
-	</delete>
-	
-	<!-- 즐겨찾기 제품아이디, 제품이미지, 제품명 리스트 이름순 정렬 -->
-	<select id="productListName" resultType="Bookmark">
-	SELECT PRODUCT.PRODUCT_ID, PRODUCT.PRODUCT_IMAGE, PRODUCT.PRODUCT_NAME 
-	FROM PRODUCT LEFT JOIN BOOKMARK 
-	ON PRODUCT.PRODUCT_ID = BOOKMARK.PRODUCT_ID
-	JOIN  USER ON BOOKMARK.USER_ID = USER.USER_ID
-	ORDER BY PRODUCT.PRODUCT_NAME
-	</select>
-	
-	
-	<!-- 즐겨찾기 제품아이디, 제품이미지, 제품명 리스트 즐겨찾기 날짜순 정렬 -->
-	<select id="ProductListDate" resultType="Bookmark">
-	SELECT PRODUCT.PRODUCT_ID, PRODUCT.PRODUCT_IMAGE, PRODUCT.PRODUCT_NAME
-	LEFT JOIN BOOKMARK 
-	ON PRODUCT.PRODUCT_ID = BOOKMARK.PRODUCT_ID
-	JOIN  USER ON BOOKMARK.USER_ID = USER.USER_ID
-	ORDER BY BOOKMARK.BOOKMARK_DATE DESC
-	</select>
-	
-	
+
 	<!--대량 처리 -->
 	<select id="list_pager" resultType="Bookmark">
-		SELECT * FROM BOOKMARK		
+		SELECT * FROM (
+		<include refid="search"></include>
+		) M
 		LIMIT #{offset}, #{perPage}
 	</select>
+
+	<sql id="search">
+		select b.*, p.PRODUCT_NAME from BOOKMARK b
+		NATURAL JOIN product p
+		<where>
+			<if
+				test="(search == 'total' or search == 'userId') and keyword != ''">OR USER_ID like #{searchKeyword}</if>
+			<if
+				test="(search == 'total' or search == 'productName') and keyword != ''">OR PRODUCT_NAME like #{searchKeyword}
+			</if>
+			<if
+				test="(search == 'total' or search == 'companyId') and keyword != ''">OR COMPANY_ID IN (SELECT COMPANY_ID FROM COMPANY WHERE
+				COMPANY_NAME like #{searchKeyword})
+			</if>
+		</where>
+	</sql>
 
 	<select id="update_list" resultType="Bookmark">
 		Insert into BOOKMARK
 		values
 		<foreach collection="list" item="item" separator=",">
-			(#{item.bookmarkId},#{item.userId},#{item.bookmarkDatetime},#{item.productId})
+			(#{item.productId},#{item.userId},#{item.bookmarkDatetime})
 		</foreach>
 		on duplicate key update
-		BOOKMARK_ID = VALUES(BOOKMARK_ID),
-		USER_ID = VALUES(USER_ID),
-		BOOKMARK_DATETIME = VALUES(BOOKMARK_DATETIME),
-		PRODUCT_ID = VALUES(PRODUCT_ID)
+		BOOKMARK_DATETIME =	VALUES(BOOKMARK_DATETIME),
+		COMPANY_ID = VALUES(COMPANY_ID)
 	</select>
 
 	<insert id="insert_list">
 		INSERT INTO BOOKMARK
 		VALUES
-		<foreach collection="list" item="item" separator="," index="index">
+		<foreach collection="list" item="item" separator=","
+			index="index">
 			(
-			(SELECT IFNULL(MAX(BOOKMARK_ID) + (1+#{index}),  (1+#{index})) FROM BOOKMARK B where user_id = #{item.userId})
+			#{item.productId}
 			,#{item.userId}
 			,#{item.bookmarkDatetime}
-			,#{item.productId}
 			,#{item.companyId}
 			)
 		</foreach>
 	</insert>
 
-	<delete id="delete_list">		
-		DELETE FROM  BOOKMARK		
-		WHERE (BOOKMARK_ID,USER_ID) in (
+	<delete id="delete_list">
+		DELETE FROM BOOKMARK
+		WHERE (PRODUCT_ID,USER_ID) in (
 		<foreach collection="list" item="item" separator=",">
-				(#{item.bookmarkId},#{item.userId})
+			(#{item.productId},#{item.userId})
 		</foreach>
-		)		
+		)
 	</delete>
 
 	<select id="total" resultType="float">
-		select COUNT(*) from BOOKMARK
+		select COUNT(*) from (
+		<include refid="search"></include>
+		) M
 	</select>
 
 	<select id="combo" resultType="ComboItem">
 		SELECT "0" AS "table",
-		PRODUCT_ID AS "id", PRODUCT_NAME AS "text"
+		PRODUCT_ID
+		AS "id", PRODUCT_NAME AS "text"
 		FROM PRODUCT
 		UNION
 		SELECT "1" AS "table",
@@ -149,9 +143,9 @@
 		SELECT "2" AS "table",
 		COMPANY_ID AS "id", COMPANY_NAME AS "text"
 		FROM COMPANY
-		
-		
+
+
 	</select>
-	
+
 
 </mapper>

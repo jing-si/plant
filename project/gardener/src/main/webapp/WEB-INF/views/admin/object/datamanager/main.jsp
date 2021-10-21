@@ -138,11 +138,10 @@ label {
 	position: relative;
 }
 
-.productImage{
+.productImage {
 	border: 1px solid #ccc;
 	max-height: 252px;
 	max-width: 252px;
-		
 }
 
 #product_ditail>div:first-of-type {
@@ -167,10 +166,7 @@ label {
 
 #company_ditail div div {
 	margin-left: 30px;
-	
 }
-
-
 </style>
 <script>
 		let companyArr = new Array();
@@ -221,6 +217,9 @@ label {
 					success:function(data){
 						companyArr = data;
 						makeCompanyList("db");
+					},
+					error: function (data) {
+						alert(data)
 					}
 				})
 				
@@ -320,12 +319,18 @@ label {
 				}
 				
 				$.ajax("/admin/company/existCompany",{					
-					data:JSON.stringify(company),					
-					contentType: 'application/json',					
-					method:"POST",					
-					success: function(data){
+					data:JSON.stringify(company)					
+					, contentType: 'application/json'					
+					, method:"POST"					
+					, success: function(data){
 						uploadProduct();
+						if(data != true){
+							alert(data)
+						}
 					}
+					, error: function (data) {
+						alert("회사 존재 여부 확인에 실패했습니다.")
+				}
 				})
 				
 				
@@ -346,6 +351,12 @@ label {
 							.text("등록이 완료 되었습니다.")
 					tr.append(th1);
 					$("#product_api_tbody").append(tr)
+					if(data != "ok"){
+						alert(data)
+					}
+				}
+				, error: function (data) {
+					alert("제품 등록에 실패했습니다.")
 				}
 			})
 		}
@@ -411,6 +422,7 @@ label {
 				$("#certName").val(product.certName);
 				$("#prodInrs").val(product.prodInrs);
 				$("#elId").val(product.elId);
+				$("#productInfo").val(product.productInfo);
 				if(product.provimg != null)
 				$("#productImage").attr("src",product.productImage);
 
@@ -447,7 +459,9 @@ label {
 						<!--테이블 카테고리 선택상자  -->
 						<div class="col-10  hstack mx-3 pt-2 nav">
 							<div class="option col-3 pt-2 pb-3" data-url="#">
-								<h5 class="center"><i class="bi"></i> Database 관리자</h5>
+								<h5 class="center">
+									<i class="bi"></i> Database 관리자
+								</h5>
 							</div>
 
 
@@ -545,7 +559,7 @@ label {
 													</div>
 													<form class="col-10 center" method="get">
 														<button id="company_db_but" data-sub="company"
-															type="button" class="btn btn-info col-2 company_but">검색</button>
+															type="button" class="btn btn-info col-2 company_but mt-4 px-3">검색</button>
 
 													</form>
 												</div>
@@ -571,10 +585,7 @@ label {
 															data-kind="Api">API
 															<div class="company_span black"></div>
 														</li>
-														<li class="col-3 nav_icon" data-sub="product"
-															data-kind="Db">DB
-															<div class="company_span "></div>
-														</li>
+
 													</ul>
 												</div>
 
@@ -698,10 +709,8 @@ label {
 										</div>
 
 									</div>
-										<!-- 공백-->
-										<div class="col-1">
-										
-										</div>									
+									<!-- 공백-->
+									<div class="col-1"></div>
 									<div class="col-7">
 										<!-- 제품 상세 페이지-->
 										<div id="product_ditail" class="detail col-12">
@@ -728,7 +737,11 @@ label {
 													<input type="text" class="form-control" id="elId">
 												</div>
 												<div class="input-group mb-4">
-
+													<span class="input-group-text col-4 textcenter">제품
+														정보</span> <input type="text" class="form-control"
+														id="productInfo">
+												</div>
+												<div class="input-group mb-4">
 													<img alt="" src="" id="productImage" class="productImage">
 												</div>
 											</div>
@@ -757,7 +770,8 @@ label {
 														id="productImage">
 												</div>
 												<div class="input-group mb-4">
-													<img alt="" src="" id="productImageWeb" class="productImage">
+													<img alt="" src="" id="productImageWeb"
+														class="productImage">
 												</div>
 											</div>
 										</div>

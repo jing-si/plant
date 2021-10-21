@@ -9,19 +9,35 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import kr.co.gardener.util.GridSystem;
 
 public class Bookmark extends GridSystem {
-	private int bookmarkId;
+	private String productName;
 	private String userId;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss",timezone="Asia/Seoul")
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy.MM.dd HH:mm:ss",timezone="Asia/Seoul")
+	@DateTimeFormat(pattern = "yyyy.MM.dd HH:mm:ss")
 	private Date bookmarkDatetime;
-	private int productId;
 	private String companyId;
 	
+	private String productId;
 	private String productImage;
-	private String productName;
 	
 	
-	
+	public String getProductId() {
+		return productId;
+	}
+	public void setProductId(String productId) {
+		this.productId = productId;
+	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	public Date getBookmarkDatetime() {
+		return bookmarkDatetime;
+	}
+	public void setBookmarkDatetime(Date bookmarkDatetime) {
+		this.bookmarkDatetime = bookmarkDatetime;
+	}
 	public String getCompanyId() {
 		return companyId;
 	}
@@ -40,28 +56,7 @@ public class Bookmark extends GridSystem {
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
-	public int getBookmarkId() {
-		return bookmarkId;
-	}
-	public void setBookmarkId(int bookmarkId) {
-		this.bookmarkId = bookmarkId;
-	}
-	public String getUserId() {
-		return userId;
-	}
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-	public Date getBookmarkDatetime() {
-		return bookmarkDatetime;
-	}
-	public void setBookmarkDatetime(Date bookmarkDatetime) {
-		this.bookmarkDatetime = bookmarkDatetime;
-	}
-	public int getProductId() {
-		return productId;
-	}
-	public void setProductId(int productId) {
-		this.productId = productId;
-	}
+	
+	
+	
 }

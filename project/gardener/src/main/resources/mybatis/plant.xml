@@ -14,7 +14,7 @@
 	
 	<insert id="add">
 		INSERT INTO PLANT
-		VALUES (#{plantId},#{plantName},#{plantCategory},#{plantInfo}, #{plantShadow})
+		VALUES (#{plantId},#{plantName},#{plantCategory},#{plantInfo}, #{plantShadow}, #{plantThumbnail})
 	</insert>
 	
 	<update id="update">
@@ -23,7 +23,8 @@
 			PLANT_NAME=#{plantName},
 			PLANT_CATEGORY=#{plantCategory},
 			PLANT_INFO=#{plantInfo},
-			PLANT_SHADOW=#{plantShadow}
+			PLANT_SHADOW=#{plantShadow},
+			PLANT_THUMBNAIL = #{plantThumbnail}
 		WHERE PLANT_ID=#{plantId}
 	</update>
 	
@@ -34,21 +35,31 @@
 	
 	<!--대량 처리 -->
 	<select id="list_pager" resultType="Plant">
-		SELECT * FROM PLANT		
+		SELECT * FROM (<include refid="search"></include>) M		
 		LIMIT #{offset}, #{perPage}
 	</select>
+	
+	<sql id="search">
+		select * from PLANT
+		<where>
+			<if test="(search == 'total' or search == 'plantId') and keyword != ''">OR PLANT_ID like #{searchKeyword}</if>
+			<if test="(search == 'total' or search == 'plantName') and keyword != ''">OR PLANT_NAME like #{searchKeyword}</if>
+			<if test="(search == 'total' or search == 'plantCategory') and keyword != ''">OR PLANT_CATEGORY like #{searchKeyword}</if>
+		</where>
+	</sql>
 
 	<select id="update_list" resultType="Plant">
 		Insert into PLANT
 		values
 		<foreach collection="list" item="item" separator=",">
-			(#{item.plantId},#{item.plantName},#{item.plantCategory},#{item.plantInfo},#{item.plantShadow})
+			(#{item.plantId},#{item.plantName},#{item.plantCategory},#{item.plantInfo},#{item.plantShadow}, #{item.plantThumbnail})
 		</foreach>
 		on duplicate key update
 		PLANT_NAME = VALUES(PLANT_NAME)	
 		, PLANT_CATEGORY = VALUES(PLANT_CATEGORY)
 		, PLANT_INFO = VALUES(PLANT_INFO)
 		, PLANT_SHADOW = VALUES(PLANT_SHADOW)
+		, PLANT_THUMBNAIL = VALUES(PLANT_THUMBNAIL)
 	
 	</select>
 
@@ -61,6 +72,7 @@
 			,#{item.plantCategory}
 			,#{item.plantInfo}
 			,#{item.plantShadow}
+			,#{item.plantThumbnail}
 			)
 		</foreach>
 	</insert>
@@ -75,16 +87,16 @@
 	</delete>
 
 	<select id="total" resultType="float">
-		select COUNT(*) from PLANT
+		select COUNT(*) from (<include refid="search"></include>) M	
 	</select>
 
 	<select id="combo" resultType="ComboItem">
 		SELECT "0" AS "table",
-		'나무' AS "id", '나무' AS "text"
+		'tree' AS "id", '나무' AS "text"
 		
 		UNION
 		SELECT "0" AS "table",
-		'꽃' AS "id", '꽃' AS "text"
+		'flower' AS "id", '꽃' AS "text"
 		
 	</select>
 </mapper>

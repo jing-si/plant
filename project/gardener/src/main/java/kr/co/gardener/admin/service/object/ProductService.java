@@ -3,6 +3,7 @@ package kr.co.gardener.admin.service.object;
 import java.util.List;
 
 import kr.co.gardener.admin.model.object.Product;
+import kr.co.gardener.admin.model.object.list.CompanyList;
 import kr.co.gardener.admin.model.object.list.ProductList;
 import kr.co.gardener.util.Pager;
 
@@ -29,5 +30,9 @@ public interface ProductService {
 	void delete_list(ProductList list);
 
 	void update_list(ProductList list);
+
+	void autoUpdate(ProductList list);
+
+	String certify(int barcode);
 
 }

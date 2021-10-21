@@ -1,6 +1,8 @@
 package kr.co.gardener.admin.service.forest.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,7 +10,6 @@ import org.springframework.stereotype.Service;
 import kr.co.gardener.admin.dao.user.PlantDao;
 import kr.co.gardener.admin.model.forest.Plant;
 import kr.co.gardener.admin.model.forest.list.PlantList;
-import kr.co.gardener.admin.model.user.list.InvenList;
 import kr.co.gardener.admin.service.forest.PlantService;
 import kr.co.gardener.util.Pager;
 @Service
@@ -17,9 +18,28 @@ public class PlantServiceImpl implements PlantService {
 	@Autowired
 	PlantDao dao;
 	
+	Map<Integer, String> plantImg; 
+	
 	@Override
 	public List<Plant> list() {
 		return dao.list();
+	}
+	
+	private void initPlantImg() {
+		plantImg = new HashMap<>();
+		
+		List<Plant> list = dao.list();
+		
+		for(Plant item : list) {
+			plantImg.put(item.getPlantId(), item.getPlantThumbnail());
+		}
+	}
+	
+	@Override
+	public String PlantThumbnailImg(int plantId) {
+		if(plantImg == null) 
+			initPlantImg();
+		return plantImg.get(plantId);
 	}
 
 	@Override

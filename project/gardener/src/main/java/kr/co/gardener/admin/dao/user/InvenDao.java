@@ -32,4 +32,12 @@ public interface InvenDao {
 
 	void update_list(List<Inven> list);
 
+	int countDown(Inven inven);
+
+	int countUp(Inven inven);
+
+	void countDown_list(List<Inven> invenList);
+
+	void countUp_list(List<Inven> invenList);
+
 }

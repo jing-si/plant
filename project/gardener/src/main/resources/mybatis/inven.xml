@@ -36,16 +36,27 @@
 	</delete>
 
 	<select id="list_userId" resultType="Inven">
-		SELECT * FROM INVEN
+		SELECT i.*, p.PLANT_ID, p.PLANT_THUMBNAIL, p.PLANT_SHADOW,p.PLANT_CATEGORY FROM INVEN i
+		natural join plant p
 		where USER_ID = #{userId}
 	</select>
 	
 	<!--대량 처리 -->
 	<select id="list_pager" resultType="Inven">
-		SELECT * FROM INVEN i		
-		JOIN PLANT p on p.PLANT_ID = i.PLANT_ID 
+		<include refid="search"></include>
 		LIMIT #{offset}, #{perPage}
 	</select>
+	
+	<sql id="search">
+		SELECT i.*, p.PLANT_NAME FROM INVEN i		
+		JOIN PLANT p on p.PLANT_ID = i.PLANT_ID 
+		<where>
+			<if test="(search == 'total' or search == 'userId') and keyword != ''">OR USER_ID like #{searchKeyword}</if>
+			<if test="(search == 'total' or search == 'plantName') and keyword != ''">OR PLANT_NAME like #{searchKeyword} </if>
+		</where>
+	</sql>
+	
+	
 
 	<select id="update_list" resultType="Inven">
 		Insert into INVEN
@@ -81,7 +92,7 @@
 	</delete>
 
 	<select id="total" resultType="float">
-		select COUNT(*) from INVEN
+		select COUNT(*) from (<include refid="search"></include>) M
 	</select>
 
 	<select id="combo" resultType="ComboItem">
@@ -93,4 +104,42 @@
 		PLANT_ID AS "id", PLANT_NAME AS "text"
 		FROM PLANT
 	</select>
+	
+	<update id="countUp">		
+		Insert into INVEN
+		values
+				(#{userId},#{plantId},1)
+		on duplicate key update
+		INVEN_AMOUNT = INVEN_AMOUNT+1
+	</update>
+	
+	<update id="countDown">		
+		update INVEN
+		set 
+		INVEN_AMOUNT = INVEN_AMOUNT-1
+		where
+		USER_ID = #{userId} 
+		AND PLANT_ID = #{plantId}
+	</update>
+	
+	<update id="countUp_list">
+	Insert into INVEN
+		values
+		<foreach collection="list" item="item" separator="," >
+				(#{item.userId},#{item.plantId},INVEN_AMOUNT+1)
+		</foreach>
+		on duplicate key update
+		INVEN_AMOUNT = INVEN_AMOUNT+1
+	</update>
+	
+	<update id="countDown_list">
+	Insert into INVEN
+		values
+		<foreach collection="list" item="item" separator="," >
+				(#{item.userId},#{item.plantId},INVEN_AMOUNT-1)
+		</foreach>
+		on duplicate key update
+		INVEN_AMOUNT = INVEN_AMOUNT-1
+		
+	</update>
 </mapper>

@@ -24,18 +24,23 @@ public class Product extends GridSystem {
 	protected int certId;
 	protected int productCertId;
 
-	@DateTimeFormat(pattern = "yyyy-MM-dd" )
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd",timezone="Asia/Seoul")
+	@DateTimeFormat(pattern = "yyyy.MM.dd" )
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy.MM.dd",timezone="Asia/Seoul")
 	protected Date productStartDate;
 
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd",timezone="Asia/Seoul")
+	@DateTimeFormat(pattern = "yyyy.MM.dd")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy.MM.dd",timezone="Asia/Seoul")
 	protected Date productEndDate;
-	protected String companyId;
-	protected int g2bId;
-	protected int elId;
-
 	
+	protected String productInfo;
+	
+	private String companyName;
+	protected int elId;
+	
+	protected String productCertReason;
+	protected String productBarcode;
+
+	protected String companyId;
 
 	// 추가 필드
 	protected List<CertReason> certReasons;
@@ -86,13 +91,13 @@ public class Product extends GridSystem {
 		this.productCertId = productCertId;
 	}
 	public String getProductStartDate() {
-		return new SimpleDateFormat("yyyy-MM-dd").format(productStartDate);
+		return new SimpleDateFormat("yyyy.MM.dd").format(productStartDate);
 	}
 	public void setProductStartDate(Date productStartDate) {
 		this.productStartDate = productStartDate;
 	}
 	public String getProductEndDate() {
-		return new SimpleDateFormat("yyyy-MM-dd").format(productEndDate);
+		return new SimpleDateFormat("yyyy.MM.dd").format(productEndDate);
 	}
 	public void setProductEndDate(Date productEndDate) {
 		this.productEndDate = productEndDate;
@@ -103,12 +108,7 @@ public class Product extends GridSystem {
 	public void setCompanyId(String companyId) {
 		this.companyId = companyId;
 	}
-	public int getG2bId() {
-		return g2bId;
-	}
-	public void setG2bId(int g2bId) {
-		this.g2bId = g2bId;
-	}
+	
 	public int getElId() {
 		return elId;
 	}
@@ -127,7 +127,33 @@ public class Product extends GridSystem {
 	public void setCert(Cert cert) {
 		this.cert = cert;
 	}
-
+	public String getCompanyName() {
+		return companyName;
+	}
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
+	public String getProductInfo() {
+		return productInfo;
+	}
+	public void setProductInfo(String productInfo) {
+		this.productInfo = productInfo;
+	}
+	public String getProductCertReason() {
+		return productCertReason;
+	}
+	public void setProductCertReason(String productCertReason) {
+		this.productCertReason = productCertReason;
+	}
+	public String getProductBarcode() {
+		return productBarcode;
+	}
+	public void setProductBarcode(String productBarcode) {
+		this.productBarcode = productBarcode;
+	}
+	
+	
+	
 	// api용 get,seet
 	
 

@@ -40,7 +40,7 @@ public class ProductDaoImpl implements ProductDao {
 
 	@Override
 	public List<Product> list(Pager pager) {
-		return sql.selectList("product.list", pager);
+		return sql.selectList("product.list_pager", pager);
 	}
 	@Override
 	public float total(Pager pager) {		
@@ -76,6 +76,16 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public List<ComboItem> combo() {
 		return sql.selectList("product.combo");
+	}
+
+	@Override
+	public void autoClassify(List<Product> items) {
+		sql.update("product.autoClassify",items);
+	}
+
+	@Override
+	public int count(int barcode) {
+		return sql.selectOne("product.count", barcode);
 	}
 
 }

@@ -12,6 +12,7 @@ import kr.co.gardener.admin.dao.object.CompanyDao;
 import kr.co.gardener.admin.model.object.Company;
 import kr.co.gardener.admin.model.object.list.CompanyList;
 import kr.co.gardener.admin.service.object.CompanyService;
+import kr.co.gardener.main.vo.BrandVO;
 import kr.co.gardener.util.JsoupCrawler;
 import kr.co.gardener.util.Pager;
 
@@ -101,9 +102,22 @@ public class CompanyServiceImpl implements CompanyService {
 		
 	}
 
+
+
+
 	@Override
-	public Company itemIncludeProduct(HashMap<String, String> hm) {
+	public Company itemIncludeProduct(String companyId, String userId) {
+		HashMap<String,String> hm = new HashMap<>();
+		hm.put("companyId", companyId);
+		hm.put("userId", userId);
 		return dao.itemIncludeProduct(hm);
+	}
+
+
+
+	@Override
+	public List<BrandVO> brandList() {
+		return dao.brandList();
 	}
 	
 	

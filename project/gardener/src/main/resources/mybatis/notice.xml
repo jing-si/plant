@@ -37,10 +37,18 @@
 
 	<!--대량 처리 -->
 	<select id="list_pager" resultType="Notice">
-		SELECT * FROM NOTICE		
+		SELECT * FROM (<include refid="search"></include>) M		
 		LIMIT #{offset}, #{perPage}
 	</select>
-
+	
+	<sql id="search">
+		select * from NOTICE
+		<where>
+			<if test="(search == 'total' or search == 'NoticeId') and keyword != ''">OR NOTICE_ID like #{searchKeyword}</if>
+			<if test="(search == 'total' or search == 'NoticeTitle') and keyword != ''">OR NOTICE_TITLE like #{searchKeyword}</if>
+		</where>
+	</sql>
+	
 	<select id="update_list" resultType="Notice">
 		Insert into NOTICE
 		values
@@ -77,7 +85,7 @@
 	</delete>
 
 	<select id="total" resultType="float">
-		select COUNT(*) from NOTICE
+		select COUNT(*) from (<include refid="search"></include>) M	
 	</select>
 
 	

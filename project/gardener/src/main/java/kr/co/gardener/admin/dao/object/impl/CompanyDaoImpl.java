@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.gardener.admin.dao.object.CompanyDao;
 import kr.co.gardener.admin.model.object.Company;
+import kr.co.gardener.main.vo.BrandVO;
 import kr.co.gardener.util.Pager;
 
 @Repository
@@ -64,6 +65,11 @@ public class CompanyDaoImpl implements CompanyDao {
 	@Override
 	public Company itemIncludeProduct(HashMap<String, String> hm) {
 		return sql.selectOne("company.includeProduct", hm);
+	}
+
+	@Override
+	public List<BrandVO> brandList() {
+		return sql.selectList("company.brandList");
 	}
 
 	
