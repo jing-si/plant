@@ -43,11 +43,7 @@ public class ProductCertReasonDaoImpl implements ProductCertReasonDao{
 		sql.delete("productCertReason.delete", productCertReasonId);
 	}
 
-	@Override
-	public void checkAdd(ProductCertReason r) {
-		sql.insert("productCertReason.bulkAdd", r);
-	}
-
+	
 	@Override
 	public float total(Pager pager) {
 		return sql.selectOne("productCertReason.total", pager);
@@ -59,18 +55,18 @@ public class ProductCertReasonDaoImpl implements ProductCertReasonDao{
 	}
 
 	@Override
-	public void insert(ProductCertReasonList list) {
+	public void insert(List<ProductCertReason> list) {
 		sql.insert("productCertReason.insert_list", list);
 	}
 
 	@Override
-	public void delete(ProductCertReasonList list) {
-		sql.insert("productCertReason.delete_list", list);		
+	public void delete(List<ProductCertReason> list) {
+		sql.delete("productCertReason.delete_list", list);		
 	}
 
 	@Override
-	public void update(ProductCertReasonList list) {
-		sql.insert("productCertReason.update_list", list);		
+	public void update(List<ProductCertReason> list) {
+		sql.update("productCertReason.update_list", list);		
 	}
 
 	@Override

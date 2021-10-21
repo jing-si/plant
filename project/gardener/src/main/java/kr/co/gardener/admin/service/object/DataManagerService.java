@@ -17,7 +17,7 @@ public interface DataManagerService {
 	List<ApiProduct> productList(int start, int end);
 
 
-	void UploadApiProduct(ApiProductList list);
+	String UploadApiProduct(ApiProductList list);
 
 
 }

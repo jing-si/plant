@@ -43,16 +43,6 @@
 		#{productId}
 	</delete>
 
-	<insert id="bulkAdd">
-		INSERT INTO PRODUCT_CERT_REASON
-		(PRODUCT_ID,CERT_REASON_ID)
-		SELECT #{productId},#{certReasonId}
-		FROM dual
-		WHERE NOT EXISTS (
-		SELECT * FROM PRODUCT_CERT_REASON
-		WHERE PRODUCT_ID = #{productId} AND CERT_REASON_ID = #{certReasonId}
-	</insert>
-	
 	<!--대량 처리 -->
 	<select id="list_pager" resultType="ProductCertReason">
 		SELECT * FROM (<include refid="search"></include>)	M
@@ -91,9 +81,9 @@
 
 	<delete id="delete_list">		
 		DELETE FROM  PRODUCT_CERT_REASON		
-		WHERE PRODUCT_CERT_REASON_ID in (
+		WHERE (PRODUCT_ID,CERT_REASON_ID) in (
 		<foreach collection="list" item="item" separator=",">
-				#{item.productCertReasonId}
+				(#{item.productId}, #{item.certReasonId})
 		</foreach>
 		)		
 	</delete>

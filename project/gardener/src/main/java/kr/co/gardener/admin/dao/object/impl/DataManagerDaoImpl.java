@@ -163,7 +163,7 @@ public class DataManagerDaoImpl implements DataManagerDao {
 
 	@Override
 	public void UploadApiProduct(List<ApiProduct> list) {
-		sql.insert("product.api_insert_list", list);
+		sql.update("product.update_list", list);
 		
 	}
 	

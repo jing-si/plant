@@ -189,7 +189,7 @@
 		}else{
 			target.locationState = 2
 		}
-		item.remove();
+		item.addClass("hide");
 		
 	})
 	
@@ -250,6 +250,9 @@
 .userPlantImg {
 	object-fit: contain;
 	height: 100%;
+}
+.hide{
+	display:none;
 }
 /* .userPlantImg {
 	width: 200px;

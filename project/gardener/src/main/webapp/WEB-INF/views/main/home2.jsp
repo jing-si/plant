@@ -14,6 +14,12 @@
     <script src="/resources/jq/jquery.js"></script>
     
     <script>
+   	function webViewToApp() {
+   		WebViewCallbackInterface.webViewToApp();
+   	}
+    </script>
+    
+    <script>
     
     let arr = new Array();    
     
@@ -28,8 +34,9 @@
     		//소비 인증
     		if($(".go-certify").text() == "친환경 소비 인증하기"){
     			
-    			/* window.andriod.startBarcodeReader(); */
-    			 location.href = "certify";
+    			webViewToApp();
+    			// location.href = "certify";
+    			
     		}
     		
     		//숲에 심기
@@ -214,11 +221,11 @@ a{
 }
 #align{
     width: 328px;
-    /* height: calc(100vh - 56px - 35px); */
+    height: calc(100vh - 56px - 35px);
     /* 100 - 하단메뉴바 - 타이틀 상단 마진*/
     /* margin: 0 auto; */
     position: absolute;
-    top: 45%;
+    top: 50%;
     left: 50%;
     transform : translate(-50%, -50%);
 }
@@ -227,8 +234,8 @@ a{
 .title{
     width: 100%;
     height: 51px;
-    /* margin-top: 35px; */
-    /* margin-bottom: 44px; */
+    margin-top: 35px;
+    margin-bottom: 44px;
     /* border: 1px solid red; */
 }
 .title p{
@@ -448,7 +455,7 @@ a{
         <div class="title">
             <p>${sessionScope.user.userNick} 님, 반가워요!</p>
             <p style="font-weight: bold;" id="hi">새로운 씨앗을 심어보세요 :)</p>
-            <!-- <a href="/"><p style="font-size: 2em;">로그인 확인</p></a> -->
+            <a href="/"><p style="font-size: 2em;">로그인 확인</p></a>
         </div>
 
         <div class="home-screen">

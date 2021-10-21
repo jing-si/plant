@@ -169,8 +169,8 @@ img{
 
 								<c:forEach var="list" items="${list}">									
 									<c:if test="${list.invenAmount > 0}">
-									<div class="item_card" id="plant_01 "> <!-- 특정 나무의 보유 수량이 1개 이상 이면, 백그라운드 카드 이미지 노출 -->
-										<img class="item_bg" src="/resources/images/treecd${list.plantId}.png">
+									<div class="item_card ${liat.plantCategory }" id="plant_01 "> <!-- 특정 나무의 보유 수량이 1개 이상 이면, 백그라운드 카드 이미지 노출 -->
+										<img class="item_bg" src="${list.plantThumbnail }">
 										<p class="text_left">보관중인 나무 :</p>
 										<p class="text_right">그루</p>
 										<p class="text_amount">${list.invenAmount}</p>
