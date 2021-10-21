@@ -83,7 +83,7 @@ input{
 } */
 
 #body{
-    width: 360px;
+    /* width: 360px; */
     height: calc(100vh - 59.5px - 56px);
     margin: 0 auto;
 }

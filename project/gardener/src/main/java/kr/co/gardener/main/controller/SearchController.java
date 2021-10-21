@@ -6,8 +6,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -24,7 +26,7 @@ public class SearchController {
 	ProductService  productService;
 	
 	//검색
-	@RequestMapping({"/",""})
+	@GetMapping({"/",""})
 	public String search(Model model) {
 		//여기서부터 가상 데이터
 		List<SearchList> list = new ArrayList<SearchList>();
@@ -40,7 +42,13 @@ public class SearchController {
 		l2.setUserId("001");
 		list.add(l2);
 		//여기까지 가상데이터
-		
+		System.out.println("--------------------------");
+		System.out.println("겟겟겟겟");
+		System.out.println("겟겟겟겟");
+		System.out.println("겟겟겟겟");
+		System.out.println("겟겟겟겟");
+		System.out.println("겟겟겟겟");
+		System.out.println("--------------------------");
 		
 		model.addAttribute("latestProductList",list);
 		
@@ -58,11 +66,17 @@ public class SearchController {
 	}
 	
 	@PostMapping("/")
-	public String search(String q, Model model) {
+	public String search(@RequestBody String q, Model model) {
 		List<Product> list = productService.list(q);
 		model.addAttribute("list", list);
 		model.addAttribute("word", q);
-		
+		System.out.println("--------------------------");
+		System.out.println(q);
+		System.out.println(q);
+		System.out.println(q);
+		System.out.println(q);
+		System.out.println(q);
+		System.out.println("--------------------------");
 		return path + "search";		
 	}
 	
@@ -75,17 +89,18 @@ public class SearchController {
 	//qr 정보 받기
 	@PostMapping("/qrajax")
 	@ResponseBody
-	public Product qr(int barcode) {
+	public Object qr(int barcode) {
 		System.out.println("바코드" + barcode);
 		String certifyResult = productService.certify(barcode);
 		System.out.println("db에 있나 "+certifyResult);
 		
-		//인증성공시
+		//인증성공시 제품아이디와 회사아이디가 필요
 		if(certifyResult.equals("인증성공")) {
 			Product item = productService.item(barcode);
 			return item;
+		//인증실패시
 		}else {
-			return null;
+			return "0";
 		}
 		/* return certifyResult; */
 	}
