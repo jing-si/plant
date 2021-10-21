@@ -1,5 +1,6 @@
 package kr.co.gardener.admin.service.object.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import kr.co.gardener.admin.dao.object.CertReasonDao;
 import kr.co.gardener.admin.model.object.Cert;
 import kr.co.gardener.admin.model.object.CertReason;
+import kr.co.gardener.admin.model.object.Product;
 import kr.co.gardener.admin.model.object.list.CertReasonList;
 import kr.co.gardener.admin.service.object.CertReasonService;
 import kr.co.gardener.util.Pager;
@@ -108,6 +110,25 @@ public class CertReasonServiceImpl implements CertReasonService{
 			certReasonMap.put(item.getCertReasonName(), item);
 			certReasonMap.put(String.valueOf(item.getCertReasonId()), item);
 		}
+	}
+
+	@Override
+	public void fillProduct(Product item) {
+		if(certReasonMap == null) {			
+			loadCertInfo();			
+		}
+		String[] strCertReason = item.getProductCertReason().split(",");
+		
+		List<CertReason> list = new ArrayList<CertReason>();
+		for(String str : strCertReason) {
+			CertReason certReason = certReasonMap.get(str);
+			if(certReason != null) {
+				list.add(certReason);
+			}
+		}
+		
+		
+		item.setCertReasons(list);
 	}
 	
 }

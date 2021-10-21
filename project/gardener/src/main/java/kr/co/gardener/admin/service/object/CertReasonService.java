@@ -5,6 +5,7 @@ import java.util.Map;
 
 import kr.co.gardener.admin.model.object.Cert;
 import kr.co.gardener.admin.model.object.CertReason;
+import kr.co.gardener.admin.model.object.Product;
 import kr.co.gardener.admin.model.object.list.CertReasonList;
 import kr.co.gardener.util.Pager;
 
@@ -31,5 +32,7 @@ public interface CertReasonService {
 	void update(CertReasonList list);
 
 	CertReason getCertReasonItem(String value);
+
+	void fillProduct(Product item);
 
 }

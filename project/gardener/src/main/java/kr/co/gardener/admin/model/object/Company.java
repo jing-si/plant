@@ -12,7 +12,18 @@ public class Company extends GridSystem{
 	private String vendHome;
 	
 	private List<Product> list;
+	private int productCount;
 	
+	
+	
+	public int getProductCount() {
+		return productCount;
+	}
+
+	public void setProductCount(int productCount) {
+		this.productCount = productCount;
+	}
+
 	public List<Product> getList() {
 		return list;
 	}
