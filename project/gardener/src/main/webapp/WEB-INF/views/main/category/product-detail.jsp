@@ -396,8 +396,8 @@ img{
                 	
                 	<c:forEach var="list" items="${company.list}">
                 		<li id="same-brand-li">
-                       		<div class="same-brand-img"><a href="${list.productId}"><img alt="" src="${list.productImage}"></a></div>
-                       		<a href="${list.productId}"><p class="same-brand-name">${list.productName}</p></a>
+                       		<div class="same-brand-img"><a href="../${list.productId}/${list.companyId}"><img alt="" src="${list.productImage}"></a></div>
+                       		<a href="../${list.productId}/${list.companyId}"><p class="same-brand-name">${list.productName}</p></a>
                     	</li>
                 	</c:forEach>
                 	
