@@ -18,8 +18,12 @@ body{
 #align{
     width: 266px;
     /* height: 100vh; */
-    margin: 0 auto;
-    position: relative;
+    /* margin: 0 auto;
+    position: relative; */
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 #logo{
    /* border: 1px solid red; 나중에 지우기*/
