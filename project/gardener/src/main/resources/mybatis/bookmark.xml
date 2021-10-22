@@ -7,16 +7,16 @@
 
 	<select id="list" resultType="Bookmark">
 		<!-- SELECT * FROM BOOKMARK -->
-		SELECT b.*, p.PRODUCT_IMAGE, p.PRODUCT_NAME FROM bookmark b
+		SELECT b.*, p.PRODUCT_IMAGE, p.PRODUCT_NAME FROM BOOKMARK b
 		NATURAL
-		JOIN product p
+		JOIN PRODUCT p
 		where USER_ID = #{userId}
 	</select>
 
 	<select id="list_date" resultType="Bookmark">
 		SELECT b.*, p.PRODUCT_IMAGE,
 		p.PRODUCT_NAME FROM bookmark b
-		NATURAL JOIN product p
+		NATURAL JOIN PRODUCT p
 		where USER_ID =
 		#{userId}
 		order BY b.BOOKMARK_DATETIME desc;
@@ -24,8 +24,8 @@
 
 	<select id="list_name" resultType="Bookmark">
 		SELECT b.*, p.PRODUCT_IMAGE,
-		p.PRODUCT_NAME FROM bookmark b
-		NATURAL JOIN product p
+		p.PRODUCT_NAME FROM BOOKMARK b
+		NATURAL JOIN PRODUCT p
 		where USER_ID =
 		#{userId}
 		order BY p.PRODUCT_NAME;
@@ -76,7 +76,7 @@
 
 	<sql id="search">
 		select b.*, p.PRODUCT_NAME from BOOKMARK b
-		NATURAL JOIN product p
+		NATURAL JOIN PRODUCT p
 		<where>
 			<if
 				test="(search == 'total' or search == 'userId') and keyword != ''">OR USER_ID like #{searchKeyword}</if>

@@ -25,6 +25,7 @@ import kr.co.gardener.admin.service.object.CertService;
 import kr.co.gardener.admin.service.object.DataManagerService;
 import kr.co.gardener.admin.service.object.ProductCertReasonService;
 import kr.co.gardener.admin.service.object.ProductService;
+import kr.co.gardener.util.FileUploader;
 
 @Service
 public class DataManagerServiceImpl implements DataManagerService {
@@ -113,6 +114,8 @@ public class DataManagerServiceImpl implements DataManagerService {
 			int elId = botClassService.searchBotClass(item.getProductInfo());
 			item.setElId(elId);
 			if(elId == 0) item.setProdElcd("0");
+			item.setProductImage(FileUploader.WebImageUploader(item.getProductId(), item.getProductImage()));
+			
 		}
 		
 		dao.UploadApiProduct(list);
