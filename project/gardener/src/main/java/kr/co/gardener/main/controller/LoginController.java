@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.poi.util.SystemOutLogger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -83,13 +84,35 @@ public class LoginController {
 	
 	//비밀번호 재설정 1페이지 폼
 	@PostMapping("/pwupdate")
-	public String pwupdate(User user) {
+	public String pwupdate(User user, Model model) {
 		System.out.println(user.getUserId());
 		System.out.println(user.getUserBirth());
 		
 		int count = service.count(user);
-		System.out.println(count);
-		return path + "pwupdate2";
+		
+		if(count>0) {
+			model.addAttribute("userId",user.getUserId());
+			model.addAttribute("userBirth", user.getUserBirth());
+			return path + "pwupdate2";
+		}
+		else {
+			System.out.println(count);
+			/* model.addAttribute("count",count); */
+			return "redirect:./pwupdate";
+		}
+		/* System.out.println(count); */
+		/* return path + "pwupdate2"; */
+	}
+	
+	
+	//비밀번호 재설정2
+	@PostMapping("/pwdate2")
+	public String pwupdatepwupdate(User user) {
+		System.out.println(user.getUserPass());
+		System.out.println(user.getUserId());
+		System.out.println(user.getUserBirth());
+		service.update(user);
+		return path + "login";
 	}
 	
 	//스플래시(시작대기화면)

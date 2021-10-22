@@ -47,7 +47,7 @@
     <form method="post">
         <div id="email" class="info">
             <p class="title">이메일 주소와 생년월일을 입력 후 비밀번호 재설정이 가능합니다.</p>
-            <input placeholder="아이디" type="text" name="UserId">
+            <input placeholder="이메일" type="text" name="UserId">
             <!-- <p id="send">전송</p> -->
         </div>
         <div id="nickName" class="info">
