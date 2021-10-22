@@ -105,9 +105,9 @@ public class MainActivity extends AppCompatActivity {
 
             }
 
-            Toast.makeText(getApplicationContext(), mWebView.getUrl(), Toast.LENGTH_LONG).show();
+            // Toast.makeText(getApplicationContext(), mWebView.getUrl(), Toast.LENGTH_LONG).show();
 
-        } else {
+        } /*else {
 
             AlertDialog.Builder builder = new AlertDialog.Builder(
                     MainActivity.this
@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
 
             builder.show();
 
-        }
+        }*/
 
 
     }

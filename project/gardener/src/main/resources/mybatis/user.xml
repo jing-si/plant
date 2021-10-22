@@ -226,5 +226,10 @@
 		PLANT
 
 	</select>
+	
+	<select id="count" resultType="Integer">
+		select count(*) from user
+		where user_id = #{userId} and user_birth = #{userBirth}
+	</select>
 
 </mapper>

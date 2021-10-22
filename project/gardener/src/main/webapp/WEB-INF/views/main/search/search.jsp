@@ -10,11 +10,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+	
 	<script src="/resources/jq/jquery.js"></script>
+	
     <link rel="stylesheet" href="/resources/css/search.css">
-    
     <link rel="stylesheet" href="/resources/css/product-list.css">
-    <script src="/resources/jq/jquery.js"></script>
     
     <script>
    	function webViewToApp() {

@@ -85,26 +85,42 @@ $().ready(() =>{
 	
 	
 	
-	//비밀번호 확인
-	$('#pwcheck').change(function(){
-		var password = $('#pw').val();
-		var passwordCheck = $('#pwcheck').val();
-		
-		if(password == passwordCheck){
-			$("#checkMsg").empty();
-			$("#checkMsg").append($("<p>비밀번호 일치</p>"))
-		}
-		else{
-			$("#checkMsg").empty();
-			$("#checkMsg").append($("<p>비밀번호 불일치</p>"))
-		}
-	})  //비밀번호 확인
+//비밀번호 확인
+$('#pwcheck').keyup(function(){
+	var password = $('#pw').val();
+	var passwordCheck = $('#pwcheck').val();
+	
+	if(password == passwordCheck){
+		$("#checkMsg").empty();
+		$("#checkMsg").append($("<p>비밀번호 일치</p>"))
+	}
+	else{
+		$("#checkMsg").empty();
+		$("#checkMsg").append($("<p>비밀번호 불일치</p>"))
+	}
+})  //비밀번호 확인 끝
+
+//비밀번호 확인
+$('#pw').keyup(function(){
+	var password = $('#pw').val();
+	var passwordCheck = $('#pwcheck').val();
+	
+	if(password == passwordCheck){
+		$("#checkMsg").empty();
+		$("#checkMsg").append($("<p>비밀번호 일치</p>"))
+	}
+	else{
+		$("#checkMsg").empty();
+		$("#checkMsg").append($("<p>비밀번호 불일치</p>"))
+	}
+})  //비밀번호 확인 끝
 	
 	//뒤로가기 버튼
 	$(".historyBack").click(function(){
 		window.history.back();
 	})
 	
+	//날짜 형식 바꾸기
 	$("#birthValue").datepicker({
 		language: 'ko',
 	});

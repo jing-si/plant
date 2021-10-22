@@ -92,6 +92,11 @@ public class UserDaoImpl implements UserDao {
 		return sql.update("user.levelUp",user);
 	}
 
+	@Override
+	public int count(User user) {
+		return sql.selectOne("user.count", user);
+	}
+
 
 
 
