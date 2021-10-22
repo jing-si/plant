@@ -17,19 +17,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.Light.NoActionBar">
+
         <activity
             android:name=".SplashActivity"
-            android:exported="false" />
-        <!-- 카메라 세로처리, 결과 인식시 웹뷰가 뒤로가지 않도록 추가 -->
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true" >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
+
+        <!-- 카메라 세로처리, 결과 인식시 웹뷰가 뒤로가지 않도록 추가 -->
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+        </activity>
+
         <activity
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="fullSensor"
