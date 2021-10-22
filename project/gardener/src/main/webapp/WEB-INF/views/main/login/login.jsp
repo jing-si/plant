@@ -12,6 +12,7 @@
 
     <link rel="stylesheet" href="/resources/css/login.css">
     <script src="/resources/jq/jquery.js"></script>
+    <script src="/resources/js/sweetalert2.all.min.js"></script>
 </head>
 <body>
 <script>
