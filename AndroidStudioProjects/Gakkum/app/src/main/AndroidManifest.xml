@@ -31,7 +31,6 @@
         </activity>
 
         <!-- 카메라 세로처리, 결과 인식시 웹뷰가 뒤로가지 않도록 추가 -->
-
         <activity
             android:name=".MainActivity"
             android:exported="true">
