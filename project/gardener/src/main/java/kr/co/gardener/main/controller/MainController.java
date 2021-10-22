@@ -1,6 +1,5 @@
 package kr.co.gardener.main.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -40,7 +39,7 @@ public class MainController {
 	InvenService invenService;
 	
 	//메인페이지
-	@RequestMapping("/") //db변경이 없을때 용도
+	@RequestMapping({"/",""}) //db변경이 없을때 용도
 	public String index(Model model,HttpSession session) {
 		User user = (User) session.getAttribute("user");
 		model.addAttribute("img", imgSrc(user));

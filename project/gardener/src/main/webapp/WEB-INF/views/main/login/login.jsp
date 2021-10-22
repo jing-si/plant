@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,6 +18,13 @@
 <body>
 <script>
 //submit하기전 검사
+$(function(){
+	<c:if test="${!empty msg}">
+		alert("아이디와 비밀번호를 다시 입력하세요")
+	</c:if>
+	
+})
+	
 function check(){
 	
 	//아이디 공백 확인 
@@ -32,9 +40,9 @@ function check(){
         $("#passWord").focus(); 
         return false;
     }
-	if("${msg}" == "로그인 실패"){
-		alert("아이디와 비밀번호를 다시 입력하세요")
-	}
+	
+	
+	
 	
 /* 	else if($("#email").val() != "" || $("#passWord").val() != ""){
 		$.ajax({
