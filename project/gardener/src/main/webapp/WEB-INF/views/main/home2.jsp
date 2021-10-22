@@ -621,7 +621,7 @@ z-index: 2;
     
   //친환경 소비 인증 끝나고
  $(document).ready(function( $ ){ 
-	if("${result}" == "인증성공"){
+	if("${result}" == 1){
     $("img").on("load", function(event) { 
     $("#popup01").show();  
     $("body").append('<div class="backon"></div>');
@@ -629,7 +629,7 @@ z-index: 2;
 	 }
     
       
-   else if("${result}" == "인증실패"){
+   else if("${result}" == 2){
     $("img").on("load", function(event) { 
         $("#popup02").show();  
         $("body").append('<div class="backon"></div>');
