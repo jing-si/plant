@@ -69,6 +69,8 @@ public class MainActivity extends AppCompatActivity {
                 IntentIntegrator intentIntegrator = new IntentIntegrator(
                         MainActivity.this
                 );
+
+                intentIntegrator.setDesiredBarcodeFormats(IntentIntegrator.EAN_13); // 숫자바코드만 인식할 수 있도록 설정
                 intentIntegrator.setPrompt("바코드를 스캔하세요");   // 바코드 하단 문구설정
                 intentIntegrator.setCameraId(0);
                 intentIntegrator.setBeepEnabled(false);  // 바코드 스캔시 소리 on(true), off(false)
