@@ -303,7 +303,7 @@ a{
     width: 100%;
     height: 38px;
     padding: 9px;
-    margin-top: 6px;
+    margin-top: 15px;
     text-align: center;
     background-color: #085955;
     border-radius: 20px;
@@ -447,6 +447,81 @@ a{
 			display:none;
 		}
 		
+		
+		
+#popup01{
+    display: none;
+}
+#popup02{
+    display: none;
+}
+#popup01{
+width: 90%;
+height: 106px;
+position: absolute;
+top: 80%;
+left: 50%;
+transform: translate(-50%, -50%);
+background-color: #fff;
+z-index: 2;
+    }
+#popup02{
+width: 90%;
+height: 106px;
+position: absolute;
+top: 80%;
+left: 50%;
+transform: translate(-50%, -50%);
+background-color: #fff;
+z-index: 2;
+    }
+.backon{
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: #00000054;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+.popup-title{
+    width : 80%;
+    margin: 0 auto;
+    text-align: center;
+    font-family: NotoSansKR;
+    font-size: 14px;
+    color: #666;
+    padding: 17px;
+}
+/* .text-area{
+	width: 70%;
+	float: left;
+} */
+.popup-logo{
+	position: absolute;
+	width: 40px;
+	top: 20px;
+	left: 30px;
+}
+.check{
+    font-family: NotoSansKR;
+    font-size: 14px;
+    text-align: center;
+    color: #1377e7;
+    width: 100%;
+    display: inline-block;
+    padding-top: 10px;
+}
+.cancel{
+    font-family: NotoSansKR;
+    font-size: 14px;
+    text-align: center;
+    width: 50%;
+    display: inline-block;
+    padding-top: 10px;
+    cursor:pointer;
+}
     </style>
 
 </head>
@@ -490,6 +565,23 @@ a{
         	
         </div>
     </div>
+    
+    <!-- 팝업창 -->
+    	<div id="popup01">
+    	<div class="text-area">
+    		<img class="popup-logo" src="/resources/images/login-logo.png">
+        	<div class="popup-title">인증성공</div>
+        	<a href="./"><div class="check">확인</div></a>
+    	</div>
+	</div>
+	
+	<div id="popup02" class="popup02">
+    	<div class="text-area">
+    		<img class="popup-logo" src="/resources/images/login-logo.png">
+        	<div class="popup-title">인증실패</div>
+        	<a href="./"><div class="check">확인</div></a>
+    	</div>
+	</div>
 
 
     <nav class="sticky">
@@ -507,7 +599,7 @@ a{
 </body>
     <script>
 	//친환경 소비 인증 끝나고
-	if("${result}" == "인증성공"){
+/* 	if("${result}" == "인증성공"){
 		setTimeout(function(){
 			alert("인증성공");	
 		}, 1000);
@@ -518,7 +610,36 @@ a{
 			alert("인증실패");
 		}, 1000);
 		
-	}
+	} */
     </script>
+    
+    
+    
+    
+    
+    <script>
+    
+  //친환경 소비 인증 끝나고
+ $(document).ready(function( $ ){ 
+	if("${result}" == "인증성공"){
+    $("img").on("load", function(event) { 
+    $("#popup01").show();  
+    $("body").append('<div class="backon"></div>');
+    });
+	 }
+    
+      
+   else if("${result}" == "인증실패"){
+    $("img").on("load", function(event) { 
+        $("#popup02").show();  
+        $("body").append('<div class="backon"></div>');
+        });
+      }
+
+  });
+
+	
+</script>
+    
 
 </html>
