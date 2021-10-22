@@ -35,12 +35,12 @@
     <div id="align">
     <form method="post">
         <div id="email" class="info">
-            <p class="title">회원정보에 등록된 이메일 주소로 인증 후 비밀번호를 재설정합니다.</p>
-            <input placeholder="이메일 주소" type="text" name="userId">
-            <p id="send">전송</p>
+            <p class="title">이메일 주소와 생년월일을 입력 후 비밀번호 재설정이 가능합니다.</p>
+            <input placeholder="아이디" type="text" name="userId">
+            <!-- <p id="send">전송</p> -->
         </div>
         <div id="nickName" class="info">
-            <input placeholder="인증번호" type="text" name="certification">
+            <input placeholder="생년월일" type="date" name="certification">
         </div>
 
     

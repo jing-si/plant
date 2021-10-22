@@ -73,12 +73,15 @@ public class LoginController {
 		return path + "agreement";
 	}
 	
-	//비밀번호 재설정 메일발송
+	//비밀번호 재설정 1페이지
 	//당장 구현 불가
-	@RequestMapping("/pwupdate")
+	@GetMapping("/pwupdate")
 	public String pwupdate(User user) {
-		return path + "pwupdate";
+		return path + "pwupdate1";
 	}
+	
+//	@PostMapping("/pwupdate")
+//	public String pwupdate()
 	
 	//스플래시(시작대기화면)
 		@RequestMapping("/splash")
