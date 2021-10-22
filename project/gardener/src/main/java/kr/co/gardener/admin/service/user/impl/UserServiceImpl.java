@@ -164,4 +164,9 @@ public class UserServiceImpl implements UserService {
 
 	}
 
+	@Override
+	public int count(User user) {
+		return dao.count(user);
+	}
+
 }

@@ -40,6 +40,8 @@ public interface UserDao {
 
 	int levelUp(User user);
 
+	int count(User user);
+
 
 
 }

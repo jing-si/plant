@@ -1,6 +1,7 @@
 package kr.co.gardener.main.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -76,12 +77,20 @@ public class LoginController {
 	//비밀번호 재설정 1페이지
 	//당장 구현 불가
 	@GetMapping("/pwupdate")
-	public String pwupdate(User user) {
+	public String pwupdate() {
 		return path + "pwupdate1";
 	}
 	
-//	@PostMapping("/pwupdate")
-//	public String pwupdate()
+	//비밀번호 재설정 1페이지 폼
+	@PostMapping("/pwupdate")
+	public String pwupdate(User user) {
+		System.out.println(user.getUserId());
+		System.out.println(user.getUserBirth());
+		
+		int count = service.count(user);
+		System.out.println(count);
+		return path + "pwupdate2";
+	}
 	
 	//스플래시(시작대기화면)
 		@RequestMapping("/splash")

@@ -36,11 +36,11 @@
     <form method="post">
         <div id="email" class="info">
             <p class="title">이메일 주소와 생년월일을 입력 후 비밀번호 재설정이 가능합니다.</p>
-            <input placeholder="아이디" type="text" name="userId">
+            <input placeholder="아이디" type="text" name="id">
             <!-- <p id="send">전송</p> -->
         </div>
         <div id="nickName" class="info">
-            <input placeholder="생년월일" type="date" name="certification">
+            <input placeholder="생년월일(8자리)" type="text" readonly maxlength="8" name="userBirth" id="birthValue">
         </div>
 
     

@@ -34,5 +34,7 @@ public interface UserService {
 	
 	void levelUp(User user);
 
+	int count(User user);
+
 
 }

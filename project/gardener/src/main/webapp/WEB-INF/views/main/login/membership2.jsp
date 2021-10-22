@@ -105,6 +105,7 @@ $().ready(() =>{
 		window.history.back();
 	})
 	
+	//날짜 형식 바꾸기
 	$("#birthValue").datepicker({
 		language: 'ko',
 	});
