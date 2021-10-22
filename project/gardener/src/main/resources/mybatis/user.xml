@@ -34,7 +34,7 @@
 	<insert id="add">
 		INSERT INTO USER
 		VALUES (#{userId},#{userNick},
-		#{userPass},#{userBirth},#{userGender},0,1,null)
+		#{userPass},#{userBirth},#{userGender},0,1,1)
 	</insert>
 
 	<select id="imgSrc" resultType="String">
