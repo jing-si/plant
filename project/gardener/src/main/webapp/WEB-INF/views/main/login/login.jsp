@@ -26,11 +26,34 @@ function check(){
     }
 	
 	//비밀번호 공백 확인 
-    if ($("#passWord").val() == "") {
+	if ($("#passWord").val() == "") {
         alert("비밀번호를 입력하세요");
         $("#passWord").focus(); 
         return false;
     }
+	if("${msg}" == "로그인 실패"){
+		alert("아이디와 비밀번호를 다시 입력하세요")
+	}
+	
+/* 	else if($("#email").val() != "" || $("#passWord").val() != ""){
+		$.ajax({
+			url : "/check",
+			type : "post",
+			data : {"id" : $("#email").val(), "pw" : $("#passWord").val()},
+			dataType : "text",
+			success : function(data){
+				if(data == "로그인 실패"){
+					alert("아이디와 비밀번호를 다시 입력하세요")
+					$("#email").focus();
+					return false;
+				}
+			},
+			error : function(){
+				alert("ajax 실패")
+			}
+		});
+	} */
+	
 	
 /* 	if()
     $.ajax({
