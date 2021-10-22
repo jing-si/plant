@@ -22,7 +22,7 @@
 		SELECT p.* FROM (select * from PRODUCT
 		where PRODUCT_ID
 		= #{productId}) p
-		left JOIN bookmark b ON p.PRODUCT_ID =
+		left JOIN BOOKMARK b ON p.PRODUCT_ID =
 		b.PRODUCT_ID
 	</select>
 
@@ -228,7 +228,7 @@
 	</select>
 
 	<select id="item_barcode" resultType="Product">
-		select * from product
+		select * from PRODUCT
 		where PRODUCT_BARCODE = #{productBarcode}
 	</select>
 	

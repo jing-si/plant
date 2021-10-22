@@ -1,16 +1,24 @@
 package kr.co.gardener.util;
 
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.Properties;
 import java.util.UUID;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 import org.springframework.web.multipart.MultipartFile;
 
 public class FileUploader {
+	
 
 	public static Properties makeProp() {
 		// config 파일 찾기
@@ -37,12 +45,12 @@ public class FileUploader {
 
 		return pro;
 	}
-
+	
 	public static String Uploader(MultipartFile uploadFile, String path, String name) {
-
+		Properties pro = makeProp();
 		MultipartFile file = uploadFile;
 		UUID uuid = UUID.randomUUID();
-		Properties pro = makeProp();
+		
 
 		// 파일 저장을 위한 경로 할당
 		String javaFilePath = pro.getProperty("java.fileUpload.path") + path.replaceAll("/", "\\\\");
@@ -90,5 +98,29 @@ public class FileUploader {
 	}
 	
 	
+	
+	public static String WebImageUploader(String fileName,String src) {
+		Properties pro = makeProp();
+		
+
+		// 파일 저장을 위한 경로 할당
+		String javaFilePath = pro.getProperty("java.fileUpload.path") + "product\\" + fileName+".png";
+		String srcFilePath = pro.getProperty("spring.fileUpload.src") + "product/" + fileName+".png";
+		
+		try {
+		      URL url = new URL(src);
+		     
+		      BufferedImage image = ImageIO.read(url);
+		      File file = new File(javaFilePath);
+		      ImageIO.write(image, "png", file);
+		      
+		    } catch (IOException e) {
+		      e.printStackTrace();
+		      srcFilePath = "error";
+		    }
+
+		
+		return srcFilePath;
+	}
 
 }
