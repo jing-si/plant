@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.gardener.admin.dao.object.CompanyDao;
 import kr.co.gardener.admin.model.object.Company;
@@ -42,7 +43,7 @@ public class CompanyServiceImpl implements CompanyService {
 		return company;
 	}
 
-	@Override
+	@Override	
 	public void autoUpdate(CompanyList item) {
 		List<Company> list = item.getList();
 		List<Company> updateList = new ArrayList<Company>();
@@ -76,21 +77,25 @@ public class CompanyServiceImpl implements CompanyService {
 	}
 
 	@Override
+	@Transactional
 	public void insert_list(CompanyList list) {
 		dao.insert_list(list.getList());
 	}
 
 	@Override
+	@Transactional
 	public void delete_list(CompanyList list) {
 		dao.delete_list(list.getList());
 	}
 
 	@Override
+	@Transactional
 	public void update_list(CompanyList list) {
 		dao.update_list(list.getList());
 	}
 
 	@Override
+	@Transactional
 	public boolean existCompany(Company company) {
 		Company item = dao.item(company.getCompanyId());
 		if(item == null) {
@@ -105,7 +110,7 @@ public class CompanyServiceImpl implements CompanyService {
 
 
 
-	@Override
+	@Override	
 	public Company itemIncludeProduct(String companyId, String userId) {
 		HashMap<String,String> hm = new HashMap<>();
 		hm.put("companyId", companyId);

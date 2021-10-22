@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.gardener.admin.dao.object.ProductCertReasonDao;
 import kr.co.gardener.admin.model.object.ApiProduct;
@@ -61,16 +62,19 @@ public class ProductCertReasonServiceImpl implements ProductCertReasonService {
 	}
 
 	@Override
+	@Transactional
 	public void insert(ProductCertReasonList list) {
 		dao.insert(list.getList());
 	}
 
 	@Override
+	@Transactional
 	public void delete(ProductCertReasonList list) {
 		dao.delete(list.getList());
 	}
 
 	@Override
+	@Transactional
 	public void update(ProductCertReasonList list) {
 		dao.update(list.getList());
 	}

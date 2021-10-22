@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.gardener.admin.dao.object.BotClassDao;
 import kr.co.gardener.admin.model.object.BotClass;
@@ -13,6 +14,7 @@ import kr.co.gardener.util.Pager;
 
 @Service
 public class BotClassServiceImpl implements BotClassService {
+	
 	List<BotClass> list;
 	
 	@Autowired
@@ -29,18 +31,24 @@ public class BotClassServiceImpl implements BotClassService {
 	}
 
 	@Override
+	@Transactional
 	public void insert(BotClassList list) {
 		dao.insert(list.getList());
+		this.list = dao.list();
 	}
 
 	@Override
+	@Transactional
 	public void delete(BotClassList list) {
 		dao.delete(list.getList());
+		this.list = dao.list();
 	}
 
 	@Override
+	@Transactional
 	public void update(BotClassList list) {
 		dao.update(list.getList());
+		this.list = dao.list();
 	}
 	
 	@Override

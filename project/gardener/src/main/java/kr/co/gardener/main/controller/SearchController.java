@@ -51,13 +51,6 @@ public class SearchController {
 		List<Product> list = productService.list(q);
 		model.addAttribute("list", list);
 		model.addAttribute("word", q);
-		System.out.println("--------------------------");
-		System.out.println(q);
-		System.out.println(q);
-		System.out.println(q);
-		System.out.println(q);
-		System.out.println(q);
-		System.out.println("--------------------------");
 		return path + "search";		
 	}
 	
@@ -70,15 +63,15 @@ public class SearchController {
 	//qr 정보 받기
 	@PostMapping("/qrajax")
 	@ResponseBody
-	public Object qr(int barcode) {
+	public Object qr(String barcode) {
 		System.out.println("바코드" + barcode);
 		String certifyResult = productService.certify(barcode);
 		System.out.println("db에 있나 "+certifyResult);
 		
 		//인증성공시 제품아이디와 회사아이디가 필요
 		if(certifyResult.equals("인증성공")) {
-			Product item = productService.item(barcode);
-			return item;
+			//Product item = productService.item(barcode);
+			return "1";
 		//인증실패시
 		}else {
 			return "0";
