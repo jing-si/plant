@@ -111,7 +111,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	@Transactional
-	public String certify(String barcode,String userId) {
+	public Product certify(String barcode,String userId) {
 		Product item = dao.item_barcode(barcode);
 		
 		if (item != null) {
@@ -119,24 +119,24 @@ public class ProductServiceImpl implements ProductService {
 			history.setUserId(userId);
 			history.setProductId(item.getProductId());			
 			historyService.add(history);
-			return "인증성공";
+			return item;
 		}
 		
 		//crawlerBarcode(barcode);
 
-		return "인증실패";
+		return item;
 
 	}
 	@Override
 	@Transactional
-	public String certify(String barcode) {
+	public Product certify(String barcode) {
 		Product item = dao.item_barcode(barcode);
 		
 		if (item != null) {
-			return "인증성공";
+			return item;
 		}
 
-		return "인증실패";
+		return item;
 
 	}
 	

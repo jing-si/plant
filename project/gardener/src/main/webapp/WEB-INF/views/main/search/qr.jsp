@@ -15,6 +15,7 @@ button{
 </head>
 <body>
 <script>
+
 $().ready(()=>{ 
 	
 	
@@ -22,15 +23,15 @@ $().ready(()=>{
 		var qrNum = $("#barcode").val();
 		console.log(qrNum);
 		
+		
+		//1이 성공이고 2가 실패
 		$.ajax({
-			
-			/* var qrNum = $("#barcode").val(); */
-			
+
 			url : "/login/search/qrajax",
 			type : "post",
 			data : {"barcode" : qrNum},
 			success : function(data){
-				if(data != "0"){
+				if(data == 1){
 					console.log(qrNum)
 					arr = data;
 					console.log(arr.productId)
