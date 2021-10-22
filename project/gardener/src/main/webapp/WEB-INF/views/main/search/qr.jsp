@@ -55,7 +55,7 @@ $().ready(()=>{
 
 
 
-	<form action="../search" method="post">
+	<form action="../search/" method="post">
 		<input type="text" name="q" id="barcode">
 	</form>
 	
