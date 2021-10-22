@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.gakkum.gakkum">
-
-    <!-- 인터넷 권한 추가 -->
-    <uses-permission android:name="android.permission.INTERNET"/>
-
-    <!-- zxing 라이브러리가 동작 가능한 최소의 API레벨 선언 -->
+    package="com.gakkum.gakkum"> <!-- zxing 라이브러리가 동작 가능한 최소의 API레벨 선언 -->
     <!-- 플랫폼 버전 요구사항을 충족하지 않는 기기에서 앱을 필터링 -->
     <uses-sdk tools:overrideLibrary="com.google.zxing.client.android" />
-
-    <!-- 카메라 사용 권한 -->
+    <!-- 인터넷 권한 추가 -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 카메라 사용 권한 -->
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -22,7 +17,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.Light.NoActionBar">
-
+        <activity
+            android:name=".SplashActivity"
+            android:exported="false" />
         <!-- 카메라 세로처리, 결과 인식시 웹뷰가 뒤로가지 않도록 추가 -->
         <activity
             android:name=".MainActivity"
@@ -33,11 +30,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name="com.journeyapps.barcodescanner.CaptureActivity"
+        <activity
+            android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="fullSensor"
-            tools:replace="screenOrientation"/>
-
+            tools:replace="screenOrientation" />
     </application>
 
 </manifest>

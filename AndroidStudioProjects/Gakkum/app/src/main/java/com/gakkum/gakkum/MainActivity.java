@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
 
-            Toast.makeText(getApplicationContext(), mWebView.getUrl(), Toast.LENGTH_LONG).show();
+            // Toast.makeText(getApplicationContext(), mWebView.getUrl(), Toast.LENGTH_LONG).show();
 
         } else {
 
