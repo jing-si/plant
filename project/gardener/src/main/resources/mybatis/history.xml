@@ -13,7 +13,7 @@
 	<insert id="add">
 		INSERT INTO HISTORY
 		VALUES (
-		(SELECT IFNULL(MAX(HISTORY_ID) + (1+#{index}),  (1+#{index})) FROM HISTORY B where user_id = #{item.userId})
+		(SELECT IFNULL(MAX(HISTORY_ID) + 1),  1) FROM HISTORY B where user_id = #{item.userId})
 		,#{userId}
 		,#{productId}
 		,now()

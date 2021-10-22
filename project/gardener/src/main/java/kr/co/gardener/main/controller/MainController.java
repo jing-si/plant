@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -72,10 +73,7 @@ public class MainController {
 	
 	//인증
 	
-	@RequestMapping("/certify")
-	public String certify() {
-		return path + "certify";
-	}
+	
 /*
 	//인증 폼 전송 -> 홈화면으로
 	@PostMapping("/certify")
@@ -105,7 +103,7 @@ public class MainController {
 */
 	
 	//인증 폼 전송 -> 홈화면으로
-	@PostMapping("/certify")
+	@GetMapping("/certify")
 	public String certify(String barcode, Model model, HttpSession session) {
 		User user = (User) session.getAttribute("user");
 		

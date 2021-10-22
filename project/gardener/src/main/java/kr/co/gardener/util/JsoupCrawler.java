@@ -51,6 +51,8 @@ public class JsoupCrawler {
 			Elements pv = doc.getElementsByTag("h3");
 			
 			System.out.println(pv.get(0).html());
+			System.out.println(pv.get(0).html());
+			System.out.println(pv.get(0).html());
 			
 		} catch (Exception e) {
 			e.printStackTrace();
