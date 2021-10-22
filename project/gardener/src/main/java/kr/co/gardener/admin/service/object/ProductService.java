@@ -33,9 +33,9 @@ public interface ProductService {
 
 	void autoUpdate(ProductList list);
 
-	String certify(String barcode, String userId);
+	Product certify(String barcode, String userId);
 
-	String certify(String barcode);
+	Product certify(String barcode);
 
 	
 

@@ -15,6 +15,7 @@ import kr.co.gardener.admin.service.object.BotClassService;
 import kr.co.gardener.admin.service.object.CertService;
 import kr.co.gardener.admin.service.object.ProductService;
 import kr.co.gardener.admin.service.user.HistoryService;
+import kr.co.gardener.util.JsoupCrawler;
 import kr.co.gardener.util.Pager;
 
 @Service
@@ -93,6 +94,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
+	@Transactional
 	public void update_list(ProductList list) {
 		dao.update_list(list.getList());
 	}
@@ -109,7 +111,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	@Transactional
-	public String certify(String barcode,String userId) {
+	public Product certify(String barcode,String userId) {
 		Product item = dao.item_barcode(barcode);
 		
 		if (item != null) {
@@ -117,27 +119,30 @@ public class ProductServiceImpl implements ProductService {
 			history.setUserId(userId);
 			history.setProductId(item.getProductId());			
 			historyService.add(history);
-			return "인증성공";
+			return item;
 		}
+		
+		//crawlerBarcode(barcode);
 
-		return "인증실패";
+		return item;
 
 	}
 	@Override
 	@Transactional
-	public String certify(String barcode) {
+	public Product certify(String barcode) {
 		Product item = dao.item_barcode(barcode);
 		
 		if (item != null) {
-			return "인증성공";
+			return item;
 		}
 
-		return "인증실패";
+		return item;
 
 	}
 	
 	private String crawlerBarcode(String barcode) {
-		
+		JsoupCrawler jc = new JsoupCrawler();
+		jc.barcodeSearch(barcode);
 		return barcode;
 		
 	}

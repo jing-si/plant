@@ -8,11 +8,13 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.gardener.admin.model.forest.PlantLevel;
+import kr.co.gardener.admin.model.object.Product;
 import kr.co.gardener.admin.model.user.Inven;
 import kr.co.gardener.admin.model.user.User;
 import kr.co.gardener.admin.service.forest.PlantLevelService;
@@ -72,10 +74,7 @@ public class MainController {
 	
 	//인증
 	
-	@RequestMapping("/certify")
-	public String certify() {
-		return path + "certify";
-	}
+	
 /*
 	//인증 폼 전송 -> 홈화면으로
 	@PostMapping("/certify")
@@ -105,22 +104,26 @@ public class MainController {
 */
 	
 	//인증 폼 전송 -> 홈화면으로
-	@PostMapping("/certify")
+	@GetMapping("/certify")
 	public String certify(String barcode, Model model, HttpSession session) {
 		User user = (User) session.getAttribute("user");
 		
 		System.out.println(barcode);
-		//certifyResult = 인증성공 or 인증 실패
-		String certifyResult = productService.certify(barcode,user.getUserId());
-		System.out.println(certifyResult);
+		
+		Product item = productService.certify(barcode,user.getUserId());
+		String result;
+		System.out.println(item);
 		
 		//인증성공시
-		if(certifyResult.equals("인증성공")) {
+		if(item != null) {
 			user.setStateId(user.getStateId()+1); 
 			service.levelUp(user);
+			result = "1";
+		}else {
+			result = "2";
 		}
 	
-		model.addAttribute("result",certifyResult); 
+		model.addAttribute("result",result); 
 		session.setAttribute("user", user);
 		model.addAttribute("img", user.getPlant());
 		 
