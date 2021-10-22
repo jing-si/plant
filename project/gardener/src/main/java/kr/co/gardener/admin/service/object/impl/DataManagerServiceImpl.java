@@ -103,7 +103,7 @@ public class DataManagerServiceImpl implements DataManagerService {
 
 	@Override
 	public String UploadApiProduct(ApiProductList apiProductList) {
-		// 이건 일차원적인 해결 방법 뿐이 없는것일까?
+		
 		List<ApiProduct> list = apiProductList.getList();
 		
 		for (ApiProduct item : list) {

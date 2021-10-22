@@ -529,14 +529,6 @@ public class ApiProduct extends Product {
 		this.prodImg = prodImg;
 	}
 
-	public List<CertReason> getCertReasons() {
-		return certReasons;
-	}
-
-	public void setCertReasons(List<CertReason> certReasons) {
-		this.certReasons = certReasons;
-	}
-
 	public Cert getCert() {
 		return cert;
 	}

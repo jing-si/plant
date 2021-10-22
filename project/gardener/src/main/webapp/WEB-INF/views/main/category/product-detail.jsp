@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>Insert title here</title>
+<title>가꿈_${item.productName}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
@@ -116,10 +116,13 @@ body{
     font-style: normal;
     margin-bottom: 7.8px;
 }
-#product-chart li{
+/* #product-chart li 에서 변경. 이미지 크기 때문*/
+.li{
     width: 100%;
     height: 28px;
     border-bottom: 0.5px solid #e6e6e6;
+    margin-bottom: 1px;
+   
 }
 #product-chart .blank{
     width: 100%;
@@ -128,7 +131,7 @@ body{
 .product-chart-name{
     display: inline-block;
     width: 104px;
-    /* height: 28px; */
+    height: 100%;
     background-color: #f5f5f5;
     font-family: NotoSansKR;
     font-size: 10px;
@@ -137,6 +140,7 @@ body{
     font-style: normal;
     padding: 7px 0 6px 10px;
     color: #979797;
+     vertical-align: top;
     /* padding: 6px auto 9px 10px; */
 }
 .product-chart-content{
@@ -258,7 +262,22 @@ img{
 	margin: 0 auto;
 	
 }
+.product-chart-img{
+	height: 40px;
+	width: 40px;
+	display: inline-block;
 
+}
+
+#li-product-cert-img,
+#li-product-certReason-img{
+	height: 55px;
+
+}
+#li-product-cert-img img,
+#li-product-certReason-img img{
+	object-fit:contain;
+}
 
     </style>
     
@@ -359,22 +378,32 @@ img{
             <p id="product-chart-title">제품 상세정보</p>
 
             <ul>
-                <li>
+                <li class="li">
                     <div class="product-chart-name">제품명
                     </div><div class="product-chart-content">${item.productName}</div>
                 </li>
-                <li>
+                <li class="li">
                     <div class="product-chart-name">규격
                     </div><div class="product-chart-content">${item.productSize}</div>
                 </li>
-                <li class="blank"></li>
-                <li>
-                    <div class="product-chart-name">인증구분
-                    </div><div class="product-chart-content">${item.certId}</div>
+                 <li class="li">
+                    <div class="product-chart-name">제품 간단 정보
+                    </div><div class="product-chart-content">${item.productInfo}</div>
                 </li>
-                <li>
+                <li class="blank"></li>
+                <li id="li-product-cert-img" class="li">
+                    <div class="product-chart-name">인증구분
+                    </div><div class="product-chart-content"><div class="product-chart-img"><img src="${cert.certImage}"></div></div>
+                </li>
+                <li id="li-product-certReason-img" class="li">
                     <div class="product-chart-name">인증사유
-                    </div><div class="product-chart-content"></div>
+                    </div><div class="product-chart-content">
+                    <c:forEach items="${item.certReasons}" var="certReason">
+                    <div class="product-chart-img">
+                    	<img src="${certReason.certReasonImage}">
+                    </div>
+                    </c:forEach>
+                    </div>
                 </li>
             </ul>
             <div>

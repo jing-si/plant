@@ -130,7 +130,7 @@
 		<foreach collection="list" item="item" separator=",">
 			(#{item.productId},
 			#{item.productName},
-			#{item.productSize},
+			LEFT(#{item.productSize},100),
 			#{item.productImage},
 			#{item.certId},
 			#{item.productCertId},
@@ -170,7 +170,7 @@
 		<foreach collection="list" item="item" separator=",">
 			(#{item.productId},
 			#{item.productName},
-			#{item.productSize},
+			LEFT(#{item.productSize},100),
 			#{item.productImage},
 			#{item.certId},
 			#{item.productCertId},

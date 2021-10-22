@@ -31,4 +31,6 @@ public interface CompanyDao {
 
 	List<BrandVO> brandList();
 
+	List<Company> listIncludeCount();
+
 }
