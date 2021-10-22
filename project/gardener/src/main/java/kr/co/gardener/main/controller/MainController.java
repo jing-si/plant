@@ -106,13 +106,12 @@ public class MainController {
 	
 	//인증 폼 전송 -> 홈화면으로
 	@PostMapping("/certify")
-	public String certify(int barcode, Model model, HttpSession session) {
-		//이상하게 프로덕트 아이디 확인만 갔다오면 세션이 종료되어서 다시 세션
+	public String certify(String barcode, Model model, HttpSession session) {
 		User user = (User) session.getAttribute("user");
 		
 		System.out.println(barcode);
 		//certifyResult = 인증성공 or 인증 실패
-		String certifyResult = productService.certify(barcode);
+		String certifyResult = productService.certify(barcode,user.getUserId());
 		System.out.println(certifyResult);
 		
 		//인증성공시
@@ -120,13 +119,11 @@ public class MainController {
 			user.setStateId(user.getStateId()+1); 
 			service.levelUp(user);
 		}
-		
-		//User user2 = (User) session.getAttribute("user");
-		
-		//model.addAttribute(certifyResult);
+	
 		model.addAttribute("result",certifyResult); 
 		session.setAttribute("user", user);
 		model.addAttribute("img", user.getPlant());
+		 
 		return path + "home2";
 	}
 	

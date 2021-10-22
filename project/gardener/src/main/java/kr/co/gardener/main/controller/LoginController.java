@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,14 +36,14 @@ public class LoginController {
 	}
 	
 	@PostMapping({"","/"})
-	public String login(User item, HttpSession session) {
+	public String login(User item, HttpSession session, Model model) {
 		User user = service.login(item);
 		
 		if(user != null) {
 				session.setAttribute("user", user);
 				return  "redirect:/login/";
 		}
-	
+		model.addAttribute("msg", "로그인 실패");
 		return path + "login";
 	}
 	

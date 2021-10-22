@@ -64,7 +64,7 @@
     				type : "post",
     				data : {"productId" : productId,"companyId":companyId},				
     				success : function(){
-    					$this.attr("src","/resources/images/green_heart.png");
+    					$(`[data-product="\${productId}"]`).attr("src","/resources/images/green_heart.png");
     					console.log("즐겨찾기 등록 성공")
     				},
     				error : function(){
@@ -80,7 +80,7 @@
     					type : "post",
     					data : {"productId" : productId},					
     					success : function(){
-    						$this.attr("src","/resources/images/white_heart.png");
+    						$(`[data-product="\${productId}"]`).attr("src","/resources/images/white_heart.png");
     						console.log("즐겨찾기 해제 성공")
     					},
     					error : function(){

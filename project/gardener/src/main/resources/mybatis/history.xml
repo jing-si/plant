@@ -12,7 +12,13 @@
 	
 	<insert id="add">
 		INSERT INTO HISTORY
-		VALUES (#{historyId},#{userId},#{productId},#{historyDateTime},#{historyComment})
+		VALUES (
+		(SELECT IFNULL(MAX(HISTORY_ID) + (1+#{index}),  (1+#{index})) FROM HISTORY B where user_id = #{item.userId})
+		,#{userId}
+		,#{productId}
+		,now()
+		,#{historyComment}
+		)
 	</insert>
 	
 	<update id="update">

@@ -35,6 +35,8 @@ public interface ProductDao {
 
 	void autoClassify(List<Product> items);
 
-	int count(int barcode);
+	int count(String barcode);
+
+	Product item_barcode(String barcode);
 
 }

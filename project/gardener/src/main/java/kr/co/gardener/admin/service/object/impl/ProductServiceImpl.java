@@ -4,14 +4,17 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.gardener.admin.dao.object.ProductDao;
 import kr.co.gardener.admin.dao.user.UserDao;
 import kr.co.gardener.admin.model.object.Product;
 import kr.co.gardener.admin.model.object.list.ProductList;
+import kr.co.gardener.admin.model.user.History;
 import kr.co.gardener.admin.service.object.BotClassService;
 import kr.co.gardener.admin.service.object.CertService;
 import kr.co.gardener.admin.service.object.ProductService;
+import kr.co.gardener.admin.service.user.HistoryService;
 import kr.co.gardener.util.Pager;
 
 @Service
@@ -19,13 +22,16 @@ public class ProductServiceImpl implements ProductService {
 
 	@Autowired
 	ProductDao dao;
-	
+
 	@Autowired
 	CertService certService;
+
+	@Autowired
+	BotClassService botClassService;
 	
 	@Autowired
-	BotClassService botClassService; 
-	
+	HistoryService historyService;
+
 	@Override
 	public void add(Product product) {
 		dao.add(product);
@@ -47,7 +53,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<Product> list(Pager pager) {		
+	public List<Product> list(Pager pager) {
 		pager.setTotal(dao.total(pager));
 		return dao.list(pager);
 	}
@@ -74,12 +80,14 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
+	@Transactional
 	public void insert_list(ProductList list) {
-		List<Product> items = list.getList();		
+		List<Product> items = list.getList();
 		dao.insert_list(items);
 	}
 
 	@Override
+	@Transactional
 	public void delete_list(ProductList list) {
 		dao.delete_list(list.getList());
 	}
@@ -90,29 +98,49 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
+	@Transactional
 	public void autoUpdate(ProductList list) {
 		List<Product> items = list.getList();
-		for(Product item : items) {
+		for (Product item : items) {
 			item.setElId(botClassService.searchBotClass(item.getProductInfo()));
 		}
 		dao.autoClassify(items);
 	}
 
 	@Override
-	public String certify(int barcode) {
-		/* String productId = dao.item(barcode).getProductId(); */
-		int count = dao.count(barcode);
-		if(count>0) {
-			/* System.out.println(productId); */
-			System.out.println(count);
+	@Transactional
+	public String certify(String barcode,String userId) {
+		Product item = dao.item_barcode(barcode);
+		
+		if (item != null) {
+			History history = new History();
+			history.setUserId(userId);
+			history.setProductId(item.getProductId());			
+			historyService.add(history);
 			return "인증성공";
 		}
-		else {
-			/* System.out.println(); */
-			/* System.out.println(productId + " " + String.valueOf(barcode)); */
-			System.out.println(barcode + " " + count);
-			return "인증실패";
-		}
+
+		return "인증실패";
+
 	}
+	@Override
+	@Transactional
+	public String certify(String barcode) {
+		Product item = dao.item_barcode(barcode);
+		
+		if (item != null) {
+			return "인증성공";
+		}
+
+		return "인증실패";
+
+	}
+	
+	private String crawlerBarcode(String barcode) {
+		
+		return barcode;
+		
+	}
+
 
 }

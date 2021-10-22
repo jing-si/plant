@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -46,7 +47,7 @@ public class DataManagerServiceImpl implements DataManagerService {
 	@Autowired
 	BotClassService botClassService;
 
-	@Override
+	@Override	
 	public List<Company> list(int start, int end) {
 		String str = dao.list(start, end);
 		List<Company> list = paser(str, Company.class, "data");
@@ -102,6 +103,7 @@ public class DataManagerServiceImpl implements DataManagerService {
 	}
 
 	@Override
+	@Transactional
 	public String UploadApiProduct(ApiProductList apiProductList) {
 		
 		List<ApiProduct> list = apiProductList.getList();
