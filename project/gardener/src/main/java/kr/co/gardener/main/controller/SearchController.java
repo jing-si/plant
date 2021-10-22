@@ -30,25 +30,6 @@ public class SearchController {
 	public String search(Model model) {
 		//여기서부터 가상 데이터
 		List<SearchList> list = new ArrayList<SearchList>();
-		SearchList l1 = new SearchList();
-		l1.setSearchId(1);
-		l1.setSearchWord("예시 검색어1");
-		l1.setUserId("001");
-		list.add(l1);
-		
-		SearchList l2 = new SearchList();
-		l2.setSearchId(2);
-		l2.setSearchWord("예시 검색어2");
-		l2.setUserId("001");
-		list.add(l2);
-		//여기까지 가상데이터
-		System.out.println("--------------------------");
-		System.out.println("겟겟겟겟");
-		System.out.println("겟겟겟겟");
-		System.out.println("겟겟겟겟");
-		System.out.println("겟겟겟겟");
-		System.out.println("겟겟겟겟");
-		System.out.println("--------------------------");
 		
 		model.addAttribute("latestProductList",list);
 		
@@ -66,7 +47,7 @@ public class SearchController {
 	}
 	
 	@PostMapping("/")
-	public String search(@RequestBody String q, Model model) {
+	public String search(String q, Model model) {
 		List<Product> list = productService.list(q);
 		model.addAttribute("list", list);
 		model.addAttribute("word", q);
