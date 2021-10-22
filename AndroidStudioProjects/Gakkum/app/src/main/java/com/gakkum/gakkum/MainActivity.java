@@ -1,39 +1,28 @@
 package com.gakkum.gakkum;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
-import android.util.Xml;
 import android.view.KeyEvent;
-import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-
 public class MainActivity extends AppCompatActivity {
 
     // 변수 선언
     private WebView mWebView;   // 웹뷰
-    private Button button;
     public Context mContext;
 
     // 자바스크립트에서 연결하여 사용할 네이티브 함수 정의 인터페이스
@@ -100,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
 
                 String certify = "https://www.gakkum.info/login/certify?";
                 String barcode = intentResult.getContents();    // 바코드 번호
-                String certifyUrl = certify + barcode;              // 현재 url + 바코드번호
+                String certifyUrl = certify + "barcode=" + barcode;              // 현재 url + 바코드번호
 
                 mWebView.loadUrl(certifyUrl);
 
@@ -108,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
 
                 String qr = "https://www.gakkum.info/login/search/qr?";
                 String barcode = intentResult.getContents();    // 바코드 번호
-                String qrUrl = qr + barcode;              // 현재 url + 바코드번호
+                String qrUrl = qr + "barcode=" + barcode;              // 현재 url + 바코드번호
 
                 mWebView.loadUrl(qrUrl);
 
