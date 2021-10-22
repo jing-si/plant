@@ -21,62 +21,65 @@ import kr.co.gardener.admin.service.object.ProductService;
 @RequestMapping("/login/search")
 public class SearchController {
 	final String path = "main/search/";
-	
+
 	@Autowired
-	ProductService  productService;
-	
-	//검색
-	@GetMapping({"/",""})
+	ProductService productService;
+
+	// 검색
+	@GetMapping({ "/", "" })
 	public String search(Model model) {
-		//여기서부터 가상 데이터
+		// 여기서부터 가상 데이터
 		List<SearchList> list = new ArrayList<SearchList>();
-		
-		model.addAttribute("latestProductList",list);
-		
+
+		model.addAttribute("latestProductList", list);
+
 		/*
-		//searchWord(최근검색 제품명),searchId(최근검색 제품아이디) 리스트 구현해주세요
-		model.addAttribute("latestProductList",new ArrayList<String>());
-		
-		*/
+		 * //searchWord(최근검색 제품명),searchId(최근검색 제품아이디) 리스트 구현해주세요
+		 * model.addAttribute("latestProductList",new ArrayList<String>());
+		 * 
+		 */
 		return path + "search";
 	}
-	
+
 	@RequestMapping("/delete/{searchId}")
 	public String delete(@PathVariable SearchList searchId) {
 		return "redirect:..";
 	}
-	
+
 	@PostMapping("/")
 	public String search(String q, Model model) {
 		List<Product> list = productService.list(q);
 		model.addAttribute("list", list);
 		model.addAttribute("word", q);
-		return path + "search";		
+		return path + "search";
 	}
-	
-	//qr 코드 인식화면으로 넘기기
-	@RequestMapping("/qr")
-	public String qr() {
-		return path + "qr";
-	}
-	
-	//qr 정보 받기
-	@PostMapping("/qrajax")
-	@ResponseBody
-	public Object qr(String barcode) {
-		System.out.println("바코드" + barcode);
-		String certifyResult = productService.certify(barcode);
-		System.out.println("db에 있나 "+certifyResult);
-		
-		//인증성공시 제품아이디와 회사아이디가 필요
-		if(certifyResult.equals("인증성공")) {
-			//Product item = productService.item(barcode);
-			return "1";
-		//인증실패시
+
+	// qr 코드 인식화면으로 넘기기
+	@GetMapping("/qr")
+	public String qr(String barcode,Model model) {
+		Product item = productService.certify(barcode);
+		String q = null;
+		if(item == null) {
+			q = barcode;
+			model.addAttribute("word", q);
+			return path + "search";
 		}else {
-			return "0";
+			q = "../category/product/"+item.getProductId()+"/"+item.getCompanyId(); 
+			return "redirect:"+ q;
 		}
-		/* return certifyResult; */
 	}
-	
+
+	// qr 정보 받기
+	/*
+	 * @PostMapping("/qrajax")
+	 * 
+	 * @ResponseBody public Object qra(String barcode) { System.out.println("바코드" +
+	 * barcode); String certifyResult = productService.certify(barcode);
+	 * System.out.println("db에 있나 "+certifyResult);
+	 * 
+	 * //인증성공시 제품아이디와 회사아이디가 필요 if(certifyResult.equals("인증성공")) { //Product item =
+	 * productService.item(barcode); return "1"; //인증실패시 }else { return "0"; }
+	 * return certifyResult; }
+	 */
+
 }
