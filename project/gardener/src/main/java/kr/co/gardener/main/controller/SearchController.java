@@ -61,10 +61,12 @@ public class SearchController {
 		String q = null;
 		if(item == null) {
 			q = barcode;
+			List<Product> list = new ArrayList<>();
+			model.addAttribute("list", list);
 			model.addAttribute("word", q);
 			return path + "search";
 		}else {
-			q = "../category/product/"+item.getProductId()+"/"+item.getCompanyId(); 
+			q = "/login/category/product/"+item.getProductId()+"/"+item.getCompanyId(); 
 			return "redirect:"+ q;
 		}
 	}

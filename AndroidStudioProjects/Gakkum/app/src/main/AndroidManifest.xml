@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.gakkum.gakkum">
-
-    <!-- 인터넷 권한 추가 -->
-    <uses-permission android:name="android.permission.INTERNET"/>
-
-    <!-- zxing 라이브러리가 동작 가능한 최소의 API레벨 선언 -->
+    package="com.gakkum.gakkum"> <!-- zxing 라이브러리가 동작 가능한 최소의 API레벨 선언 -->
     <!-- 플랫폼 버전 요구사항을 충족하지 않는 기기에서 앱을 필터링 -->
     <uses-sdk tools:overrideLibrary="com.google.zxing.client.android" />
-
-    <!-- 카메라 사용 권한 -->
+    <!-- 인터넷 권한 추가 -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 카메라 사용 권한 -->
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -23,21 +18,29 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.Light.NoActionBar">
 
-        <!-- 카메라 세로처리, 결과 인식시 웹뷰가 뒤로가지 않도록 추가 -->
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name=".SplashActivity"
+            android:exported="true" >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
 
-        <activity android:name="com.journeyapps.barcodescanner.CaptureActivity"
-            android:screenOrientation="fullSensor"
-            tools:replace="screenOrientation"/>
+        <!-- 카메라 세로처리, 결과 인식시 웹뷰가 뒤로가지 않도록 추가 -->
 
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name="com.journeyapps.barcodescanner.CaptureActivity"
+            android:screenOrientation="fullSensor"
+            tools:replace="screenOrientation" />
     </application>
 
 </manifest>
