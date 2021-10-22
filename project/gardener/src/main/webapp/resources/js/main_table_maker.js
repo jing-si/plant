@@ -537,6 +537,7 @@ function viewMarker(selectedRow) {
 			case "combo":
 			case "text":
 			case "number":
+			case "hide":
 				div2.append($("<div class='col mt-2'>").append(innerDiv));
 				break;
 

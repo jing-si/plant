@@ -27,16 +27,19 @@ public class MidClassServiceImpl implements MidClassService {
 	}
 
 	@Override
+	@Transactional
 	public void insert(MidClassList list) {
 		dao.insert(list.getList());
 	}
 
 	@Override
+	@Transactional
 	public void delete(MidClassList list) {
 		dao.delete(list.getList());
 	}
 
 	@Override
+	@Transactional
 	public void update(MidClassList list) {
 		dao.update(list.getList());
 	}

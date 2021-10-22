@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.gardener.admin.dao.object.TopClassDao;
 import kr.co.gardener.admin.model.object.list.TopClassList;
@@ -18,6 +19,7 @@ public class TopClassImpl implements TopClassService {
 	TopClassDao dao;
 	
 	@Override
+	@Transactional
 	public void insert(TopClassList list) {
 		dao.insert(list.getList());
 	}
@@ -33,11 +35,13 @@ public class TopClassImpl implements TopClassService {
 	}
 
 	@Override
+	@Transactional
 	public void delete(TopClassList list) {
 		dao.delete(list.getList());
 	}
 
 	@Override
+	@Transactional
 	public void update(TopClassList list) {
 		dao.update(list.getList());
 	}

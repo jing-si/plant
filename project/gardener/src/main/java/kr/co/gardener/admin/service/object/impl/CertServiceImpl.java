@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.gardener.admin.dao.object.CertDao;
 import kr.co.gardener.admin.model.object.Cert;
@@ -33,16 +34,19 @@ public class CertServiceImpl implements CertService{
 	@Override
 	public void update(Cert item) {
 		dao.update(item);
+		loadCertInfo();
 	}
 
 	@Override
 	public void delete(int certId) {
 		dao.delete(certId);
+		loadCertInfo();
 	}
 
 	@Override
 	public void add(Cert item) {
 		dao.add(item);
+		loadCertInfo();
 	}
 
 	
@@ -56,18 +60,24 @@ public class CertServiceImpl implements CertService{
 	}
 
 	@Override
+	@Transactional
 	public void insert(CertList list) {
 		dao.insert(list.getList());
+		loadCertInfo();
 	}
 
 	@Override
+	@Transactional
 	public void delete(CertList list) {
 		dao.delete(list.getList());
+		loadCertInfo();
 	}
 
 	@Override
+	@Transactional
 	public void update(CertList list) {
 		dao.update(list.getList());
+		loadCertInfo();
 	}
 
 	@Override

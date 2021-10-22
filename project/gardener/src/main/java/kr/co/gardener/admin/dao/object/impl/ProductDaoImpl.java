@@ -84,8 +84,13 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	@Override
-	public int count(int barcode) {
+	public int count(String barcode) {
 		return sql.selectOne("product.count", barcode);
+	}
+
+	@Override
+	public Product item_barcode(String barcode) {
+		return sql.selectOne("product.item_barcode", barcode);
 	}
 
 }

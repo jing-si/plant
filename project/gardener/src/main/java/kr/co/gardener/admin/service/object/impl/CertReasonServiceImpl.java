@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.gardener.admin.dao.object.CertReasonDao;
 import kr.co.gardener.admin.model.object.Cert;
@@ -73,6 +74,7 @@ public class CertReasonServiceImpl implements CertReasonService{
 	}
 
 	@Override
+	@Transactional
 	public void insert(CertReasonList list) {
 		dao.insert(list.getList());
 		loadCertInfo();	
@@ -80,12 +82,14 @@ public class CertReasonServiceImpl implements CertReasonService{
 	}
 
 	@Override
+	@Transactional
 	public void delete(CertReasonList list) {
 		dao.delete(list.getList());
 		loadCertInfo();	
 	}
 
 	@Override
+	@Transactional
 	public void update(CertReasonList list) {
 		dao.update(list.getList());
 		loadCertInfo();	
