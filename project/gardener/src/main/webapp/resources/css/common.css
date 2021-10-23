@@ -281,8 +281,13 @@ footer h5 {
 .rightSide{
 	background-color: #434343;
 }
-.side-nav-text{
+.side-nav-text, .side-login-text{
 	font-size: 17px;
+	text-decoration: none;
+	color: #ddd;
+	overflow: hidden;
+}
+.logout{
 	text-decoration: none;
 	color: #ddd;
 	overflow: hidden;

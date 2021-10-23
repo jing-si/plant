@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,84 +11,101 @@
 <jsp:include page="../include/head.jsp"></jsp:include>
 <script type="text/javascript">
 	$(function() {
-		$("div[data-url='authority']").trigger("click")
-
-	})//on load 끝
-</script>
-<style type="text/css">
-	#align{
-	    width: 550px;
-	    margin: 0 auto;
-	    position: relative;
-	    display: inline-block;
-	}
-	#mainContent #logo{
-	    /* width: 70px; */
-	    /* height: 115.1px; */
-	    height: 150px;
-	    /* margin: 148px auto 30.9px 0; */
-	    margin-top: 148px;
-	    display: inline-block;
-	    float: left;
-	}
-	#logo img{
-		height: 150px;
-	}
-	#inputs{
-		width: 266px;
-		/* float: right; */
-		display: inline-block;
-		/* margin-top: 148px; */
-		display: inline-block;
-		margin: 150px 0px 0 40px;
-	}
-	#inputs p{
-		font-weight: bold;
-	}
-	input{
+		$("div[data-url='#']").trigger("click")
 		
-	    width: 266px;
-	    height: 45px;
-	    margin-bottom: 20px;
-	    position: relative;
-	    background-color: #f5f5f5;
-	    border-radius: 4px;
-	    border: 0px;
-	    padding: 12px;
-	    padding-right: 20px;
-	}
-	#login{
-		/* margin-top: 148px; */
-	    width: 100px;
-	    height: 110px;
-	    text-align: center;
-	    background-color: #66bb6a;
-	    float: right;
-	    /* background-color: 4px; */
-	    /* position: relative; */
-	    /* vertical-align: top; */
-	    display: inline-block;
-	    margin-top: 190px;
-	    color: #fff;
-	}
-	#login p{
-	    text-decoration: none;
-	    color: #fff;
-	    font-size: 15px;
-	    position: absolute;
-	    left: 41%;
-	    top: 25%;
+		
+		<c:if test="${!empty msg}">
+			alert("${msg}")
+		</c:if>
+		
+		
+	})//on load 끝
 	
-	}
-	#mainContent{
-	background-image: url("/resources/image/need/B1.jpg");
+	
+</script>
+
+<style type="text/css">
+#align {
+	width: 550px;
+	margin-left: 300px;
+	position: relative;
+	display: inline-block;
+}
+
+#mainContent #logo {
+	/* width: 70px; */
+	/* height: 115.1px; */
+	height: 150px;
+	/* margin: 148px auto 30.9px 0; */
+	margin-top: 148px;
+	display: inline-block;
+	float: left;
+}
+
+#logo img {
+	height: 150px;
+	
+}
+
+#inputs {
+	width: 266px;
+	/* float: right; */
+	display: inline-block;
+	/* margin-top: 148px; */
+	display: inline-block;
+	margin: 150px 0px 0 40px;
+}
+
+#inputs p {
+	font-weight: bold;
+}
+
+input {
+	width: 266px;
+	height: 45px;
+	margin-bottom: 20px;
+	position: relative;
+	background-color: #f5f5f5;
+	border-radius: 4px;
+	border: 0px;
+	padding: 12px;
+	padding-right: 20px;
+}
+
+#login {
+	/* margin-top: 148px; */
+	width: 100px;
+	height: 110px;
+	text-align: center;
+	background-color: #66bb6a;
+	float: right;
+	/* background-color: 4px; */
+	/* position: relative; */
+	/* vertical-align: top; */
+	display: inline-block;
+	margin-top: 190px;
+	color: #fff;
+}
+
+#login p {
+	text-decoration: none;
+	color: #fff;
+	font-size: 15px;
+	position: absolute;
+	left: 41%;
+	top: 25%;
+}
+
+#mainContent {
+	background-image: url("/resources/image/need/B2.jpg");
 	background-repeat: no-repeat;
-	background-color: #fbfadb;
+	background-size:cover;
 	height: 900px;
-	}
-	.option{
-		border-radius: 5px;
-	}
+}
+
+.option {
+	border-radius: 5px;
+}
 </style>
 </head>
 <body>
@@ -97,7 +115,7 @@
 			<!--왼쪽 사이드 바 -->
 			<div class="rightSide col-1  mx-0 px-0">
 				<div>
-				<jsp:include page="../include/left_side.jsp"></jsp:include>
+					<jsp:include page="../include/left_side.jsp"></jsp:include>
 				</div>
 			</div>
 			<!--왼쪽 사이드 바 끝 -->
@@ -106,15 +124,18 @@
 			<div class="col container-custom p-0">
 				<!--Header - 로고, 로그아웃, option-->
 				<header class="header border-bot">
-					<div class="row row-cols-2 mx-0 px-0">
+					<div class="row mx-0 px-0">
 						<!--테이블 카테고리 선택상자  -->
-						<div class="col-10  hstack mx-3 pt-2 nav">
-							<div class="option col-8 pt-2 pb-2" data-url="authority">
-								<h5 class="mx-4 my-auto"><i class="bi bi-droplet"></i> 일반 소비자를 위한 친환경 제품 정보제공 시스템 <span class="text-success">'가꿈'</span></h5>
+						<div class="col-10 ms-3 pt-2 nav">
+							<div class="option col-8 pt-2 pb-2" data-url="#">
+								<h5 class="mx-4 my-auto">
+									<i class="bi bi-droplet"></i> 일반 소비자를 위한 친환경 제품 정보제공 시스템 <span
+										class="text-success">'가꿈'</span>
+								</h5>
 							</div>
 						</div>
-						<div class="col-1 ">
-							<a href="#">log out</a>
+						<div class="col">
+							<jsp:include page="../include/logout.jsp"></jsp:include>
 						</div>
 
 					</div>
@@ -129,31 +150,39 @@
 							<section class="">
 								<div id="mainContent" class="col">
 									<div class="row mx-0">
+										<c:if test="${empty sessionScope.admin }">
 										<div id="align">
 											<div id="logo">
-												<img src="/resources/images/login-logo.png">
+											<!-- 	<img src="/resources/images/login-logo.png"> -->
 											</div>
-											
+
 											<form method="post">
 												<div id="inputs">
 													<p>관리자 로그인</p>
-													<input id="email" placeholder="아이디" type="text" name="userId">
-													<input id="passWord" placeholder="비밀번호" type="password" name="userPass">
+													<input id="email" placeholder="아이디" type="text"
+														name="adminId"> <input id="passWord"
+														placeholder="비밀번호" type="password" name="adminPass">
+													
 												</div>
-													<input type="submit" id="login" class="border" value="로그인"></input>
+											<input type="submit" id="login" class="border" value="로그인"></input>
 											</form>
-											
-										</div>
 
+										</div>
+										</c:if>
+										<c:if test="${!empty sessionScope.admin }">
+											<div id="align">
+												<h2>${sessionScope.admin.adminName }님 안녕하세요.</h2>
+											</div>
+										</c:if>
 									</div>
 								</div>
 							</section>
 						</div>
-						
+
 					</div>
 					<!--mainContent 영역 - end  -->
 
-					
+
 
 				</div>
 				<!-- 메인 페이지 - end -->

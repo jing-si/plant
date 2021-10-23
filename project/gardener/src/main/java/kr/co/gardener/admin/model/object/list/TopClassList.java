@@ -14,7 +14,7 @@ public class TopClassList extends CommonList<TopClass>{
 		this.addInsert("대분류ID","topClassId","number");
 		this.addInsert("대분류명","topClassName","text");
 		
-		
+		setView(true);
 	}
 
 	

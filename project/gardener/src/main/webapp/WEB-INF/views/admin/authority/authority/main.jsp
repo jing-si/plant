@@ -10,7 +10,7 @@
 <jsp:include page="../../../include/head.jsp"></jsp:include>
 <script type="text/javascript">
 	$(function() {
-		$("div[data-url='inven']").trigger("click")
+		$("div[data-url='authority']").trigger("click")
 
 	})//on load 끝
 </script>
@@ -36,17 +36,15 @@
 					<div class="row mx-0 px-0">
 						<!--테이블 카테고리 선택상자  -->
 						<div class="col-10  ms-3 pt-2 nav">
-							<div class="option col-2 pt-2 pb-3" data-url="inven">
-								<h5 class="center"><i class="bi"></i> 인벤토리 관리</h5>
+							<div class="option col-2 pt-2 pb-3" data-url="authority">
+								<h5 class="center"><i class="bi"></i>Admin 관리</h5>
 							</div>
-							<div class="option col-2 pt-2 pb-3" data-url="location">
-								<h5 class="center"><i class="bi"></i> 배치 관리</h5>
-							</div>
+							
 							
 							
 						</div>
 						<div class="col">
-								<jsp:include page="../../../include/logout.jsp"></jsp:include>
+							<jsp:include page="../../../include/logout.jsp"></jsp:include>
 						</div>
 
 					</div>
