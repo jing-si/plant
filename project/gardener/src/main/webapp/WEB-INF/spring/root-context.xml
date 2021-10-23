@@ -15,6 +15,7 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<context:property-placeholder location="file:///c:/key/config.properties" />
+	<!-- <context:property-placeholder location="file:///gakkum2021/tomcat/webapps/key/config.properties" /> -->
 	
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="org.mariadb.jdbc.Driver"></property>
