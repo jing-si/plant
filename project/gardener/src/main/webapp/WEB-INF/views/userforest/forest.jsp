@@ -75,30 +75,7 @@ $().ready(()=>{
 	
 	//나무를 심을때 inven을 열고 시작
 	inven();
-	
-	// 인벤 분류 icon 클릭시 ui 이벤트
-	
-	$(".tab_menu li").click(function () {
-        var $this = $(this),
-            tabId = $this.data("tab"),
-            tabIndex = $this.index();
-
-        $(".tab_menu li").removeClass("on");
-
-        $this.addClass("on");
-        $("#"+tabId).addClass("on");
-
-        $(".tab_menu li").each(function (content) {
-            $(this).find("img").attr("src", $(this).find("img").attr("src").replace("_off","_on"));
-            
-            if (tabIndex != content) {
-                $(this).find("img").attr("src", $(this).find("img").attr("src").replace("_on","_off"));
-            }
-            
-        })
-        
-    })
-    
+	    
     //인벤 분류 icon 클릭시 이벤트
 	$("#item_all").on("click",function(){
 		$(".item_card").removeClass("hide");
@@ -127,6 +104,15 @@ $().ready(()=>{
 		$('#tab_tree').attr('src','/resources/images/tab_02_off.png');
 		$('#tab_flower').attr('src','/resources/images/tab_03_on.png');
 	})
+	
+	$("#popup_close").on("click",function(){
+		$(".item_card").removeClass("hide");
+		
+		$('#tab_all').attr('src','/resources/images/tab_01_on.png');
+		$('#tab_tree').attr('src','/resources/images/tab_02_off.png');
+		$('#tab_flower').attr('src','/resources/images/tab_03_off.png');
+	})
+	
 	      
 	
 	/* //인벤 분류 icon 클릭시 이벤트
