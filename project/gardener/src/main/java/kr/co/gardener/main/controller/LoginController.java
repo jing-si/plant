@@ -1,7 +1,7 @@
 package kr.co.gardener.main.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,8 +43,9 @@ public class LoginController {
 		if(user != null) {
 				session.setAttribute("user", user);
 				return  "redirect:/login/";
+		}else{
+			model.addAttribute("msg", "로그인 실패");
 		}
-		model.addAttribute("msg", "로그인 실패");
 		return path + "login";
 	}
 	
@@ -83,13 +84,36 @@ public class LoginController {
 	
 	//비밀번호 재설정 1페이지 폼
 	@PostMapping("/pwupdate")
-	public String pwupdate(User user) {
+	public String pwupdate(User user, Model model) {
 		System.out.println(user.getUserId());
 		System.out.println(user.getUserBirth());
 		
 		int count = service.count(user);
-		System.out.println(count);
-		return path + "pwupdate2";
+		
+		if(count>0) {
+			model.addAttribute("userId",user.getUserId());
+			model.addAttribute("userBirth",new SimpleDateFormat("yyyy.MM.dd").format(user.getUserBirth()));
+			return path + "pwupdate2";
+		}
+		else {
+			System.out.println(count);
+			/* model.addAttribute("count",count); */
+			return "redirect:./pwupdate";
+		}
+		/* System.out.println(count); */
+		/* return path + "pwupdate2"; */
+	}
+	
+	
+	//비밀번호 재설정2
+	@PostMapping("/pwdate2")
+	public String pwupdatepwupdate(User user,HttpSession session) {
+		String pass = user.getUserPass();
+		service.update(user);
+		user.setUserPass(pass);
+		user = service.login(user);
+		session.setAttribute("user", user);
+		return "redirect:/login/";
 	}
 	
 	//스플래시(시작대기화면)

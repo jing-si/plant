@@ -11,7 +11,39 @@
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="/resources/css/pwupdate.css">
+    
     <script src="/resources/js/jquery.min.js"></script>
+    
+    
+        <style>
+    	#email input{width: 100%;}
+    	#email div{
+	    	width: 15%;
+	    	height: 40px;
+	    	vertical-align: top;
+	    	border: 0px;
+	    	background-color: #66bb6a;
+	    	border-radius: 4px;
+	    	color: white;
+	    	margin-left: 3%;
+	    	font-size: 10px;
+	    	display: inline-block;
+	    	text-align: center;
+	    	padding-top: 10px;
+    	}
+    	
+    	#checkMsg{
+    		background-color: transparent;
+			height: 30px;
+    	}
+    	#checkMsg p{
+    		color: #66bb6a;
+    	}
+    	
+    	.hide{
+    		display: none;
+    	}
+    </style>
 </head>
 <body>
 
@@ -23,7 +55,58 @@
 			window.history.back();
 		})
 		
+	//비밀번호 확인
+	$('#pwcheck').keyup(function(){
+		var password = $('#pw').val();
+		var passwordCheck = $('#pwcheck').val();
+		
+		if(password == passwordCheck){
+			$("#checkMsg").empty();
+			$("#checkMsg").append($("<p>비밀번호 일치</p>"))
+		}
+		else{
+			$("#checkMsg").empty();
+			$("#checkMsg").append($("<p>비밀번호 불일치</p>"))
+		}
+	})  //비밀번호 확인 끝
+	
+	//비밀번호 확인
+	$('#pw').keyup(function(){
+		var password = $('#pw').val();
+		var passwordCheck = $('#pwcheck').val();
+		
+		if(password == passwordCheck){
+			$("#checkMsg").empty();
+			$("#checkMsg").append($("<p>비밀번호 일치</p>"))
+		}
+		else{
+			$("#checkMsg").empty();
+			$("#checkMsg").append($("<p>비밀번호 불일치</p>"))
+		}
+	})  //비밀번호 확인 끝
+
 	})	//ready끝
+	
+	
+	
+//submit하기전 검사
+function check(){
+	//비밀번호 확인란 공백 확인 
+    if ($("#pwcheck").val() == "") {
+        alert("비밀번호 확인을 입력하세요");
+        $("#pwcheck").focus();
+        return false;
+    }
+     
+    //비밀번호 서로확인 
+    if ($("#pw").val() != $("#pwcheck").val()) {
+        alert("비밀번호가 상이합니다");
+        $("pw").val("");
+        $("#pwcheck").val("");
+        $("#pw").focus();
+        return false;
+    }
+}  //submit 검사 끝
 	</script>
 
 
@@ -33,15 +116,19 @@
             <p>비밀번호 재설정</p>
         </div>
     <div id="align">
-    <form method="post">
-        <div id="email" class="info">
-            <p class="title">이메일 주소와 생년월일을 입력 후 비밀번호 재설정이 가능합니다.</p>
-            <input placeholder="아이디" type="text" name="id">
-            <!-- <p id="send">전송</p> -->
-        </div>
-        <div id="nickName" class="info">
-            <input placeholder="생년월일(8자리)" type="text" readonly maxlength="8" name="userBirth" id="birthValue">
-        </div>
+    
+    <form method="post" action="/pwdate2">
+    <input type="text" class="hide" value="${userId}" name="userId">
+    <input type="text" class="hide" value="${userBirth}" name="userBirth">
+    <div id="email" class="info">
+    	<p class="title">새로운 비밀번호를 입력하세요</p>
+        <input placeholder="비밀번호(4자리)" type="password" maxlength="4" name="userPass" id="pw">
+            <!-- <p id="explain">생년월일(8자리)</p> -->
+    </div>
+    <div id="birth" class="info">
+        <input placeholder="비밀번호 확인" type="password" maxlength="4" id="pwcheck">
+            <!-- <p id="explain">생년월일(8자리)</p> -->
+            <div id="checkMsg"></div>
 
     
     </div>

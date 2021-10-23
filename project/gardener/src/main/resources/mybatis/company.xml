@@ -15,7 +15,7 @@
 	</select>
 
 	<sql id="search">
-		select * from Company
+		select * from COMPANY
 		<where>
 			<if
 				test="(search == 'total' or search == 'companyId') and keyword != ''">OR COMPANY_ID like #{searchKeyword}</if>
@@ -44,10 +44,10 @@
 	</select>
 
 	<select id="listIncludeCount" resultType="company">
-		SELECT * FROM company
+		SELECT * FROM COMPANY
 		NATURAL LEFT JOIN
 		(SELECT COUNT(*) 'productCount',company_ID FROM
-		product
+		PRODUCT
 		GROUP BY company_ID) sub
 
 	</select>
@@ -105,7 +105,7 @@
 		, IFNULL(b.PRODUCT_ID,'N') 'bookmark'
 		from
 		(SELECT * from COMPANY WHERE COMPANY_ID = #{companyId}) C
-		join PRODUCT P on C.COMPANY_ID = P.COMPANY_ID
+		join product P on C.COMPANY_ID = P.COMPANY_ID
 		left JOIN (select * from bookmark where USER_ID = #{userId}) b ON p.PRODUCT_ID =
 		b.PRODUCT_ID
 		WHERE EL_ID != 0
@@ -228,7 +228,7 @@
 		(SELECT DISTINCT P.COMPANY_ID, C.COMPANY_NAME FROM (SELECT
 		COMPANY_ID, EL_ID
 		FROM product WHERE EL_ID != 0) P
-		LEFT JOIN company C
+		LEFT JOIN COMPANY C
 		ON C.COMPANY_ID = P.COMPANY_ID) M
 	</sql>
 
