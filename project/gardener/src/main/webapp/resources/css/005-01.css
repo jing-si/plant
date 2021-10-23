@@ -65,7 +65,7 @@ body {
     left: 82%;   /* left: 294px; */
     top: 90%;     /* top: 579px; */
     border: none;
-    background-color: transparent;
+    background-color: red;
     position: absolute;
     z-index: 1002;
 }
@@ -128,19 +128,19 @@ body {
     border: none;
     background-color: transparent;
 }
-.popup_head .item_all {
+.popup_head #item_all {
     position: absolute;
     left: 181px;
     top: 49px;
 }
 
-.popup_head .item_tree {
+.popup_head #item_tree {
     position: absolute;
     left: 223px;
     top: 49px;
 }
 
-.popup_head .item_flower {
+.popup_head #item_flower {
     position: absolute;
     left: 265px;
     top: 49px;
