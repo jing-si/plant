@@ -128,22 +128,34 @@ body {
     border: none;
     background-color: transparent;
 }
+
+/* 모달창 인벤 아이템 분류 탭 */
+
+ul, li {
+	list-style: none;
+}
+
+.tab {
+	overflow:hidden
+} 
+
+
 .popup_head #item_all {
     position: absolute;
-    left: 181px;
-    top: 49px;
+    left: 180px;
+    top: 51px;
 }
 
 .popup_head #item_tree {
     position: absolute;
     left: 223px;
-    top: 49px;
+    top: 51px;
 }
 
 .popup_head #item_flower {
     position: absolute;
-    left: 265px;
-    top: 49px;
+    left: 266px;
+    top: 51px;
 }
 
 /* 팝업창 상단 버튼영역 끝 */

@@ -76,22 +76,79 @@ $().ready(()=>{
 	//나무를 심을때 inven을 열고 시작
 	inven();
 	
-	//인벤 분류 icon 클릭시 이벤트
+	// 인벤 분류 icon 클릭시 ui 이벤트
+	
+	$(".tab_menu li").click(function () {
+        var $this = $(this),
+            tabId = $this.data("tab"),
+            tabIndex = $this.index();
+
+        $(".tab_menu li").removeClass("on");
+
+        $this.addClass("on");
+        $("#"+tabId).addClass("on");
+
+        $(".tab_menu li").each(function (content) {
+            $(this).find("img").attr("src", $(this).find("img").attr("src").replace("_off","_on"));
+            
+            if (tabIndex != content) {
+                $(this).find("img").attr("src", $(this).find("img").attr("src").replace("_on","_off"));
+            }
+            
+        })
+        
+    })
+    
+    //인벤 분류 icon 클릭시 이벤트
 	$("#item_all").on("click",function(){
 		$(".item_card").removeClass("hide");
+		
+		$('#tab_all').attr('src','/resources/images/tab_01_on.png');
+		$('#tab_tree').attr('src','/resources/images/tab_02_off.png');
+		$('#tab_flower').attr('src','/resources/images/tab_03_off.png');
+		
 	})
 	
 	$("#item_tree").on("click",function(){
 		$(".tree").removeClass("hide");
 		$(".flower").addClass("hide");
+		
+		$('#tab_all').attr('src','/resources/images/tab_01_off.png');
+		$('#tab_tree').attr('src','/resources/images/tab_02_on.png');
+		$('#tab_flower').attr('src','/resources/images/tab_03_off.png');	
 	})
 	
 	$("#item_flower").on("click",function(){
 		$(".tree").addClass("hide");
 		$(".flower").removeClass("hide");
+		
+		
+		$('#tab_all').attr('src','/resources/images/tab_01_off.png');
+		$('#tab_tree').attr('src','/resources/images/tab_02_off.png');
+		$('#tab_flower').attr('src','/resources/images/tab_03_on.png');
 	})
+	      
 	
+	/* //인벤 분류 icon 클릭시 이벤트
+   	$("#item_all").on("click",function(){
+    	$(".item_card").removeClass("hide");
+   	})
+   
+   	$("#item_tree").on("click",function(){
+      	$(".tree").removeClass("hide");
+      	$(".flower").addClass("hide");
+   	})
+   
+   	$("#item_flower").on("click",function(){
+      	$(".tree").addClass("hide");
+      	$(".flower").removeClass("hide");
+   	}) */
+   
 })
+	
+	
+	
+
 function changeSize(target){
 		const img = $(target).children("img");
 		const originW = Number(img.get(0).naturalWidth);
@@ -174,9 +231,11 @@ img{
 					<!-- 상단 버튼 영역 -->
 					<div class="popup_head">
 						<button type="button" id="popup_close"><img src="/resources/images/icon_close.png" width="18" height="18">
-						</button><div id="item_all"><img src="/resources/images/tab_01_on.png" class="item" width="45" height="30">
-						</div><div id="item_tree"><img src="/resources/images/tab_02_off.png" class="item"  width="45" height="30">
-						</div><div id="item_flower"><img src="/resources/images/tab_03_off.png" class="item"  width="45" height="30">
+						</button>
+					
+						<div id="item_all"><img src="/resources/images/tab_01_on.png" class="item" id="tab_all" width="40" height="25">
+						</div><div id="item_tree"><img src="/resources/images/tab_02_off.png" class="item" id="tab_tree" width="40" height="25">
+						</div><div id="item_flower"><img src="/resources/images/tab_03_off.png" class="item" id="tab_flower" width="40" height="25">
 						</div>
 					</div>
 					<!-- 하단 빈공간 -->
