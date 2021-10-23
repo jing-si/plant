@@ -174,9 +174,9 @@ img{
 					<!-- 상단 버튼 영역 -->
 					<div class="popup_head">
 						<button type="button" id="popup_close"><img src="/resources/images/icon_close.png" width="18" height="18">
-						</button><div id="item_all"><img src="/resources/images/inven_all.png" class="item" width="45" height="30">
-						</div><div id="item_tree"><img src="/resources/images/inven_tree.png" class="item"  width="45" height="30">
-						</div><div id="item_flower"><img src="/resources/images/inven_flower.png" class="item"  width="45" height="30">
+						</button><div id="item_all"><img src="/resources/images/tab_01_on.png" class="item" width="45" height="30">
+						</div><div id="item_tree"><img src="/resources/images/tab_02_off.png" class="item"  width="45" height="30">
+						</div><div id="item_flower"><img src="/resources/images/tab_03_off.png" class="item"  width="45" height="30">
 						</div>
 					</div>
 					<!-- 하단 빈공간 -->
