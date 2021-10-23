@@ -16,7 +16,7 @@ public class ProductCertReasonList extends CommonList<ProductCertReason> {
 		this.addInsert("제 품","productId","combo",0);
 		this.addInsert("인증 사유 ","certReasonId","combo",1);
 		
-		
+		setView(true);
 	}
 
 }

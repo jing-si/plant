@@ -15,6 +15,8 @@ public class StateList extends CommonList<State>{
 		addInsert("상태ID", "stateId", "number");
 		addInsert("상태명", "stateName", "text");
 		addInsert("상태 메시지", "stateMessage", "text");
+		
+		setView(true);
 	}
 
 }

@@ -33,9 +33,9 @@
 			<div class="col container-custom p-0">
 				<!--Header - 로고, 로그아웃, option-->
 				<header class="header border-bot">
-					<div class="row row-cols-2 mx-0 px-0">
+					<div class="row mx-0 px-0">
 						<!--테이블 카테고리 선택상자  -->
-						<div class="col-10  hstack mx-3 pt-2 nav">
+						<div class="col-10  ms-3 pt-2 nav">
 							<div class="option col-2 pt-2 pb-3" data-url="plant">
 								<h5 class="center"><i class="bi"></i> 식물 관리</h5>
 							</div>
@@ -45,8 +45,8 @@
 							
 							
 						</div>
-						<div class="col-1 ">
-							<a href="#">log out</a>
+						<div class="col">
+								<jsp:include page="../../../include/logout.jsp"></jsp:include>
 						</div>
 
 					</div>

@@ -16,7 +16,7 @@ public class MidClassList extends CommonList<MidClass>{
 		this.addInsert("대분류ID","topClassId","combo",0);
 		this.addInsert("중분류명","midClassName","text");
 		
-		
+		setView(true);
 	}
 
 	

@@ -16,7 +16,7 @@ public class BotClassList extends CommonList<BotClass>{
 		this.addInsert("중분류ID","midClassId","combo",0);
 		this.addInsert("소분류명","botClassName","text");
 		
-		
+		setView(true);
 	}
 
 	
