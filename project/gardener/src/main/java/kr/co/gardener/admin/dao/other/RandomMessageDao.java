@@ -17,4 +17,6 @@ public interface RandomMessageDao {
 
 	void update_list(List<RandomMessage> list);
 
+	String item(Integer stateId);
+
 }
