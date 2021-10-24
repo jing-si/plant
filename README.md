@@ -59,7 +59,7 @@
 ### 5. **개발환경 및 개발언어**
 
 - 개발 분야: 웹 애플리케이션
-- 지원OS: 
+- 지원OS: Android
 - FE: JavaScript, HTML5, CSS, JQuery
 - BE: Java, Spring, DataBase(Maria DB)
 
