@@ -118,7 +118,7 @@
 
 	<delete id="delete_list">
 		DELETE FROM AUTHORITY
-		WHERE AUTHORITY_ID in (
+		WHERE ADMIN_ID in (
 		<foreach collection="list" item="item" separator=",">
 			(#{item.adminId})
 		</foreach>
