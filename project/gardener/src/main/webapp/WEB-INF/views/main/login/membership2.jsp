@@ -58,13 +58,17 @@
 	    .info .sub{
 	    	margin-bottom: 2px;
 	    }
+    	#checkMsg .red{
+    		color:red;
+    	}
     </style>
     
 </head>
 <body>
 
 <script>
-
+let checkId = false;
+let checkPass = false;
 
 $().ready(() =>{
 	/* var emailValue = $("#email").children().first().val(); */
@@ -104,8 +108,9 @@ $().ready(() =>{
 		success : function(data){
 			console.log(data)
 			if(data==="true"){
-				alert("이 아이디는 사용 가능합니다.");
+				alert("이 아이디는 사용 가능합니다.");				
 				console.log("이 아이디는 사용가능합니다");
+				checkId = true;
 			}else{
 				alert("이 아이디는 사용 불가능합니다");
 				console.log("이 아이디는 사용불가능합니다");
@@ -122,6 +127,10 @@ $().ready(() =>{
 
 })  //중복확인 끝
 	
+	//id변경시 중복체크 요구
+	$(".changeId").on("change",function(){
+		checkId = false;
+	})
 	
 	
 	
@@ -129,6 +138,27 @@ $().ready(() =>{
 $('#pwcheck').keyup(function(){
 	var password = $('#pw').val();
 	var passwordCheck = $('#pwcheck').val();
+	const password_rule = /(?=.*\d{1,50})(?=.*[~`!@#$%\^&*()-+=]{1,50})(?=.*[a-zA-Z]{2,50}).{8,50}$/;
+	
+	if(password.length < 8){
+		$("#checkMsg").empty();
+		$("#checkMsg").append($("<p class='red'>8자리 이상 필요</p>"))
+		checkPass = false;
+		return;
+	}else{
+		checkPass = true;
+	}
+	
+	
+	if(!password_rule.test(password)){
+		$("#checkMsg").empty();
+		$("#checkMsg").append($("<p class='red'>숫자와 영어, 특수문자 필요</p>"))
+		checkPass = false;
+		return;
+	}else{
+		checkPass = true;
+	}
+	
 	
 	if(password == passwordCheck){
 		$("#checkMsg").empty();
@@ -136,7 +166,7 @@ $('#pwcheck').keyup(function(){
 	}
 	else{
 		$("#checkMsg").empty();
-		$("#checkMsg").append($("<p>비밀번호 불일치</p>"))
+		$("#checkMsg").append($("<p class='red'>비밀번호 불일치</p>"))
 	}
 })  //비밀번호 확인 끝
 
@@ -144,6 +174,25 @@ $('#pwcheck').keyup(function(){
 $('#pw').keyup(function(){
 	var password = $('#pw').val();
 	var passwordCheck = $('#pwcheck').val();
+	const password_rule = /(?=.*\d{1,50})(?=.*[~`!@#$%\^&*()-+=]{1,50})(?=.*[a-zA-Z]{2,50}).{8,50}$/;
+	
+	if(password.length < 8){
+		$("#checkMsg").empty();
+		$("#checkMsg").append($("<p class='red'>8자리 이상 필요</p>"))
+		checkPass = false;
+		return;
+	}else{
+		checkPass = true;
+	}
+	
+	if(!password_rule.test(password)){
+		$("#checkMsg").empty();
+		$("#checkMsg").append($("<p class='red'>숫자와 영어, 특수문자 필요</p>"))
+		checkPass = false;
+		return;
+	}else{
+		checkPass = true;
+	}
 	
 	
 	if(password == passwordCheck){
@@ -152,7 +201,7 @@ $('#pw').keyup(function(){
 	}
 	else{
 		$("#checkMsg").empty();
-		$("#checkMsg").append($("<p>비밀번호 불일치</p>"))
+		$("#checkMsg").append($("<p class='red'>비밀번호 불일치</p>"))
 	}
 })  //비밀번호 확인 끝
 	
@@ -175,7 +224,7 @@ $('#pw').keyup(function(){
 
 //submit하기전 검사
 function check(){
-	var password_rule = /(?=.*\d{1,50})(?=.*[~`!@#$%\^&*()-+=]{1,50})(?=.*[a-zA-Z]{2,50}).{8,50}$/;
+	
 
 	
 	//아이디 공백 확인 
@@ -188,46 +237,12 @@ function check(){
 	
 	//아이디 중복확인
 	if(!($("#emailValue").val() == "")){
-		if(emailValue == "" || emailSelect == "" || !email_rule.test(email)){
-			console.log(emailValue)
-			console.log(email_rule.test(email))
-			alert("이메일을 형식에 맞게 입력해주세요");
+		if(!checkId){
+			alert("아이디 중복체크가 필요합니다.")
 			return false;
 		}
-		else if(checkEnglish < 0){
-			console.log(emailValue)
-			alert("숫자로만 이루어진 이메일은 사용할수없습니다.")
-			return false;
-		}
-		else{
-				$.ajax({
-			url : "/membership/duplication",
-			type : "post",
-			data : {"id" : email},
-			dataType : "text",
-			success : function(data){
-				console.log(data)
-				if(data==="true"){
-					alert("이 아이디는 사용 가능합니다.");
-					console.log("이 아이디는 사용가능합니다");
-					return false;
-				}else{
-					alert("이 아이디는 사용 불가능합니다");
-					console.log("이 아이디는 사용불가능합니다");
-					return false;
-				}
-			},  //success 끝
-			error : function(){
-				alert("아이디 중복 확인 ajax 실행 실패");
-				console.log("실패");
-				console.log(emailValue);
-				return false;
-			}
-		})  //ajax 끝
-		}  //else 끝
+		
 	}
-	
-	
 	
 	
 	//닉네임 공백 검사 
@@ -237,6 +252,10 @@ function check(){
         return false;
     }
 	
+	
+	if(!checkPass){
+		alert("비밀번호를 확인해주세요.")		
+	}
 	
     //비밀번호 공백 확인 
     if ($("#pw").val() == "") {
@@ -304,9 +323,9 @@ function check(){
 <form method="post" onsubmit="return check();">
 <div id="align" class="scroll">
     <div id="email" class="info">
-        <input placeholder="이메일" type="text" name="userId" id="emailValue" maxlength="18">
+        <input placeholder="이메일" type="text" name="userId" id="emailValue" maxlength="18" class="changeId">
         <p>@</p>
-        <select class="select emailSelect" title="이메일 도메인 주소 선택" onclick="setEmailDomain(this.value);return false;" id="emailSelect">
+        <select class="select emailSelect changeId" title="이메일 도메인 주소 선택" id="emailSelect">
             <option value="">-선택-</option>
 		    <option value="naver.com">naver.com</option>
 		    <option value="gmail.com">gmail.com</option>
@@ -325,13 +344,13 @@ function check(){
             <!-- <p>example@gmail.com</p> -->
     </div>
     <div id="birth" class="info">
-        <input placeholder="비밀번호(4자리)" type="password" maxlength="4" name="userPass" id="pw">
-        <p class="sub title">비밀번호는 8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요</p>
+        <input placeholder="비밀번호" type="password" name="userPass" id="pw" >
+		 <p class="sub title">비밀번호는 8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요</p>
             <!-- <p id="explain">생년월일(8자리)</p> -->
     </div>
     
     <div id="birth" class="info">
-        <input placeholder="비밀번호 확인" type="password" maxlength="4" id="pwcheck">
+        <input placeholder="비밀번호 확인" type="password" id="pwcheck" >
             <!-- <p id="explain">생년월일(8자리)</p> -->
             <div id="checkMsg"></div>
     </div>
