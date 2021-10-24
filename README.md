@@ -52,14 +52,16 @@
 
 ### 4. 팀원
 
-정의원 : BE, 데이터 관리
+정의원 : BE, FE, 데이터 관리
 
-한지선, 박나은 : FE, 기획, 디자인
+한지선 : FE, Android Studio, 기획, 디자인
+
+박나은 : BE, FE, 기획, 디자인
 
 ### 5. **개발환경 및 개발언어**
 
 - 개발 분야: 웹 애플리케이션
-- 지원OS: 안드로이드, IOS
+- 지원OS: Android
 - FE: JavaScript, HTML5, CSS, JQuery
 - BE: Java, Spring, DataBase(Maria DB)
 
