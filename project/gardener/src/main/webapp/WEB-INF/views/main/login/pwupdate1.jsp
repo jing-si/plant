@@ -32,6 +32,8 @@
 		//날짜 형식 바꾸기
 		$("#birthValue").datepicker({
 			language: 'ko',
+			maxDate:new Date(),
+			autoClose:true
 		});
 		
 	})	//ready끝
