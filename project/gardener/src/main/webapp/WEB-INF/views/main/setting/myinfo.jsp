@@ -30,17 +30,15 @@
 				location.href = "../../";
 				}
 			else if(result == false){
-				alert("취소")
 			}
 		})  //로그아웃
 		
 		$(".alert2").click(function(){
 			var result = confirm("탈퇴하시겠습니까");
 			if(result == true){
-				location.href = "../../";
+				location.href = "out";
 				}
 			else if(result == false){
-				alert("취소")
 			}
 		})  //탈퇴
 		
@@ -64,14 +62,14 @@
             <p>비밀번호 수정</p>
             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6-6-6z"/></svg>
         </div></a>
-        <a><div class="info">
+        <a><div class="info alert1">
             <!-- <p class="openPopup open1">로그아웃</p> -->
-            <p class="alert1">로그아웃</p>
+            <p>로그아웃</p>
             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6-6-6z"/></svg>
         </div></a>
-        <a><div class="info">
+        <a><div class="info alert2">
             <!-- <p class="openPopup open2">회원탈퇴</p> -->
-            <p class="alert2">회원탈퇴</p>
+            <p >회원탈퇴</p>
             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6-6-6z"/></svg>
         </div></a>
     </div>
