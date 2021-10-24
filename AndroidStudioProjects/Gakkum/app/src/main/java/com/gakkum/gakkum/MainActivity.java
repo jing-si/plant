@@ -68,21 +68,19 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             };
 
-            //웹뷰에 Confirm창에 url을 제거한다.
             @Override
-            public boolean onJsConfirm(WebView mWebView, String url, String message, final JsResult result) {
+            public boolean onJsConfirm(WebView view, String url, String message, final android.webkit.JsResult result){
                 new AlertDialog.Builder(MainActivity.this)
                         .setTitle("")
                         .setMessage(message)
-                        .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-
-                            public void onClick(DialogInterface dialog, int which) {
-                                result.confirm();
-                            }
-                        })
+                        .setPositiveButton(android.R.string.ok,
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        result.confirm();
+                                    }
+                                })
                         .setNegativeButton(android.R.string.cancel,
                                 new DialogInterface.OnClickListener() {
-                                    @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         result.cancel();
                                     }
@@ -91,8 +89,31 @@ public class MainActivity extends AppCompatActivity {
                         .show();
 
                 return true;
-            }
+            };
 
+/*
+            //웹뷰에 Confirm창에 url을 제거한다.
+            @Override
+            public boolean onJsConfirm(WebView mWebView, String url, String message, final android.webkit.JsResult result) {
+                new AlertDialog.Builder(MainActivity.this)
+                        .setTitle("")
+                        .setMessage(message)
+                        .setPositiveButton(android.R.string.ok, new AlertDialog.OnClickListener() {
+
+                            public void onClick(DialogInterface dialog, int which) {
+                                result.confirm();
+                            }
+                        })
+                        .setNegativeButton(android.R.string.cancel, new AlertDialog.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        result.cancel();
+                                    }
+                                })
+                        .create()
+                        .show();
+
+                return true;
+            } */
         });
 
 
