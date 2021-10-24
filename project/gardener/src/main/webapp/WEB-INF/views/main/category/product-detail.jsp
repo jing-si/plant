@@ -278,6 +278,12 @@ img{
 #li-product-certReason-img img{
 	object-fit:contain;
 }
+.center{
+	padding-top: 22px;
+}
+.heart{
+	border-radius: 0px;
+}
 
     </style>
     
@@ -354,11 +360,11 @@ img{
         
         <div id="heart">
 	        <c:if test="${item.bookmark == 'N'}">
-	        	<img src="/resources/images/white_heart.png">
+	        	<img class="heart" src="/resources/images/white_heart.png">
 	        </c:if>
 
 	        <c:if test="${item.bookmark != 'N'}">
-	        	<img src="/resources/images/green_heart.png">
+	        	<img class="heart" src="/resources/images/green_heart.png">
 	        </c:if>
 		</div>
 		
@@ -392,11 +398,11 @@ img{
                 </li>
                 <li class="blank"></li>
                 <li id="li-product-cert-img" class="li">
-                    <div class="product-chart-name ">인증구분
+                    <div class="product-chart-name center">인증구분
                     </div><div class="product-chart-content"><div class="product-chart-img"><img src="${cert.certImage}"></div></div>
                 </li>
                 <li id="li-product-certReason-img" class="li">
-                    <div class="product-chart-name">인증사유
+                    <div class="product-chart-name center">인증사유
                     </div><div class="product-chart-content">
                     <c:forEach items="${item.certReasons}" var="certReason">
                     <div class="product-chart-img">

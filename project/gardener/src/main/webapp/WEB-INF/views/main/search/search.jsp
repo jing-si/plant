@@ -24,8 +24,9 @@
     
     <style type="text/css">
     img{
-    	width: 30px;
-    	margin-top: 4px;
+    	width: 100%; 
+    	/* margin-top: 4px; */
+    	height: 100%;
     }
     .scroll{
     	overflow: auto;
@@ -39,7 +40,7 @@
     }
     #no-result p{
     	position: absolute;
-    	top: 23%;
+    	top: 140px;
     	left: 50%;
     	transform : translate(-50%, -50%); 
     	opacity: 30%;
@@ -49,9 +50,21 @@
     	height: 100px;
     	/* margin: 0 auto; */
     	position: absolute;
-    	top: 10%;
+    	top: 70px;
     	left: 50%;
     	transform: translate(-50%, -50%);
+    }
+    
+    #search-button{
+    	position: absolute;
+    	width: 50px;
+    	height: 80%;
+    	right: 5px;
+    	border: 2px solid #ddd;
+    	top: 4px;
+    	border-radius: 5px;
+    	background-color: #f5f5f5;
+    	color: #ddd;
     }
     </style>
 </head>
@@ -94,8 +107,9 @@ function inven() {
     <div id="header">
         <div class="input">
         	<form method="post">
-        	<input type="image" src="/resources/images/search-glass.png" id="img">            
+        	<!-- <input type="image" src="/resources/images/search-glass.png" id="img">         -->    
             <input placeholder="검색어를 입력하세요" type="text" name="q" value="${word }" id="q"></input>
+            <button id="search-button" type="submit">검색</button>
             <!-- <p>검색어를 입력하세요</p> -->
             </form>
         </div>
