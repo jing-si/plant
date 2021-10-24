@@ -43,6 +43,33 @@
     	.hide{
     		display: none;
     	}
+    	
+    	            #submit{
+            width: 100%;
+            height: 44px;
+            background-color: #66bb6a;
+            position: relative;
+            border: 0px;
+            color: white;
+        }
+        #submit p{
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%);
+            top: 27%;
+            font-size: 13px;
+            color: #fff;
+            font-weight: bold;
+            /* margin: auto 0; */
+            /* margin-top: 6.3px; */
+        }
+                #align{
+            width: 328px;
+            /* height: calc(100vh - 44px - 40.5px - 31.5px); */
+            height: calc(100vh - 44px - 31.5px - 24px - 22px);
+            margin: 0 auto;
+            position: relative;
+        }
     </style>
 </head>
 <body>
@@ -112,12 +139,14 @@ function check(){
 
 
         <div id="header">
-        	<svg class="historyBack" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        	<svg class="historyBack" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12l4.58-4.59z"/></svg>
             <p>비밀번호 재설정</p>
         </div>
+        
+     <form method="post" action="/pwdate2">   
     <div id="align">
     
-    <form method="post" action="/pwdate2">
+   
     <input type="text" class="hide" value="${userId}" name="userId">
     <input type="text" class="hide" value="${userBirth}" name="userBirth">
     <div id="email" class="info">
@@ -132,8 +161,11 @@ function check(){
 
     
     </div>
-        <input id="submit" value="확인" type="submit">
+
+    </div>
+            <input id="submit" value="확인" type="submit">
          <!--    <p>동의하고 완료</p> -->
+    
     </form>
     
     </body>

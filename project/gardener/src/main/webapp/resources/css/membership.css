@@ -13,7 +13,7 @@
         #align{
             width: 328px;
             /* height: calc(100vh - 44px - 40.5px - 31.5px); */
-            height: calc(100vh - 44px - 31.5px - 24px);
+            height: calc(100vh - 44px - 31.5px - 14px);
             margin: 0 auto;
             position: relative;
         }
@@ -50,7 +50,7 @@
         }
         .info .title{
             margin-bottom: 8px;
-            width: 200px;
+            width: 300px;
         }
         .info div{
             width: 328px;
@@ -125,7 +125,7 @@
         #agreement{
             width: 328px;
         }
-        #agreement #agreeBox{height: 71px;}
+        #agreement #agreeBox{height: 50px;}
         #agreement div div{
             position: relative;
         }

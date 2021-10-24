@@ -51,6 +51,13 @@
     		border: 0px;
     		border-radius: 4px;
     	}
+    		.scroll{
+	    	overflow: auto;
+	    	height: calc(100vh - 59.5px - 44px);
+	    }
+	    .info .sub{
+	    	margin-bottom: 2px;
+	    }
     </style>
     
 </head>
@@ -157,6 +164,8 @@ $('#pw').keyup(function(){
 	//날짜 형식 바꾸기
 	$("#birthValue").datepicker({
 		language: 'ko',
+		maxDate:new Date(),
+		autoClose:true
 	});
 	
 	
@@ -293,7 +302,7 @@ function check(){
 
 
 <form method="post" onsubmit="return check();">
-<div id="align">
+<div id="align" class="scroll">
     <div id="email" class="info">
         <input placeholder="이메일" type="text" name="userId" id="emailValue" maxlength="18">
         <p>@</p>
@@ -308,7 +317,7 @@ function check(){
 		    <option value="yahoo.com">yahoo.com</option>
 		</select>
         <div value="duplication" id="duplication">중복확인</div>
-        <p class="title">이메일은 영문, 영문+숫자 조합만 가능합니다</p>
+        <p class="sub title">이메일은 영문, 영문+숫자 조합만 가능합니다</p>
         <!-- <p id="certification">계정이 인증되었습니다.</p> -->
     </div>
     <div id="nickName" class="info">
@@ -317,8 +326,10 @@ function check(){
     </div>
     <div id="birth" class="info">
         <input placeholder="비밀번호(4자리)" type="password" maxlength="4" name="userPass" id="pw">
+        <p class="sub title">비밀번호는 8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요</p>
             <!-- <p id="explain">생년월일(8자리)</p> -->
     </div>
+    
     <div id="birth" class="info">
         <input placeholder="비밀번호 확인" type="password" maxlength="4" id="pwcheck">
             <!-- <p id="explain">생년월일(8자리)</p> -->
@@ -353,8 +364,7 @@ function check(){
     <div id="agreement" class="info">
         <p class="title">약관동의</p>
         <div id="agreeBox">
-            <div><p class="terms" id="terms_1">이용약관 동의(필수)<a href="agreement/"><p class="fullText" id="fullText_1">전문보기</p></a></div>
-            <div><p class="terms" id="terms_2">개인정보 수집 및 이용 동의(필수)<a href="agreement/"><p class="fullText" id="fullText_2">전문보기</p></a></div>
+            <div><p class="terms" id="terms_1">개인정보 수집 및 이용약관 동의(필수)<a href="agreement/"><p class="fullText" id="fullText_1">전문보기</p></a></div>
         </div>
     </div>
 </div>
