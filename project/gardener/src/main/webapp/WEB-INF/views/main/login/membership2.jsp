@@ -97,7 +97,7 @@ $().ready(() =>{
 	}
 	else if(checkEnglish < 0){
 		console.log(emailValue)
-		alert("숫자로만 이루어진 이메일은 사용할수없습니다.")
+		alert("이메일을 형식에 맞게 입력해주세요.")
 	}
 	else{
 			$.ajax({
@@ -108,12 +108,12 @@ $().ready(() =>{
 		success : function(data){
 			console.log(data)
 			if(data==="true"){
-				alert("이 아이디는 사용 가능합니다.");				
-				console.log("이 아이디는 사용가능합니다");
+				alert("사용 가능한 이메일입니다.");				
+				console.log("사용 가능한 이메일입니다.");
 				checkId = true;
 			}else{
-				alert("이 아이디는 사용 불가능합니다");
-				console.log("이 아이디는 사용불가능합니다");
+				alert("이미 사용중인 이메일입니다.");
+				console.log("이미 사용중인 이메일입니다.");
 			}
 		},  //success 끝
 		error : function(){
@@ -197,11 +197,11 @@ $('#pw').keyup(function(){
 	
 	if(password == passwordCheck){
 		$("#checkMsg").empty();
-		$("#checkMsg").append($("<p>비밀번호 일치</p>"))
+		$("#checkMsg").append($("<p>비밀번호가 일치합니다.</p>"))
 	}
 	else{
 		$("#checkMsg").empty();
-		$("#checkMsg").append($("<p class='red'>비밀번호 불일치</p>"))
+		$("#checkMsg").append($("<p class='red'>비밀번호가 일치하지 않습니다.</p>"))
 	}
 })  //비밀번호 확인 끝
 	
@@ -340,7 +340,7 @@ function check(){
         <!-- <p id="certification">계정이 인증되었습니다.</p> -->
     </div>
     <div id="nickName" class="info">
-        <input placeholder="닉네임" type="text" name="userNick" id="nickValue">
+        <input placeholder="닉네임" type="text" name="userNick" id="nickValue" maxlength="10">
             <!-- <p>example@gmail.com</p> -->
     </div>
     <div id="birth" class="info">

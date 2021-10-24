@@ -392,7 +392,7 @@ img{
                 </li>
                 <li class="blank"></li>
                 <li id="li-product-cert-img" class="li">
-                    <div class="product-chart-name">인증구분
+                    <div class="product-chart-name ">인증구분
                     </div><div class="product-chart-content"><div class="product-chart-img"><img src="${cert.certImage}"></div></div>
                 </li>
                 <li id="li-product-certReason-img" class="li">
