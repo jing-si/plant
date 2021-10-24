@@ -69,10 +69,6 @@
             <p class="alert1">로그아웃</p>
             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6-6-6z"/></svg>
         </div></a>
-        <div class="info">
-            <p class="alert">확인창 확인용</p>
-            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6-6-6z"/></svg>
-        </div>
         <a><div class="info">
             <!-- <p class="openPopup open2">회원탈퇴</p> -->
             <p class="alert2">회원탈퇴</p>
@@ -80,7 +76,7 @@
         </div></a>
     </div>
     
-       
+<!--        
 	<div id="popup01">
     	
     	<div>
@@ -96,7 +92,7 @@
     	</div>
 	</div>
 
-
+ -->
 
 
 
@@ -118,7 +114,7 @@
 
 
 
-<script>
+<!-- <script>
  $(document).ready(function( $ ){     
     $(".open1").on("click", function(event) { 
     $("#popup01").show();  
@@ -152,4 +148,4 @@
 
   
 	
-</script>
+</script> -->
