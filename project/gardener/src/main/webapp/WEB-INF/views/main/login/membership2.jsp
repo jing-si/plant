@@ -61,6 +61,9 @@
     	#checkMsg .red{
     		color:red;
     	}
+    	#email .hide{
+    		display: none;
+    	}
     </style>
     
 </head>
@@ -129,6 +132,10 @@ $().ready(() =>{
 	
 	//id변경시 중복체크 요구
 	$(".changeId").on("change",function(){
+		var emailValue = $("#emailValue").val();
+		var emailSelect = $("#emailSelect").val();
+		var email = emailValue + "@" + emailSelect;
+		$("#userId").val(email);
 		checkId = false;
 	})
 	
@@ -323,7 +330,8 @@ function check(){
 <form method="post" onsubmit="return check();">
 <div id="align" class="scroll">
     <div id="email" class="info">
-        <input placeholder="이메일" type="text" name="userId" id="emailValue" maxlength="18" class="changeId">
+     	<input placeholder="이메일" type="text" name="userId" id="userId" class="hide">
+        <input placeholder="이메일" type="text" id="emailValue" maxlength="18" class="changeId">
         <p>@</p>
         <select class="select emailSelect changeId" title="이메일 도메인 주소 선택" id="emailSelect">
             <option value="">-선택-</option>
