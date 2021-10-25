@@ -113,7 +113,7 @@ public class LoginController {
 		user.setUserPass(pass);
 		user = service.login(user);
 		session.setAttribute("user", user);
-		return "redirect:/login/";
+		return "redirect:../";
 	}
 	
 	//스플래시(시작대기화면)
