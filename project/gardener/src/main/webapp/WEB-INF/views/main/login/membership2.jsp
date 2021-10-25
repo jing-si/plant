@@ -51,6 +51,13 @@
     		border: 0px;
     		border-radius: 4px;
     	}
+    		.scroll{
+	    	overflow: auto;
+	    	height: calc(100vh - 59.5px - 44px);
+	    }
+	    .info .sub{
+	    	margin-bottom: 2px;
+	    }
     	#checkMsg .red{
     		color:red;
     	}
@@ -90,7 +97,7 @@ $().ready(() =>{
 	}
 	else if(checkEnglish < 0){
 		console.log(emailValue)
-		alert("숫자로만 이루어진 이메일은 사용할수없습니다.")
+		alert("이메일을 형식에 맞게 입력해주세요.")
 	}
 	else{
 			$.ajax({
@@ -101,12 +108,12 @@ $().ready(() =>{
 		success : function(data){
 			console.log(data)
 			if(data==="true"){
-				alert("이 아이디는 사용 가능합니다.");				
-				console.log("이 아이디는 사용가능합니다");
+				alert("사용 가능한 이메일입니다.");				
+				console.log("사용 가능한 이메일입니다.");
 				checkId = true;
 			}else{
-				alert("이 아이디는 사용 불가능합니다");
-				console.log("이 아이디는 사용불가능합니다");
+				alert("이미 사용중인 이메일입니다.");
+				console.log("이미 사용중인 이메일입니다.");
 			}
 		},  //success 끝
 		error : function(){
@@ -190,11 +197,11 @@ $('#pw').keyup(function(){
 	
 	if(password == passwordCheck){
 		$("#checkMsg").empty();
-		$("#checkMsg").append($("<p>비밀번호 일치</p>"))
+		$("#checkMsg").append($("<p>비밀번호가 일치합니다.</p>"))
 	}
 	else{
 		$("#checkMsg").empty();
-		$("#checkMsg").append($("<p class='red'>비밀번호 불일치</p>"))
+		$("#checkMsg").append($("<p class='red'>비밀번호가 일치하지 않습니다.</p>"))
 	}
 })  //비밀번호 확인 끝
 	
@@ -314,7 +321,7 @@ function check(){
 
 
 <form method="post" onsubmit="return check();">
-<div id="align">
+<div id="align" class="scroll">
     <div id="email" class="info">
         <input placeholder="이메일" type="text" name="userId" id="emailValue" maxlength="18" class="changeId">
         <p>@</p>
@@ -329,17 +336,19 @@ function check(){
 		    <option value="yahoo.com">yahoo.com</option>
 		</select>
         <div value="duplication" id="duplication">중복확인</div>
-        <p class="title">이메일은 영문, 영문+숫자 조합만 가능합니다</p>
+        <p class="sub title">이메일은 영문, 영문+숫자 조합만 가능합니다</p>
         <!-- <p id="certification">계정이 인증되었습니다.</p> -->
     </div>
     <div id="nickName" class="info">
-        <input placeholder="닉네임" type="text" name="userNick" id="nickValue">
+        <input placeholder="닉네임" type="text" name="userNick" id="nickValue" maxlength="10">
             <!-- <p>example@gmail.com</p> -->
     </div>
     <div id="birth" class="info">
-        <input placeholder="비밀번호(4자리)" type="password" name="userPass" id="pw" >
+        <input placeholder="비밀번호" type="password" name="userPass" id="pw" >
+		 <p class="sub title">비밀번호는 8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요</p>
             <!-- <p id="explain">생년월일(8자리)</p> -->
     </div>
+    
     <div id="birth" class="info">
         <input placeholder="비밀번호 확인" type="password" id="pwcheck" >
             <!-- <p id="explain">생년월일(8자리)</p> -->
@@ -374,8 +383,7 @@ function check(){
     <div id="agreement" class="info">
         <p class="title">약관동의</p>
         <div id="agreeBox">
-            <div><p class="terms" id="terms_1">이용약관 동의(필수)<a href="agreement/"><p class="fullText" id="fullText_1">전문보기</p></a></div>
-            <div><p class="terms" id="terms_2">개인정보 수집 및 이용 동의(필수)<a href="agreement/"><p class="fullText" id="fullText_2">전문보기</p></a></div>
+            <div><p class="terms" id="terms_1">개인정보 수집 및 이용약관 동의(필수)<a href="agreement/"><p class="fullText" id="fullText_1">전문보기</p></a></div>
         </div>
     </div>
 </div>

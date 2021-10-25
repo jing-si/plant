@@ -38,5 +38,10 @@ public class RandomMessageServiceImpl implements RandomMessageService{
 	public void update_list(RandomMessageList list) {
 		dao.update_list(list.getList());			
 	}
+
+	@Override
+	public String item(Integer stateId) {
+		return dao.item(stateId);
+	}
 	
 }

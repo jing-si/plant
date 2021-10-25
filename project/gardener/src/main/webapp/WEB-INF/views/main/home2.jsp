@@ -529,7 +529,7 @@ z-index: 2;
     <div id="align">
         <div class="title">
             <p>${sessionScope.user.userNick} 님, 반가워요!</p>
-            <p style="font-weight: bold;" id="hi">새로운 씨앗을 심어보세요 :)</p>
+            <p style="font-weight: bold;" id="hi">${msg}</p>
             <!-- <a href="/"><p style="font-size: 2em;">로그인 확인</p></a> -->
         </div>
 
