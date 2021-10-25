@@ -267,7 +267,7 @@
 				<!-- 그룹 박스 끝 -->
 			</c:if>
 
-			<c:if test="${sessionScope.admin.other eq 'Y' }">
+			<c:if test="${sessionScope.admin.authority eq 'Y' }">
 				<!-- 그룹 박스 -->
 				<div class="mt-5">
 					<p class="my-0 mx-2 left-side-th">authority control</p>

@@ -87,7 +87,7 @@
 								<div class="col-2 row mx-0 px-0">
 									<button
 										class="col ms-2 btn btn-light bg-white border border-ccc">
-										<i class="bi bi-file-earmark-arrow-down"></i> 엑셀 다운로드
+										<jsp:include page="../../../include/time.jsp"></jsp:include>
 									</button>
 								</div>
 								<!--엑셀 다운로드 끝-->

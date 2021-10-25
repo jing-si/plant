@@ -47,6 +47,7 @@
 		<interceptor>
 			<mapping path="/admin/**" />
 			<exclude-mapping path="/admin/"/>
+			<exclude-mapping path="/admin/logout"/>
 			<beans:bean class="kr.co.gardener.util.AdminInterceptor"></beans:bean>
 		</interceptor>
 	</interceptors>

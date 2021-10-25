@@ -46,7 +46,7 @@
 									<i class="bi"></i> 인증 사유 관리
 								</h5>
 							</div>
-							<div class="option col-2 pt-2 pb-3" data-url="productCertReason">
+							<div class="option col-2 pt-2 pb-3 hide" data-url="productCertReason">
 								<h5 class="center">
 									<i class="bi"></i> 제품 인증 사유 관리
 								</h5>
@@ -93,7 +93,7 @@
 								<div class="col-2 row mx-0 px-0">
 									<button
 										class="col ms-2 btn btn-light bg-white border border-ccc">
-										<i class="bi bi-file-earmark-arrow-down"></i> 엑셀 다운로드
+									<jsp:include page="../../../include/time.jsp"></jsp:include>
 									</button>
 								</div>
 								<!--엑셀 다운로드 끝-->

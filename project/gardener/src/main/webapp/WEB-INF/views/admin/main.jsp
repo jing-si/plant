@@ -170,8 +170,13 @@ input {
 										</div>
 										</c:if>
 										<c:if test="${!empty sessionScope.admin }">
-											<div id="align">
+											<div id="align" class="mt-5 mx-3">
 												<h2>${sessionScope.admin.adminName }님 안녕하세요.</h2>
+											</div>
+											<div class="m-3 p-5">
+												<h5><span
+										class="text-success">'가꿈'</span>의 관리자 시스템은 1920px에서 브라우저 배율 90% 일때 가장 보기 편합니다.</h5>
+										<p>해상도가 낮을 경우 배율을 낮추시면 좀더 보기 편합니다.</p>
 											</div>
 										</c:if>
 									</div>

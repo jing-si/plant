@@ -8,7 +8,7 @@ public class AuthorityList extends CommonList<Authority>{
 	public AuthorityList() {
 		super("Admin 관리");
 		addTh("아이디", "adminId", "none");
-		addTh("비밀번호", "adminPass", "text");
+		addTh("비밀번호", "adminPass", "pass");
 		addTh("이름", "adminName", "text");
 		addTh("Product 권한", "product", "combo",0);
 		addTh("User 권한", "user", "combo",0);
@@ -18,7 +18,7 @@ public class AuthorityList extends CommonList<Authority>{
 		
 		
 		addInsert("아이디", "adminId", "text");
-		addInsert("비밀번호", "adminPass", "text");
+		addInsert("비밀번호", "adminPass", "pass");
 		addInsert("이름", "adminName", "text");
 		addInsert("Product 권한", "product", "combo",0);
 		addInsert("User 권한", "user", "combo",0);

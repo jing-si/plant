@@ -9,7 +9,7 @@ public class ProductList extends CommonList<Product> {
 		super("제품 관리");
 		
 
-		this.addTh("제품ID","productId","text");
+		this.addTh("제품ID","productId","none");
 		this.addTh("제품명","productName","text");
 		this.addTh("사이즈","productSize","text");
 		this.addTh("제품이미지","productImage","file");
@@ -34,7 +34,7 @@ public class ProductList extends CommonList<Product> {
 		this.addInsert("인증 시작일","productStartDate","date");
 		this.addInsert("인증 만료일","productEndDate","date");
 		this.addInsert("제품정보","productInfo","text");
-		this.addInsert("사업자 번호","companyId","text");
+		this.addInsert("사업자 번호","companyId","combo",2);
 		this.addInsert("분류번호(EL)","elId","combo",1);
 		this.addInsert("제품인증사유","productCertReason","text");
 		this.addInsert("제품 바코드","productBarcode","text");

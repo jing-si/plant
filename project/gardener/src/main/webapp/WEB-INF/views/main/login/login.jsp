@@ -107,7 +107,7 @@ function check(){
       </div>
       <form method="post" onsubmit="return check();">
     <input id="email" placeholder="아이디" type="text" name="userId">
-    <input id="passWord" placeholder="비밀번호" type="password" name="userPass">
+    <input id="passWord" placeholder="비밀번호" type="password" name="userPass" autocomplete="current-password">
     	<input type="submit" id="login" class="border" value="로그인"></input>
     </form>
     
