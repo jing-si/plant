@@ -3,6 +3,8 @@ package kr.co.gardener.main.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.codec.binary.StringUtils;
+import org.jsoup.internal.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,8 +48,11 @@ public class SearchController {
 		return "redirect:..";
 	}
 
-	@PostMapping("/")
+	@PostMapping({ "/", "" })
 	public String search(String q, Model model) {
+		if(StringUtil.isBlank(q)) {
+			return "redirect:.";
+		}
 		List<Product> list = productService.list(q);
 		model.addAttribute("list", list);
 		model.addAttribute("word", q);

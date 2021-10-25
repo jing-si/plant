@@ -70,6 +70,7 @@
 		select * from PRODUCT
 		where
 		PRODUCT_NAME like #{search}
+		and EL_ID > 0
 	</select>
 
 	<update id="autoClassify">
