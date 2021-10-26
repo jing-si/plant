@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,11 +18,18 @@
 <body>
 <script>
 //submit하기전 검사
+$(function(){
+	<c:if test="${!empty msg}">
+		alert("아이디와 비밀번호를 다시 입력하세요")
+	</c:if>
+	
+})
+	
 function check(){
 	
 	//아이디 공백 확인 
     if ($("#email").val() == "") {
-        alert("아이디를 입력하세요");
+        alert("이메일을 입력하세요");
         $("#email").focus(); 
         return false;
     }
@@ -32,9 +40,9 @@ function check(){
         $("#passWord").focus(); 
         return false;
     }
-	if("${msg}" == "로그인 실패"){
-		alert("아이디와 비밀번호를 다시 입력하세요")
-	}
+	
+	
+	
 	
 /* 	else if($("#email").val() != "" || $("#passWord").val() != ""){
 		$.ajax({
@@ -98,7 +106,7 @@ function check(){
         <img src="/resources/images/login-logo.png">
       </div>
       <form method="post" onsubmit="return check();">
-    <input id="email" placeholder="아이디" type="text" name="userId">
+    <input id="email" placeholder="이메일" type="text" name="userId">
     <input id="passWord" placeholder="비밀번호" type="password" name="userPass">
     	<input type="submit" id="login" class="border" value="로그인"></input>
     </form>

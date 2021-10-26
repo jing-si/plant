@@ -13,4 +13,6 @@ public interface RandomMessageService {
 
 	void update_list(RandomMessageList list);
 
+	String item(Integer stateId);
+
 }

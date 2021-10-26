@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="authority">
+	<select id="login" resultMap="authorCreator">
+		select * from AUTHORITY
+		where ADMIN_ID = #{adminId}
+	
+	</select>
+
+	<!--대량 처리 -->
+	<select id="list_pager" resultMap="authorCreator">
+		SELECT * FROM (
+		<include refid="search"></include>
+		) M
+		LIMIT #{offset}, #{perPage}
+	</select>
+	
+	<resultMap type="Authority" id="authorCreator">
+		<constructor >
+		<idArg column="ADMIN_ID" javaType="String"/>
+		<arg column="ADMIN_PASS" javaType="String"/>
+		<arg column="ADMIN_NAME" javaType="String"/>
+		<arg column="PRODUCT" javaType="String"/>
+		<arg column="USER" javaType="String"/>
+		<arg column="FOREST" javaType="String"/>
+		<arg column="OTHER" javaType="String"/>
+		<arg column="AUTHORITY" javaType="String"/>
+		</constructor>	
+	</resultMap>
+
+	<sql id="search">
+		select * from AUTHORITY
+		<where>
+			<if
+				test="(search == 'total' or search == 'adminId') and keyword != ''">OR ADMIN_ID like #{searchKeyword}</if>
+			<if
+				test="(search == 'total' or search == 'adminPass') and keyword != ''">OR ADMIN_PASS like #{searchKeyword}</if>
+			<if
+				test="(search == 'total' or search == 'adminName') and keyword != ''">OR ADMIN_PASS like #{searchKeyword}</if>
+			<if
+				test="(search == 'total' or search == 'product') and keyword != ''">
+				OR product in (select ID from (
+				<include refid="combo0"></include>
+				) a where TEXT like #{searchKeyword})
+			</if>
+			<if
+				test="(search == 'total' or search == 'user') and keyword != ''">
+				OR user like in (select ID from (
+				<include refid="combo0"></include>
+				) a where TEXT like #{searchKeyword})
+			</if>
+			<if
+				test="(search == 'total' or search == 'forest') and keyword != ''">
+				OR forest in (select ID from (
+				<include refid="combo0"></include>
+				) a where TEXT like #{searchKeyword})
+			</if>
+			<if
+				test="(search == 'total' or search == 'other') and keyword != ''">
+				OR other in (select ID from (
+				<include refid="combo0"></include>
+				) a where TEXT like #{searchKeyword})
+			</if>
+			<if
+				test="(search == 'total' or search == 'authority') and keyword != ''">
+				OR authority in (select ID from (
+				<include refid="combo0"></include>
+				) a where TEXT like #{searchKeyword})
+			</if>
+		</where>
+	</sql>
+
+	<select id="update_list" resultType="Authority">
+		Insert into AUTHORITY
+		values
+		<foreach collection="list" item="item" separator=",">
+			(
+			#{item.adminId}
+			,#{item.adminPass}
+			,#{item.adminName}
+			,#{item.productCode}
+			,#{item.userCode}
+			,#{item.forestCode}
+			,#{item.otherCode}
+			,#{item.authorityCode}
+			)
+		</foreach>
+		on duplicate key update
+		ADMIN_ID = VALUES(ADMIN_ID)
+		,ADMIN_PASS = VALUES(ADMIN_PASS)
+		,ADMIN_NAME = VALUES(ADMIN_NAME)
+		,PRODUCT = VALUES(PRODUCT)
+		,USER = VALUES(USER)
+		,FOREST = VALUES(FOREST)
+		,OTHER = VALUES(OTHER)
+		,AUTHORITY = VALUES(AUTHORITY)
+	</select>
+	
+
+	<insert id="insert_list">
+		INSERT INTO AUTHORITY
+		VALUES
+		<foreach collection="list" item="item" separator=","
+			index="index">
+			(
+			#{item.adminId}
+			,#{item.adminPass}
+			,#{item.adminName}
+			,#{item.productCode}
+			,#{item.userCode}
+			,#{item.forestCode}
+			,#{item.otherCode}
+			,#{item.authorityCode}
+			)
+		</foreach>
+		
+	</insert>
+
+	<delete id="delete_list">
+		DELETE FROM AUTHORITY
+		WHERE ADMIN_ID in (
+		<foreach collection="list" item="item" separator=",">
+			(#{item.adminId})
+		</foreach>
+		)
+	</delete>
+
+	<select id="total" resultType="float">
+		select COUNT(*) from (
+		<include refid="search"></include>
+		) M
+	</select>
+
+	<select id="combo" resultType="ComboItem">
+		<include refid="combo0"></include>
+	</select>
+
+	<sql id="combo0">
+		SELECT "0" AS "table",
+		'Y' AS "ID", '권한 O' AS "TEXT"
+		UNION
+		SELECT "0" AS "table",
+		'N' AS "ID", '권한 X' AS "TEXT"
+	</sql>
+
+</mapper>

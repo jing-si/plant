@@ -1,4 +1,5 @@
 package kr.co.gardener.admin.model.user;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
@@ -59,7 +60,7 @@ public class User extends GridSystem{
 	}
 
 	public Date getUserBirth() {
-		return userBirth;
+		return this.userBirth;
 	}
 
 	public void setUserBirth(Date userBirth) {
@@ -136,13 +137,5 @@ public class User extends GridSystem{
 		
 	}
 	
-	//비밀번호 일치여부 검증
-	public boolean pwcheck(String userPass) {
-		if(this.userPass.equals(userPass)) {
-			return true;
-		}
-		return false;
-	}
-	
-	
+		
 }

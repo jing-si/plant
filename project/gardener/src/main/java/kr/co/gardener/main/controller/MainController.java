@@ -1,6 +1,5 @@
 package kr.co.gardener.main.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -19,6 +18,7 @@ import kr.co.gardener.admin.model.user.Inven;
 import kr.co.gardener.admin.model.user.User;
 import kr.co.gardener.admin.service.forest.PlantLevelService;
 import kr.co.gardener.admin.service.object.ProductService;
+import kr.co.gardener.admin.service.other.RandomMessageService;
 import kr.co.gardener.admin.service.user.InvenService;
 import kr.co.gardener.admin.service.user.UserService;
 
@@ -39,12 +39,18 @@ public class MainController {
 	@Autowired
 	InvenService invenService;
 	
+	@Autowired
+	RandomMessageService randomService;
+	
 	//메인페이지
-	@RequestMapping("/") //db변경이 없을때 용도
+	@RequestMapping({"/",""}) //db변경이 없을때 용도
 	public String index(Model model,HttpSession session) {
 		User user = (User) session.getAttribute("user");
 		model.addAttribute("img", imgSrc(user));
 		model.addAttribute("result", "0");
+		
+		String msg = randomService.item(user.getStateId());
+		model.addAttribute("msg", msg);
 		/*
 		 * model.addAttribute("userNick","userNick"); model.addAttribute("plantId","1");
 		 * model.addAttribute("stateId","0");

@@ -58,7 +58,7 @@
             display: inline-block;
             width: 47px;
             height: 47px;
-            background-color: #afafaf;
+           /*  background-color: #afafaf; */
             border-radius: 50%;
             margin-top: 15px;
         }

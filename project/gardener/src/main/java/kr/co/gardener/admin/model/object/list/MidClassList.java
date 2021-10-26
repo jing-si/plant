@@ -8,15 +8,15 @@ public class MidClassList extends CommonList<MidClass>{
 	public MidClassList() {
 		super("증분류");
 	
-		this.addTh("중분류ID","midClassId","number");
-		this.addTh("대분류ID","topClassId","combo",0);
+		this.addTh("중분류ID","midClassId","none");
+		this.addTh("대분류","topClassId","combo",0);
 		this.addTh("중분류명","midClassName","text");
 		
 		this.addInsert("중분류ID","midClassId","number");
-		this.addInsert("대분류ID","topClassId","combo",0);
+		this.addInsert("대분류","topClassId","combo",0);
 		this.addInsert("중분류명","midClassName","text");
 		
-		
+		setView(true);
 	}
 
 	

@@ -57,7 +57,10 @@
 		select COUNT(*) from (<include refid="search"></include>) M	
 	</select>
 
-	
+	<select id="item" resultType="String">
+		select RANDOM_MESSAGE_TEXT from RANDOM_MESSAGE
+		where RANDOM_MESSAGE_ID = #{stateId}
+	</select>
 	
 
 </mapper>

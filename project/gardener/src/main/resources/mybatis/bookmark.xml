@@ -75,8 +75,9 @@
 	</select>
 
 	<sql id="search">
-		select b.*, p.PRODUCT_NAME from BOOKMARK b
+		select b.*, p.PRODUCT_NAME, c.COMPANY_NAME from BOOKMARK b
 		NATURAL JOIN PRODUCT p
+		NATURAL JOIN COMPANY c
 		<where>
 			<if
 				test="(search == 'total' or search == 'userId') and keyword != ''">OR USER_ID like #{searchKeyword}</if>
@@ -84,8 +85,7 @@
 				test="(search == 'total' or search == 'productName') and keyword != ''">OR PRODUCT_NAME like #{searchKeyword}
 			</if>
 			<if
-				test="(search == 'total' or search == 'companyId') and keyword != ''">OR COMPANY_ID IN (SELECT COMPANY_ID FROM COMPANY WHERE
-				COMPANY_NAME like #{searchKeyword})
+				test="(search == 'total' or search == 'companyId') and keyword != ''">OR COMPANY_ID like #{searchKeyword}
 			</if>
 		</where>
 	</sql>
@@ -110,7 +110,7 @@
 			#{item.productId}
 			,#{item.userId}
 			,#{item.bookmarkDatetime}
-			,#{item.companyId}
+			,(select c.COMPANY_ID from COMPANY c where c.COMPANY_ID = (select p.COMPANY_ID from PRODUCT p where p.PRODUCT_ID = #{item.productId}))
 			)
 		</foreach>
 	</insert>
@@ -139,11 +139,6 @@
 		SELECT "1" AS "table",
 		USER_ID AS "id", USER_ID AS "text"
 		FROM USER
-		UNION
-		SELECT "2" AS "table",
-		COMPANY_ID AS "id", COMPANY_NAME AS "text"
-		FROM COMPANY
-
 
 	</select>
 
