@@ -118,8 +118,8 @@ function check(){
     <div id="align">
     
     <form method="post" action="/pwdate2">
-    <input type="text" class="hide" value="${userId}" name="userId">
-    <input type="text" class="hide" value="${userBirth}" name="userBirth">
+    	<input type="text" class="hide" value="${userId}" name="userId">
+    	<input type="text" class="hide" value="${userBirth}" name="userBirth">
     <div id="email" class="info">
     	<p class="title">새로운 비밀번호를 입력하세요</p>
         <input placeholder="비밀번호(4자리)" type="password" maxlength="4" name="userPass" id="pw">

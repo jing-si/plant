@@ -1,5 +1,6 @@
 package kr.co.gardener.main.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -92,7 +93,7 @@ public class LoginController {
 		
 		if(count>0) {
 			model.addAttribute("userId",user.getUserId());
-			model.addAttribute("userBirth", user.getUserBirth());
+			model.addAttribute("userBirth",  new SimpleDateFormat("yyyy.MM.dd").format(user.getUserBirth()) );
 			return path + "pwupdate2";
 		}
 		else {
@@ -108,9 +109,10 @@ public class LoginController {
 	//비밀번호 재설정2
 	@PostMapping("/pwdate2")
 	public String pwupdatepwupdate(User user) {
-		System.out.println(user.getUserPass());
-		System.out.println(user.getUserId());
-		System.out.println(user.getUserBirth());
+		System.out.println(user);
+		System.out.println(user);
+		System.out.println(user);
+		
 		service.update(user);
 		return path + "login";
 	}
