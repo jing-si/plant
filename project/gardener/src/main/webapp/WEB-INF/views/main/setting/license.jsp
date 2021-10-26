@@ -45,7 +45,7 @@ $().ready(()=>{
 
     <div id="header">
         <svg class="historyBack" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12l4.58-4.59z"/></svg>
-        <p>버전정보</p>
+        <p>라이선스</p>
     </div>
     <div id="body" class="scroll">
         <div id="align">
@@ -54,88 +54,88 @@ $().ready(()=>{
 https://www.selenium.dev/
 Copyright 2021 Software Freedom Conservancy All
 Apache License 2.0
-
+<br><br>
 Jackson
 https://github.com/FasterXML/jackson
 Copyright 2007- Tatu Saloranta, tatu.saloranta@iki.fi
 Apache License 2.0
-
+<br><br>
 Jsoup Java HTML Parser
 https://jsoup.org/
 Copyright  2009 - 2021 Jonathan Hedley
 MIT License	
-
+<br><br>
 Apache Commons Lang
 https://commons.apache.org/proper/commons-lang/
 Copyright 2001-2008 The Apache Software Foundation
 Apache License 2.0
-
+<br><br>
 Apache HttpClient
 https://hc.apache.org/httpclient-legacy/
 Copyright 2001-2011, Apache Software Foundation
 Apache License 2.0
-
+<br><br>
 Gson
 https://github.com/google/gson
 Copyright 2008 Google Inc. 
 Apache License 2.0
-
+<br><br>
 Apache Commons FileUpload
 https://commons.apache.org/proper/commons-fileupload/
 Copyright © 2002-2019 The Apache Software Foundation. All Rights Reserved.
 Apache License 2.0
-
+<br><br>
 Apache Commons DBCP
 https://commons.apache.org/proper/commons-dbcp/
 Copyright © 2001-2021 The Apache Software Foundation. All Rights Reserved.
 Apache License 2.0
-
+<br><br>
 MyBatis
 http://www.mybatis.org/mybatis-3
 Copyright © 2009–2021MyBatis.org. .
 Apache License 2.0
-
+<br><br>
 MyBatis Spring
 http://mybatis.org/spring/
 Copyright © 2010–2020MyBatis.org. .
 Apache License 2.0
-
+<br><br>
 Spring
 https://spring.io/
 © 2021 VMware, Inc. or its affiliates.
 Apache License 2.0
-
+<br><br>
 Spring JDBC 
 https://spring.io/
 © 2021 VMware, Inc. or its affiliates.
 Apache License 2.0
-
+<br><br>
 CKEditor
 https://ckeditor.com/
 Copyright (c) 2003-2021, CKSource - Frederico Knabben. All rights reserved.
 GNU General Public License Version 2 (the "GPL")
-
+<br><br>
 JQuery
 https://jquery.org/
 Copyright 2021 OpenJS Foundation and jQuery contributors. All rights reserved
 MIT license.
-
+<br><br>
 JQuery UI
 https://jqueryui.com/
 Copyright 2021 OpenJS Foundation and jQuery contributors. All rights reserved.
 MIT license.
-
+<br><br>
 Bootstrap
 https://getbootstrap.kr/
 Copyright (c) 2011-2021 Twitter, Inc.
 Copyright (c) 2011-2021 The Bootstrap Authors
 MIT License
-
+<br><br>
 MariaDB
 https://mariadb.com/
 Copyright (C) 1989, 1991 Free Software Foundation, Inc.
 GNU General Public License Version 2 (the "GPL")
-
+<br><br>
 Zxing
 https://github.com/zxing/
 Copyright (c) 2005 Sun Microsystems, Inc.
