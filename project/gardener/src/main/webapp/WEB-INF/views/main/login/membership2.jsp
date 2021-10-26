@@ -239,7 +239,7 @@ function check(){
 	
 	//아이디 공백 확인 
     if ($("#emailValue").val() == "") {
-        alert("이메일를 입력하세요");
+        alert("이메일을 입력하세요");
         $("#emailValue").focus(); 
         return false;
     }
