@@ -61,6 +61,9 @@
     	#checkMsg .red{
     		color:red;
     	}
+    	#email .hide{
+    		display: none;
+    	}
     </style>
     
 </head>
@@ -129,6 +132,13 @@ $().ready(() =>{
 	
 	//id변경시 중복체크 요구
 	$(".changeId").on("change",function(){
+		
+		var emailValue = $("#emailValue").val();
+		var emailSelect = $("#emailSelect").val();
+		var email = emailValue + "@" + emailSelect;
+		
+		$("#userId").val(email)
+		
 		checkId = false;
 	})
 	
@@ -252,7 +262,7 @@ function check(){
         return false;
     }
 	
-	
+	 //비밀번호 8자 이상 확인
 	if(!checkPass){
 		alert("비밀번호를 확인해주세요.")
 		return false;
@@ -283,18 +293,18 @@ function check(){
         return false;
     }
     
-    //비밀번호 8자 이상 확인
-    if(!password_rule.test($("#pw").val())){
+  
+    /* if(!password_rule.test($("#pw").val())){
     	alert("비밀번호는 8자 이상이어야 합니다");
     	$("#pw").val("");
     	$("#pwcheck").val("");
     	$("#pw").focus();
     	return false;
-    }
+    } */
 
     
     //생일 공백 확인 
-    if ($("#birthValue").val() == "") {
+    if ($("#birthValue").val() === "") {
         alert("생년월일을 입력하세요");
         $("birthValue").focus();
         return false;
@@ -324,7 +334,8 @@ function check(){
 <form method="post" onsubmit="return check();">
 <div id="align" class="scroll">
     <div id="email" class="info">
-        <input placeholder="이메일" type="text" name="userId" id="emailValue" maxlength="18" class="changeId">
+    <input placeholder="이메일" type="text" name="userId" id="userId" maxlength="18" class="userId hide">
+        <input placeholder="이메일" type="text" id="emailValue" maxlength="18" class="changeId">
         <p>@</p>
         <select class="select emailSelect changeId" title="이메일 도메인 주소 선택" id="emailSelect">
             <option value="">-선택-</option>
