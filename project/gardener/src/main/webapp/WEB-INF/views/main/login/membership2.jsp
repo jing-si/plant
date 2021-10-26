@@ -254,7 +254,8 @@ function check(){
 	
 	
 	if(!checkPass){
-		alert("비밀번호를 확인해주세요.")		
+		alert("비밀번호를 확인해주세요.")
+		return false;
 	}
 	
     //비밀번호 공백 확인 
