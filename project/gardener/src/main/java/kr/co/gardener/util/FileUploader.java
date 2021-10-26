@@ -22,8 +22,8 @@ public class FileUploader {
 
 	public static Properties makeProp() {
 		// config 파일 찾기
-		File config = new File("C:\\key\\config.properties");
-		// File config = new File("gakkum2021/tomcat/webapps/key/config.properties");
+		// File config = new File("C:\\key\\config.properties");
+		File config = new File("gakkum2021/tomcat/webapps/key/config.properties");
 
 		// config 파일을 읽기 위한 파일리더
 		BufferedReader fr = null;

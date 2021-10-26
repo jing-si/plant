@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.gakkum.gakkum"> <!-- zxing 라이브러리가 동작 가능한 최소의 API레벨 선언 -->
+    package="com.gakkum.gakkum">
+
     <!-- 플랫폼 버전 요구사항을 충족하지 않는 기기에서 앱을 필터링 -->
     <uses-sdk tools:overrideLibrary="com.google.zxing.client.android" />
+
     <!-- 인터넷 권한 추가 -->
-    <uses-permission android:name="android.permission.INTERNET" /> <!-- 카메라 사용 권한 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- 카메라 사용 권한 -->
     <uses-permission android:name="android.permission.CAMERA" />
+
+    <!-- 저장소 읽기/쓰기 권한 추가 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
