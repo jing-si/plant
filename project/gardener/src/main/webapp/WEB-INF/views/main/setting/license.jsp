@@ -28,6 +28,9 @@
 			font-size: 2em;
 			width: 100%;
 		}
+		#align p{
+			color: #ddd;
+		}
     </style>
 </head>
 <body>
