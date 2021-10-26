@@ -14,12 +14,21 @@ public class Bookmark extends GridSystem {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy.MM.dd HH:mm:ss",timezone="Asia/Seoul")
 	@DateTimeFormat(pattern = "yyyy.MM.dd HH:mm:ss")
 	private Date bookmarkDatetime;
+	private String companyName;
+	
 	private String companyId;
 	
 	private String productId;
 	private String productImage;
 	
 	
+	
+	public String getCompanyName() {
+		return companyName;
+	}
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
 	public String getProductId() {
 		return productId;
 	}

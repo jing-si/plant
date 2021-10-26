@@ -44,7 +44,7 @@
 		<where>
 			<if test="(search == 'total' or search == 'plantId') and keyword != ''">OR PLANT_ID like #{searchKeyword}</if>
 			<if test="(search == 'total' or search == 'plantName') and keyword != ''">OR PLANT_NAME like #{searchKeyword}</if>
-			<if test="(search == 'total' or search == 'plantCategory') and keyword != ''">OR PLANT_CATEGORY like #{searchKeyword}</if>
+			<if test="(search == 'total' or search == 'plantCategory') and keyword != ''">OR PLANT_CATEGORY in (select ID from (<include refid="combo0"></include>) category where TEXT like #{searchKeyword})</if>
 		</where>
 	</sql>
 
@@ -91,12 +91,14 @@
 	</select>
 
 	<select id="combo" resultType="ComboItem">
+		<include refid="combo0"></include>
+	</select>
+	
+	<sql id="combo0">
 		SELECT "0" AS "table",
-		'tree' AS "id", '나무' AS "text"
-		
+		'tree' AS "ID", '나무' AS "TEXT"
 		UNION
 		SELECT "0" AS "table",
-		'flower' AS "id", '꽃' AS "text"
-		
-	</select>
+		'flower' AS "ID", '꽃' AS "TEXT"		
+	</sql>
 </mapper>

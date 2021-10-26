@@ -65,7 +65,7 @@ body {
     left: 82%;   /* left: 294px; */
     top: 90%;     /* top: 579px; */
     border: none;
-    background-color: transparent;
+    background-color: red;
     position: absolute;
     z-index: 1002;
 }
@@ -128,22 +128,34 @@ body {
     border: none;
     background-color: transparent;
 }
-.popup_head .item_all {
-    position: absolute;
-    left: 181px;
-    top: 49px;
+
+/* 모달창 인벤 아이템 분류 탭 */
+
+ul, li {
+	list-style: none;
 }
 
-.popup_head .item_tree {
+.tab {
+	overflow:hidden
+} 
+
+
+.popup_head #item_all {
+    position: absolute;
+    left: 180px;
+    top: 51px;
+}
+
+.popup_head #item_tree {
     position: absolute;
     left: 223px;
-    top: 49px;
+    top: 51px;
 }
 
-.popup_head .item_flower {
+.popup_head #item_flower {
     position: absolute;
-    left: 265px;
-    top: 49px;
+    left: 266px;
+    top: 51px;
 }
 
 /* 팝업창 상단 버튼영역 끝 */

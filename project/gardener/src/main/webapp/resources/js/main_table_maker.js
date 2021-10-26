@@ -22,7 +22,12 @@ const state = {
 }
 
 
+function time(date){
+	return (date.getFullYear() +"-"+(date.getMonth()+1)+"-"+ date.getDate())
+}
 $(function() {
+	//날짜 할당
+	$(".time").text(time(new Date()));
 	//QueryString 분석, 선택한 nav 표시하기
 
 	selectedNav()
@@ -170,6 +175,7 @@ $(function() {
 
 				case "text":
 				case "number":
+				case "pass":
 					temp.attr("placeholder", "값을 입력해 주세요.")
 
 					break;
@@ -241,8 +247,10 @@ $(function() {
 				$("#insertTbody").empty();
 				$("#insertTbody").append($("<tr>").append($(`<td colspan='${addType.length + 2}' class="center">`).append($("<h4>").text("등록을 완료 하였습니다."))));
 				insertCount = 0;
+			},
+			error:function(data){
+				alert("오류가 발생했습니다. \n 오류가 발생한 항목을 개발자에게 알려주세요.")
 			}
-
 		})
 
 	})
@@ -356,6 +364,9 @@ $(function() {
 				$("#subContent").empty();
 				$("#subContent").append($("<div class='m-5'>").append($(`<td colspan='${addType.length + 2}' class="center">`).append($("<h4>").text("수정을 완료 하였습니다."))));
 
+			},
+			error:function(data){
+				alert("오류가 발생했습니다. \n 오류가 발생한 항목을 개발자에게 알려주세요.")
 			}
 
 		})
@@ -453,6 +464,7 @@ function tempfileUploader(inputs) {
 							nowPop = new bootstrap.Popover(parent, { html: true });
 							nowPop.show();
 						}
+						$(value).parents(".dataRow").find(".form-check-input").prop("checked", true);
 					}
 				})
 
@@ -510,6 +522,7 @@ function viewMarker(selectedRow) {
 
 			case "text":
 			case "number":
+			case "pass":
 				break;
 
 			case "area":
@@ -538,6 +551,7 @@ function viewMarker(selectedRow) {
 			case "text":
 			case "number":
 			case "hide":
+			case "pass":
 				div2.append($("<div class='col mt-2'>").append(innerDiv));
 				break;
 
@@ -802,6 +816,7 @@ function makeGrid(data) {
 
 				case "number":
 				case "text":
+				case "pass":
 					temp.addClass('updateRow nonBorderTextBox ');
 					break;
 				case "date":
@@ -914,6 +929,7 @@ function makeCell(val, col, row, name, type, action) {
 			break;
 
 		case "text":
+		case "pass":
 			temp = $("<input type='text' class='form-control'>")
 			break;
 
@@ -958,6 +974,7 @@ function makeCell(val, col, row, name, type, action) {
 		case "text":
 		case "datetime":
 		case "combo":
+		case "pass":
 			temp.val(val).addClass(c).attr("name", name)
 			break;
 		case "date":

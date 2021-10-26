@@ -457,9 +457,9 @@ label {
 			<div class="col container-custom p-0">
 				<!--Header - 로고, 로그아웃, option-->
 				<header class="header border-bot">
-					<div class="row row-cols-2 mx-0 px-0">
+					<div class="row mx-0 px-0">
 						<!--테이블 카테고리 선택상자  -->
-						<div class="col-10  hstack mx-3 pt-2 nav">
+						<div class="col-10  ms-3 pt-2 nav">
 							<div class="option col-3 pt-2 pb-3" data-url="#">
 								<h5 class="center">
 									<i class="bi"></i> Database 관리자
@@ -468,8 +468,8 @@ label {
 
 
 						</div>
-						<div class="col-1 ">
-							<a href="#">log out</a>
+						<div class="col">
+								<jsp:include page="../../../include/logout.jsp"></jsp:include>
 						</div>
 
 					</div>
@@ -491,7 +491,7 @@ label {
 											<div id="company" class="col-12 company">
 												<div id="company_nav">
 													<ul class="row">
-														<li class="col-5"><span class=".bg-info">Company</span>
+														<li class="col-5"><span class=".bg-info"><i class="bi bi-exclude"></i><strong> Company</strong></span>
 															<div class="company_span "></div></li>
 														<li class="col-3 nav_icon" data-sub="company"
 															data-kind="Api">API
@@ -581,7 +581,7 @@ label {
 											<div id="product" class="col-12">
 												<div id="company_nav">
 													<ul class="full">
-														<li class="col-5"><span class=".bg-info">Product</span>
+														<li class="col-5"><span class=".bg-info"><i class="bi bi-exclude"></i><strong> Product</strong></span>
 															<div class="company_span "></div></li>
 														<li class="col-3 nav_icon" data-sub="product"
 															data-kind="Api">API (<span id="apiProductCount">0</span>)
@@ -651,19 +651,19 @@ label {
 							</div>
 							<div id="talkBox"></div>
 							<div class="center">
-								<hr class="mx-2 my-0 p-0">
-								<div id="bulk_update" class=" center button  py-2 ">
+								<hr class="mx-2 my-0 p-0 hide">
+								<div id="bulk_update" class=" center button  py-2 hide">
 									<i class="bi bi-plus-square"></i> 기업 등록
 								</div>
 								<hr class="mx-2 my-0 p-0">
 								<div id="bulk_product_update" class=" center button  py-2">
-									<i class="bi bi-trash"></i> 제품 등록
+									<i class="bi bi-file-arrow-down"></i> 제품 등록
 								</div>
 								<hr class="mx-2 my-0 p-0">
-								<div id="update" class=" center button  py-2">
+								<div id="update" class=" center button  py-2 hide">
 									<i class="bi bi-save"></i> 수 정
 								</div>
-								<hr class="mx-2 my-0 p-0">
+								<hr class="mx-2 my-0 p-0 hide">
 							</div>
 						</div>
 						<!--main-rightBox end  -->

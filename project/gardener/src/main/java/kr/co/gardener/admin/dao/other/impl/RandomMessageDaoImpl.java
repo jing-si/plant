@@ -42,4 +42,9 @@ public class RandomMessageDaoImpl implements RandomMessageDao {
 		sql.update("randomMessage.update_list", list);
 	}
 
+	@Override
+	public String item(Integer stateId) {
+		return sql.selectOne("randomMessage.item", stateId);
+	}
+
 }

@@ -28,6 +28,8 @@ $().ready(()=>{
 	//공지사항 열닫
 	$(".button").click(function(){
 		$(this).parents(".list").children(".content").toggleClass("hide");
+		
+		/* $(".button").rotate("180deg"); */
 	});
 	
 	//뒤로가기 버튼

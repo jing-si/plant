@@ -134,7 +134,7 @@
                             <div class="brand">
                             <a href="../category/product/${list.productId}/${list.companyId}">
                             <div class="clickbox">
-                                <div class="brand-img"><img src="${list.productImage}"></div>
+                                <div  class="brand-img"><img src="${list.productImage}"></div>
                                 <p class="brand-name">${list.productName}</p>
                                 
                             </div>

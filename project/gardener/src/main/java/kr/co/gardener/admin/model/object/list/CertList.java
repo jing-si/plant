@@ -18,6 +18,7 @@ public class CertList extends CommonList<Cert>{
 		this.addInsert("인증마크","certImage","file");
 		this.addInsert("인증내용","certInfo","area");
 		
+		setView(true);
 	}
 
 }

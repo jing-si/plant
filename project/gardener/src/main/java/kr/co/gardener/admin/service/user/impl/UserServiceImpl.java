@@ -105,13 +105,13 @@ public class UserServiceImpl implements UserService {
 	}
 
 	private String encryption(User user) {
-		if (user == null || user.getUserPass() == null) {
+		if (user == null || user.getUserPass() == null || user.getUserBirth() == null) {
 			return null;
 		}
 
-		if (user.getUserBirth() == null) {
-			user.setUserBirth(null);
-		}
+		/*
+		 * if (user.getUserBirth() == null) { user.setUserBirth(null); }
+		 */
 
 		byte[] salt1Value = null; // salt를 위한 임시 데이터
 		byte[] salt2Value = null; // salt를 위한 임시 데이터

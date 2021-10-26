@@ -17,6 +17,8 @@ public class CertReasonList extends CommonList<CertReason> {
 		this.addInsert("인증명","certReasonName","text");
 		this.addInsert("인증마크","certReasonImage","file");
 		this.addInsert("인증내용","certReasonInfo","area");
+		
+		setView(true);
 	}
 
 }

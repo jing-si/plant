@@ -20,9 +20,9 @@
     <script src="/resources/dist/js/datepicker.ko.js"></script> 
     
     <style>
-    	#email input{width: 80%;}
+    	#email input{width: 35%; display : inline-block;}
     	#email div{
-	    	width: 15%;
+	    	width: 18%;
 	    	height: 40px;
 	    	vertical-align: top;
 	    	border: 0px;
@@ -43,35 +43,77 @@
     	#checkMsg p{
     		color: #66bb6a;
     	}
+    	
+    	
+    	.emailSelect{
+    		height: 40px;
+    		background-color: #f5f5f5;
+    		border: 0px;
+    		border-radius: 4px;
+    	}
+    		.scroll{
+	    	overflow: auto;
+	    	height: calc(100vh - 59.5px - 44px);
+	    }
+	    .info .sub{
+	    	margin-bottom: 2px;
+	    }
+    	#checkMsg .red{
+    		color:red;
+    	}
     </style>
     
 </head>
 <body>
 
 <script>
-
+let checkId = false;
+let checkPass = false;
 
 $().ready(() =>{
 	/* var emailValue = $("#email").children().first().val(); */
 	
 	//아이디 중복확인
+	//아이디의 조건 : 한글불가, 숫자만 불가, 영어 대소문자 가능
 	$('#duplication').click(function(){
+	var email_rule =  /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 	var emailValue = $("#emailValue").val();
+	var emailSelect = $("#emailSelect").val();
+	var email = emailValue + "@" + emailSelect;
+	
+	var koreanCheck =  RegExp(/^.*(?=^.$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/);
+	var checkEnglish = emailValue.search(/[a-z]/ig);
+
+	
 	console.log("중복확인");
-	console.log(emailValue);
-	$.ajax({
+	console.log(email);
+	
+	
+	if(emailValue == "" || emailSelect == "" || !email_rule.test(email)){
+		console.log(emailValue)
+		console.log(email_rule.test(email))
+		alert("이메일을 형식에 맞게 입력해주세요");
+		return false;
+	}
+	else if(checkEnglish < 0){
+		console.log(emailValue)
+		alert("이메일을 형식에 맞게 입력해주세요.")
+	}
+	else{
+			$.ajax({
 		url : "/membership/duplication",
 		type : "post",
-		data : {"id" : emailValue},
+		data : {"id" : email},
 		dataType : "text",
 		success : function(data){
 			console.log(data)
 			if(data==="true"){
-				alert("이 아이디는 사용 가능합니다.");
-				console.log("이 아이디는 사용가능합니다");
+				alert("사용 가능한 이메일입니다.");				
+				console.log("사용 가능한 이메일입니다.");
+				checkId = true;
 			}else{
-				alert("이 아이디는 사용 불가능합니다");
-				console.log("이 아이디는 사용불가능합니다");
+				alert("이미 사용중인 이메일입니다.");
+				console.log("이미 사용중인 이메일입니다.");
 			}
 		},  //success 끝
 		error : function(){
@@ -80,8 +122,15 @@ $().ready(() =>{
 			console.log(emailValue);
 		}
 	})  //ajax 끝
+	}  //else 끝
+	
+
 })  //중복확인 끝
 	
+	//id변경시 중복체크 요구
+	$(".changeId").on("change",function(){
+		checkId = false;
+	})
 	
 	
 	
@@ -89,6 +138,27 @@ $().ready(() =>{
 $('#pwcheck').keyup(function(){
 	var password = $('#pw').val();
 	var passwordCheck = $('#pwcheck').val();
+	const password_rule = /(?=.*\d{1,50})(?=.*[~`!@#$%\^&*()-+=]{1,50})(?=.*[a-zA-Z]{2,50}).{8,50}$/;
+	
+	if(password.length < 8){
+		$("#checkMsg").empty();
+		$("#checkMsg").append($("<p class='red'>8자리 이상 필요</p>"))
+		checkPass = false;
+		return;
+	}else{
+		checkPass = true;
+	}
+	
+	
+	if(!password_rule.test(password)){
+		$("#checkMsg").empty();
+		$("#checkMsg").append($("<p class='red'>숫자와 영어, 특수문자 필요</p>"))
+		checkPass = false;
+		return;
+	}else{
+		checkPass = true;
+	}
+	
 	
 	if(password == passwordCheck){
 		$("#checkMsg").empty();
@@ -96,7 +166,7 @@ $('#pwcheck').keyup(function(){
 	}
 	else{
 		$("#checkMsg").empty();
-		$("#checkMsg").append($("<p>비밀번호 불일치</p>"))
+		$("#checkMsg").append($("<p class='red'>비밀번호 불일치</p>"))
 	}
 })  //비밀번호 확인 끝
 
@@ -104,14 +174,34 @@ $('#pwcheck').keyup(function(){
 $('#pw').keyup(function(){
 	var password = $('#pw').val();
 	var passwordCheck = $('#pwcheck').val();
+	const password_rule = /(?=.*\d{1,50})(?=.*[~`!@#$%\^&*()-+=]{1,50})(?=.*[a-zA-Z]{2,50}).{8,50}$/;
+	
+	if(password.length < 8){
+		$("#checkMsg").empty();
+		$("#checkMsg").append($("<p class='red'>8자리 이상 필요</p>"))
+		checkPass = false;
+		return;
+	}else{
+		checkPass = true;
+	}
+	
+	if(!password_rule.test(password)){
+		$("#checkMsg").empty();
+		$("#checkMsg").append($("<p class='red'>숫자와 영어, 특수문자 필요</p>"))
+		checkPass = false;
+		return;
+	}else{
+		checkPass = true;
+	}
+	
 	
 	if(password == passwordCheck){
 		$("#checkMsg").empty();
-		$("#checkMsg").append($("<p>비밀번호 일치</p>"))
+		$("#checkMsg").append($("<p>비밀번호가 일치합니다.</p>"))
 	}
 	else{
 		$("#checkMsg").empty();
-		$("#checkMsg").append($("<p>비밀번호 불일치</p>"))
+		$("#checkMsg").append($("<p class='red'>비밀번호가 일치하지 않습니다.</p>"))
 	}
 })  //비밀번호 확인 끝
 	
@@ -123,6 +213,8 @@ $('#pw').keyup(function(){
 	//날짜 형식 바꾸기
 	$("#birthValue").datepicker({
 		language: 'ko',
+		maxDate:new Date(),
+		autoClose:true
 	});
 	
 	
@@ -132,6 +224,8 @@ $('#pw').keyup(function(){
 
 //submit하기전 검사
 function check(){
+	
+
 	
 	//아이디 공백 확인 
     if ($("#emailValue").val() == "") {
@@ -143,38 +237,25 @@ function check(){
 	
 	//아이디 중복확인
 	if(!($("#emailValue").val() == "")){
-		var emailValue = $("#emailValue").val();
-		console.log("중복확인");
-		console.log(emailValue);
-		$.ajax({
-			url : "/membership/duplication",
-			type : "post",
-			data : {"id" : emailValue},
-			dataType : "text",
-			success : function(data){
-				console.log(data)
-				if(data!=="true"){
-					alert("이 아이디는 사용 불가능합니다");
-					console.log("이 아이디는 사용불가능합니다");
-					return false;
-				}
-			},  //success 끝
-			error : function(){
-				alert("아이디 중복 확인 ajax 실행 실패");
-				console.log("실패");
-				console.log(emailValue);
-			}
-		})  //ajax 끝
+		if(!checkId){
+			alert("아이디 중복체크가 필요합니다.")
+			return false;
+		}
+		
 	}
 	
 	
 	//닉네임 공백 검사 
-    if ($("#nickValue").val() == "") {
+	if ($("#nickValue").val() == "") {
         alert("닉네임을 입력하세요");
         $("#nickValue").focus();
         return false;
     }
 	
+	
+	if(!checkPass){
+		alert("비밀번호를 확인해주세요.")		
+	}
 	
     //비밀번호 공백 확인 
     if ($("#pw").val() == "") {
@@ -199,6 +280,15 @@ function check(){
         $("#pwcheck").val("");
         $("#pw").focus();
         return false;
+    }
+    
+    //비밀번호 8자 이상 확인
+    if(!password_rule.test($("#pw").val())){
+    	alert("비밀번호는 8자 이상이어야 합니다");
+    	$("#pw").val("");
+    	$("#pwcheck").val("");
+    	$("#pw").focus();
+    	return false;
     }
 
     
@@ -231,22 +321,36 @@ function check(){
 
 
 <form method="post" onsubmit="return check();">
-<div id="align">
+<div id="align" class="scroll">
     <div id="email" class="info">
-        <input placeholder="이메일" type="text" name="userId" id="emailValue"><!-- <p></p> --></input>
+        <input placeholder="이메일" type="text" name="userId" id="emailValue" maxlength="18" class="changeId">
+        <p>@</p>
+        <select class="select emailSelect changeId" title="이메일 도메인 주소 선택" id="emailSelect">
+            <option value="">-선택-</option>
+		    <option value="naver.com">naver.com</option>
+		    <option value="gmail.com">gmail.com</option>
+		    <option value="hanmail.net">hanmail.net</option>
+		    <option value="hotmail.com">hotmail.com</option>
+		    <option value="korea.com">korea.com</option>
+		    <option value="nate.com">nate.com</option>
+		    <option value="yahoo.com">yahoo.com</option>
+		</select>
         <div value="duplication" id="duplication">중복확인</div>
+        <p class="sub title">이메일은 영문, 영문+숫자 조합만 가능합니다</p>
         <!-- <p id="certification">계정이 인증되었습니다.</p> -->
     </div>
     <div id="nickName" class="info">
-        <input placeholder="닉네임" type="text" name="userNick" id="nickValue">
+        <input placeholder="닉네임" type="text" name="userNick" id="nickValue" maxlength="10">
             <!-- <p>example@gmail.com</p> -->
     </div>
     <div id="birth" class="info">
-        <input placeholder="비밀번호(4자리)" type="password" maxlength="4" name="userPass" id="pw">
+        <input placeholder="비밀번호" type="password" name="userPass" id="pw" >
+		 <p class="sub title">비밀번호는 8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요</p>
             <!-- <p id="explain">생년월일(8자리)</p> -->
     </div>
+    
     <div id="birth" class="info">
-        <input placeholder="비밀번호 확인" type="password" maxlength="4" id="pwcheck">
+        <input placeholder="비밀번호 확인" type="password" id="pwcheck" >
             <!-- <p id="explain">생년월일(8자리)</p> -->
             <div id="checkMsg"></div>
     </div>
@@ -279,8 +383,7 @@ function check(){
     <div id="agreement" class="info">
         <p class="title">약관동의</p>
         <div id="agreeBox">
-            <div><p class="terms" id="terms_1">이용약관 동의(필수)<a href="agreement/"><p class="fullText" id="fullText_1">전문보기</p></a></div>
-            <div><p class="terms" id="terms_2">개인정보 수집 및 이용 동의(필수)<a href="agreement/"><p class="fullText" id="fullText_2">전문보기</p></a></div>
+            <div><p class="terms" id="terms_1">개인정보 수집 및 이용약관 동의(필수)<a href="agreement/"><p class="fullText" id="fullText_1">전문보기</p></a></div>
         </div>
     </div>
 </div>
