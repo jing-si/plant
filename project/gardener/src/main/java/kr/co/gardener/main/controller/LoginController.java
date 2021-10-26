@@ -85,10 +85,23 @@ public class LoginController {
 	//비밀번호 재설정 1페이지 폼
 	@PostMapping("/pwupdate")
 	public String pwupdate(User user, Model model) {
-		System.out.println(user.getUserId());
-		System.out.println(user.getUserBirth());
 		
 		int count = service.count(user);
+		String msg = null;
+		if(user.getUserId() == "") {
+			msg = "이메일을 입력해주세요.";
+			model.addAttribute("msg", msg);
+			return path+"pwupdate1";
+			
+		}
+		
+		if(user.getUserBirth() == null) {
+			msg = "생년월일을 입력해주세요.";
+			model.addAttribute("userId",user.getUserId());
+			model.addAttribute("msg", msg);
+			return path+"pwupdate1";
+			
+		}
 		
 		if(count>0) {
 			model.addAttribute("userId",user.getUserId());
@@ -96,12 +109,12 @@ public class LoginController {
 			return path + "pwupdate2";
 		}
 		else {
-			System.out.println(count);
-			/* model.addAttribute("count",count); */
-			return "redirect:./pwupdate";
+			model.addAttribute("userId",user.getUserId());
+			model.addAttribute("userBirth",new SimpleDateFormat("yyyy.MM.dd").format(user.getUserBirth()));
+			msg = "이메일과 생년월일을 확인해 주세요.";
+			model.addAttribute("msg", msg);
+			return path+"pwupdate1";
 		}
-		/* System.out.println(count); */
-		/* return path + "pwupdate2"; */
 	}
 	
 	

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,6 +66,11 @@
 			autoClose:true
 		});
 		
+		<c:if test="${!empty msg}">
+			alert("${msg}")
+		</c:if>
+		
+		
 	})	//ready끝
 	</script>
 
@@ -79,11 +85,11 @@
     
         <div id="email" class="info">
             <p class="title">이메일 주소와 생년월일을 입력 후 비밀번호 재설정이 가능합니다.</p>
-            <input placeholder="이메일" type="text" name="UserId">
+            <input placeholder="이메일" type="text" name="UserId" value="${userId }">
             <!-- <p id="send">전송</p> -->
         </div>
         <div id="nickName" class="info">
-            <input placeholder="생년월일(8자리)" type="text" readonly maxlength="8" name="userBirth" id='birthValue'>
+            <input placeholder="생년월일(8자리)" type="text" readonly maxlength="8" name="userBirth" id='birthValue' value="${userBirth }">
         </div>
 
     
