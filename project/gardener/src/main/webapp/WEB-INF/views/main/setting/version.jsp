@@ -1,48 +1,57 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>가꿈_설정</title>
+<title>가꿈_공지사항</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="/resources/css/setting.css">
+    <link rel="stylesheet" href="/resources/css/notice.css">
+    
+    <style>
+    	.scroll{
+			overflow: auto;
+			height: calc(100vh - 59.5px - 44px);
+			width: 100%;
+		}
+		.version{
+			text-align: center;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform : translate(-50%, -50%);
+			font-size: 2em;
+			width: 100%;
+		}
+    </style>
 </head>
 <body>
-    <div id="header"><p>설정</p></div>
-    <div id="body">
-        <a href="myinfo"><div class="info">
-            <p>내 정보 보기</p>
-            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6-6-6z"/></svg>
-        </div></a>
-        <a href="notice"><div class="info">
-            <p>공지사항</p>
-            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6-6-6z"/></svg>
-        </div></a>
-        <a href="ecostory"><div class="info">
-            <p>친환경 이야기</p>
-            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6-6-6z"/></svg>
-        </div></a>
-        <a><div class="info">
-            <p>가꿈 이용안내</p>
-            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6-6-6z"/></svg>
-        </div></a>
-        <a href="version"><div class="info">
-            <p>버전 정보</p>
-            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6-6-6z"/></svg>
-        </div></a>
-        <a href="license"><div class="info">
-            <p>라이선스</p>
-            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6-6-6z"/></svg>
-        </div></a>
-        <a href="agreement"><div class="info">
-            <p>이용 약관</p>
-            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6-6-6z"/></svg>
-        </div></a>
+<script src="/resources/js/jquery.min.js"></script>
+<script>
+$().ready(()=>{
+	
+	//뒤로가기 버튼
+	$(".historyBack").click(function(){
+		window.history.back();
+	})
+});
+</script>
+
+
+    <div id="header">
+        <svg class="historyBack" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12l4.58-4.59z"/></svg>
+        <p>버전정보</p>
+    </div>
+    <div id="body" class="scroll">
+        <div id="align">
+        
+			<p class="version">1.0 최신버전</p>
+        </div>
     </div>
 
     <nav class="sticky">

@@ -134,6 +134,12 @@ public class SettingController {
 	public String agreement() {
 		return "main/login/agreement";
 	}
+	
+	//버전정보
+	@RequestMapping("/version")
+	public String version() {
+		return path + "version";
+	}
 
 //	@RequestMapping(value = "/out", method = RequestMethod.POST)
 //	public String out(String userId) {
