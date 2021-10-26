@@ -61,7 +61,7 @@ Apache License 2.0
 CKEditor
 https://ckeditor.com/
 Copyright (c) 2003-2021, CKSource - Frederico Knabben. All rights reserved.
-GNU General Public License Version 2 or later (the "GPL")
+GNU General Public License Version 2 (the "GPL")
 
 JQuery
 https://jquery.org/
@@ -78,3 +78,8 @@ https://getbootstrap.kr/
 Copyright (c) 2011-2021 Twitter, Inc.
 Copyright (c) 2011-2021 The Bootstrap Authors
 MIT License
+
+MariaDB
+https://mariadb.com/
+Copyright (C) 1989, 1991 Free Software Foundation, Inc.
+GNU General Public License Version 2 (the "GPL")

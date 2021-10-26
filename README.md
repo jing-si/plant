@@ -76,10 +76,4 @@
 [https://www.youtube.com/watch?v=570gcFTArCM&feature=youtu.be](https://www.youtube.com/watch?v=570gcFTArCM&feature=youtu.be)
 
 
-# 📅 Log
-#### 210723 참가신청서 제출
-#### 210824 디자인 최종 완성
-#### 210830 FE/BE 개발 완료
-#### 210905 프로젝트 테스트 진행
-#### 210909 프로젝트 제출
 
