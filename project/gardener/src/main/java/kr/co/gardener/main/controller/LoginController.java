@@ -93,24 +93,23 @@ public class LoginController {
 			model.addAttribute("msg", msg);
 			return path+"pwupdate1";
 			
+		}else {
+			model.addAttribute("userId",user.getUserId());
 		}
 		
 		if(user.getUserBirth() == null) {
 			msg = "생년월일을 입력해주세요.";
-			model.addAttribute("userId",user.getUserId());
 			model.addAttribute("msg", msg);
 			return path+"pwupdate1";
 			
+		}else {
+			model.addAttribute("userBirth",new SimpleDateFormat("yyyy.MM.dd").format(user.getUserBirth()));
 		}
 		
 		if(count>0) {
-			model.addAttribute("userId",user.getUserId());
-			model.addAttribute("userBirth",new SimpleDateFormat("yyyy.MM.dd").format(user.getUserBirth()));
 			return path + "pwupdate2";
 		}
 		else {
-			model.addAttribute("userId",user.getUserId());
-			model.addAttribute("userBirth",new SimpleDateFormat("yyyy.MM.dd").format(user.getUserBirth()));
 			msg = "이메일과 생년월일을 확인해 주세요.";
 			model.addAttribute("msg", msg);
 			return path+"pwupdate1";
