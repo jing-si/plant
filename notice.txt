@@ -93,3 +93,38 @@ Copyright © 2015 Peter Hull
 All Rights Reserved.
 Apache License 2.0
 
+Air Datepicker
+Copyright (c) Timofey Marochkin
+https://air-datepicker.com/
+MIT license.
+
+pngtree
+line icons PNG Designed By ayub_irawan from https://pngtree.com/freepng/plant-sprout-line-icon-vector_5082747.html?sol=downref&id=bef
+
+flaticon
+ '이미지: flaticon.com'. 이 커버는 Flaticon.com의 자료를 사용해 디자인되었습니다
+
+ jQuery UI Touch Punch 0.2.3
+ Copyright 2011–2014, Dave Furfero
+ Dual licensed under the MIT or GPL Version 2 licenses.
+ Depends:
+ jquery.ui.widget.js
+ jquery.ui.mouse.js
+
+Noto Sans
+NotoSans-Regular.ttf: Copyright 2012 Google Inc. All Rights Reserved.
+NotoSans-Italic.ttf: Copyright 2012 Google Inc. All Rights Reserved.
+NotoSans-Bold.ttf: Copyright 2012 Google Inc. All Rights Reserved.
+NotoSans-BoldItalic.ttf: Copyright 2012 Google Inc. All Rights Reserved.
+
+Noto Sans KR
+Noto Sans KR	SIL Open Font License, 1.1
+NotoSansKR-Thin.otf: Copyright 2014-2020 Adobe (http://www.adobe.com/).
+NotoSansKR-Light.otf: Copyright 2014-2020 Adobe (http://www.adobe.com/).
+NotoSansKR-Regular.otf: Copyright 2014-2020 Adobe (http://www.adobe.com/).
+NotoSansKR-Medium.otf: Copyright 2014-2020 Adobe (http://www.adobe.com/).
+NotoSansKR-Bold.otf: Copyright 2014-2020 Adobe (http://www.adobe.com/).
+NotoSansKR-Black.otf: Copyright 2014-2020 Adobe (http://www.adobe.com/).
+
+Google icon
+아파치 라이센스 2.0으로 배포. 상업용으로 사용 가능하며, 2차 저작물을 오픈소스로 공개하지 않아도 됨.

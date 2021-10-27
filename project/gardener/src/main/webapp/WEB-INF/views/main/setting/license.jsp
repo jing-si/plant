@@ -53,93 +53,93 @@ $().ready(()=>{
     <div id="body" class="scroll">
         <div id="align">
         
-			<p>Selenium
+			<p>Selenium<br>
 https://www.selenium.dev/
 Copyright 2021 Software Freedom Conservancy All
 Apache License 2.0
 <br><br>
-Jackson
+Jackson<br>
 https://github.com/FasterXML/jackson
 Copyright 2007- Tatu Saloranta, tatu.saloranta@iki.fi
 Apache License 2.0
 <br><br>
-Jsoup Java HTML Parser
+Jsoup Java HTML Parser<br>
 https://jsoup.org/
 Copyright  2009 - 2021 Jonathan Hedley
 MIT License	
 <br><br>
-Apache Commons Lang
+Apache Commons Lang<br>
 https://commons.apache.org/proper/commons-lang/
 Copyright 2001-2008 The Apache Software Foundation
 Apache License 2.0
 <br><br>
-Apache HttpClient
+Apache HttpClient<br>
 https://hc.apache.org/httpclient-legacy/
 Copyright 2001-2011, Apache Software Foundation
 Apache License 2.0
 <br><br>
-Gson
+Gson<br>
 https://github.com/google/gson
 Copyright 2008 Google Inc. 
 Apache License 2.0
 <br><br>
-Apache Commons FileUpload
+Apache Commons FileUpload<br>
 https://commons.apache.org/proper/commons-fileupload/
 Copyright © 2002-2019 The Apache Software Foundation. All Rights Reserved.
 Apache License 2.0
 <br><br>
-Apache Commons DBCP
+Apache Commons DBCP<br>
 https://commons.apache.org/proper/commons-dbcp/
 Copyright © 2001-2021 The Apache Software Foundation. All Rights Reserved.
 Apache License 2.0
 <br><br>
-MyBatis
+MyBatis<br>
 http://www.mybatis.org/mybatis-3
 Copyright © 2009–2021MyBatis.org. .
 Apache License 2.0
 <br><br>
-MyBatis Spring
+MyBatis Spring<br>
 http://mybatis.org/spring/
 Copyright © 2010–2020MyBatis.org. .
 Apache License 2.0
 <br><br>
-Spring
+Spring<br>
 https://spring.io/
 © 2021 VMware, Inc. or its affiliates.
 Apache License 2.0
 <br><br>
-Spring JDBC 
+Spring JDBC <br>
 https://spring.io/
 © 2021 VMware, Inc. or its affiliates.
 Apache License 2.0
 <br><br>
-CKEditor
+CKEditor<br>
 https://ckeditor.com/
 Copyright (c) 2003-2021, CKSource - Frederico Knabben. All rights reserved.
 GNU General Public License Version 2 (the "GPL")
 <br><br>
-JQuery
+JQuery<br>
 https://jquery.org/
 Copyright 2021 OpenJS Foundation and jQuery contributors. All rights reserved
 MIT license.
 <br><br>
-JQuery UI
+JQuery UI<br>
 https://jqueryui.com/
 Copyright 2021 OpenJS Foundation and jQuery contributors. All rights reserved.
 MIT license.
 <br><br>
-Bootstrap
+Bootstrap<br>
 https://getbootstrap.kr/
 Copyright (c) 2011-2021 Twitter, Inc.
 Copyright (c) 2011-2021 The Bootstrap Authors
 MIT License
 <br><br>
-MariaDB
+MariaDB<br>
 https://mariadb.com/
 Copyright (C) 1989, 1991 Free Software Foundation, Inc.
 GNU General Public License Version 2 (the "GPL")
 <br><br>
-Zxing
+Zxing<br>
 https://github.com/zxing/
 Copyright (c) 2005 Sun Microsystems, Inc.
 Copyright © 2010-2014 University of Manchester
@@ -147,6 +147,42 @@ Copyright © 2010-2015 Stian Soiland-Reyes
 Copyright © 2015 Peter Hull
 All Rights Reserved.
 Apache License 2.0
+<br><br>
+Air Datepicker<br>
+Copyright (c) Timofey Marochkin
+https://air-datepicker.com/
+MIT license.
+<br><br>
+pngtree<br>
+line icons PNG Designed By ayub_irawan from https://pngtree.com/freepng/plant-sprout-line-icon-vector_5082747.html?sol=downref&id=bef
+<br><br>
+flaticon<br>
+ '이미지: flaticon.com'. 이 커버는 Flaticon.com의 자료를 사용해 디자인되었습니다
+<br><br>
+ jQuery UI Touch Punch 0.2.3<br>
+ Copyright 2011–2014, Dave Furfero
+ Dual licensed under the MIT or GPL Version 2 licenses.
+ Depends:
+ jquery.ui.widget.js
+ jquery.ui.mouse.js
+<br><br>
+Noto Sans<br>
+NotoSans-Regular.ttf: Copyright 2012 Google Inc. All Rights Reserved.
+NotoSans-Italic.ttf: Copyright 2012 Google Inc. All Rights Reserved.
+NotoSans-Bold.ttf: Copyright 2012 Google Inc. All Rights Reserved.
+NotoSans-BoldItalic.ttf: Copyright 2012 Google Inc. All Rights Reserved.
+<br><br>
+Noto Sans KR<br>
+Noto Sans KR	SIL Open Font License, 1.1
+NotoSansKR-Thin.otf: Copyright 2014-2020 Adobe (http://www.adobe.com/).
+NotoSansKR-Light.otf: Copyright 2014-2020 Adobe (http://www.adobe.com/).
+NotoSansKR-Regular.otf: Copyright 2014-2020 Adobe (http://www.adobe.com/).
+NotoSansKR-Medium.otf: Copyright 2014-2020 Adobe (http://www.adobe.com/).
+NotoSansKR-Bold.otf: Copyright 2014-2020 Adobe (http://www.adobe.com/).
+NotoSansKR-Black.otf: Copyright 2014-2020 Adobe (http://www.adobe.com/).
+<br><br>
+Google icon<br>
+아파치 라이센스 2.0으로 배포. 상업용으로 사용 가능하며, 2차 저작물을 오픈소스로 공개하지 않아도 됨.
 			</p>
         </div>
     </div>
