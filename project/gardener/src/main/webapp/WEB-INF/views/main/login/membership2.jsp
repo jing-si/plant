@@ -286,7 +286,7 @@ function check(){
     
     //비밀번호 서로확인 
     if ($("#pw").val() != $("#pwcheck").val()) {
-        alert("비밀번호가 상이합니다");
+        alert("비밀번호가 일치하지않습니다.");
         $("pw").val("");
         $("#pwcheck").val("");
         $("#pw").focus();
