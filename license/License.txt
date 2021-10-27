@@ -93,3 +93,7 @@ Copyright © 2015 Peter Hull
 All Rights Reserved.
 Apache License 2.0
 
+Air Datepicker
+Copyright (c) Timofey Marochkin
+https://air-datepicker.com/
+MIT license.
