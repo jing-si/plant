@@ -118,7 +118,7 @@ NotoSans-Bold.ttf: Copyright 2012 Google Inc. All Rights Reserved.
 NotoSans-BoldItalic.ttf: Copyright 2012 Google Inc. All Rights Reserved.
 
 Noto Sans KR
-Noto Sans KR	SIL Open Font License, 1.1
+Noto Sans KR SIL Open Font License, 1.1
 NotoSansKR-Thin.otf: Copyright 2014-2020 Adobe (http://www.adobe.com/).
 NotoSansKR-Light.otf: Copyright 2014-2020 Adobe (http://www.adobe.com/).
 NotoSansKR-Regular.otf: Copyright 2014-2020 Adobe (http://www.adobe.com/).
