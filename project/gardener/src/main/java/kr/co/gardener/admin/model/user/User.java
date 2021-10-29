@@ -1,7 +1,5 @@
 package kr.co.gardener.admin.model.user;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -134,6 +132,47 @@ public class User extends GridSystem{
 				plant = user.getPlant();
 			}
 		}
+		
+	}
+	
+	public boolean checkUpdate(User user) {
+		boolean needEncryption = false;
+		if(userId.equals(user.userId)) {
+			if(!userNick.equals(user.getUserNick())) {
+				userNick = user.getUserNick();
+			}
+			
+			if(!userPass.equals(user.getUserPass())) {
+				needEncryption = true;
+				userPass = user.getUserPass();
+			}
+			
+			if(!userGender.equals(user.getUserGender())) {
+				userGender = user.getUserGender();
+			}
+			
+			if(!userBirth.equals(user.getUserBirth()) && !needEncryption) {
+				userBirth = user.getUserBirth();
+			}
+			
+			if(user.getStateId() != this.stateId) {
+				
+				stateId = user.getStateId();
+			}
+			
+			if(user.getPlantId() != this.plantId) {
+				
+				plantId = user.getPlantId();
+			}
+			
+			if(user.getForestId() != this.forestId) {				
+				forestId = user.getForestId();
+			}
+			
+		}
+		
+		return needEncryption;
+		
 		
 	}
 	

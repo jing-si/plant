@@ -97,6 +97,11 @@ public class UserDaoImpl implements UserDao {
 		return sql.selectOne("user.count", user);
 	}
 
+	@Override
+	public List<User> getUpdatePreList(List<User> list) {
+		return sql.selectList("user.updatePreList",list);
+	}
+
 
 
 

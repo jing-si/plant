@@ -101,7 +101,6 @@
 				img.on("load",function(){changeSize(div1)});
 				
 				
-				
 			
 				
 			})
@@ -109,6 +108,8 @@
 			<c:if test="${not empty sessionScope.newItem }">
 				selectItem(arr[arr.length-1].div)		
 			</c:if>
+				sortIndex();
+				
 		}
 	})
 	
@@ -198,11 +199,19 @@
 			target.locationState = 2
 		}
 		item.addClass("hide");
-		
+		target.div.attr("data-order",arr.length+1);
+		sortIndex();
 	})
 	
 	
 	});
+	function sortIndex() {
+		let userPlants = $(".userPlant");
+		for(a = 0 ; a < arr.length ; a++){
+			for(b = a; b < arr.length; b++){
+			}
+		}
+	}
 	
 	function selectItem(selectedItem){
 		item = $(selectedItem);

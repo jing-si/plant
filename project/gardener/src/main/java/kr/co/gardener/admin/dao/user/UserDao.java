@@ -42,6 +42,8 @@ public interface UserDao {
 
 	int count(User user);
 
+	List<User> getUpdatePreList(List<User> list);
+
 
 
 }
