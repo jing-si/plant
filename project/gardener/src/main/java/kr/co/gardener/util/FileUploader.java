@@ -21,27 +21,27 @@ public class FileUploader {
 	
 
 	public static Properties makeProp() {
-		// config 파일 찾기
+		// config �뙆�씪 李얘린
 		File config = new File("C:\\key\\config.properties");
-		// File config = new File("gakkum2021/tomcat/webapps/key/config.properties");
+		//File config = new File("gakkum2021/tomcat/webapps/key/config.properties");
 
-		// config 파일을 읽기 위한 파일리더
+		// config �뙆�씪�쓣 �씫湲� �쐞�븳 �뙆�씪由щ뜑
 		BufferedReader fr = null;
 
-		// properties 생성
+		// properties �깮�꽦
 		Properties pro = new Properties();
 
 		try {
 			fr = new BufferedReader(new InputStreamReader(new FileInputStream(config), "UTF8"));
 		} catch (Exception e) {
-			System.out.println("config.properties 파일을 찾을 수가 없습니다.");
+			System.out.println("config.properties �뙆�씪�쓣 李얠쓣 �닔媛� �뾾�뒿�땲�떎.");
 		}
 
 		try {
-			// 읽어온 파일로 properties 로드
+			// �씫�뼱�삩 �뙆�씪濡� properties 濡쒕뱶
 			pro.load(fr);
 		} catch (IOException e1) {
-			System.out.println("config.properties 파일이 잘못되어 있습니다.");
+			System.out.println("config.properties �뙆�씪�씠 �옒紐삳릺�뼱 �엳�뒿�땲�떎.");
 		}
 
 		return pro;
@@ -53,7 +53,7 @@ public class FileUploader {
 		UUID uuid = UUID.randomUUID();
 		
 
-		// 파일 저장을 위한 경로 할당
+		// �뙆�씪 ���옣�쓣 �쐞�븳 寃쎈줈 �븷�떦
 		String javaFilePath = pro.getProperty("java.fileUpload.path") + path.replaceAll("/", "\\\\");
 		String srcFilePath = pro.getProperty("spring.fileUpload.src") + path.replaceAll("\\\\", "/");
 		String fileName = name;
@@ -64,33 +64,33 @@ public class FileUploader {
 		System.out.println(pro.getProperty("java.fileUpload.path"));
 		
 		
-		//폴더가 없으면 생성
+		//�뤃�뜑媛� �뾾�쑝硫� �깮�꽦
 		File folder = new File(javaFilePath);
 
 		if (!folder.exists()) {
 
 			if (folder.mkdirs())
-				System.out.println(javaFilePath + " : 폴더를 생성 성공");
+				System.out.println(javaFilePath + " : �뤃�뜑瑜� �깮�꽦 �꽦怨�");
 			else
-				System.out.println("폴더를 생성 실패");
+				System.out.println("�뤃�뜑瑜� �깮�꽦 �떎�뙣");
 
 		}
 		
 		
 		
-		//파일복사 해서 넣기
+		//�뙆�씪蹂듭궗 �빐�꽌 �꽔湲�
 		
 		if (file != null && !file.isEmpty()) {
 			if(fileName == null)
 				fileName = uuid.toString() +"_"+ file.getOriginalFilename();
 			
-			//파일 중복 체크
+			//�뙆�씪 以묐났 泥댄겕
 
 			try {
 				file.transferTo(new File(javaFilePath +"\\"+ fileName));
 				srcFilePath += "/" + fileName;
 			} catch (Exception e) {
-				System.out.println("오류발생");
+				System.out.println("�삤瑜섎컻�깮");
 				return null;
 			}
 		}
@@ -104,7 +104,7 @@ public class FileUploader {
 		Properties pro = makeProp();
 		
 
-		// 파일 저장을 위한 경로 할당
+		// �뙆�씪 ���옣�쓣 �쐞�븳 寃쎈줈 �븷�떦
 		String javaFilePath = pro.getProperty("java.fileUpload.path") + "product\\" + fileName+".png";
 		String srcFilePath = pro.getProperty("spring.fileUpload.src") + "product/" + fileName+".png";
 		

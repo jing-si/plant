@@ -30,4 +30,5 @@ public class UserList extends CommonList<User> {
 		setView(true);
 	}
 
+
 }
