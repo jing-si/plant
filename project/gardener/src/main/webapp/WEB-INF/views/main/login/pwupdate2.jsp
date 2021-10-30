@@ -70,11 +70,20 @@
             margin: 0 auto;
             position: relative;
         }
+        
+            	#checkMsg .red{
+    		color:red;
+    	}
+    	#email .hide{
+    		display: none;
+    	}
     </style>
 </head>
 <body>
 
 	<script>
+	let checkPass = false;
+	
 	$(document).ready(function(){
 		
 		//뒤로가기 버튼
@@ -83,35 +92,76 @@
 			window.history.back();
 		})
 		
-	//비밀번호 확인
-	$('#pwcheck').keyup(function(){
-		var password = $('#pw').val();
-		var passwordCheck = $('#pwcheck').val();
-		
-		if(password == passwordCheck){
-			$("#checkMsg").empty();
-			$("#checkMsg").append($("<p>비밀번호 일치</p>"))
-		}
-		else{
-			$("#checkMsg").empty();
-			$("#checkMsg").append($("<p>비밀번호 불일치</p>"))
-		}
-	})  //비밀번호 확인 끝
+//비밀번호 확인
+$('#pwcheck').keyup(function(){
+	var password = $('#pw').val();
+	var passwordCheck = $('#pwcheck').val();
+	const password_rule = /(?=.*\d{1,50})(?=.*[~`!@#$%\^&*()-+=]{1,50})(?=.*[a-zA-Z]{2,50}).{8,50}$/;
 	
-	//비밀번호 확인
-	$('#pw').keyup(function(){
-		var password = $('#pw').val();
-		var passwordCheck = $('#pwcheck').val();
-		
-		if(password == passwordCheck){
-			$("#checkMsg").empty();
-			$("#checkMsg").append($("<p>비밀번호가 일치합니다.</p>"))
-		}
-		else{
-			$("#checkMsg").empty();
-			$("#checkMsg").append($("<p>비밀번호가 일치하지 않습니다.</p>"))
-		}
-	})  //비밀번호 확인 끝
+	if(password.length < 8){
+		$("#checkMsg").empty();
+		$("#checkMsg").append($("<p class='red'>8자리 이상 필요</p>"))
+		checkPass = false;
+		return;
+	}else{
+		checkPass = true;
+	}
+	
+	
+	if(!password_rule.test(password)){
+		$("#checkMsg").empty();
+		$("#checkMsg").append($("<p class='red'>숫자와 영어, 특수문자 필요</p>"))
+		checkPass = false;
+		return;
+	}else{
+		checkPass = true;
+	}
+	
+	
+	if(password == passwordCheck){
+		$("#checkMsg").empty();
+		$("#checkMsg").append($("<p>비밀번호 일치</p>"))
+	}
+	else{
+		$("#checkMsg").empty();
+		$("#checkMsg").append($("<p class='red'>비밀번호 불일치</p>"))
+	}
+})  //비밀번호 확인 끝
+
+//비밀번호 확인
+$('#pw').keyup(function(){
+	var password = $('#pw').val();
+	var passwordCheck = $('#pwcheck').val();
+	const password_rule = /(?=.*\d{1,50})(?=.*[~`!@#$%\^&*()-+=]{1,50})(?=.*[a-zA-Z]{2,50}).{8,50}$/;
+	
+	if(password.length < 8){
+		$("#checkMsg").empty();
+		$("#checkMsg").append($("<p class='red'>8자리 이상 필요</p>"))
+		checkPass = false;
+		return;
+	}else{
+		checkPass = true;
+	}
+	
+	if(!password_rule.test(password)){
+		$("#checkMsg").empty();
+		$("#checkMsg").append($("<p class='red'>숫자와 영어, 특수문자 필요</p>"))
+		checkPass = false;
+		return;
+	}else{
+		checkPass = true;
+	}
+	
+	
+	if(password == passwordCheck){
+		$("#checkMsg").empty();
+		$("#checkMsg").append($("<p>비밀번호가 일치합니다.</p>"))
+	}
+	else{
+		$("#checkMsg").empty();
+		$("#checkMsg").append($("<p class='red'>비밀번호가 일치하지 않습니다.</p>"))
+	}
+})  //비밀번호 확인 끝
 
 	})	//ready끝
 	
@@ -119,21 +169,36 @@
 	
 //submit하기전 검사
 function check(){
-	//비밀번호 확인란 공백 확인 
-    if ($("#pwcheck").val() == "") {
-        alert("비밀번호 확인을 입력하세요");
-        $("#pwcheck").focus();
-        return false;
-    }
-     
-    //비밀번호 서로확인 
-    if ($("#pw").val() != $("#pwcheck").val()) {
-        alert("비밀번호가 상이합니다");
-        $("pw").val("");
-        $("#pwcheck").val("");
-        $("#pw").focus();
-        return false;
-    }
+		 //비밀번호 8자 이상 확인
+		if(!checkPass){
+			alert("비밀번호를 확인해주세요.")
+			return false;
+		}
+		
+	    //비밀번호 공백 확인 
+	    if ($("#pw").val() == "") {
+	        alert("비밀번호를 입력하세요");
+	        $("#pw").focus();
+	        return false;
+	    }
+	    
+	    
+	    //비밀번호 확인란 공백 확인 
+	    if ($("#pwcheck").val() == "") {
+	        alert("비밀번호 확인을 입력하세요");
+	        $("#pwcheck").focus();
+	        return false;
+	    }
+	    
+	    
+	    //비밀번호 서로확인 
+	    if ($("#pw").val() != $("#pwcheck").val()) {
+	        alert("비밀번호가 일치하지않습니다.");
+	        $("pw").val("");
+	        $("#pwcheck").val("");
+	        $("#pw").focus();
+	        return false;
+	    }
 }  //submit 검사 끝
 	</script>
 
@@ -144,7 +209,7 @@ function check(){
             <p>비밀번호 재설정</p>
         </div>
         
-     <form method="post" action="/pwdate2">   
+     <form method="post" onsubmit="return check();" action="/pwdate2">   
     <div id="align">
     
    
@@ -152,12 +217,11 @@ function check(){
     <input type="text" class="hide" value="${userBirth}" name="userBirth">
     <div id="email" class="info">
     	<p class="title">새로운 비밀번호를 입력하세요</p>
-        <input placeholder="비밀번호(4자리)" type="password" maxlength="4" name="userPass" id="pw">
-            <!-- <p id="explain">생년월일(8자리)</p> -->
+        <input placeholder="비밀번호" type="password" maxlength="16" name="userPass" id="pw">
+		 <p class="sub title">비밀번호는 8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요</p>
     </div>
     <div id="birth" class="info">
-        <input placeholder="비밀번호 확인" type="password" maxlength="4" id="pwcheck">
-            <!-- <p id="explain">생년월일(8자리)</p> -->
+        <input placeholder="비밀번호 확인" type="password" maxlength="16" id="pwcheck">
             <div id="checkMsg"></div>
 
     
