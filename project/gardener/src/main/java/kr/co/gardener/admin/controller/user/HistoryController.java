@@ -28,7 +28,7 @@ public class HistoryController {
 	@Autowired
 	BookmarkService bookmarkService;
 
-	@RequestMapping({ "/", "list" })
+	@RequestMapping({ "/", "" })
 	public String list(Model model) {
 
 		return path + "main";

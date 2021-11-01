@@ -22,7 +22,7 @@ import kr.co.gardener.util.FileUploader;
 import kr.co.gardener.util.Pager;
 
 @Controller
-@RequestMapping("/admin/cert/")
+@RequestMapping("/admin/cert")
 public class CertController {
 	final String path = "admin/object/cert/";
 

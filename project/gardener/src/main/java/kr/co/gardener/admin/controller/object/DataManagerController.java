@@ -19,7 +19,7 @@ import kr.co.gardener.admin.service.object.CompanyService;
 import kr.co.gardener.admin.service.object.DataManagerService;
 
 @Controller
-@RequestMapping("/admin/datamanager/")
+@RequestMapping("/admin/datamanager")
 public class DataManagerController {
 	final String path = "admin/object/datamanager/";
 
@@ -29,7 +29,7 @@ public class DataManagerController {
 	@Autowired
 	CompanyService companyService;
 	
-	@RequestMapping("/")
+	@RequestMapping({"/",""})
 	public String list() {
 		
 		return path + "main";
