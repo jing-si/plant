@@ -16,7 +16,7 @@ import kr.co.gardener.admin.service.object.TopClassService;
 import kr.co.gardener.util.Pager;
 
 @Controller
-@RequestMapping("/admin/class/")
+@RequestMapping("/admin/class")
 public class ClassController {
 	final String path = "admin/object/class/";
 	@Autowired

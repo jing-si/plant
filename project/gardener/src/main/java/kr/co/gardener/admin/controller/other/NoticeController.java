@@ -22,7 +22,7 @@ public class NoticeController {
 
 	
 	
-	@RequestMapping({ "/", "list" })
+	@RequestMapping({ "/", "" })
 	public String list(Model model) {
 
 		return path + "main";

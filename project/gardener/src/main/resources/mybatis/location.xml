@@ -17,6 +17,7 @@
 		select L.*, PL.PLANT_IMAGE from LOCATION L
 		join PLANT_LEVEL PL ON PL.PLANT_ID = L.PLANT_ID
 		WHERE USER_ID = #{userId} and PL.PLANT_LEVEL_ID = 5	
+		order by LOCATION_ORDER
 	</select>
 	
 	
