@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         mWebView.getSettings().setJavaScriptEnabled(true); // 웹뷰에서 자바스크립트 사용
         mWebView.loadUrl("https://www.gakkum.info");        // 연결할 웹뷰 url
-        mWebView.setWebChromeClient(new WebChromeClient()); // 웹 크롬 클라이언트 설정
+        mWebView.setWebChromeClient(new WebChromeClient()); // 웹 크롬 클라이언트
         mWebView.setWebViewClient(new WebViewClientClass());//새창열기 없이 웹뷰 내에서 다시 열기//페이지 이동 원활히 하기위해 사용
 
         // 웹뷰 설정 메소드 호출
