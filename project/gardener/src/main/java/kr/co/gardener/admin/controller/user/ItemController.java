@@ -25,7 +25,7 @@ public class ItemController {
 	@Autowired
 	InvenService invenService;
 
-	@RequestMapping({ "/", "list" })
+	@RequestMapping({ "/", "" })
 	public String list(Model model) {
 
 		return path + "main";

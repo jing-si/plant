@@ -17,7 +17,7 @@ import kr.co.gardener.admin.service.object.ProductService;
 import kr.co.gardener.util.Pager;
 
 @Controller
-@RequestMapping("/admin/product/")
+@RequestMapping("/admin/product")
 public class ProductController {
 	final private String path = "admin/object/product/";
 	@Autowired

@@ -15,7 +15,7 @@ import kr.co.gardener.admin.service.object.CompanyService;
 import kr.co.gardener.util.Pager;
 
 @Controller
-@RequestMapping("/admin/company/")
+@RequestMapping("/admin/company")
 public class CompanyController {
 	final private String path = "/admin/object/company/";
 	
