@@ -137,9 +137,6 @@ public class UserServiceImpl implements UserService {
 		try {
 
 			MessageDigest md = MessageDigest.getInstance("SHA-256");
-
-			Calendar calendar = Calendar.getInstance();
-			calendar.setTime(user.getUserBirth());
 			int salt = 870528 * Integer.valueOf(user.getUserId().charAt(0))+ Integer.valueOf(user.getUserId().charAt(0));
 
 			salt1Value = md.digest(String.valueOf(salt).getBytes());

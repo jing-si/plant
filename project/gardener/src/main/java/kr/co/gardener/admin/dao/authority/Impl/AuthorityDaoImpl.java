@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import kr.co.gardener.admin.dao.authority.AuthorityDao;
 import kr.co.gardener.admin.model.authority.AdminDTO;
 import kr.co.gardener.admin.model.authority.Authority;
+import kr.co.gardener.admin.model.authority.AuthorityUpdate;
 import kr.co.gardener.util.ComboItem;
 import kr.co.gardener.util.Pager;
 
@@ -44,15 +45,21 @@ public class AuthorityDaoImpl implements AuthorityDao {
 
 	}
 
-	@Override
-	public void update_list(List<Authority> list) {
-		sql.insert("authority.update_list", list);
-
-	}
-
+	
 	@Override
 	public Authority login(AdminDTO item) {
 		return sql.selectOne("authority.login",item);
+	}
+
+	@Override
+	public void update_list(List<Authority> nowlist) {
+		sql.insert("authority.update_list", nowlist);
+		
+	}
+
+	@Override
+	public List<Authority> updatePreList(List<Authority> nowlist) {
+		return sql.selectList("authority.updatePreList", nowlist);
 	}
 
 }

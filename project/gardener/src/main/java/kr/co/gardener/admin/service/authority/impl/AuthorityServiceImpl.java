@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import kr.co.gardener.admin.dao.authority.AuthorityDao;
 import kr.co.gardener.admin.model.authority.AdminDTO;
 import kr.co.gardener.admin.model.authority.Authority;
+import kr.co.gardener.admin.model.authority.AuthorityUpdate;
 import kr.co.gardener.admin.model.authority.list.AuthorityList;
 import kr.co.gardener.admin.service.authority.AuthorityService;
 import kr.co.gardener.util.Pager;
@@ -53,14 +54,30 @@ public class AuthorityServiceImpl implements AuthorityService {
 
 	@Override
 	public void update_list(AuthorityList item) {
-		List<Authority> prelist = item.getList();
-		List<Authority> nowlist = new ArrayList<Authority>();
-		for (Authority a : prelist) {
-			Authority authority = new Authority(a.getAdminId(), encryption(a), a.getAdminName(), a.getProduct(),
-					a.getUser(), a.getForest(), a.getOther(), a.getAuthority());
-			nowlist.add(authority);
+		List<Authority> nowlist = item.getList();
+		List<Authority> prelist = dao.updatePreList(nowlist);
+		List<Authority> newlist = new ArrayList<Authority>();
+		
+		
+		
+		for (Authority now : nowlist) {
+			for(Authority pre : prelist) {
+				if(pre.getAdminId().equals(now.getAdminId())) {
+					String pass;
+					if(pre.getAdminPass().equals(now.getAdminPass())) {
+						pass = pre.getAdminPass();
+					}else {
+						pass = encryption(now);
+					}
+					Authority authority = new Authority(now.getAdminId(), pass, now.getAdminName(), 
+							now.getProduct(), now.getUser(), now.getForest(), now.getOther(), now.getAuthority());
+					
+					newlist.add(authority);
+					break;
+				}
+			}
 		}
-		dao.update_list(nowlist);
+		dao.update_list(newlist);
 	}
 
 	private String encryption(Authority admin) {
@@ -76,14 +93,18 @@ public class AuthorityServiceImpl implements AuthorityService {
 		try {
 
 			MessageDigest md = MessageDigest.getInstance("SHA-256");
+			
+			int salt = 960303 * Integer.valueOf(admin.getAdminId().charAt(0))+ Integer.valueOf(admin.getAdminId().charAt(0));
 
-			salt1Value = md.digest(admin.getAdminId().getBytes());
-			salt2Value = md.digest(admin.getAdminName().getBytes());
+			salt1Value = md.digest(String.valueOf(salt).getBytes());
+			salt2Value = md.digest(admin.getAdminId().getBytes());
+			
 			md.reset();
 			md.update(ArrayUtils.addAll(salt1Value, salt2Value));
 
 			hashValue = md.digest(admin.getAdminPass().getBytes());
 			hashValue = md.digest(hashValue);
+
 
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();

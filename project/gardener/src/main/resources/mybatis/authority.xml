@@ -75,7 +75,7 @@
 		values
 		<foreach collection="list" item="item" separator=",">
 			(
-			#{item.adminId}
+			#{item.adminId}			
 			,#{item.adminPass}
 			,#{item.adminName}
 			,#{item.productCode}
@@ -86,7 +86,7 @@
 			)
 		</foreach>
 		on duplicate key update
-		ADMIN_ID = VALUES(ADMIN_ID)
+		ADMIN_ID = VALUES(ADMIN_ID)		
 		,ADMIN_PASS = VALUES(ADMIN_PASS)
 		,ADMIN_NAME = VALUES(ADMIN_NAME)
 		,PRODUCT = VALUES(PRODUCT)
@@ -142,5 +142,14 @@
 		SELECT "0" AS "table",
 		'N' AS "ID", '권한 X' AS "TEXT"
 	</sql>
-
+	
+	<select id="updatePreList" resultType="Authority">
+		select * from AUTHORITY
+		where ADMIN_ID in (
+		<foreach collection="list" item="item" separator=",">
+			#{item.adminId}
+		</foreach>
+		)
+	</select>
+	
 </mapper>
