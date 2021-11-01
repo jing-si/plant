@@ -146,6 +146,12 @@ public class SettingController {
 	public String license() {
 		return path + "license";
 	}
+	
+	//이용안내
+	@RequestMapping("/useinfo")
+	public String useinfo() {
+		return path + "useinfo";
+	}
 
 //	@RequestMapping(value = "/out", method = RequestMethod.POST)
 //	public String out(String userId) {
