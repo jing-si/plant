@@ -120,12 +120,14 @@ public class LoginController {
 	//비밀번호 재설정2
 	@PostMapping("/pwdate2")
 	public String pwupdatepwupdate(User user,HttpSession session) {
-		String pass = user.getUserPass();
+		//비밀번호 변경시 자동으로 로그인 되게 만들려면 주석을 풀어주세요.		
+		//String pass = user.getUserPass();
 		service.update(user);
-		user.setUserPass(pass);
+		//user.setUserPass(pass);
 		user = service.login(user);
-		session.setAttribute("user", user);
-		return "redirect:../";
+		//session.setAttribute("user", user);
+		//return "redirect:/login";
+		return "redirect:/";
 	}
 	
 	//스플래시(시작대기화면)
