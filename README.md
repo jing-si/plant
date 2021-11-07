@@ -70,7 +70,7 @@
 
 ### 10. 시연영상
 
-[https://youtu.be/jT1KfNcSCxI](https://youtu.be/jT1KfNcSCxI)
+[https://youtu.be/jT1KfNcSCxI]
 
 
 
