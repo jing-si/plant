@@ -51,7 +51,7 @@
 
 ### 10. 시연영상
 
-[https://youtu.be/jT1KfNcSCxI]
+<iframe width="1180" height="664" src="https://www.youtube.com/embed/jT1KfNcSCxI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 
