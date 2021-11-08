@@ -13,6 +13,8 @@
 
 <img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F0303801c-1bb8-46a4-ad55-5a3d6e17740e%2FUntitled.png?table=block&id=a74b0510-dce9-46fc-a2dd-a06db3594e30&spaceId=5ed0755e-5067-4c9a-8811-fcf0a1e2193e&width=2000&userId=a846a7ff-bb6e-42d6-b9f5-62d2265b38de&cache=v2">
 
+<img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fd3f00325-008a-43d6-8ffc-b8833d17325f%2FUntitled.png?table=block&id=e1546ea3-8264-4cf8-a5e0-aefb3e1446a9&spaceId=5ed0755e-5067-4c9a-8811-fcf0a1e2193e&width=2000&userId=a846a7ff-bb6e-42d6-b9f5-62d2265b38de&cache=v2">
+
 
 
 ### 3. 프로젝트 일정
