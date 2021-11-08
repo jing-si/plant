@@ -41,7 +41,7 @@
 
 ### 5. **개발환경 및 개발언어**
 
-<img style="width:50%;" src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fa6a2e5ef-e816-42f1-8b9c-528bf32cd50b%2FUntitled.png?table=block&id=495c0f8f-a9ac-4fbe-a3a9-2009f888499b&spaceId=5ed0755e-5067-4c9a-8811-fcf0a1e2193e&width=2000&userId=a846a7ff-bb6e-42d6-b9f5-62d2265b38de&cache=v2">
+<img style="width:40%;" src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fa6a2e5ef-e816-42f1-8b9c-528bf32cd50b%2FUntitled.png?table=block&id=495c0f8f-a9ac-4fbe-a3a9-2009f888499b&spaceId=5ed0755e-5067-4c9a-8811-fcf0a1e2193e&width=2000&userId=a846a7ff-bb6e-42d6-b9f5-62d2265b38de&cache=v2">
 
 ### 6. **기대효과 및 활용분야**
 
