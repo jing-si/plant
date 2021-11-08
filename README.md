@@ -9,7 +9,7 @@
 
 ### 2. **주요 기능**
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e488c52e-dfe9-49b0-961c-379d3998742c/Untitled.png)
+<img src= "https://www.notion.so/drj-portfolio/4e9acbb9d5884aa98606175467a7ce83#986370411232450e81ed2434cd50a423">
 
 
 ### 3. 프로젝트 일정
