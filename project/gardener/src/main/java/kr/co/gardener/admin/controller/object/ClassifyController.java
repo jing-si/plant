@@ -12,14 +12,14 @@ import kr.co.gardener.admin.model.object.Classify;
 import kr.co.gardener.admin.model.object.list.ClassifyList;
 import kr.co.gardener.admin.service.object.ClassifyService;
 @Controller
-@RequestMapping("/admin/object/classify/")
+@RequestMapping("/admin/object/classify")
 public class ClassifyController {
 	final String path = "admin/object/classify/";
 	
 	@Autowired
 	private ClassifyService classifyService;
 	
-	@RequestMapping({"/","/list"})
+	@RequestMapping({"/",""})
 	public String classify(Model model) {
 		ClassifyList list = classifyService.getList();
 		

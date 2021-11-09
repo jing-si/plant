@@ -120,6 +120,8 @@
 		SELECT COUNT(*) FROM USER
 		WHERE USER_ID = #{id}
 	</select>
+	
+	
 
 	<!--대량 처리 -->
 	<select id="list_pager" resultType="User">
@@ -174,6 +176,17 @@
 		VALUE(FOREST_ID),
 		PLANT_ID = VALUE(PLANT_ID)
 
+	</select>
+	
+	<select id="updatePreList" resultType="User">
+		select * from USER
+		where USER_ID in (
+		<foreach collection="list" item="item" separator=",">
+			#{item.userId}
+		</foreach>
+		)
+		
+	
 	</select>
 
 	<insert id="insert_list">

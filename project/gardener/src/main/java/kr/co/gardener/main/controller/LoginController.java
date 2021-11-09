@@ -85,35 +85,49 @@ public class LoginController {
 	//비밀번호 재설정 1페이지 폼
 	@PostMapping("/pwupdate")
 	public String pwupdate(User user, Model model) {
-		System.out.println(user.getUserId());
-		System.out.println(user.getUserBirth());
 		
 		int count = service.count(user);
+		String msg = null;
+		if(user.getUserId() == "") {
+			msg = "이메일을 입력해주세요.";
+			model.addAttribute("msg", msg);
+			return path+"pwupdate1";
+			
+		}else {
+			model.addAttribute("userId",user.getUserId());
+		}
+		
+		if(user.getUserBirth() == null) {
+			msg = "생년월일을 입력해주세요.";
+			model.addAttribute("msg", msg);
+			return path+"pwupdate1";
+			
+		}else {
+			model.addAttribute("userBirth",new SimpleDateFormat("yyyy.MM.dd").format(user.getUserBirth()));
+		}
 		
 		if(count>0) {
-			model.addAttribute("userId",user.getUserId());
-			model.addAttribute("userBirth",new SimpleDateFormat("yyyy.MM.dd").format(user.getUserBirth()));
 			return path + "pwupdate2";
 		}
 		else {
-			System.out.println(count);
-			/* model.addAttribute("count",count); */
-			return "redirect:./pwupdate";
+			msg = "이메일과 생년월일을 확인해 주세요.";
+			model.addAttribute("msg", msg);
+			return path+"pwupdate1";
 		}
-		/* System.out.println(count); */
-		/* return path + "pwupdate2"; */
 	}
 	
 	
 	//비밀번호 재설정2
 	@PostMapping("/pwdate2")
 	public String pwupdatepwupdate(User user,HttpSession session) {
-		String pass = user.getUserPass();
+		//비밀번호 변경시 자동으로 로그인 되게 만들려면 주석을 풀어주세요.		
+		//String pass = user.getUserPass();
 		service.update(user);
-		user.setUserPass(pass);
+		//user.setUserPass(pass);
 		user = service.login(user);
-		session.setAttribute("user", user);
-		return "redirect:../";
+		//session.setAttribute("user", user);
+		//return "redirect:/login";
+		return "redirect:/";
 	}
 	
 	//스플래시(시작대기화면)

@@ -15,7 +15,7 @@
 	rel="stylesheet">
 
 <!-- jquery 리소스 파일 사용 -->	
-<script src="/resources/jq/jquery-ui.css"></script>
+
 <script src="/resources/jq/jquery.js"></script>
 <script src="/resources/jq/jquery-ui.js"></script>
 
@@ -30,12 +30,6 @@
 
 <script>
 
-/* if(localStorage.getItem('img')){
-	var lastData = localStorage.getItem('img');
-	console.log(lastData);
-	document.write("<img src=/resources/images/tree" + lastData + ">");
-}
- */
 
     let arr = new Array();
     let item;
@@ -83,33 +77,36 @@
 				
 				div1.attr("id", 'userPlant'+value.plantId);
 				div1.data("index",index);
-				div1.attr("data-order",value.locationOrder);
+				
 				
 				img.attr("id", value.PlantId);				
 				img.attr("src",value.plantImage);
 				
 			
-				div1.css("z-index",value.locationOrder);
+				
 				$("#image-container").append(div1);
+				div1.attr("data-order",value.locationOrder);
+				
+				
+				
 				div1.append(img);
 				div1.css("left",value.locationX);
 				div1.css("top",value.locationY);
+				
 				div1.draggable();
 				value.div = div1;
 				div1.attr("data-size",value.locationSize);
 				//크기 조절
 				img.on("load",function(){changeSize(div1)});
 				
-				
-				
-			
-				
 			})
 			
 			<c:if test="${not empty sessionScope.newItem }">
 				selectItem(arr[arr.length-1].div)		
 			</c:if>
+			sortIndex();		
 		}
+		
 	})
 	
 	
@@ -198,11 +195,31 @@
 			target.locationState = 2
 		}
 		item.addClass("hide");
-		
+		target.div.attr("data-order",arr.length+1);
+		sortIndex();
 	})
 	
 	
 	});
+	
+	function sortIndex() {
+		let userPlants = $(".userPlant").not(".hide");
+		
+		let sortCount = 0;
+		while (userPlants.length> 0) {
+			const temp = {index:0,plant:$(userPlants[0])}
+			for(let a = 0 ; a < userPlants.length;a++){
+				if(Number(temp.plant.attr("data-order")) > Number($(userPlants[a]).attr("data-order"))){
+				temp.index = a;
+				temp.plant = $(userPlants[a]);
+				}
+			}
+			temp.plant.attr("data-order",sortCount++);
+			temp.plant.css("z-index",temp.plant.attr("data-order"));
+			userPlants.splice(temp.index,1);
+
+		}
+	}
 	
 	function selectItem(selectedItem){
 		item = $(selectedItem);
@@ -303,6 +320,12 @@
 			</div>
 		</div>
 	</div>
+	
+	
+<!-- flaticon  -->	
+<!-- <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+ -->
+ <!-- <div>아이콘 제작자 <a href="https://www.flaticon.com/kr/authors/vectors-market" title="Vectors Market">Vectors Market</a> from <a href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com</a></div> -->
 
 </body>
 </html>

@@ -96,12 +96,25 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void update_list(UserList item) {
-		List<User> list = item.getList();
-		for (User user : list) {
-			user.setUserPass(encryption(user));
+		List<User> nowlist = item.getList();
+		List<User> prelist = dao.getUpdatePreList(nowlist);
+		
+		for (User preUser : prelist) {
+			for(User nowUser : nowlist ) {
+				if(preUser.getUserId().equals(nowUser.getUserId())) {
+					
+					if(preUser.checkUpdate(nowUser))
+						preUser.setUserPass(encryption(preUser));
+					
+					nowlist.remove(nowUser);
+					break;
+				}
+			}
+			
+			System.out.println(preUser);
 		}
 
-		dao.update_list(list);
+		dao.update_list(prelist);
 	}
 
 	private String encryption(User user) {
@@ -109,9 +122,13 @@ public class UserServiceImpl implements UserService {
 			return null;
 		}
 
+		
 		/*
-		 * if (user.getUserBirth() == null) { user.setUserBirth(null); }
+		 * if (user.getUserBirth() == null) { user.setUserBirth();
+		 * 
+		 * }
 		 */
+		 
 
 		byte[] salt1Value = null; // salt를 위한 임시 데이터
 		byte[] salt2Value = null; // salt를 위한 임시 데이터
@@ -120,11 +137,7 @@ public class UserServiceImpl implements UserService {
 		try {
 
 			MessageDigest md = MessageDigest.getInstance("SHA-256");
-
-			Calendar calendar = Calendar.getInstance();
-			calendar.setTime(user.getUserBirth());
-			int salt = calendar.get(Calendar.YEAR) * 1987 + calendar.get(Calendar.MONTH) * 5
-					+ calendar.get(Calendar.DAY_OF_MONTH) * 28;
+			int salt = 870528 * Integer.valueOf(user.getUserId().charAt(0))+ Integer.valueOf(user.getUserId().charAt(0));
 
 			salt1Value = md.digest(String.valueOf(salt).getBytes());
 			salt2Value = md.digest(user.getUserId().getBytes());
@@ -145,8 +158,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User login(User item) {
 		User user = dao.item(item);
-		if (user != null) {
-			System.out.println(user.getUserPass());
+		if (user != null) {			
 			item.setUserBirth(user.getUserBirth());
 			if (user.getUserPass().equals(encryption(item))) {
 				user.setUserPass(null);

@@ -1,8 +1,5 @@
 package kr.co.gardener.admin.model.authority;
 
-import java.beans.ConstructorProperties;
-
-import javax.annotation.processing.Generated;
 import javax.management.ConstructorParameters;
 
 import com.fasterxml.jackson.annotation.JsonCreator;

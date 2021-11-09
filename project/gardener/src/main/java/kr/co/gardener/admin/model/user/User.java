@@ -1,7 +1,6 @@
 package kr.co.gardener.admin.model.user;
 import java.util.Date;
 
-
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -59,7 +58,7 @@ public class User extends GridSystem{
 	}
 
 	public Date getUserBirth() {
-		return userBirth;
+		return this.userBirth;
 	}
 
 	public void setUserBirth(Date userBirth) {
@@ -136,13 +135,46 @@ public class User extends GridSystem{
 		
 	}
 	
-	//비밀번호 일치여부 검증
-	public boolean pwcheck(String userPass) {
-		if(this.userPass.equals(userPass)) {
-			return true;
+	public boolean checkUpdate(User user) {
+		boolean needEncryption = false;
+		if(userId.equals(user.userId)) {
+			if(!userNick.equals(user.getUserNick())) {
+				userNick = user.getUserNick();
+			}
+			
+			if(!userPass.equals(user.getUserPass())) {
+				needEncryption = true;
+				userPass = user.getUserPass();
+			}
+			
+			if(!userGender.equals(user.getUserGender())) {
+				userGender = user.getUserGender();
+			}
+			
+			if(!userBirth.equals(user.getUserBirth()) && !needEncryption) {
+				userBirth = user.getUserBirth();
+			}
+			
+			if(user.getStateId() != this.stateId) {
+				
+				stateId = user.getStateId();
+			}
+			
+			if(user.getPlantId() != this.plantId) {
+				
+				plantId = user.getPlantId();
+			}
+			
+			if(user.getForestId() != this.forestId) {				
+				forestId = user.getForestId();
+			}
+			
 		}
-		return false;
+		
+		return needEncryption;
+		
+		
 	}
 	
-	
+		
 }

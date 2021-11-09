@@ -134,6 +134,24 @@ public class SettingController {
 	public String agreement() {
 		return "main/login/agreement";
 	}
+	
+	//버전정보
+	@RequestMapping("/version")
+	public String version() {
+		return path + "version";
+	}
+	
+	//라이선스
+	@RequestMapping("/license")
+	public String license() {
+		return path + "license";
+	}
+	
+	//이용안내
+	@RequestMapping("/useinfo")
+	public String useinfo() {
+		return path + "useinfo";
+	}
 
 //	@RequestMapping(value = "/out", method = RequestMethod.POST)
 //	public String out(String userId) {

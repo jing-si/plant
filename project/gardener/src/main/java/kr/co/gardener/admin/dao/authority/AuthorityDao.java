@@ -4,6 +4,7 @@ import java.util.List;
 
 import kr.co.gardener.admin.model.authority.AdminDTO;
 import kr.co.gardener.admin.model.authority.Authority;
+import kr.co.gardener.admin.model.authority.AuthorityUpdate;
 import kr.co.gardener.util.ComboItem;
 import kr.co.gardener.util.Pager;
 
@@ -19,8 +20,10 @@ public interface AuthorityDao {
 
 	void delete_list(List<Authority> list);
 
-	void update_list(List<Authority> list);
-
 	Authority login(AdminDTO item);
+
+	void update_list(List<Authority> newlist);
+
+	List<Authority> updatePreList(List<Authority> nowlist);
 
 }

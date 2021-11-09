@@ -25,7 +25,7 @@ public class StateController {
 	@Autowired
 	RandomMessageService randomMessageService;
 	
-	@RequestMapping({ "/", "list" })
+	@RequestMapping({ "/", "" })
 	public String list(Model model) {
 
 		return path + "main";

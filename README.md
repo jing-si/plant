@@ -9,32 +9,13 @@
 
 ### 2. **주요 기능**
 
-**1) 카테고리 기능**
+<img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fe488c52e-dfe9-49b0-961c-379d3998742c%2FUntitled.png?table=block&id=98637041-1232-450e-81ed-2434cd50a423&spaceId=5ed0755e-5067-4c9a-8811-fcf0a1e2193e&width=2000&userId=a846a7ff-bb6e-42d6-b9f5-62d2265b38de&cache=v2">
 
-    카테고리를 품목/친환경 인증 마크 종류/브랜드별로 세분화하여 친환경 제품을 쉽고 확인할 수 있도록 리스트로 제공한다.
+<img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F0303801c-1bb8-46a4-ad55-5a3d6e17740e%2FUntitled.png?table=block&id=a74b0510-dce9-46fc-a2dd-a06db3594e30&spaceId=5ed0755e-5067-4c9a-8811-fcf0a1e2193e&width=2000&userId=a846a7ff-bb6e-42d6-b9f5-62d2265b38de&cache=v2">
 
-**2) 텍스트 검색 및 QR/바코드 검색 기능**
+<img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fd3f00325-008a-43d6-8ffc-b8833d17325f%2FUntitled.png?table=block&id=e1546ea3-8264-4cf8-a5e0-aefb3e1446a9&spaceId=5ed0755e-5067-4c9a-8811-fcf0a1e2193e&width=2000&userId=a846a7ff-bb6e-42d6-b9f5-62d2265b38de&cache=v2">
 
-     다양한 형태의 검색 기능을 추가하여 사용자가 편리하게 제품을 검색할 수 있다.
 
-     QR 또는 바코드를 카메라로 스캔하면 해당 제품의 상세페이지로 이동한다.
-
-**3) 즐겨찾기 기능**
-
-     사용자가 관심 있는 제품을 즐겨찾기에 추가하고, 즐겨찾기 추가 제품만 따로 모아볼 수 있다.
-
-**4) ‘숲 가꾸기’ 게이미피케이션**
-
-     친환경 제품 마크 인증을 통해 자신만의 숲을 성장시키는 게이미피케이션 요소를 넣어 숲이 성장하는 
-    모습을 통해 사용자의 환경 기여도를 확인할 수 있다.
-
-**5) 동일 브랜드 친환경 제품 추천**
-
-     제품 상세 페이지로 들어가면 하단에 동일 브랜드의 친환경 제품을 이미지 슬라이드 형식으로 제공한다.
-
-**6) 온라인 구매 링크 제공**
-
-     제품 상세페이지 하단에 해당 제품을 온라인에서 구매할 수 있도록 해당 제품 판매 리스트 페이지로 넘겨준다.
 
 ### 3. 프로젝트 일정
 
@@ -60,10 +41,7 @@
 
 ### 5. **개발환경 및 개발언어**
 
-- 개발 분야: 웹 애플리케이션
-- 지원OS: Android
-- FE: JavaScript, HTML5, CSS, JQuery
-- BE: Java, Spring, DataBase(Maria DB)
+<img style="width:40%;" src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fa6a2e5ef-e816-42f1-8b9c-528bf32cd50b%2FUntitled.png?table=block&id=495c0f8f-a9ac-4fbe-a3a9-2009f888499b&spaceId=5ed0755e-5067-4c9a-8811-fcf0a1e2193e&width=2000&userId=a846a7ff-bb6e-42d6-b9f5-62d2265b38de&cache=v2">
 
 ### 6. **기대효과 및 활용분야**
 
@@ -73,13 +51,6 @@
 
 ### 10. 시연영상
 
-[https://www.youtube.com/watch?v=570gcFTArCM&feature=youtu.be](https://www.youtube.com/watch?v=570gcFTArCM&feature=youtu.be)
+https://youtu.be/jT1KfNcSCxI
 
-
-# 📅 Log
-#### 210723 참가신청서 제출
-#### 210824 디자인 최종 완성
-#### 210830 FE/BE 개발 완료
-#### 210905 프로젝트 테스트 진행
-#### 210909 프로젝트 제출
 
